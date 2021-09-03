@@ -15,7 +15,7 @@ use App\Http\Controllers\AjaxController;
 */
 
 Route::get('/', function () {
-    return view('landing');
+    return view('auth.login');
 });
 
 Route::get('/homepage', function () {
