@@ -213,8 +213,6 @@ Route::get('signout', [CustomAuthController::class, 'signOut'])->name('signout')
 
 
 
-
-
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
