@@ -119,9 +119,8 @@
 		</div>
 	</div>
 </div>
-
-	<script src="js/main.min.js"></script>
-	<script src="js/script.js"></script>
+	<script src="{{ asset('assets/js/main.min.js') }}"></script>
+	<script src="{{ asset('assets/js/script.js') }}"></script>
 
 </body>
 </html>
