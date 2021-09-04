@@ -14,11 +14,15 @@ use App\Http\Controllers\AjaxController;
 |
 */
 
+// Route::get('/', function () {
+//     return view('auth.login');
+// });
+
 Route::get('/', function () {
-    return view('auth.login');
+    return view('landing');
 });
-Route::get('/register', function () {
-    return view('auth.register');
+Route::get('/logout', function () {
+    return view('logout');
 });
 
 Route::get('/homepage', function () {
@@ -129,9 +133,6 @@ Route::get('/knowledge-base', function () {
 });
 Route::get('/landing', function () {
     return view('landing');
-});
-Route::get('/logout', function () {
-    return view('logout');
 });
 Route::get('/messages', function () {
     return view('messages');

@@ -29,31 +29,45 @@
 							<p>
 								Don’t use Winku Yet? <a href="#" title="">Take the tour</a> or <a href="#" title="">Join now</a>
 							</p>
-						<form method="post" action="{{ route('login.custom') }}">
+                            <span class="text-danger">
+                            <!-- <div class="alert alert-danger" role="alert"> -->
+                                <x-jet-validation-errors class="alert alert-danger" role="alert" />
+                            <!-- </div> -->
+                            </span>
+							@if (session('status'))
+							<div class="mb-4 font-medium text-sm text-green-600">
+								{{ session('status') }}
+							</div>
+						    @endif
+						<form method="post" action="{{ route('login') }}">
                             @csrf
 							<div class="form-group">
-							  <input type="text" id="input" required="required"/>
-							  <label class="control-label" for="input">Username</label><i class="mtrl-select"></i>
-                              @if ($errors->has('username'))
-                                <span class="text-danger">{{ $errors->first('username') }}</span>
-                                @endif
+							  <input type="text" id="input" required="required" name="email"/>
+							  <label class="control-label" for="input" value="{{ __('Email') }}">Email</label><i class="mtrl-select"></i>
 							</div>
 							<div class="form-group">
-							  <input type="password" required="required"/>
-							  <label class="control-label" for="input">Password</label><i class="mtrl-select"></i>
-                              @if ($errors->has('password'))
-                              <span class="text-danger">{{ $errors->first('password') }}</span>
-                              @endif
+							  <input type="password" required="required" name="password"/>
+							  <label class="control-label" for="input" value="{{ __('Password') }}">Password</label><i class="mtrl-select"></i>
 							</div>
 							<div class="checkbox">
-							  <label>
-								<input type="checkbox" checked="checked"/><i class="check-box"></i>Always Remember Me.
-							  </label>
+							<label for="remember_me" class="flex items-center">
+								<x-jet-checkbox id="remember_me" name="remember" /><i class="check-box"></i>
+								<span class="ml-2 text-sm text-gray-600">{{ __('Always Remember Me.') }}</span>
+							</label>
 							</div>
-							<a href="#" title="" class="forgot-pwd">Forgot Password?</a>
+							@if (Route::has('password.request'))
+                    <a class="forgot-pwd" href="{{ route('password.request') }}">
+                        {{ __('Forgot your password?') }}
+                    </a>
+                @endif
 							<div class="submit-btns">
-								<button class="mtr-btn signin" type="button"><span>Login</span></button>
-								<button class="mtr-btn signup" type="button"><span>Register</span></button>
+							<x-jet-button class="ml-4">
+							    {{ __('Log in') }}
+						    </x-jet-button>
+                            <button class="ml-4 px-4 py-2 signup" type="button"><span>Register</span></button>
+                            <!-- <x-jet-button class="mtr-btn signup">
+                                {{ __('Register') }}
+                            </x-jet-button> -->
 							</div>
 						</form>
 					</div>
@@ -62,27 +76,32 @@
 							<p>
 								Don’t use Winku Yet? <a href="#" title="">Take the tour</a> or <a href="#" title="">Join now</a>
 							</p>
-                            <form action="{{ route('register.custom') }}" method="POST">
+                            <x-jet-validation-errors class="mb-4" />
+							@if (session('status'))
+							<div class="mb-4 font-medium text-sm text-green-600">
+								{{ session('status') }}
+							</div>
+						    @endif
+                            <form action="{{ route('register') }}" method="POST">
                                 @csrf
 
 							<div class="form-group">
-							  <input type="text" required="required"/>
-							  <label class="control-label" for="input">First & Last Name</label><i class="mtrl-select"></i>
+							  <input type="text" required="required" name="name"/>
+							  <label class="control-label" for="input" value="{{ __('Name') }}">First & Last Name</label><i class="mtrl-select"></i>
 
 							</div>
 							<div class="form-group">
-							  <input type="text" required="required"/>
-							  <label class="control-label" for="input">User Name</label><i class="mtrl-select"></i>
-                              @if ($errors->has('username'))
-                              <span class="text-danger">{{ $errors->first('username') }}</span>
-                              @endif
+						
+							  <input type="text" required="required" name="email"/>
+							  <label class="control-label" for="input" value="{{ __('Email') }}">Email</label><i class="mtrl-select"></i>
 							</div>
 							<div class="form-group">
-							  <input type="password" required="required"/>
-							  <label class="control-label" for="input">Password</label><i class="mtrl-select"></i>
-                              @if ($errors->has('password'))
-                              <span class="text-danger">{{ $errors->first('password') }}</span>
-                              @endif
+							  <input type="password" required="required" name="password"/>
+							  <label class="control-label" for="input" value="{{ __('Password') }}">Password</label><i class="mtrl-select"></i>
+							</div>
+							<div class="form-group">
+							  <input type="password" required="required" name="password_confirmation"/>
+							  <label class="control-label" for="input" value="{{ __('Confirm Password') }}">Confirm Password</label><i class="mtrl-select"></i>
 							</div>
 							<div class="form-radio">
 							  <div class="radio">
@@ -108,9 +127,15 @@
 								<input type="checkbox" checked="checked"/><i class="check-box"></i>Accept Terms & Conditions ?
 							  </label>
 							</div>
-							<a href="#" title="" class="already-have">Already have an account</a>
+                            <a class="already-have" href="{{ route('login') }}">
+                                {{ __('Already registered?') }}
+                            </a>
+							<!-- <a href="#" title="" class="already-have">Already have an account</a> -->
 							<div class="submit-btns">
-								<button class="mtr-btn signup" type="button"><span>Register</span></button>
+                            <x-jet-button class="ml-4">
+                                {{ __('Register') }}
+                            </x-jet-button>
+								<!-- <button class="mtr-btn signup" type="button"><span>Register</span></button> -->
 							</div>
 						</form>
 					</div>

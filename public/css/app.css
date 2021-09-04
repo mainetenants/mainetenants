@@ -1546,7 +1546,7 @@ select {
 }
 .bg-gray-800 {
 	--tw-bg-opacity: 1;
-	background-color: rgba(31, 41, 55, var(--tw-bg-opacity));
+	background: #088dcd;
 }
 .bg-red-100 {
 	--tw-bg-opacity: 1;
