@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AjaxController;
+use App\Http\Controllers\Profile;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,9 @@ use App\Http\Controllers\AjaxController;
 // Route::get('/', function () {
 //     return view('auth.login');
 // });
+// Route::get('insert','postscontroller@insertform');
+// Route::post('create','Postscontroller@insert');
+Route::post('get-post-list','App\Http\Controllers\PostController@postList');
 
 Route::get('/', function () {
     return view('landing');
@@ -25,9 +29,7 @@ Route::get('/logout', function () {
     return view('logout');
 });
 
-Route::get('/homepage', function () {
-    return view('homepage');
-});
+Route::get('/homepage','App\Http\Controllers\PostController@homepage');
 
 Route::get('/404', function () {
     return view('404');
@@ -220,3 +222,6 @@ Route::get('signout', [CustomAuthController::class, 'signOut'])->name('signout')
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+Route::get('/profile', [Profile::class, 'index']);
+Route::post('/upload-image', [Profile::class, 'store']);

@@ -657,8 +657,9 @@
 											<img src="{{ asset('assets/images/resources/admin2.jpg') }}" alt="">
 										</figure>
 										<div class="newpst-input">
-											<form method="GET" id="upload_files">
-												<textarea rows="2" placeholder="write something"></textarea>
+											<form method="post" id="upload_files" action="get-post-list">
+											<input type="hidden" name="_token" value="{{ csrf_token() }}" />
+												<textarea rows="2" placeholder="write something" name="msg"></textarea>
 												<div class="attachments">
 													<ul>
 														<li>
@@ -686,7 +687,7 @@
 															</label>
 														</li>
 														<li>
-															<button type="button" id="posts">Post</button>
+															<input type="submit" id="posts" value="Post">
 														</li>
 													</ul>
 												</div>
@@ -695,6 +696,7 @@
 									</div>
 								</div><!-- add post new box -->
 								<div class="loadMore">
+									@foreach($users as $users_data)
 								<div class="central-meta item">
 									<div class="user-post">
 										<div class="friend-info">
@@ -702,8 +704,13 @@
 												<img src="{{ asset('assets/images/resources/friend-avatar10.jpg') }}" alt="">
 											</figure>
 											<div class="friend-name">
-												<ins><a href="time-line.html" title="">Janice Griffith</a></ins>
-												<span>published: june,2 2018 19:PM</span>
+												<ins><a href="time-line.html" title="">{{$users_data->username}}</a></ins>
+												<?php
+												$timestamp = strtotime($users_data->create_date);
+
+												$day = date('M,d Y H:i A', $timestamp);
+												?>
+												<span>published: {{$day}} </span>
 											</div>
 											<div class="post-meta">
 												<img src="{{ asset('assets/images/resources/user-post.jpg') }}" alt="">
@@ -869,6 +876,7 @@
 										</div>
 									</div>
 								</div>
+								@endforeach
 								<div class="central-meta item">
 									<div class="user-post">
 										<div class="friend-info">
@@ -1459,6 +1467,8 @@
 	<script src="{{ asset('js/script.js') }}"></script>
 	<script src="{{ asset('js/map-init.js') }}"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8c55_YHLvDHGACkQscgbGLtLRdxBDCfI"></script>
+    
+
     @include('includes/footer');
 </body>
 </html>
