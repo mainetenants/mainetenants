@@ -657,7 +657,27 @@
 											<img src="{{ asset('assets/images/resources/admin2.jpg') }}" alt="">
 										</figure>
 										<div class="newpst-input">
-											<form method="post" id="upload_files" action="get-post-list">
+										@if ($errors->any())
+											<div class="alert alert-secondary" role="alert">
+												<div class="alert-icon">
+													<i class="flaticon-warning "></i>
+												</div>
+												<div class="alert-text">
+													<ul>
+														@foreach ($errors->all() as $error)
+														<li>{{ $error }}</li>
+														@endforeach
+													</ul>
+												</div>
+											</div><br />
+										@endif
+										@if ($message = Session::get('success'))
+										<div class="alert alert-success alert-block">
+											<button type="button" class="close" data-dismiss="alert">×</button>
+												<strong>{{ $message }}</strong>
+										</div>
+										@endif
+											<form method="post" id="upload_files" action="get-post-list" enctype="multipart/form-data">
 											<input type="hidden" name="_token" value="{{ csrf_token() }}" />
 												<textarea rows="2" placeholder="write something" name="msg"></textarea>
 												<div class="attachments">
@@ -665,19 +685,19 @@
 														<li>
 															<i class="fa fa-music"></i>
 															<label class="fileContainer">
-																<input type="file">
+																<input type="file" name="music">
 															</label>
 														</li>
 														<li>
 															<i class="fa fa-image"></i>
 															<label class="fileContainer">
-																<input type="file">
+																<input type="file" name="image">
 															</label>
 														</li>
 														<li>
 															<i class="fa fa-video-camera"></i>
 															<label class="fileContainer">
-																<input type="file">
+																<input type="file" name="video">
 															</label>
 														</li>
 														<li>
