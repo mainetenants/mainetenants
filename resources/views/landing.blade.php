@@ -124,7 +124,7 @@
 							</div>
 							<div class="checkbox">
 							  <label>
-								<input type="checkbox" checked="checked"/><i class="check-box"></i>Accept Terms & Conditions ?
+								<input type="checkbox" required="required"/><i class="check-box"></i>Accept Terms & Conditions ?
 							  </label>
 							</div>
                             <a class="already-have" href="{{ route('login') }}">
