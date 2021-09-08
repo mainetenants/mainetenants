@@ -716,7 +716,7 @@
 									</div>
 								</div><!-- add post new box -->
 								<div class="loadMore">
-									@foreach($users as $users_data)
+									@foreach($users as $user)
 								<div class="central-meta item">
 									<div class="user-post"> 
 										<div class="friend-info">
@@ -724,16 +724,16 @@
 												<img src="{{ asset('assets/images/resources/friend-avatar10.jpg') }}" alt="">
 											</figure>
 											<div class="friend-name">
-												<ins><a href="time-line.html" title="">{{$users_data->username}}</a></ins>
+												<ins><a href="time-line.html" title="">{{$user->name}}</a></ins>
 												<?php
-												$timestamp = strtotime($users_data->create_date);
+												$timestamp = strtotime($user->created_at);
 
 												$day = date('M,d Y H:i A', $timestamp);
 												?>
 												<span>published: {{$day}} </span>
 											</div>
 											<div class="post-meta">
-												<img src="{{ asset('assets/images/resources/user-post.jpg') }}" alt="">
+												<img src="upload/images/{{ $user->images; }}" alt="">
 												<div class="we-video-info">
 													<ul>
 														<li>
@@ -798,7 +798,7 @@
 												<div class="description">
 
 													<p>
-														World's most beautiful car in Curabitur <a href="#" title="">#test drive booking !</a> the most beatuiful car available in america and the saudia arabia, you can book your test drive by our official website
+														{{ $user->content; }}
 													</p>
 												</div>
 											</div>

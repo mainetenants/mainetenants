@@ -12,14 +12,14 @@ class Activities extends Migration
      * @return void
      */
     public function up()
-    {
+    {    Schema::dropIfExists('msu_community_activities');
         Schema::create('msu_community_activities', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
+            $table->string('title')->nullable();
             $table->text('content')->nullable();
             $table->text('images')->nullable();
             $table->text('videos')->nullable();
-            // $table->text('audio')->nullable();
+            $table->text('music')->nullable();
             $table->timestamp('created')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
             $table->integer('status');
@@ -34,6 +34,6 @@ class Activities extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('msu_community_activities');
     }
 }
