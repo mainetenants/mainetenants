@@ -59,6 +59,22 @@ class PostController extends Controller
         return back();
         
     }
+    public function commentList(Request $request)
+   
+    {   
+        $user = Auth::user();
+        $data = $request->all();
+           
+        if(isset($data['comment'])){
+            $request->validate([
+                'comment' => 'required',
+            ]);
+        }
+        $values = array('user_id' => $user->id,'comment' => $data['comment']);
+        DB::table('msu_comments')->insert($values);
+        return back();
+        
+    }
 
     public function homepage(Request $request)
     { 
@@ -70,8 +86,12 @@ class PostController extends Controller
         ->orderBy('created', 'DESC')
         ->get();
         
-        // echo"<pre>";print_r($users);die;
-        return view('homepage', ['users' => $users]);
+        $comments = DB::table('msu_comments')
+        ->where('user_id', $id)
+        ->orderBy('created', 'DESC')
+        ->get();
+        return view('homepage', ['users' => $users, 
+            'comments' => $comments]);
   
     }
 }

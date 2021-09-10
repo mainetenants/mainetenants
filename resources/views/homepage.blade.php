@@ -805,36 +805,28 @@
 										</div>
 										<div class="coment-area">
 											<ul class="we-comet">
+												@foreach ($comments as $comment)
 												<li>
 													<div class="comet-avatar">
 														<img src="{{ asset('assets/images/resources/comet-1.jpg') }}" alt="">
 													</div>
 													<div class="we-comment">
 														<div class="coment-head">
-															<h5><a href="time-line.html" title="">Jason borne</a></h5>
-															<span>1 year ago</span>
+															<h5><a href="time-line.html" title="">{{$user->name}}</a></h5>
+															<?php
+												            $timestamp = strtotime($user->created_at);
+                                                             $day = date('M,d Y H:i A', $timestamp);
+												?>
 															<a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
 														</div>
-														<p>we are working for the dance and sing songs. this car is very awesome for the youngster. please vote this car and like our post</p>
+														<p>{{ $comment->comment; }}</p>
 													</div>
 													<ul>
 														<li>
-															<div class="comet-avatar">
-																<img src="{{ asset('assets/images/resources/comet-2.jpg') }}" alt="">
-															</div>
-															<div class="we-comment">
-																<div class="coment-head">
-																	<h5><a href="time-line.html" title="">alexendra dadrio</a></h5>
-																	<span>1 month ago</span>
-																	<a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
-																</div>
-																<p>yes, really very awesome car i see the features of this car in the official website of <a href="#" title="">#Mercedes-Benz</a> and really impressed :-)</p>
-															</div>
-														</li>
-														<li>
-															<div class="comet-avatar">
-																<img src="{{ asset('assets/images/resources/comet-3.jpg') }}" alt="">
-															</div>
+														<div class="comet-avatar">
+															<img src="{{ asset('assets/images/resources/comet-4.jpg') }}" alt="">
+														</div>
+														
 															<div class="we-comment">
 																<div class="coment-head">
 																	<h5><a href="time-line.html" title="">Olivia</a></h5>
@@ -847,21 +839,6 @@
 													</ul>
 												</li>
 												<li>
-													<div class="comet-avatar">
-														<img src="{{ asset('assets/images/resources/comet-4.jpg') }}" alt="">
-													</div>
-													<div class="we-comment">
-														<div class="coment-head">
-															<h5><a href="time-line.html" title="">Donald Trump</a></h5>
-															<span>1 week ago</span>
-															<a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
-														</div>
-														<p>we are working for the dance and sing songs. this video is very awesome for the youngster. please vote this video and like our channel
-															<i class="em em-smiley"></i>
-														</p>
-													</div>
-												</li>
-												<li>
 													<a href="#" title="" class="showmore underline">more comments</a>
 												</li>
 												<li class="post-comment">
@@ -869,8 +846,9 @@
 														<img src="{{ asset('assets/images/resources/comet-1.jpg') }}" alt="">
 													</div>
 													<div class="post-comt-box">
-														<form method="post">
-															<textarea placeholder="Post your comment"></textarea>
+														<form action="get-comment-list" method="post" enctype="multipart/form-data">
+															  <input type="hidden" name="_token" value="{{ csrf_token() }}">
+															<textarea name="comment" placeholder="Post your comment"></textarea>
 															<div class="add-smiles">
 																<span class="em em-expressionless" title="add icon"></span>
 															</div>
@@ -888,10 +866,11 @@
 																<i class="em em-rage"></i>
 																<i class="em em-stuck_out_tongue"></i>
 															</div>
-															<button type="submit"></button>
+															<button type="submit">121</button>
 														</form>
 													</div>
 												</li>
+												@endforeach
 											</ul>
 										</div>
 									</div>
