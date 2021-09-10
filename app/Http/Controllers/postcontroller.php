@@ -15,6 +15,7 @@ class PostController extends Controller
         $user = Auth::user();
         
         $imageName="";
+        $imagename ="";
         if(isset($data['image'])){
             $request->validate([
                 'image' => 'image|mimes:jpeg,png,jpg,gif,svg',
