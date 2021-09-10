@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
-      @include('includes/head');
+      @include('includes/head')
 	</head>
 <body>
 <!--<div class="se-pre-con"></div>-->
@@ -841,14 +841,17 @@
 												<li>
 													<a href="#" title="" class="showmore underline">more comments</a>
 												</li>
+												@endforeach
+
 												<li class="post-comment">
 													<div class="comet-avatar">
 														<img src="{{ asset('assets/images/resources/comet-1.jpg') }}" alt="">
 													</div>
 													<div class="post-comt-box">
-														<form action="get-comment-list" method="post" enctype="multipart/form-data">
+														<form action="get-comment-list" id="comment-form" method="post" enctype="multipart/form-data">
 															  <input type="hidden" name="_token" value="{{ csrf_token() }}">
-															<textarea name="comment" placeholder="Post your comment"></textarea>
+															  <input type="hidden" name="post_id" value="{{ $user->post_id }}">
+															<textarea name="comment" id="comment" placeholder="Post your comment"></textarea>
 															<div class="add-smiles">
 																<span class="em em-expressionless" title="add icon"></span>
 															</div>
@@ -866,13 +869,13 @@
 																<i class="em em-rage"></i>
 																<i class="em em-stuck_out_tongue"></i>
 															</div>
-															<button type="submit">121</button>
+															<button type="submit"></button>
 														</form>
 													</div>
 												</li>
-												@endforeach
 											</ul>
 										</div>
+									
 									</div>
 								</div>
 								@endforeach
@@ -1468,6 +1471,41 @@
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8c55_YHLvDHGACkQscgbGLtLRdxBDCfI"></script>
     
 
-    @include('includes/footer');
+    @include('includes/footer')
+	<script>
+	$('#comment').keyup(function (event) {
+		if (event.keyCode == 13 && event.shiftKey) {
+			var content = this.value;
+			var caret = getCaret(this);
+			this.value = content.substring(0,caret)+"\n"+content.substring(carent,content.length-1);
+			event.stopPropagation();
+			
+		}else if(event.keyCode == 13)
+		{
+			$('#comment-form').submit();
+		}
+	});
+function getCaret(el) { 
+  if (el.selectionStart) { 
+    return el.selectionStart; 
+  } else if (document.selection) { 
+    el.focus(); 
+
+    var r = document.selection.createRange(); 
+    if (r == null) { 
+      return 0; 
+    } 
+
+    var re = el.createTextRange(), 
+        rc = re.duplicate(); 
+    re.moveToBookmark(r.getBookmark()); 
+    rc.setEndPoint('EndToStart', re); 
+
+    return rc.text.length; 
+  }  
+  return 0; 
+}
+
+	</script>
 </body>
 </html>

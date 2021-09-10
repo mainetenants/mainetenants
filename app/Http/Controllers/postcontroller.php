@@ -64,28 +64,29 @@ class PostController extends Controller
     {   
         $user = Auth::user();
         $data = $request->all();
-           
+        //    dd($data);
         if(isset($data['comment'])){
             $request->validate([
                 'comment' => 'required',
             ]);
         }
-        $values = array('user_id' => $user->id,'comment' => $data['comment']);
+        $values = array('user_id' => $user->id,'post_id' => $data['post_id'],'comment' => $data['comment']);
         DB::table('msu_comments')->insert($values);
         return back();
         
     }
 
     public function homepage(Request $request)
-    { 
+    {   
         $id = Auth::id();
         
         $users = DB::table('msu_community_activities')
         ->leftJoin('users', 'msu_community_activities.user_id', '=', 'users.id')
+        ->select('users.name', 'users.created_at', 'msu_community_activities.*', 'users.id as user_id', 'msu_community_activities.id as post_id')
         ->where('user_id', $id)
         ->orderBy('created', 'DESC')
         ->get();
-        
+        // dd($users);
         $comments = DB::table('msu_comments')
         ->where('user_id', $id)
         ->orderBy('created', 'DESC')
