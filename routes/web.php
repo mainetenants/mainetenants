@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AjaxController;
 use App\Http\Controllers\Profile;
+use App\Http\Middleware\customAuth;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,18 +19,16 @@ use App\Http\Controllers\Profile;
 // Route::get('/', function () {
 //     return view('auth.login');
 // });
-// Route::get('insert','postscontroller@insertform');
-// Route::post('create','Postscontroller@insert');
-Route::post('get-post-list','App\Http\Controllers\PostController@postList');
+Route::group(['middleware'=>'web'],function(){
+    Route::get('/', function () { return view('landing'); });
+    Route::get('/homepage','App\Http\Controllers\PostController@homepage');
+    Route::post('get-post-list','App\Http\Controllers\PostController@postList');
+    Route::post('get-comment-list','App\Http\Controllers\PostController@commentList');
 
-Route::get('/', function () {
-    return view('landing');
 });
 Route::get('/logout', function () {
     return view('logout');
 });
-
-Route::get('/homepage','App\Http\Controllers\PostController@homepage');
 
 Route::get('/404', function () {
     return view('404');

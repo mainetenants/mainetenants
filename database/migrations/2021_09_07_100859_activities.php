@@ -20,10 +20,20 @@ class Activities extends Migration
             $table->text('images')->nullable();
             $table->text('videos')->nullable();
             $table->text('music')->nullable();
+            $table->integer('user_id');
             $table->timestamp('created')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
             $table->integer('status');
+            
+        });
+        Schema::dropIfExists('msu_comments');
+        Schema::create('msu_comments', function (Blueprint $table) {
+            $table->increments('id');
             $table->integer('user_id');
+            $table->integer('post_id');
+            $table->text('comment')->nullable();
+            $table->timestamp('created')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
         });
     }
 
@@ -35,5 +45,6 @@ class Activities extends Migration
     public function down()
     {
         Schema::dropIfExists('msu_community_activities');
+        Schema::dropIfExists('msu_comments');
     }
 }

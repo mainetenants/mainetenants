@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use Auth;
-use Carbon\Carbon;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class PostController extends Controller
 {
@@ -19,13 +19,18 @@ class PostController extends Controller
             $request->validate([
                 'image' => 'image|mimes:jpeg,png,jpg,gif,svg',
             ]);
-            //|max:2048
-      
-            $imageName = time().'.'.$request->image->extension(); 
-
-            $request->image->move(public_path('upload/images'), $imageName);
-            
+            $image = $request->file('image');
+            // echo"<pre>"; print_r($image);die;
+            $imagename = time().'.'.$image->extension();
+         
+            $filePath = public_path('upload/images');
+    
+            $img = Image::make($image->path());
+            $img_resize = $img->resize(870, 470, function ($const) {
+                $const->aspectRatio();
+            })->save($filePath.'/'.$imagename);
         }
+
         
         $videoName="";
         if(isset($data['video'])){
@@ -44,31 +49,50 @@ class PostController extends Controller
             $request->validate([
                 'music' => 'mimes:application/octet-stream,music/mpeg,mpga,mp3,wav',
             ]);
-            //|max:2048
-            
             $musicName = time().'.'.$request->music->extension(); 
             $request->music->move(public_path('upload/music'), $musicName);
             
         }
 
-        $values = array('user_id' => $user->id,'content' => $data['msg'],'images' => $imageName,'videos' => $videoName,'title' => $data['msg'],'music' => $musicName,'status' => 1);
-    //   echo"<pre>"; print_r($values);die;
+        $values = array('user_id' => $user->id,'content' => $data['msg'],'images' => $imagename,'videos' => $videoName,'title' => $data['msg'],'music' => $musicName,'status' => 1);
         DB::table('msu_community_activities')->insert($values);
+        return back();
+        
+    }
+    public function commentList(Request $request)
+   
+    {   
+        $user = Auth::user();
+        $data = $request->all();
+        //    dd($data);
+        if(isset($data['comment'])){
+            $request->validate([
+                'comment' => 'required',
+            ]);
+        }
+        $values = array('user_id' => $user->id,'post_id' => $data['post_id'],'comment' => $data['comment']);
+        DB::table('msu_comments')->insert($values);
         return back();
         
     }
 
     public function homepage(Request $request)
-    { 
+    {   
         $id = Auth::id();
         
         $users = DB::table('msu_community_activities')
         ->leftJoin('users', 'msu_community_activities.user_id', '=', 'users.id')
+        ->select('users.name', 'users.created_at', 'msu_community_activities.*', 'users.id as user_id', 'msu_community_activities.id as post_id')
         ->where('user_id', $id)
         ->orderBy('created', 'DESC')
         ->get();
-        // echo"<pre>";print_r($users);die;
-        return view('homepage', ['users' => $users]);
+        // dd($users);
+        $comments = DB::table('msu_comments')
+        ->where('user_id', $id)
+        ->orderBy('created', 'DESC')
+        ->get();
+        return view('homepage', ['users' => $users, 
+            'comments' => $comments]);
   
     }
 }

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
-      @include('includes/head');
+      @include('includes/head')
 	</head>
 <body>
 <!--<div class="se-pre-con"></div>-->
@@ -805,36 +805,28 @@
 										</div>
 										<div class="coment-area">
 											<ul class="we-comet">
+												@foreach ($comments as $comment)
 												<li>
 													<div class="comet-avatar">
 														<img src="{{ asset('assets/images/resources/comet-1.jpg') }}" alt="">
 													</div>
 													<div class="we-comment">
 														<div class="coment-head">
-															<h5><a href="time-line.html" title="">Jason borne</a></h5>
-															<span>1 year ago</span>
+															<h5><a href="time-line.html" title="">{{$user->name}}</a></h5>
+															<?php
+												            $timestamp = strtotime($user->created_at);
+                                                             $day = date('M,d Y H:i A', $timestamp);
+												?>
 															<a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
 														</div>
-														<p>we are working for the dance and sing songs. this car is very awesome for the youngster. please vote this car and like our post</p>
+														<p>{{ $comment->comment; }}</p>
 													</div>
 													<ul>
 														<li>
-															<div class="comet-avatar">
-																<img src="{{ asset('assets/images/resources/comet-2.jpg') }}" alt="">
-															</div>
-															<div class="we-comment">
-																<div class="coment-head">
-																	<h5><a href="time-line.html" title="">alexendra dadrio</a></h5>
-																	<span>1 month ago</span>
-																	<a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
-																</div>
-																<p>yes, really very awesome car i see the features of this car in the official website of <a href="#" title="">#Mercedes-Benz</a> and really impressed :-)</p>
-															</div>
-														</li>
-														<li>
-															<div class="comet-avatar">
-																<img src="{{ asset('assets/images/resources/comet-3.jpg') }}" alt="">
-															</div>
+														<div class="comet-avatar">
+															<img src="{{ asset('assets/images/resources/comet-4.jpg') }}" alt="">
+														</div>
+														
 															<div class="we-comment">
 																<div class="coment-head">
 																	<h5><a href="time-line.html" title="">Olivia</a></h5>
@@ -847,30 +839,19 @@
 													</ul>
 												</li>
 												<li>
-													<div class="comet-avatar">
-														<img src="{{ asset('assets/images/resources/comet-4.jpg') }}" alt="">
-													</div>
-													<div class="we-comment">
-														<div class="coment-head">
-															<h5><a href="time-line.html" title="">Donald Trump</a></h5>
-															<span>1 week ago</span>
-															<a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
-														</div>
-														<p>we are working for the dance and sing songs. this video is very awesome for the youngster. please vote this video and like our channel
-															<i class="em em-smiley"></i>
-														</p>
-													</div>
-												</li>
-												<li>
 													<a href="#" title="" class="showmore underline">more comments</a>
 												</li>
+												@endforeach
+
 												<li class="post-comment">
 													<div class="comet-avatar">
 														<img src="{{ asset('assets/images/resources/comet-1.jpg') }}" alt="">
 													</div>
 													<div class="post-comt-box">
-														<form method="post">
-															<textarea placeholder="Post your comment"></textarea>
+														<form action="get-comment-list" id="comment-form" method="post" enctype="multipart/form-data">
+															  <input type="hidden" name="_token" value="{{ csrf_token() }}">
+															  <input type="hidden" name="post_id" value="{{ $user->post_id }}">
+															<textarea name="comment" id="comment" placeholder="Post your comment"></textarea>
 															<div class="add-smiles">
 																<span class="em em-expressionless" title="add icon"></span>
 															</div>
@@ -894,6 +875,7 @@
 												</li>
 											</ul>
 										</div>
+									
 									</div>
 								</div>
 								@endforeach
@@ -1489,6 +1471,41 @@
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8c55_YHLvDHGACkQscgbGLtLRdxBDCfI"></script>
     
 
-    @include('includes/footer');
+    @include('includes/footer')
+	<script>
+	$('#comment').keyup(function (event) {
+		if (event.keyCode == 13 && event.shiftKey) {
+			var content = this.value;
+			var caret = getCaret(this);
+			this.value = content.substring(0,caret)+"\n"+content.substring(carent,content.length-1);
+			event.stopPropagation();
+			
+		}else if(event.keyCode == 13)
+		{
+			$('#comment-form').submit();
+		}
+	});
+function getCaret(el) { 
+  if (el.selectionStart) { 
+    return el.selectionStart; 
+  } else if (document.selection) { 
+    el.focus(); 
+
+    var r = document.selection.createRange(); 
+    if (r == null) { 
+      return 0; 
+    } 
+
+    var re = el.createTextRange(), 
+        rc = re.duplicate(); 
+    re.moveToBookmark(r.getBookmark()); 
+    rc.setEndPoint('EndToStart', re); 
+
+    return rc.text.length; 
+  }  
+  return 0; 
+}
+
+	</script>
 </body>
 </html>
