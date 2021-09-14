@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AjaxController;
 use App\Http\Controllers\Profile;
+use App\Http\Controllers\About;
 use App\Http\Middleware\customAuth;
 
 /*
@@ -19,13 +19,22 @@ use App\Http\Middleware\customAuth;
 // Route::get('/', function () {
 //     return view('auth.login');
 // });
+
+
+
 Route::group(['middleware'=>'web'],function(){
     Route::get('/', function () { return view('landing'); });
     Route::get('/homepage','App\Http\Controllers\PostController@homepage');
     Route::post('get-post-list','App\Http\Controllers\PostController@postList');
     Route::post('get-comment-list','App\Http\Controllers\PostController@commentList');
-
 });
+Route::post('profile_photo', 'App\Http\Controllers\AboutController@profile_photo');
+Route::get('profile', 'App\Http\Controllers\Profile@index');
+
+Route::get('/about', function () {
+    return view('about');
+});
+
 Route::get('/logout', function () {
     return view('logout');
 });
@@ -36,9 +45,7 @@ Route::get('/404', function () {
 Route::get('/404-2', function () {
     return view('404-2');
 });
-Route::get('/about', function () {
-    return view('about');
-});
+
 Route::get('/about-company', function () {
     return view('about-company');
 });
