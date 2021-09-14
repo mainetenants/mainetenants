@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		@include('includes/head');
+		@include('includes/head')
 	 </head>
 <body>
 	<div class="theme-layout">
@@ -424,17 +424,20 @@
 		
 		<section>
 			<div class="feature-photo">
-				<figure><img src="{{ asset('assets/images/resources/timeline-1.jpg') }}" alt=""></a>
+				<figure>
+					{{-- <img src="{{ asset('assets/images/resources/timeline-1.jpg') }}" alt=""></a> --}}
+					<img src="{{ asset('upload/images/profile_photo/'.$cover_photo) }}">
 			</figure>
 				<div class="add-btn">
 					<span>1205 followers</span>
 					<a href="#" title="" data-ripple="">Add Friend</a>
 				</div>
-				<form class="edit-phto">
+				<form action="{{ url('cover_photo') }}" class="edit-phto" id="cover_form"   enctype="multipart/form-data" method="POST">
 					<i class="fa fa-camera-retro"></i>
 					<label class="fileContainer">
 						Edit Cover Photo
-					<input type="file"/>
+						<input type="file" id="coverid" name="cover_photo"/>
+						@csrf
 					</label>
 				</form>
 				<div class="container-fluid">
@@ -442,7 +445,8 @@
 						<div class="col-lg-2 col-sm-3">
 							<div class="user-avatar">
 								<figure>
-									<img src="{{ asset('assets/images/resources/user-avatar.jpg') }}" alt=""></a>
+									<img src="{{ asset('upload/images/profile_photo/'.$profile_photo) }}">
+									{{-- <img src="{{ asset('assets/images/resources/user-avatar.jpg') }}" alt=""></a> --}}
 									<form action="{{ url('profile_photo') }}" class="edit-phto" id="profile_form" enctype="multipart/form-data" method="POST">
 										<i class="fa fa-camera-retro"></i>
 										<label class="fileContainer">
@@ -900,6 +904,10 @@
 	<script>
 		$('#fileid').change(function() {
 			$('#profile_form').submit();
+		});
+
+		$('#coverid').change(function() {
+			$('#cover_form').submit();
 		});
 	</script>
 

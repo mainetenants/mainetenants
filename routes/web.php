@@ -24,12 +24,15 @@ Route::group(['middleware'=>'web'],function(){
     Route::post('get-post-list','App\Http\Controllers\PostController@postList');
     Route::post('get-comment-list','App\Http\Controllers\PostController@commentList');
 });
-Route::post('profile_photo', 'App\Http\Controllers\AboutController@profile_photo');
 Route::get('profile', 'App\Http\Controllers\Profile@index');
+Route::get('profile', 'App\Http\Controllers\Profile@index');
+Route::post('profile_photo', 'App\Http\Controllers\AboutController@profile_photo');
+Route::post('cover_photo', 'App\Http\Controllers\AboutController@cover_photo');
+Route::get('about', 'App\Http\Controllers\AboutController@index');
 
-Route::get('/about', function () {
-    return view('about');
-});
+// Route::get('/about', function () {
+//     return view('about');
+// });
 
 Route::get('/logout', function () {
     return view('logout');
