@@ -1517,7 +1517,7 @@ function getCaret(el) {
 			text-transform: capitalize;
 			display: inline-block;
 			position: relative;
-			font-weight: 500;
+			font-weight: 400;
 			color: #797979;
 			vertical-align: top;
 }
