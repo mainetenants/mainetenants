@@ -64,7 +64,6 @@ class PostController extends Controller
     {   
         $user = Auth::user();
         $data = $request->all();
-        //    dd($data);
         if(isset($data['comment'])){
             $request->validate([
                 'comment' => 'required',
@@ -86,7 +85,6 @@ class PostController extends Controller
         ->where('user_id', $id)
         ->orderBy('created', 'DESC')
         ->get();
-        // dd($users);
         $comments = DB::table('msu_comments')
         ->where('user_id', $id)
         ->orderBy('created', 'DESC')
@@ -94,5 +92,13 @@ class PostController extends Controller
         return view('homepage', ['users' => $users, 
             'comments' => $comments]);
   
+    }
+    
+    public function logout(Request $request){
+ 
+        Auth::logout();
+
+        return Redirect('logout')->withsuccess("logout successfull");
+
     }
 }
