@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Profile;
 use App\Http\Controllers\About;
 use App\Http\Middleware\customAuth;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,11 +16,6 @@ use App\Http\Middleware\customAuth;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-// Route::get('/', function () {
-//     return view('auth.login');
-// });
-
 
 
 Route::group(['middleware'=>'web'],function(){

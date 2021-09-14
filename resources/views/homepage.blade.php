@@ -33,7 +33,7 @@
 						<li><a href="index2.html" title="">Home Social 2</a></li>
 						<li><a href="index-company.html" title="">Home Company</a></li>
 						<li><a href="landing.html" title="">Login page</a></li>
-						<li><a href="logout.html" title="">Logout Page</a></li>
+						<li><a href="{{ url('logout'); }}" title="">Logout Page</a></li>
 						<li><a href="newsfeed.html" title="">news feed</a></li>
 					</ul>
 				</li>
@@ -579,7 +579,11 @@
 											</li>
 											<li>
 												<i class="ti-power-off"></i>
-												<a href="landing.html" title="">Logout</a>
+												<form method="post" id="logout_id" action="{{ url("logout"); }}" enctype="multipart/form-data">
+													@csrf
+													<a href="javascript:$('#logout_id').submit();">Logout</a>			
+											    </form>
+												{{-- <a href="{{ url('logout'); }}" title="">Logout</a> --}}
 											</li>
 										</ul>
 									</div><!-- Shortcuts -->
@@ -1507,5 +1511,16 @@ function getCaret(el) {
 }
 
 	</script>
+	<style>
+		form#logout_id {
+			font-size: 14px;
+			text-transform: capitalize;
+			display: inline-block;
+			position: relative;
+			font-weight: 400;
+			color: #797979;
+			vertical-align: top;
+}
+	</style>
 </body>
 </html>
