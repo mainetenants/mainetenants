@@ -86,12 +86,19 @@ class PostController extends Controller
         ->where('user_id', $id)
         ->orderBy('created', 'DESC')
         ->get();
+
         $comments = DB::table('msu_comments')
         ->where('user_id', $id)
         ->orderBy('created', 'DESC')
         ->get();
+
+        $allusers = DB::table('users')
+        ->select('*')
+        ->orderBy('name', 'ASC')
+        ->get();
         return view('homepage', ['users' => $users, 
-            'comments' => $comments]);
+            'comments' => $comments,
+            'allusers' => $allusers]);
   
     }
     

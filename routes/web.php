@@ -5,6 +5,7 @@ use App\Http\Controllers\Profile;
 use App\Http\Controllers\About;
 use App\Http\Middleware\customAuth;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\FriendsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,8 @@ Route::group(['middleware'=>'web'],function(){
 });
 Route::post('profile_photo', 'App\Http\Controllers\AboutController@profile_photo');
 Route::get('profile', 'App\Http\Controllers\Profile@index');
+Route::get('see_friend/{id}', 'App\Http\Controllers\FriendsController@viewfriends');
+Route::get('add_friend/{id}', 'App\Http\Controllers\FriendsController@addFriend');
 
 Route::get('/about', function () {
     return view('about');

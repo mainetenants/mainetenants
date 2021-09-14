@@ -430,7 +430,11 @@
 			<figure><img src="{{ asset('assets/images/resources/timeline-1.jpg') }}" alt=""></figure>
 			<div class="add-btn">
 				<span>1205 followers</span>
-				<a href="#" title="" data-ripple="">Add Friend</a>
+				@if($frnd_status){
+					<a href="{{ url('add_friend/'.$id )}}" title="" data-ripple="">Add Friends</a>
+				@else
+				<a title="" data-ripple="">Requested</a>
+				@endif
 			</div>
 			<form class="edit-phto">
 				<i class="fa fa-camera-retro"></i>

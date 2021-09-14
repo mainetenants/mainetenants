@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class NewComments extends Migration
+class Freinds extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class NewComments extends Migration
      */
     public function up()
     {
-        Schema::create('msu1234_comments', function (Blueprint $table) {
+        Schema::create('msu_friends', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id');
-            $table->integer('post_id');
-            $table->text('comment')->nullable();
+            $table->integer('friends_id');
+            $table->integer('status');
             $table->timestamp('created')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
         });
@@ -30,6 +30,6 @@ class NewComments extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('msu_friends');
     }
 }
