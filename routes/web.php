@@ -105,9 +105,7 @@ Route::get('/edit-interest', function () {
 Route::get('/edit-password', function () {
     return view('edit-password');
 });
-// Route::get('/edit-profile-basic', function () {
-//     return view('edit-profile-basic');
-// });
+
 Route::get('/edit-work-eductation', function () {
     return view('edit-work-eductation');
 });
