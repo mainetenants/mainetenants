@@ -13,7 +13,7 @@
 				<a class="" href="#menu"><i class="fa fa-align-justify"></i></a>
 			</span>
 			<span class="mh-text">
-				<a href="newsfeed.html" title=""><img src="{{ asset('assets/images/logo2.png') }}" alt=""></a>
+				<a href="newsfeed" title=""><img src="{{ asset('assets/images/logo2.png') }}" alt=""></a>
 			</span>
 			<span class="mh-btns-right">
 				<a class="fa fa-sliders" href="#shoppingbag"></a>
@@ -29,103 +29,103 @@
 			<ul>
 				<li><span>Home</span>
 					<ul>
-						<li><a href="index.html" title="">Home Social</a></li>
-						<li><a href="index2.html" title="">Home Social 2</a></li>
-						<li><a href="index-company.html" title="">Home Company</a></li>
-						<li><a href="landing.html" title="">Login page</a></li>
+						<li><a href="index" title="">Home Social</a></li>
+						<li><a href="index2" title="">Home Social 2</a></li>
+						<li><a href="index-company" title="">Home Company</a></li>
+						<li><a href="landing" title="">Login page</a></li>
 						<li><a href="{{ url('logout'); }}" title="">Logout Page</a></li>
-						<li><a href="newsfeed.html" title="">news feed</a></li>
+						<li><a href="newsfeed" title="">news feed</a></li>
 					</ul>
 				</li>
 				<li><span>Time Line</span>
 					<ul>
-						<li><a href="time-line.html" title="">timeline</a></li>
-						<li><a href="timeline-friends.html" title="">timeline friends</a></li>
-						<li><a href="timeline-groups.html" title="">timeline groups</a></li>
-						<li><a href="timeline-pages.html" title="">timeline pages</a></li>
-						<li><a href="timeline-photos.html" title="">timeline photos</a></li>
-						<li><a href="timeline-videos.html" title="">timeline videos</a></li>
-						<li><a href="social-post-single.html" title="">Post Single</a></li>
-						<li><a href="fav-page.html" title="">favourit page</a></li>
-						<li><a href="groups.html" title="">groups page</a></li>
-						<li><a href="page-likers.html" title="">Likes page</a></li>
-						<li><a href="people-nearby.html" title="">people nearby</a></li>
+						<li><a href="time-line" title="">timeline</a></li>
+						<li><a href="timeline-friends" title="">timeline friends</a></li>
+						<li><a href="timeline-groups" title="">timeline groups</a></li>
+						<li><a href="timeline-pages" title="">timeline pages</a></li>
+						<li><a href="timeline-photos" title="">timeline photos</a></li>
+						<li><a href="timeline-videos" title="">timeline videos</a></li>
+						<li><a href="social-post-single" title="">Post Single</a></li>
+						<li><a href="fav-page" title="">favourit page</a></li>
+						<li><a href="groups" title="">groups page</a></li>
+						<li><a href="page-likers" title="">Likes page</a></li>
+						<li><a href="people-nearby" title="">people nearby</a></li>
 
 
 					</ul>
 				</li>
 				<li><span>Account Setting</span>
 					<ul>
-						<li><a href="create-fav-page.html" title="">create fav page</a></li>
-						<li><a href="edit-account-setting.html" title="">edit account setting</a></li>
-						<li><a href="edit-interest.html" title="">edit-interest</a></li>
-						<li><a href="edit-password.html" title="">edit-password</a></li>
-						<li><a href="edit-profile-basic.html" title="">edit profile basics</a></li>
-						<li><a href="edit-work-eductation.html" title="">edit work educations</a></li>
-						<li><a href="messages.html" title="">message box</a></li>
-						<li><a href="inbox.html" title="">Inbox</a></li>
-						<li><a href="notifications.html" title="">notifications page</a></li>
+						<li><a href="create-fav-page" title="">create fav page</a></li>
+						<li><a href="edit-account-setting" title="">edit account setting</a></li>
+						<li><a href="edit-interest" title="">edit-interest</a></li>
+						<li><a href="edit-password" title="">edit-password</a></li>
+						<li><a href="edit-profile-basic" title="">edit profile basics</a></li>
+						<li><a href="edit-work-eductation" title="">edit work educations</a></li>
+						<li><a href="messages" title="">message box</a></li>
+						<li><a href="inbox" title="">Inbox</a></li>
+						<li><a href="notifications" title="">notifications page</a></li>
 					</ul>
 				</li>
 				<li><span>forum</span>
 					<ul>
-						<li><a href="forum.html" title="">Forum Page</a></li>
-						<li><a href="forums-category.html" title="">Fourm Category</a></li>
-						<li><a href="forum-open-topic.html" title="">Forum Open Topic</a></li>
-						<li><a href="forum-create-topic.html" title="">Forum Create Topic</a></li>
+						<li><a href="forum" title="">Forum Page</a></li>
+						<li><a href="forums-category" title="">Fourm Category</a></li>
+						<li><a href="forum-open-topic" title="">Forum Open Topic</a></li>
+						<li><a href="forum-create-topic" title="">Forum Create Topic</a></li>
 					</ul>
 				</li>
 				<li><span>Our Shop</span>
 					<ul>
-						<li><a href="shop.html" title="">Shop Products</a></li>
-						<li><a href="shop-masonry.html" title="">Shop Masonry Products</a></li>
-						<li><a href="shop-single.html" title="">Shop Detail Page</a></li>
-						<li><a href="shop-cart.html" title="">Shop Product Cart</a></li>
-						<li><a href="shop-checkout.html" title="">Product Checkout</a></li>
+						<li><a href="shop" title="">Shop Products</a></li>
+						<li><a href="shop-masonry" title="">Shop Masonry Products</a></li>
+						<li><a href="shop-single" title="">Shop Detail Page</a></li>
+						<li><a href="shop-cart" title="">Shop Product Cart</a></li>
+						<li><a href="shop-checkout" title="">Product Checkout</a></li>
 					</ul>
 				</li>
 				<li><span>Our Blog</span>
 					<ul>
-						<li><a href="blog-grid-wo-sidebar.html" title="">Our Blog</a></li>
-						<li><a href="blog-grid-right-sidebar.html" title="">Blog with R-Sidebar</a></li>
-						<li><a href="blog-grid-left-sidebar.html" title="">Blog with L-Sidebar</a></li>
-						<li><a href="blog-masonry.html" title="">Blog Masonry Style</a></li>
-						<li><a href="blog-list-wo-sidebar.html" title="">Blog List Style</a></li>
-						<li><a href="blog-list-right-sidebar.html" title="">Blog List with R-Sidebar</a></li>
-						<li><a href="blog-list-left-sidebar.html" title="">Blog List with L-Sidebar</a></li>
-						<li><a href="blog-detail.html" title="">Blog Post Detail</a></li>
+						<li><a href="blog-grid-wo-sidebar" title="">Our Blog</a></li>
+						<li><a href="blog-grid-right-sidebar" title="">Blog with R-Sidebar</a></li>
+						<li><a href="blog-grid-left-sidebar" title="">Blog with L-Sidebar</a></li>
+						<li><a href="blog-masonry" title="">Blog Masonry Style</a></li>
+						<li><a href="blog-list-wo-sidebar" title="">Blog List Style</a></li>
+						<li><a href="blog-list-right-sidebar" title="">Blog List with R-Sidebar</a></li>
+						<li><a href="blog-list-left-sidebar" title="">Blog List with L-Sidebar</a></li>
+						<li><a href="blog-detail" title="">Blog Post Detail</a></li>
 					</ul>
 				</li>
 				<li><span>Portfolio</span>
 					<ul>
-						<li><a href="portfolio-2colm.html" title="">Portfolio 2col</a></li>
-						<li><a href="portfolio-3colm.html" title="">Portfolio 3col</a></li>
-						<li><a href="portfolio-4colm.html" title="">Portfolio 4col</a></li>
+						<li><a href="portfolio-2colm" title="">Portfolio 2col</a></li>
+						<li><a href="portfolio-3colm" title="">Portfolio 3col</a></li>
+						<li><a href="portfolio-4colm" title="">Portfolio 4col</a></li>
 					</ul>
 				</li>
 				<li><span>Support & Help</span>
 					<ul>
-						<li><a href="support-and-help.html" title="">Support & Help</a></li>
-						<li><a href="support-and-help-detail.html" title="">Support & Help Detail</a></li>
-						<li><a href="support-and-help-search-result.html" title="">Support & Help Search Result</a></li>
+						<li><a href="support-and-help" title="">Support & Help</a></li>
+						<li><a href="support-and-help-detail" title="">Support & Help Detail</a></li>
+						<li><a href="support-and-help-search-result" title="">Support & Help Search Result</a></li>
 					</ul>
 				</li>
 				<li><span>More pages</span>
 					<ul>
-						<li><a href="careers.html" title="">Careers</a></li>
-						<li><a href="career-detail.html" title="">Career Detail</a></li>
-						<li><a href="404.html" title="">404 error page</a></li>
-						<li><a href="404-2.html" title="">404 Style2</a></li>
-						<li><a href="faq.html" title="">faq's page</a></li>
-						<li><a href="insights.html" title="">insights</a></li>
-						<li><a href="knowledge-base.html" title="">knowledge base</a></li>
+						<li><a href="careers" title="">Careers</a></li>
+						<li><a href="career-detail" title="">Career Detail</a></li>
+						<li><a href="404" title="">404 error page</a></li>
+						<li><a href="404-2" title="">404 Style2</a></li>
+						<li><a href="faq" title="">faq's page</a></li>
+						<li><a href="insights" title="">insights</a></li>
+						<li><a href="knowledge-base" title="">knowledge base</a></li>
 					</ul>
 				</li>
-				<li><a href="about.html" title="">about</a></li>
-				<li><a href="about-company.html" title="">About Us2</a></li>
-				<li><a href="contact.html" title="">contact</a></li>
-				<li><a href="contact-branches.html" title="">Contact Us2</a></li>
-				<li><a href="widgets.html" title="">Widgts</a></li>
+				<li><a href="about" title="">about</a></li>
+				<li><a href="about-company" title="">About Us2</a></li>
+				<li><a href="contact" title="">contact</a></li>
+				<li><a href="contact-branches" title="">Contact Us2</a></li>
+				<li><a href="widgets" title="">Widgts</a></li>
 			</ul>
 		</nav>
 		<nav id="shoppingbag">
@@ -198,7 +198,7 @@
 
 	<div class="topbar stick">
 		<div class="logo">
-			<a title="" href="newsfeed.html"><img src="{{ asset('assets/images/logo.png') }}" alt=""></a>
+			<a title="" href="newsfeed"><img src="{{ asset('assets/images/logo.png') }}" alt=""></a>
 		</div>
 
 		<div class="top-area">
@@ -209,7 +209,7 @@
 				</form>
 			</div>
 			<ul class="setting-area">
-				<li><a href="newsfeed.html" title="Home" data-ripple=""><i class="ti-home"></i></a></li>
+				<li><a href="newsfeed" title="Home" data-ripple=""><i class="ti-home"></i></a></li>
 				<li>
 					<a href="#" title="Notification" data-ripple="">
 						<i class="ti-bell"></i><span>20</span>
@@ -218,7 +218,7 @@
 						<span>4 New Notifications</span>
 						<ul class="drops-menu">
 							<li>
-								<a href="notifications.html" title="">
+								<a href="notifications" title="">
 									<img src="{{ asset('assets/images/resources/thumb-1.jpg') }}" alt="">
 									<div class="mesg-meta">
 										<h6>sarah Loren</h6>
@@ -229,7 +229,7 @@
 								<span class="tag green">New</span>
 							</li>
 							<li>
-								<a href="notifications.html" title="">
+								<a href="notifications" title="">
 									<img src="{{ asset('assets/images/resources/thumb-2.jpg') }}" alt="">
 									<div class="mesg-meta">
 										<h6>Jhon doe</h6>
@@ -240,7 +240,7 @@
 								<span class="tag red">Reply</span>
 							</li>
 							<li>
-								<a href="notifications.html" title="">
+								<a href="notifications" title="">
 									<img src="{{ asset('assets/images/resources/thumb-3.jpg') }}" alt="">
 									<div class="mesg-meta">
 										<h6>Andrew</h6>
@@ -251,7 +251,7 @@
 								<span class="tag blue">Unseen</span>
 							</li>
 							<li>
-								<a href="notifications.html" title="">
+								<a href="notifications" title="">
 									<img src="{{ asset('assets/images/resources/thumb-4.jpg') }}" alt="">
 									<div class="mesg-meta">
 										<h6>Tom cruse</h6>
@@ -262,7 +262,7 @@
 								<span class="tag">New</span>
 							</li>
 							<li>
-								<a href="notifications.html" title="">
+								<a href="notifications" title="">
 									<img src="{{ asset('assets/images/resources/thumb-5.jpg') }}" alt="">
 									<div class="mesg-meta">
 										<h6>Amy</h6>
@@ -273,7 +273,7 @@
 								<span class="tag">New</span>
 							</li>
 						</ul>
-						<a href="notifications.html" title="" class="more-mesg">view more</a>
+						<a href="notifications" title="" class="more-mesg">view more</a>
 					</div>
 				</li>
 				<li>
@@ -282,7 +282,7 @@
 						<span>5 New Messages</span>
 						<ul class="drops-menu">
 							<li>
-								<a href="notifications.html" title="">
+								<a href="notifications" title="">
 									<img src="{{ asset('assets/images/resources/thumb-1.jpg') }}" alt="">
 									<div class="mesg-meta">
 										<h6>sarah Loren</h6>
@@ -293,7 +293,7 @@
 								<span class="tag green">New</span>
 							</li>
 							<li>
-								<a href="notifications.html" title="">
+								<a href="notifications" title="">
 									<img src="{{ asset('assets/images/resources/thumb-2.jpg') }}" alt="">
 									<div class="mesg-meta">
 										<h6>Jhon doe</h6>
@@ -304,7 +304,7 @@
 								<span class="tag red">Reply</span>
 							</li>
 							<li>
-								<a href="notifications.html" title="">
+								<a href="notifications" title="">
 									<img src="{{ asset('assets/images/resources/thumb-3.jpg') }}" alt="">
 									<div class="mesg-meta">
 										<h6>Andrew</h6>
@@ -315,7 +315,7 @@
 								<span class="tag blue">Unseen</span>
 							</li>
 							<li>
-								<a href="notifications.html" title="">
+								<a href="notifications" title="">
 									<img src="{{ asset('assets/images/resources/thumb-4.jpg') }}" alt="">
 									<div class="mesg-meta">
 										<h6>Tom cruse</h6>
@@ -326,7 +326,7 @@
 								<span class="tag">New</span>
 							</li>
 							<li>
-								<a href="notifications.html" title="">
+								<a href="notifications" title="">
 									<img src="{{ asset('assets/images/resources/thumb-5.jpg') }}" alt="">
 									<div class="mesg-meta">
 										<h6>Amy</h6>
@@ -337,7 +337,7 @@
 								<span class="tag">New</span>
 							</li>
 						</ul>
-						<a href="messages.html" title="" class="more-mesg">view more</a>
+						<a href="messages" title="" class="more-mesg">view more</a>
 					</div>
 				</li>
 				<li><a href="#" title="Languages" data-ripple=""><i class="fa fa-globe"></i></a>
@@ -512,16 +512,16 @@
 	<div class="fixed-sidebar left">
 		<div class="menu-left">
 			<ul class="left-menu">
-				<li><a href="newsfeed.html" title="Newsfeed Page" data-toggle="tooltip" data-placement="right"><i class="ti-magnet"></i></a></li>
-				<li><a href="fav-page.html" title="favourit page" data-toggle="tooltip" data-placement="right"><i class="fa fa-star-o"></i></a></li>
-				<li><a href="insights.html" title="Account Stats" data-toggle="tooltip" data-placement="right"><i class="ti-stats-up"></i></a></li>
-				<li><a href="inbox.html" title="inbox" data-toggle="tooltip" data-placement="right"><i class="ti-import"></i></a></li>
-				<li><a href="messages.html" title="Messages" data-toggle="tooltip" data-placement="right"><i class="ti-comment-alt"></i></a></li>
-				<li><a href="edit-account-setting.html" title="Setting" data-toggle="tooltip" data-placement="right"><i class="ti-panel"></i></a></li>
-				<li><a href="faq.html" title="Faq's" data-toggle="tooltip" data-placement="right"><i class="ti-light-bulb"></i></a></li>
-				<li><a href="timeline-friends.html" title="Friends" data-toggle="tooltip" data-placement="right"><i class="ti-themify-favicon"></i></a></li>
-				<li><a href="widgets.html" title="Widgets" data-toggle="tooltip" data-placement="right"><i class="ti-eraser"></i></a></li>
-				<li><a href="notifications.html" title="Notification" data-toggle="tooltip" data-placement="right"><i class="ti-bookmark-alt"></i></a></li>
+				<li><a href="newsfeed" title="Newsfeed Page" data-toggle="tooltip" data-placement="right"><i class="ti-magnet"></i></a></li>
+				<li><a href="fav-page" title="favourit page" data-toggle="tooltip" data-placement="right"><i class="fa fa-star-o"></i></a></li>
+				<li><a href="insights" title="Account Stats" data-toggle="tooltip" data-placement="right"><i class="ti-stats-up"></i></a></li>
+				<li><a href="inbox" title="inbox" data-toggle="tooltip" data-placement="right"><i class="ti-import"></i></a></li>
+				<li><a href="messages" title="Messages" data-toggle="tooltip" data-placement="right"><i class="ti-comment-alt"></i></a></li>
+				<li><a href="edit-account-setting" title="Setting" data-toggle="tooltip" data-placement="right"><i class="ti-panel"></i></a></li>
+				<li><a href="faq" title="Faq's" data-toggle="tooltip" data-placement="right"><i class="ti-light-bulb"></i></a></li>
+				<li><a href="timeline-friends" title="Friends" data-toggle="tooltip" data-placement="right"><i class="ti-themify-favicon"></i></a></li>
+				<li><a href="widgets" title="Widgets" data-toggle="tooltip" data-placement="right"><i class="ti-eraser"></i></a></li>
+				<li><a href="notifications" title="Notification" data-toggle="tooltip" data-placement="right"><i class="ti-bookmark-alt"></i></a></li>
 			</ul>
 		</div>
 	</div><!-- left sidebar menu -->
@@ -539,43 +539,43 @@
 										<ul class="naves">
 											<li>
 												<i class="ti-clipboard"></i>
-												<a href="newsfeed.html" title="">News feed</a>
+												<a href="newsfeed" title="">News feed</a>
 											</li>
 											<li>
 												<i class="ti-mouse-alt"></i>
-												<a href="inbox.html" title="">Inbox</a>
+												<a href="inbox" title="">Inbox</a>
 											</li>
 											<li>
 												<i class="ti-files"></i>
-												<a href="fav-page.html" title="">My pages</a>
+												<a href="fav-page" title="">My pages</a>
 											</li>
 											<li>
 												<i class="ti-user"></i>
-												<a href="timeline-friends.html" title="">friends</a>
+												<a href="timeline-friends" title="">friends</a>
 											</li>
 											<li>
 												<i class="ti-image"></i>
-												<a href="timeline-photos.html" title="">images</a>
+												<a href="timeline-photos" title="">images</a>
 											</li>
 											<li>
 												<i class="ti-video-camera"></i>
-												<a href="timeline-videos.html" title="">videos</a>
+												<a href="timeline-videos" title="">videos</a>
 											</li>
 											<li>
 												<i class="ti-comments-smiley"></i>
-												<a href="messages.html" title="">Messages</a>
+												<a href="messages" title="">Messages</a>
 											</li>
 											<li>
 												<i class="ti-bell"></i>
-												<a href="notifications.html" title="">Notifications</a>
+												<a href="notifications" title="">Notifications</a>
 											</li>
 											<li>
 												<i class="ti-share"></i>
-												<a href="people-nearby.html" title="">People Nearby</a>
+												<a href="people-nearby" title="">People Nearby</a>
 											</li>
 											<li>
 												<i class="fa fa-bar-chart-o"></i>
-												<a href="insights.html" title="">insights</a>
+												<a href="insights" title="">insights</a>
 											</li>
 											<li>
 												<i class="ti-power-off"></i>
@@ -594,7 +594,7 @@
 												<div class="activity-meta">
 													<i>10 hours Ago</i>
 													<span><a href="#" title="">Commented on Video posted </a></span>
-													<h6>by <a href="time-line.html">black demon.</a></h6>
+													<h6>by <a href="time-line">black demon.</a></h6>
 												</div>
 											</li>
 											<li>
@@ -702,7 +702,7 @@
 												<img src="{{ asset('assets/images/resources/friend-avatar10.jpg') }}" alt="">
 											</figure>
 											<div class="friend-name">
-												<ins><a href="time-line.html" title="">{{$user->name}}</a></ins>
+												<ins><a href="time-line" title="">{{$user->name}}</a></ins>
 												<?php
 												$timestamp = strtotime($user->created_at);
 
@@ -790,7 +790,7 @@
 													</div>
 													<div class="we-comment">
 														<div class="coment-head">
-															<h5><a href="time-line.html" title="">{{$user->name}}</a></h5>
+															<h5><a href="time-line" title="">{{$user->name}}</a></h5>
 															<?php
 												            $timestamp = strtotime($user->created_at);
                                                              $day = date('M,d Y H:i A', $timestamp);
@@ -807,7 +807,7 @@
 														
 															<div class="we-comment">
 																<div class="coment-head">
-																	<h5><a href="time-line.html" title="">Olivia</a></h5>
+																	<h5><a href="time-line" title="">Olivia</a></h5>
 																	<span>16 days ago</span>
 																	<a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
 																</div>
@@ -864,7 +864,7 @@
 												<img src="{{ asset('assets/images/resources/nearly1.jpg') }}" alt="">
 											</figure>
 											<div class="friend-name">
-												<ins><a href="time-line.html" title="">Sara Grey</a></ins>
+												<ins><a href="time-line" title="">Sara Grey</a></ins>
 												<span>published: june,2 2018 19:PM</span>
 											</div>
 											<div class="post-meta">
@@ -946,7 +946,7 @@
 													</div>
 													<div class="we-comment">
 														<div class="coment-head">
-															<h5><a href="time-line.html" title="">Jason borne</a></h5>
+															<h5><a href="time-line" title="">Jason borne</a></h5>
 															<span>1 year ago</span>
 															<a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
 														</div>
@@ -960,7 +960,7 @@
 													</div>
 													<div class="we-comment">
 														<div class="coment-head">
-															<h5><a href="time-line.html" title="">Sophia</a></h5>
+															<h5><a href="time-line" title="">Sophia</a></h5>
 															<span>1 week ago</span>
 															<a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
 														</div>
@@ -1011,7 +1011,7 @@
 												<img src="{{ asset('assets/images/resources/nearly6.jpg') }}" alt="">
 											</figure>
 											<div class="friend-name">
-												<ins><a href="time-line.html" title="">Sophia</a></ins>
+												<ins><a href="time-line" title="">Sophia</a></ins>
 												<span>published: january,5 2018 19:PM</span>
 											</div>
 											<div class="post-meta">
@@ -1097,7 +1097,7 @@
 													</div>
 													<div class="we-comment">
 														<div class="coment-head">
-															<h5><a href="time-line.html" title="">Jason borne</a></h5>
+															<h5><a href="time-line" title="">Jason borne</a></h5>
 															<span>1 year ago</span>
 															<a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
 														</div>
@@ -1111,7 +1111,7 @@
 													</div>
 													<div class="we-comment">
 														<div class="coment-head">
-															<h5><a href="time-line.html" title="">Sophia</a></h5>
+															<h5><a href="time-line" title="">Sophia</a></h5>
 															<span>1 week ago</span>
 															<a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
 														</div>
@@ -1162,7 +1162,7 @@
 												<img alt="" src="images/resources/friend-avatar10.jpg">
 											</figure>
 											<div class="friend-name">
-												<ins><a title="" href="time-line.html">Janice Griffith</a></ins>
+												<ins><a title="" href="time-line">Janice Griffith</a></ins>
 												<span>published: june,2 2018 19:PM</span>
 											</div>
 											<div class="description">
@@ -1257,8 +1257,8 @@
 											</figure>
 											<div class="page-meta">
 												<a href="#" title="" class="underline">My page</a>
-												<span><i class="ti-comment"></i><a href="insight.html" title="">Messages <em>9</em></a></span>
-												<span><i class="ti-bell"></i><a href="insight.html" title="">Notifications <em>2</em></a></span>
+												<span><i class="ti-comment"></i><a href="insight" title="">Messages <em>9</em></a></span>
+												<span><i class="ti-bell"></i><a href="insight" title="">Notifications <em>2</em></a></span>
 											</div>
 											<div class="page-likes">
 												<ul class="nav nav-tabs likes-btn">

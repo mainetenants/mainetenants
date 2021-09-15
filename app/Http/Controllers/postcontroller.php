@@ -96,9 +96,7 @@ class PostController extends Controller
         ->select('*')
         ->orderBy('name', 'ASC')
         ->get();
-        return view('homepage', ['users' => $users, 
-            'comments' => $comments,
-            'allusers' => $allusers]);
+        return view('homepage', ['users' => $users, 'comments' => $comments, 'allusers' => $allusers]);
   
     }
     

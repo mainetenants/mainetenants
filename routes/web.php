@@ -6,7 +6,7 @@ use App\Http\Controllers\About;
 use App\Http\Middleware\customAuth;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\FriendsController;
-
+use App\Http\Controllers\TimelineController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,15 +24,18 @@ Route::group(['middleware'=>'web'],function(){
     Route::get('/homepage','App\Http\Controllers\PostController@homepage');
     Route::post('get-post-list','App\Http\Controllers\PostController@postList');
     Route::post('get-comment-list','App\Http\Controllers\PostController@commentList');
+    Route::get('profile', 'App\Http\Controllers\Profile@index');
+    Route::get('see_friend/{id}', 'App\Http\Controllers\FriendsController@viewfriends');
+    Route::get('add_friend/{id}', 'App\Http\Controllers\FriendsController@addFriend');
+    Route::get('cancel_request/{id}', 'App\Http\Controllers\FriendsController@cancelRequest');
+    Route::get('confirm_request/{id}', 'App\Http\Controllers\FriendsController@confirmRequest');
+    Route::get('profile', 'App\Http\Controllers\Profile@index');
+    Route::post('profile_photo', 'App\Http\Controllers\AboutController@profile_photo');
+    Route::post('cover_photo', 'App\Http\Controllers\AboutController@cover_photo');
+    Route::get('about', 'App\Http\Controllers\AboutController@index');
+    Route::get('timeline-friends', 'App\Http\Controllers\timelineController@index');
 });
-Route::post('profile_photo', 'App\Http\Controllers\AboutController@profile_photo');
-Route::get('profile', 'App\Http\Controllers\Profile@index');
-Route::get('see_friend/{id}', 'App\Http\Controllers\FriendsController@viewfriends');
-Route::get('add_friend/{id}', 'App\Http\Controllers\FriendsController@addFriend');
 
-Route::get('/about', function () {
-    return view('about');
-});
 
 Route::get('/logout', function () {
     return view('logout');
@@ -195,9 +198,9 @@ Route::get('/support-and-help-search-result', function () {
 Route::get('/time-line', function () {
     return view('time-line');
 });
-Route::get('/timeline-friends', function () {
-    return view('timeline-friends');
-});
+// Route::get('/timeline-friends', function () {
+//     return view('timeline-friends');
+// });
 Route::get('/timeline-groups', function () {
     return view('timeline-groups');
 });

@@ -568,220 +568,39 @@
 										<div class="tab-content">
 										  <div class="tab-pane active fade show " id="frends" >
 											<ul class="nearby-contct">
+											@foreach ($myFriends as $myFriend)
 											<li>
 												<div class="nearly-pepls">
 													<figure>
 														<a href="time-line.html" title=""><img src="{{ asset('assets/images/resources/friend-avatar9.jpg') }}" alt=""></a>
 													</figure>
 													<div class="pepl-info">
-														<h4><a href="time-line.html" title="">jhon kates</a></h4>
-														<span>ftv model</span>
-														<a href="#" title="" class="add-butn more-action" data-ripple="">unfriend</a>
-														<a href="#" title="" class="add-butn" data-ripple="">add friend</a>
+														<h4><a href="time-line.html" title="">{{ $myFriend->name }}</a></h4>
+														<a href="{{ url('cancel_request/'.$myFriend->friends_id) }}" title="" class="add-butn" data-ripple="">unfriend</a>
+														
 													</div>
 												</div>
 											</li>
-											<li>
-												<div class="nearly-pepls">
-													<figure>
-														<a href="time-line.html" title=""><img src="{{ asset('assets/images/resources/thumb-1.jpg') }}" alt=""></a>
-													</figure>
-													<div class="pepl-info">
-														<h4><a href="time-line.html" title="">sophia Gate</a></h4>
-														<span>tv actresses</span>
-														<a href="#" title="" class="add-butn more-action" data-ripple="">unfriend</a>
-														<a href="#" title="" class="add-butn" data-ripple="">add friend</a>
-													</div>
-												</div>
-											</li>
-											<li>
-												<div class="nearly-pepls">
-													<figure>
-														<a href="time-line.html" title=""><img src="{{ asset('assets/images/resources/nearly2.jpg') }}" alt=""></a>
-													</figure>
-													<div class="pepl-info">
-														<h4><a href="time-line.html" title="">sara grey</a></h4>
-														<span>work at IBM</span>
-														<a href="#" title="" class="add-butn more-action" data-ripple="">unfriend</a>
-														<a href="#" title="" class="add-butn" data-ripple="">add friend</a>
-													</div>
-												</div>
-											</li>
-											<li>
-												<div class="nearly-pepls">
-													<figure>
-														<a href="time-line.html" title=""><img src="{{ asset('assets/images/resources/nearly3.jpg') }}" alt=""></a>
-													</figure>
-													<div class="pepl-info">
-														<h4><a href="time-line.html" title="">Sexy cat</a></h4>
-														<span>Student</span>
-														<a href="#" title="" class="add-butn more-action" data-ripple="">unfriend</a>
-														<a href="#" title="" class="add-butn" data-ripple="">add friend</a>
-													</div>
-												</div>
-											</li>
-											<li>
-												<div class="nearly-pepls">
-													<figure>
-														<a href="time-line.html" title=""><img src="{{ asset('assets/images/resources/nearly4.jpg') }}" alt=""></a>
-													</figure>
-													<div class="pepl-info">
-														<h4><a href="time-line.html" title="">Sara grey</a></h4>
-														<span>ftv model</span>
-														<a href="#" title="" class="add-butn more-action" data-ripple="">unfriend</a>
-														<a href="#" title="" class="add-butn" data-ripple="">add friend</a>
-													</div>
-												</div>
-											</li>
-											<li>
-												<div class="nearly-pepls">
-													<figure>
-														<a href="time-line.html" title=""><img src="{{ asset('assets/images/resources/nearly5.jpg') }}" alt=""></a>
-													</figure>
-													<div class="pepl-info">
-														<h4><a href="time-line.html" title="">Amy watson</a></h4>
-														<span>Study in university</span>
-														<a href="#" title="" class="add-butn more-action" data-ripple="">unfriend</a>
-														<a href="#" title="" class="add-butn" data-ripple="">add friend</a>
-													</div>
-												</div>
-											</li>
-											<li>
-												<div class="nearly-pepls">
-													<figure>
-														<a href="time-line.html" title=""><img src="{{ asset('assets/images/resources/nearly6.jpg') }}" alt=""></a>
-													</figure>
-													<div class="pepl-info">
-														<h4><a href="time-line.html" title="">caty lasbo</a></h4>
-														<span>work as dancers</span>
-														<a href="#" title="" class="add-butn more-action" data-ripple="">unfriend</a>
-														<a href="#" title="" class="add-butn" data-ripple="">add friend</a>
-													</div>
-												</div>
-											</li>
-											<li>
-												<div class="nearly-pepls">
-													<figure>
-														<a href="time-line.html" title=""><img src="{{ asset('assets/images/resources/nearly2.jpg') }}" alt=""></a>
-													</figure>
-													<div class="pepl-info">
-														<h4><a href="time-line.html" title="">Ema watson</a></h4>
-														<span>personal business</span>
-														<a href="#" title="" class="add-butn more-action" data-ripple="">unfriend</a>
-														<a href="#" title="" class="add-butn" data-ripple="">add friend</a>
-													</div>
-												</div>
-											</li>
+											@endforeach
 										</ul>
 											<div class="lodmore"><button class="btn-view btn-load-more"></button></div>
 										  </div>
 										  <div class="tab-pane fade" id="frends-req" >
 											<ul class="nearby-contct">
+												@foreach ($friends_reqs as $friends_req)
 											<li>
 												<div class="nearly-pepls">
 													<figure>
 														<a href="time-line.html" title=""><im<img src="{{ asset('assets/images/resources/nearly5.jpg') }}" alt=""></a>
 													</figure>
-													<div class="pepl-info">
-														<h4><a href="time-line.html" title="">Amy watson</a></h4>
-														<span>ftv model</span>
-														<a href="#" title="" class="add-butn more-action" data-ripple="">delete Request</a>
-														<a href="#" title="" class="add-butn" data-ripple="">Confirm</a>
+														<div class="pepl-info">
+															<h4><a href="time-line.html" title="">{{ $friends_req->name }}</a></h4>
+															<a href="#" title="" class="add-butn more-action" data-ripple="">delete Request</a>
+															<a href="{{ url('confirm_request/'.$friends_req->friends_id ) }}" title="" class="add-butn" data-ripple="">Confirm</a>
+														</div>
 													</div>
-												</div>
-											</li>	
-
-											<li>
-												<div class="nearly-pepls">
-													<figure>
-														<a href="time-line.html" title=""><img src="{{ asset('assets/images/resources/nearly1.jpg') }}" alt=""></a>
-													</figure>
-													<div class="pepl-info">
-														<h4><a href="time-line.html" title="">sophia Gate</a></h4>
-														<span>ftv model</span>
-														<a href="#" title="" class="add-butn more-action" data-ripple="">delete Request</a>
-														<a href="#" title="" class="add-butn" data-ripple="">Confirm</a>
-													</div>
-												</div>
-											</li>
-											<li>
-												<div class="nearly-pepls">
-													<figure>
-														<a href="time-line.html" title=""><img src="{{ asset('assets/images/resources/nearly6.jpg') }}" alt=""></a>
-													</figure>
-													<div class="pepl-info">
-														<h4><a href="time-line.html" title="">caty lasbo</a></h4>
-														<span>ftv model</span>
-														<a href="#" title="" class="add-butn more-action" data-ripple="">delete Request</a>
-														<a href="#" title="" class="add-butn" data-ripple="">Confirm</a>
-													</div>
-												</div>
-											</li>
-											<li>
-												<div class="nearly-pepls">
-													<figure>
-														<a href="time-line.html" title=""><img src="{{ asset('assets/images/resources/friend-avatar9.jpg') }}" alt=""></a>
-													</figure>
-													<div class="pepl-info">
-														<h4><a href="time-line.html" title="">jhon kates</a></h4>
-														<span>ftv model</span>
-														<a href="#" title="" class="add-butn more-action" data-ripple="">delete Request</a>
-														<a href="#" title="" class="add-butn" data-ripple="">Confirm</a>
-													</div>
-												</div>
-											</li>
-											<li>
-												<div class="nearly-pepls">
-													<figure>
-														<a href="time-line.html" title=""><img src="{{ asset('assets/images/resources/nearly2.jpg') }}" alt=""></a>
-													</figure>
-													<div class="pepl-info">
-														<h4><a href="time-line.html" title="">sara grey</a></h4>
-														<span>ftv model</span>
-														<a href="#" title="" class="add-butn more-action" data-ripple="">delete Request</a>
-														<a href="#" title="" class="add-butn" data-ripple="">Confirm</a>
-													</div>
-												</div>
-											</li>
-											<li>
-												<div class="nearly-pepls">
-													<figure>
-														<a href="time-line.html" title=""><img src="{{ asset('assets/images/resources/nearly4.jpg') }}" alt=""></a>
-													</figure>
-													<div class="pepl-info">
-														<h4><a href="time-line.html" title="">Sara grey</a></h4>
-														<span>ftv model</span>
-														<a href="#" title="" class="add-butn more-action" data-ripple="">delete Request</a>
-														<a href="#" title="" class="add-butn" data-ripple="">Confirm</a>
-													</div>
-												</div>
-											</li>
-											<li>
-												<div class="nearly-pepls">
-													<figure>
-														<a href="time-line.html" title=""><img src="{{ asset('assets/images/resources/nearly3.jpg') }}" alt=""></a>
-													</figure>
-													<div class="pepl-info">
-														<h4><a href="time-line.html" title="">Sexy cat</a></h4>
-														<span>ftv model</span>
-														<a href="#" title="" class="add-butn more-action" data-ripple="">delete Request</a>
-														<a href="#" title="" class="add-butn" data-ripple="">Confirm</a>
-													</div>
-												</div>
-											</li>
-											<li>
-												<div class="nearly-pepls">
-													<figure>
-														<a href="time-line.html" title=""><img src="{{ asset('assets/images/resources/friend-avatar9.jpg') }}" alt=""></a>
-													</figure>
-													<div class="pepl-info">
-														<h4><a href="time-line.html" title="">jhon kates</a></h4>
-														<span>ftv model</span>
-														<a href="#" title="" class="add-butn more-action" data-ripple="">delete Request</a>
-														<a href="#" title="" class="add-butn" data-ripple="">Confirm</a>
-													</div>
-												</div>
-											</li>
+												</li>	
+												@endforeach
 										</ul>	
 											  <button class="btn-view btn-load-more"></button>
 										  </div>
