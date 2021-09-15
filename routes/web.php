@@ -36,8 +36,6 @@ Route::group(['middleware'=>'web'],function(){
     Route::post('cover_photo', 'App\Http\Controllers\AboutController@cover_photo');
     Route::get('about', 'App\Http\Controllers\AboutController@index');
     Route::get('timeline-friends', 'App\Http\Controllers\timelineController@index');
-});
-
     Route::get('edit-profile-basic', 'App\Http\Controllers\ProfileUpdateController@editBasic');
     Route::post('profile_edit','App\Http\Controllers\ProfileUpdateController@profileEdit');
 });
