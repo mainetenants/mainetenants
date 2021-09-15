@@ -14,7 +14,6 @@ class PostController extends Controller
         $data = $request->all();
         $user = Auth::user();
         
-        $imageName="";
         $imagename ="";
         if(isset($data['image'])){
             $request->validate([

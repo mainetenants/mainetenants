@@ -7,6 +7,8 @@ use App\Http\Middleware\customAuth;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\FriendsController;
 use App\Http\Controllers\TimelineController;
+use App\Http\Controllers\ProfileUpdateController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,6 +38,12 @@ Route::group(['middleware'=>'web'],function(){
     Route::get('timeline-friends', 'App\Http\Controllers\timelineController@index');
 });
 
+    Route::get('edit-profile-basic', 'App\Http\Controllers\ProfileUpdateController@editBasic');
+    Route::post('profile_edit','App\Http\Controllers\ProfileUpdateController@profileEdit');
+});
+// Route::get('/about', function () {
+//     return view('about');
+// });
 
 Route::get('/logout', function () {
     return view('logout');
@@ -99,9 +107,9 @@ Route::get('/edit-interest', function () {
 Route::get('/edit-password', function () {
     return view('edit-password');
 });
-Route::get('/edit-profile-basic', function () {
-    return view('edit-profile-basic');
-});
+// Route::get('/edit-profile-basic', function () {
+//     return view('edit-profile-basic');
+// });
 Route::get('/edit-work-eductation', function () {
     return view('edit-work-eductation');
 });
