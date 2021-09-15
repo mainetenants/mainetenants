@@ -13,3 +13,4 @@
 
 <script src="https://use.fontawesome.com/8ca71c61c1.js"></script>
 <script src="{{ asset('assets/js/jquery-3.6.0.min.js') }}"></script>
+<script src="{{ asset('assets/js/map-init.js') }}"></script>

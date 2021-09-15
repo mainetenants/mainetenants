@@ -96,7 +96,6 @@ class PostController extends Controller
         ->orderBy('name', 'ASC')
         ->get();
         return view('homepage', ['users' => $users, 'comments' => $comments, 'allusers' => $allusers]);
-
     }
 
     public function logout(Request $request){
