@@ -5,6 +5,7 @@ use App\Http\Controllers\Profile;
 use App\Http\Controllers\About;
 use App\Http\Middleware\customAuth;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\ProfileUpdateController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,13 +24,14 @@ Route::group(['middleware'=>'web'],function(){
     Route::get('/homepage','App\Http\Controllers\PostController@homepage');
     Route::post('get-post-list','App\Http\Controllers\PostController@postList');
     Route::post('get-comment-list','App\Http\Controllers\PostController@commentList');
+    Route::get('profile', 'App\Http\Controllers\Profile@index');
+    Route::get('profile', 'App\Http\Controllers\Profile@index');
+    Route::post('profile_photo', 'App\Http\Controllers\AboutController@profile_photo');
+    Route::post('cover_photo', 'App\Http\Controllers\AboutController@cover_photo');
+    Route::get('about', 'App\Http\Controllers\AboutController@index');
+    Route::get('edit-profile-basic', 'App\Http\Controllers\ProfileUpdateController@editBasic');
+    Route::post('profile_edit','App\Http\Controllers\ProfileUpdateController@profileEdit');
 });
-Route::get('profile', 'App\Http\Controllers\Profile@index');
-Route::get('profile', 'App\Http\Controllers\Profile@index');
-Route::post('profile_photo', 'App\Http\Controllers\AboutController@profile_photo');
-Route::post('cover_photo', 'App\Http\Controllers\AboutController@cover_photo');
-Route::get('about', 'App\Http\Controllers\AboutController@index');
-
 // Route::get('/about', function () {
 //     return view('about');
 // });
@@ -96,9 +98,9 @@ Route::get('/edit-interest', function () {
 Route::get('/edit-password', function () {
     return view('edit-password');
 });
-Route::get('/edit-profile-basic', function () {
-    return view('edit-profile-basic');
-});
+// Route::get('/edit-profile-basic', function () {
+//     return view('edit-profile-basic');
+// });
 Route::get('/edit-work-eductation', function () {
     return view('edit-work-eductation');
 });
