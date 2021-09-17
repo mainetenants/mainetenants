@@ -9,19 +9,18 @@ use Illuminate\Support\Facades\Auth;
 class TimelineController extends Controller
 {
    public function index(){
-      $friends = DB::table('msu_friends')
-      ->leftJoin('users', 'msu_friends.friends_id', '=', 'users.id')
-      ->select('users.name','users.profile_photo', 'msu_friends.status', 'msu_friends.user_id as friends_id')
-      ->Where(['msu_friends.status' => '0', 'friends_id' => Auth::id()])
+      $friend_reqs = DB::table('msu_friends')
+      ->leftJoin('users', 'msu_friends.user_id', '=', 'users.id')
+      ->select('users.name','users.profile_photo', 'users.id as friends_id')
+      ->Where(['msu_friends.status' => '0', 'msu_friends.friends_id' => Auth::id()])
       ->get();
 
-      $myFriends = DB::table('msu_friends')
-      ->leftJoin('users', 'msu_friends.friends_id', '=', 'users.id')
-      ->select('users.name','users.profile_photo', 'msu_friends.status', 'msu_friends.user_id as friends_id')
-      ->Where(['msu_friends.status' => '1', 'friends_id' => Auth::id()])
-      ->orWhere(['friends_id' => '1', 'msu_friends.status' => Auth::id()])
+      $myFriends = DB::table('msu_isfriend')
+      ->leftJoin('users', 'msu_isfriend.friends_id', '=', 'users.id')
+      ->select('*')
+      ->orWhere(['msu_isfriend.friends_id' => Auth::id() , 'msu_isfriend.user_id' => Auth::id()])
       ->get();
-      // echo'<pre>';print_r($myFriends);die;
-    return view('timeline-friends', ['friends_reqs'=> $friends, 'myFriends'=> $myFriends]);
+      // dd($myFriends);
+    return view('timeline-friends', ['friends_reqs'=> $friend_reqs, 'myFriends'=> $myFriends]);
    }
 }

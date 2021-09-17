@@ -28,9 +28,19 @@ class FriendsController extends Controller
             $test = DB::table('msu_friends')
             ->where(['friends_id'=>$id, 'user_id'=>Auth::id(), 'status'=>'0'])
             ->orWhere(['user_id'=>$id, 'friends_id'=>Auth::id(), 'status'=>'0'])
-            ->update(['status' => '2']);
-            // dd(Auth::id());
-
+            ->delete();
+        return back();
+        }
+    }
+    public function unfrind($id)
+    {
+        if (isset($id)) {
+            $test = DB::table('msu_isfriend')
+            ->where(['friends_id'=>$id, 'user_id'=>Auth::id(), 'status'=>'1'])
+            ->delete();
+            $test2 = DB::table('msu_isfriend')
+            ->where(['user_id'=>$id, 'friends_id'=>Auth::id(), 'status'=>'1'])
+            ->delete();
         return back();
         }
     }
@@ -39,8 +49,15 @@ class FriendsController extends Controller
         if (isset($id)) {
             DB::table('msu_friends')
             ->where(['friends_id'=>Auth::id(), 'user_id'=>$id, 'status'=>'0'])
-            ->update(['status' => '1']);
-        return back();
+            ->delete();
+            DB::table('msu_friends')
+            ->where(['user_id'=>Auth::id(), 'friends_id'=>$id, 'status'=>'0'])
+            ->delete();
+            $values = array('user_id' => Auth::id(),'friends_id' => $id,'status' => 1);
+            $values2 = array('friends_id' => Auth::id(),'user_id' => $id,'status' => 1);
+            DB::table('msu_isfriend')->insert($values);
+            DB::table('msu_isfriend')->insert($values2);   
+            return back();
         }
     }
 }

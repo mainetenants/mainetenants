@@ -576,7 +576,7 @@
 													</figure>
 													<div class="pepl-info">
 														<h4><a href="time-line.html" title="">{{ $myFriend->name }}</a></h4>
-														<a href="{{ url('cancel_request/'.$myFriend->friends_id) }}" title="" class="add-butn" data-ripple="">unfriend</a>
+														<a href="{{ url('unfrind/'.$myFriend->friends_id) }}" title="" class="add-butn" data-ripple="">unfriend</a>
 														
 													</div>
 												</div>

@@ -30,6 +30,7 @@ Route::group(['middleware'=>'web'],function(){
     Route::get('see_friend/{id}', 'App\Http\Controllers\FriendsController@viewfriends');
     Route::get('add_friend/{id}', 'App\Http\Controllers\FriendsController@addFriend');
     Route::get('cancel_request/{id}', 'App\Http\Controllers\FriendsController@cancelRequest');
+    Route::get('unfrind/{id}', 'App\Http\Controllers\FriendsController@unfrind');
     Route::get('confirm_request/{id}', 'App\Http\Controllers\FriendsController@confirmRequest');
     Route::get('profile', 'App\Http\Controllers\Profile@index');
     Route::post('profile_photo', 'App\Http\Controllers\AboutController@profile_photo');

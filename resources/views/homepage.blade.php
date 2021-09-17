@@ -125,7 +125,7 @@
 				<li><a href="about-company" title="">About Us2</a></li>
 				<li><a href="contact" title="">contact</a></li>
 				<li><a href="contact-branches" title="">Contact Us2</a></li>
-				<li><a href="widgets" title="">Widgts</a></li>
+				<li><a href="widget bg-whites" title="">Widgts</a></li>
 			</ul>
 		</nav>
 		<nav id="shoppingbag">
@@ -520,7 +520,7 @@
 				<li><a href="edit-account-setting" title="Setting" data-toggle="tooltip" data-placement="right"><i class="ti-panel"></i></a></li>
 				<li><a href="faq" title="Faq's" data-toggle="tooltip" data-placement="right"><i class="ti-light-bulb"></i></a></li>
 				<li><a href="timeline-friends" title="Friends" data-toggle="tooltip" data-placement="right"><i class="ti-themify-favicon"></i></a></li>
-				<li><a href="widgets" title="Widgets" data-toggle="tooltip" data-placement="right"><i class="ti-eraser"></i></a></li>
+				<li><a href="widget bg-whites" title="widget bg-whites" data-toggle="tooltip" data-placement="right"><i class="ti-eraser"></i></a></li>
 				<li><a href="notifications" title="Notification" data-toggle="tooltip" data-placement="right"><i class="ti-bookmark-alt"></i></a></li>
 			</ul>
 		</div>
@@ -534,8 +534,8 @@
 						<div class="row merged20" id="page-contents">
 							<div class="col-lg-3">
 								<aside class="sidebar static left">
-									<div class="widget">
-										<h4 class="widget-title">Shortcuts</h4>
+									<div class="widget bg-white">
+										<h4 class="widget bg-white-title">Shortcuts</h4>
 										<ul class="naves">
 											<li>
 												<i class="ti-clipboard"></i>
@@ -587,8 +587,8 @@
 											</li>
 										</ul>
 									</div><!-- Shortcuts -->
-									<div class="widget">
-										<h4 class="widget-title">Recent Activity</h4>
+									<div class="widget bg-white">
+										<h4 class="widget bg-white-title">Recent Activity</h4>
 										<ul class="activitiez">
 											<li>
 												<div class="activity-meta">
@@ -612,8 +612,8 @@
 											</li>
 										</ul>
 									</div><!-- recent activites -->
-									<div class="widget stick-widget">
-										<h4 class="widget-title">Who's follownig</h4>
+									<div class="widget bg-white stick-widget bg-white">
+										<h4 class="widget bg-white-title">Who's follownig</h4>
 										<ul class="followers">
 											@foreach($allusers as $alluser)
 											<li>
@@ -1249,8 +1249,8 @@
 							</div><!-- centerl meta -->
 							<div class="col-lg-3">
 								<aside class="sidebar static right">
-									<div class="widget">
-										<h4 class="widget-title">Your page</h4>
+									<div class="widget bg-white">
+										<h4 class="widget bg-white-title">Your page</h4>
 										<div class="your-page">
 											<figure>
 												<a href="#" title=""><img src="{{ asset('assets/images/resources/friend-avatar9.jpg') }}" alt=""></a>
@@ -1262,7 +1262,7 @@
 											</div>
 											<div class="page-likes">
 												<ul class="nav nav-tabs likes-btn">
-													<li class="nav-item"><a class="active" href="#link1" data-toggle="tab">likes</a></li>
+													<li class="nav-item"><a class="active btn btn-primary" href="#link1" data-toggle="tab">likes</a></li>
 													 <li class="nav-item"><a class="" href="#link2" data-toggle="tab">views</a></li>
 												</ul>
 												<!-- Tab panes -->
@@ -1324,10 +1324,10 @@
 												</div>
 											</div>
 										</div>
-									</div><!-- page like widget -->
-									<div class="widget">
+									</div><!-- page like widget bg-white -->
+									<div class="widget bg-white">
 										<div class="banner medium-opacity bluesh">
-											<div class="bg-image" style="background-image: url(images/resources/baner-widgetbg.jpg)"></div>
+											<div class="bg-image" style="background-image: url(images/resources/baner-widget bg-whitebg.jpg)"></div>
 											<div class="baner-top">
 												<span><img alt="" src="images/book-icon.png"></span>
 												<i class="fa fa-ellipsis-h"></i>
@@ -1341,8 +1341,8 @@
 											</div>
 										</div>
 									</div>
-									<div class="widget stick-widget">
-										<h4 class="widget-title">Profile intro</h4>
+									<div class="widget bg-white stick-widget bg-white">
+										<h4 class="widget bg-white-title">Profile intro</h4>
 										<ul class="short-profile">
 											<li>
 												<span>about</span>
