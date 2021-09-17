@@ -561,31 +561,32 @@
 									<div class="editing-info">
 										<h5 class="f-title"><i class="ti-info-alt"></i> Edit work & Education</h5>
 
-										<form method="post">
+										<form method="post" action="{{ url('/edit-work-eductation') }}">
+											@csrf
 											<div class="checkbox">
 											  <label>
-												<input type="checkbox" checked="checked"><i class="check-box"></i>Graduate
+												<input type="checkbox" name ="graduate" value="1" checked="checked"><i class="check-box"></i>Graduate
 											  </label>
 											</div>
 											<div class="checkbox">
 											  <label>
-												<input type="checkbox" checked="checked"><i class="check-box"></i>Masters
+												<input type="checkbox" name ="masters" value="1" checked="checked"><i class="check-box"></i>Masters
 											  </label>
 											</div>
 											<div class="form-group">	
-											  <input type="text" id="input" required="required" />
+											  <input type="text" id="input" name="studyAt" required="required" />
 											  <label class="control-label" for="input">Studying at</label><i class="mtrl-select"></i>
 											</div>
 											<div class="form-group half">	
-											  <input type="text" required="required"/>
+											  <input type="date" name="fromDate" required="required"/>
 											  <label class="control-label" for="input">From</label><i class="mtrl-select"></i>
 											</div>
 											<div class="form-group half">	
-											  <input type="text" required="required"/>
+											  <input type="date" name ="toDate" required="required"/>
 											  <label class="control-label" for="input">To</label><i class="mtrl-select"></i>
 											</div>												
 											<div class="form-group">	
-											  <input type="text" required="required"/>
+											  <input type="text" name= "city" required="required"/>
 											  <label class="control-label" for="input">City</label><i class="mtrl-select"></i>
 											</div>
 											<div class="form-group">	
@@ -843,12 +844,12 @@
 											  </select>
 											</div>
 											<div class="form-group">	
-											  <textarea rows="4" id="textarea" required="required"></textarea>
+											  <textarea rows="4" id="textarea" name="description" required="required"></textarea>
 											  <label class="control-label" for="textarea">Description</label><i class="mtrl-select"></i>
 											</div>
 											<div class="submit-btns">
 												<button type="button" class="mtr-btn"><span>Cancel</span></button>
-												<button type="button" class="mtr-btn"><span>Update</span></button>
+												<button type="submit" class="mtr-btn"><span>Update</span></button>
 											</div>
 										</form>
 									</div>

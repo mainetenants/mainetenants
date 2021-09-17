@@ -544,46 +544,47 @@
 									<div class="onoff-options">
 										<h5 class="f-title"><i class="ti-settings"></i>account setting</h5>
 										<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate</p>
-										<form method="post">
+										<form method="post" action="{{ url('/accountInfo') }}">
+											@csrf
 											<div class="setting-row">
 												<span>Sub users</span>
 												<p>Enable this if you want people to follow you</p>
-												<input type="checkbox" id="switch00" /> 
+												<input type="checkbox" id="switch00" name="sub_users" value=""/> 
 												<label for="switch00" data-on-label="ON" data-off-label="OFF"></label>
 											</div>
 											<div class="setting-row">
 												<span>Enable follow me</span>
 												<p>Enable this if you want people to follow you</p>
-												<input type="checkbox" id="switch01" /> 
+												<input type="checkbox" id="switch01" name="enable_follow_me" value="1"/> 
 												<label for="switch01" data-on-label="ON" data-off-label="OFF"></label>
 											</div>
 											<div class="setting-row">
 												<span>Send me notifications</span>
 												<p>Send me notification emails my friends like, share or message me</p>
-												<input type="checkbox" id="switch02" /> 
+												<input type="checkbox" id="switch02" name="send_me_notifications" value="1"/> 
 												<label for="switch02" data-on-label="ON" data-off-label="OFF"></label>
 											</div>
 											<div class="setting-row">
 												<span>Text messages</span>
 												<p>Send me messages to my cell phone</p>
-												<input type="checkbox" id="switch03" /> 
+												<input type="checkbox" id="switch03" name="text_messages" value="1"/> 
 												<label for="switch03" data-on-label="ON" data-off-label="OFF"></label>
 											</div>
 											<div class="setting-row">
 												<span>Enable tagging</span>
 												<p>Enable my friends to tag me on their posts</p>
-												<input type="checkbox" id="switch04" /> 
+												<input type="checkbox" id="switch04" name="enable_tagging" value="1"/> 
 												<label for="switch04" data-on-label="ON" data-off-label="OFF"></label>
 											</div>
 											<div class="setting-row">
 												<span>Enable sound Notification</span>
 												<p>You'll hear notification sound when someone sends you a private message</p>
-												<input type="checkbox" id="switch05" checked=""/> 
+												<input type="checkbox" id="switch05" checked="" name="enable_sound_notification" value="1"/> 
 												<label for="switch05" data-on-label="ON" data-off-label="OFF"></label>
 											</div>
 											<div class="submit-btns">
 												<button type="button" class="mtr-btn"><span>Cancel</span></button>
-												<button type="button" class="mtr-btn"><span>Update</span></button>
+												<button type="submit" class="mtr-btn"><span>Update</span></button>
 											</div>
 										</form>
 									</div>

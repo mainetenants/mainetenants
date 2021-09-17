@@ -16,12 +16,13 @@ class CreateProfileUpdateTable extends Migration
         Schema::create('user_info', function (Blueprint $table) {
             $table->id()->unsigned();
             $table->string('phone')->nullable();
-            $table->date('dob');
+            $table->date('dob')->nullable();
             $table->string('city')->nullable();
             $table->string('gender')->nullable();
             $table->string('country')->nullable();
             $table->text('about_me')->nullable();
-            $table->integer('status');
+            $table->integer('user_id');
+            $table->integer('status')->nullable();
             $table->timestamps();
         });
     }
