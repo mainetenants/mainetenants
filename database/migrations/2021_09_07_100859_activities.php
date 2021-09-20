@@ -20,6 +20,8 @@ class Activities extends Migration
             $table->text('images')->nullable();
             $table->text('videos')->nullable();
             $table->text('music')->nullable();
+            $table->integer('likes')->nullable();
+            $table->integer('dislikes')->nullable();
             $table->integer('user_id');
             $table->timestamp('created')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();

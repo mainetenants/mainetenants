@@ -38,11 +38,17 @@ Route::group(['middleware'=>'web'],function(){
     Route::get('about', 'App\Http\Controllers\AboutController@index');
     Route::get('timeline-friends', 'App\Http\Controllers\timelineController@index');
     Route::get('edit-profile-basic', 'App\Http\Controllers\ProfileUpdateController@editBasic');
+   // Route::get('about', 'App\Http\Controllers\ProfileUpdateController@userInfo');
+    Route::post('/edit-work-eductation','App\Http\Controllers\ProfileUpdateController@workEducationInfo');
     Route::post('profile_edit','App\Http\Controllers\ProfileUpdateController@profileEdit');
+    Route::post('edit-interest','App\Http\Controllers\ProfileUpdateController@interestInfo');
+    Route::post('accountInfo','App\Http\Controllers\ProfileUpdateController@accountInfo');
+    Route::post('like','App\Http\Controllers\PostController@LikePost');
+    Route::get('/edit-account-setting','App\Http\Controllers\ProfileUpdateController@accountSetting');
 });
-// Route::get('/about', function () {
-//     return view('about');
-// });
+
+Route::get('/add-students','App\Http\Controllers\UserWorkEducationController@index');
+
 
 Route::get('/logout', function () {
     return view('logout');
@@ -97,9 +103,7 @@ Route::get('/contact-branches', function () {
 Route::get('/create-fav-page', function () {
     return view('create-fav-page');
 });
-Route::get('/edit-account-setting', function () {
-    return view('edit-account-setting');
-});
+
 Route::get('/edit-interest', function () {
     return view('edit-interest');
 });
@@ -238,3 +242,5 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 Route::get('/profile', [Profile::class, 'index']);
 Route::post('/upload-image', [Profile::class, 'store']);
+
+

@@ -70,7 +70,8 @@ class PostController extends Controller
             ]);
         }
         $values = array('user_id' => $user->id,'post_id' => $data['post_id'],'comment' => $data['comment']);
-        DB::table('msu_comments')->insert($values);
+        DB::table('msu_comments')
+        ->insert($values);
         return back();
 
     }
@@ -105,4 +106,18 @@ class PostController extends Controller
         return Redirect('logout')->withsuccess("logout successfull");
 
     }
+    public function LikePost(Request $request){
+
+        $post = Auth::find($request->id);
+        $response = auth()->user()->toggleLike($post);
+
+        return response()->json(['success'=>$response]);
+    }
+
+
 }
+
+
+
+
+

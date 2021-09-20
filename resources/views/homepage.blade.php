@@ -1,7 +1,20 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+	<meta name="csrf-token" content="{{ csrf_token() }}" />
+
     <head>
       @include('includes/head')
+	  	<style>
+			form#logout_id {
+			font-size: 14px;
+			text-transform: capitalize;
+			display: inline-block;
+			position: relative;
+			font-weight: 400;
+			color: #797979;
+			vertical-align: top;
+			}
+		</style>
 	</head>
 <body>
 <!--<div class="se-pre-con"></div>-->
@@ -727,13 +740,13 @@
 															</span>
 														</li>
 														<li>
-															<span class="like" data-toggle="tooltip" title="like">
+															<span class="like" data-toggle="tooltip" title="like" id ="likeId" value="{{$user->id}}">
 																<i class="ti-heart"></i>
 																<ins>2.2k</ins>
 															</span>
 														</li>
 														<li>
-															<span class="dislike" data-toggle="tooltip" title="dislike">
+															<span class="dislike" data-toggle="tooltip" title="dislike" id ="dislikeId" value="{{$user->id}}">
 																<i class="ti-heart-broken"></i>
 																<ins>200</ins>
 															</span>
@@ -1483,18 +1496,70 @@ function getCaret(el) {
   }  
   return 0; 
 }
+$.ajaxSetup({
+		headers: {
+			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+		}
+	});
+
+$("#likeId").click(function(){
+	var id = $(this).attr('value');
+	$.ajax({
+		type:'POST',
+		url:'{{ url("like") }}',
+		data:{id:id},
+		success:function(data){
+			
+		}
+	});
+
+});
+
+
+
+//like-dislike section
+    // $(document).ready(function() {     
+
+    //     $.ajaxSetup({
+    //         headers: {
+    //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    //         }
+    //     });
+
+    //     $('i.ti-heart, i.ti-heart-broken').click(function(){   
+    //         var id = $(this).parents(".panel").data('id');
+    //         var c = $('#'+this.id+'-bs3').html();
+    //         var cObjId = this.id;
+    //         var cObj = $(this);
+
+    //         $.ajax({
+    //            type:'POST',
+    //            url:'/home',
+    //            data:{id:id},
+    //            success:function(data){
+    //               if(jQuery.isEmptyObject(data.success.attached)){
+    //                 $('#'+cObjId+'-bs3').html(parseInt(c)-1);
+    //                 $(cObj).removeClass("like-post");
+    //               }else{
+    //                 $('#'+cObjId+'-bs3').html(parseInt(c)+1);
+    //                 $(cObj).addClass("like-post");
+    //               }
+    //            }
+    //         });
+
+    //     });      
+
+    //     $(document).delegate('*[data-toggle="lightbox"]', 'click', function(event) {
+    //         event.preventDefault();
+    //         $(this).ekkoLightbox();
+    //     });                                        
+    // }); 
+
+
+
+
 
 	</script>
-	<style>
-		form#logout_id {
-			font-size: 14px;
-			text-transform: capitalize;
-			display: inline-block;
-			position: relative;
-			font-weight: 400;
-			color: #797979;
-			vertical-align: top;
-}
-	</style>
+	
 </body>
 </html>

@@ -15,9 +15,35 @@ class AboutController extends Controller
         $users = DB::table('users')
         ->where('id', $id)
         ->first();
-        //echo '<pre>';  print_r($users->cover_photo);die;
-        return view('about', ['profile_photo' => $users->profile_photo, 
-        'cover_photo' => $users->cover_photo]);
+        $basicInfo = DB::table('user_info')
+        ->leftJoin('users', 'user_info.user_id', '=', 'users.id')
+        ->where('user_id', Auth::id())
+        ->first();
+
+        $educationInfo = DB::table('msu_user_work_education')
+        ->leftJoin('users', 'msu_user_work_education.user_id', '=', 'users.id')
+        ->where('user_id', Auth::id())
+        ->first();
+
+        $interestInfos = DB::table('msu_interest')
+        ->leftJoin('users', 'msu_interest.user_id', '=', 'users.id')
+        ->select('msu_interest.interest')
+        ->where('user_id', Auth::id())
+        ->get();
+        return view('about', ['profile_photo' => $users->profile_photo, 'cover_photo' => $users->cover_photo, 
+        'basicInfo' => $users,
+        'basicInfo'=> $basicInfo,
+        'studyat' => $educationInfo->studyat,
+        'description' => $educationInfo->description,
+        'fromdate' => $educationInfo->fromdate,
+        'todate' => $educationInfo->todate,
+        'city' => $educationInfo->city,
+        'todate' => $educationInfo->todate,
+        'masters' => $educationInfo->masters,
+        'graduate' => $educationInfo->graduate,
+        'interestInfos' => $interestInfos,
+
+    ]);
     }
 
 
