@@ -106,12 +106,69 @@ class PostController extends Controller
         return Redirect('logout')->withsuccess("logout successfull");
 
     }
-    public function LikePost(Request $request){
+    public function likeDislikePost(Request $request){
+        $authid = Auth::id();
 
-        $post = Auth::find($request->id);
-        $response = auth()->user()->toggleLike($post);
+        $like = DB::table('msu_like_dislike_posts')
+        ->where(['user_id'=> $authid, 'post_id' => $request->post_id])
+        ->first();
+        if(isset($like) && !empty($like)){
+            if(($like->like_dislike ==1) && ($request->data =='like')){
+                $ld_status = 0;
+            }
 
-        return response()->json(['success'=>$response]);
+            if(($like->like_dislike ==2) && ($request->data =='like')){
+                $ld_status = 1;
+            }          
+            if(($like->like_dislike ==2) && ($request->data =='dislike' )){
+                $ld_status = 0;
+                
+            }
+
+            if(($like->like_dislike ==1) && ($request->data =='dislike' )){
+                $ld_status = 2;
+                
+            }
+            if(($like->like_dislike ==0) && ($request->data =='dislike')){
+                $ld_status = 2;
+            }
+            if(($like->like_dislike ==0) && ($request->data =='like')){
+                $ld_status = 1;
+            }
+            DB::table('msu_like_dislike_posts')
+            ->where(['user_id'=> $authid, 'post_id' => $request->post_id])
+            ->update(['like_dislike' => $ld_status]);
+
+        }
+        elseif(!isset($like) && empty($like)){
+            //insert like
+            if($request->data =='like'){
+                $values = array('user_id' => $authid,'like_dislike' => ($request->data =='like')?('1'):(''),'post_id' => $request->post_id);
+                $val = DB::table('msu_like_dislike_posts')
+                ->insert($values);
+                
+            }
+            if($request->data =='dislike'){
+                $values = array('user_id' => $authid,'like_dislike' => ($request->data =='dislike')?('2'):(''),'post_id' => $request->post_id);
+                $val = DB::table('msu_like_dislike_posts')
+                ->insert($values);
+            }
+            
+        }
+        $like = DB::table('msu_like_dislike_posts')
+        ->where(['post_id' => $request->post_id, 'like_dislike' =>1])
+        ->count();
+        $dislikes = DB::table('msu_like_dislike_posts')
+        ->where(['post_id' => $request->post_id, 'like_dislike' =>2])
+        ->count();
+        $values = array('likes' => $like,'dislikes' => $dislikes);
+        $val = DB::table('msu_community_activities')
+        ->where(['id' => $request->post_id])
+        ->update($values);
+         
+         return response()->json(array('success'=> true), 200);
+
+
     }
 
 

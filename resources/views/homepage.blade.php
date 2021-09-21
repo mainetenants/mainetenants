@@ -740,15 +740,18 @@
 															</span>
 														</li>
 														<li>
+															
 															<span class="like" data-toggle="tooltip" title="like" id ="likeId" value="{{$user->id}}">
+
+																
 																<i class="ti-heart"></i>
-																<ins>2.2k</ins>
+																<ins>{{ $user->likes }}</ins>
 															</span>
 														</li>
 														<li>
 															<span class="dislike" data-toggle="tooltip" title="dislike" id ="dislikeId" value="{{$user->id}}">
 																<i class="ti-heart-broken"></i>
-																<ins>200</ins>
+																<ins>{{ $user->dislikes }}</ins>
 															</span>
 														</li>
 														<li class="social-media">
@@ -1391,70 +1394,70 @@
 		</div>
 	</div>
 </div>
-	<div class="side-panel">
-			<h4 class="panel-title">General Setting</h4>
-			<form method="post">
-				<div class="setting-row">
-					<span>use night mode</span>
-					<input type="checkbox" id="nightmode1"/>
-					<label for="nightmode1" data-on-label="ON" data-off-label="OFF"></label>
-				</div>
-				<div class="setting-row">
-					<span>Notifications</span>
-					<input type="checkbox" id="switch22" />
-					<label for="switch22" data-on-label="ON" data-off-label="OFF"></label>
-				</div>
-				<div class="setting-row">
-					<span>Notification sound</span>
-					<input type="checkbox" id="switch33" />
-					<label for="switch33" data-on-label="ON" data-off-label="OFF"></label>
-				</div>
-				<div class="setting-row">
-					<span>My profile</span>
-					<input type="checkbox" id="switch44" />
-					<label for="switch44" data-on-label="ON" data-off-label="OFF"></label>
-				</div>
-				<div class="setting-row">
-					<span>Show profile</span>
-					<input type="checkbox" id="switch55" />
-					<label for="switch55" data-on-label="ON" data-off-label="OFF"></label>
-				</div>
-			</form>
-			<h4 class="panel-title">Account Setting</h4>
-			<form method="post">
-				<div class="setting-row">
-					<span>Sub users</span>
-					<input type="checkbox" id="switch66" />
-					<label for="switch66" data-on-label="ON" data-off-label="OFF"></label>
-				</div>
-				<div class="setting-row">
-					<span>personal account</span>
-					<input type="checkbox" id="switch77" />
-					<label for="switch77" data-on-label="ON" data-off-label="OFF"></label>
-				</div>
-				<div class="setting-row">
-					<span>Business account</span>
-					<input type="checkbox" id="switch88" />
-					<label for="switch88" data-on-label="ON" data-off-label="OFF"></label>
-				</div>
-				<div class="setting-row">
-					<span>Show me online</span>
-					<input type="checkbox" id="switch99" />
-					<label for="switch99" data-on-label="ON" data-off-label="OFF"></label>
-				</div>
-				<div class="setting-row">
-					<span>Delete history</span>
-					<input type="checkbox" id="switch101" />
-					<label for="switch101" data-on-label="ON" data-off-label="OFF"></label>
-				</div>
-				<div class="setting-row">
-					<span>Expose author name</span>
-					<input type="checkbox" id="switch111" />
-					<label for="switch111" data-on-label="ON" data-off-label="OFF"></label>
-				</div>
-                {{ csrf_field() }}
-			</form>
-		</div><!-- side panel -->
+<div class="side-panel">
+		<h4 class="panel-title">General Setting</h4>
+		<form method="post">
+			<div class="setting-row">
+				<span>use night mode</span>
+				<input type="checkbox" id="nightmode1"/>
+				<label for="nightmode1" data-on-label="ON" data-off-label="OFF"></label>
+			</div>
+			<div class="setting-row">
+				<span>Notifications</span>
+				<input type="checkbox" id="switch22" />
+				<label for="switch22" data-on-label="ON" data-off-label="OFF"></label>
+			</div>
+			<div class="setting-row">
+				<span>Notification sound</span>
+				<input type="checkbox" id="switch33" />
+				<label for="switch33" data-on-label="ON" data-off-label="OFF"></label>
+			</div>
+			<div class="setting-row">
+				<span>My profile</span>
+				<input type="checkbox" id="switch44" />
+				<label for="switch44" data-on-label="ON" data-off-label="OFF"></label>
+			</div>
+			<div class="setting-row">
+				<span>Show profile</span>
+				<input type="checkbox" id="switch55" />
+				<label for="switch55" data-on-label="ON" data-off-label="OFF"></label>
+			</div>
+		</form>
+		<h4 class="panel-title">Account Setting</h4>
+		<form method="post">
+			<div class="setting-row">
+				<span>Sub users</span>
+				<input type="checkbox" id="switch66" />
+				<label for="switch66" data-on-label="ON" data-off-label="OFF"></label>
+			</div>
+			<div class="setting-row">
+				<span>personal account</span>
+				<input type="checkbox" id="switch77" />
+				<label for="switch77" data-on-label="ON" data-off-label="OFF"></label>
+			</div>
+			<div class="setting-row">
+				<span>Business account</span>
+				<input type="checkbox" id="switch88" />
+				<label for="switch88" data-on-label="ON" data-off-label="OFF"></label>
+			</div>
+			<div class="setting-row">
+				<span>Show me online</span>
+				<input type="checkbox" id="switch99" />
+				<label for="switch99" data-on-label="ON" data-off-label="OFF"></label>
+			</div>
+			<div class="setting-row">
+				<span>Delete history</span>
+				<input type="checkbox" id="switch101" />
+				<label for="switch101" data-on-label="ON" data-off-label="OFF"></label>
+			</div>
+			<div class="setting-row">
+				<span>Expose author name</span>
+				<input type="checkbox" id="switch111" />
+				<label for="switch111" data-on-label="ON" data-off-label="OFF"></label>
+			</div>
+			{{ csrf_field() }}
+		</form>
+	</div><!-- side panel -->
 
 	<script src="{{ asset('js/main.min.js') }}"></script>
 	<script src="{{ asset('js/script.js') }}"></script>
@@ -1464,102 +1467,67 @@
 
     @include('includes/footer')
 	<script>
-	$('#comment').keyup(function (event) {
-		if (event.keyCode == 13 && event.shiftKey) {
-			var content = this.value;
-			var caret = getCaret(this);
-			this.value = content.substring(0,caret)+"\n"+content.substring(carent,content.length-1);
-			event.stopPropagation();
-			
-		}else if(event.keyCode == 13)
-		{
-			$('#comment-form').submit();
+		$('#comment').keyup(function (event) {
+			if (event.keyCode == 13 && event.shiftKey) {
+				var content = this.value;
+				var caret = getCaret(this);
+				this.value = content.substring(0,caret)+"\n"+content.substring(carent,content.length-1);
+				event.stopPropagation();
+				
+			}else if(event.keyCode == 13)
+			{
+				$('#comment-form').submit();
+			}
+		});
+		function getCaret(el) { 
+			if (el.selectionStart) { 
+				return el.selectionStart; 
+			} else if (document.selection) { 
+				el.focus(); 
+
+				var r = document.selection.createRange(); 
+				if (r == null) { 
+				return 0; 
+				} 
+
+				var re = el.createTextRange(), 
+					rc = re.duplicate(); 
+				re.moveToBookmark(r.getBookmark()); 
+				rc.setEndPoint('EndToStart', re); 
+
+				return rc.text.length; 
+			}  
+			return 0; 
 		}
-	});
-function getCaret(el) { 
-  if (el.selectionStart) { 
-    return el.selectionStart; 
-  } else if (document.selection) { 
-    el.focus(); 
 
-    var r = document.selection.createRange(); 
-    if (r == null) { 
-      return 0; 
-    } 
+		// like and dislike posts
+		$(document).ready(function() {     
+			$.ajaxSetup({
+					headers: {
+						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+					}
+				});
 
-    var re = el.createTextRange(), 
-        rc = re.duplicate(); 
-    re.moveToBookmark(r.getBookmark()); 
-    rc.setEndPoint('EndToStart', re); 
-
-    return rc.text.length; 
-  }  
-  return 0; 
-}
-$.ajaxSetup({
-		headers: {
-			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-		}
-	});
-
-$("#likeId").click(function(){
-	var id = $(this).attr('value');
-	$.ajax({
-		type:'POST',
-		url:'{{ url("like") }}',
-		data:{id:id},
-		success:function(data){
-			
-		}
-	});
-
-});
-
-
-
-//like-dislike section
-    // $(document).ready(function() {     
-
-    //     $.ajaxSetup({
-    //         headers: {
-    //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    //         }
-    //     });
-
-    //     $('i.ti-heart, i.ti-heart-broken').click(function(){   
-    //         var id = $(this).parents(".panel").data('id');
-    //         var c = $('#'+this.id+'-bs3').html();
-    //         var cObjId = this.id;
-    //         var cObj = $(this);
-
-    //         $.ajax({
-    //            type:'POST',
-    //            url:'/home',
-    //            data:{id:id},
-    //            success:function(data){
-    //               if(jQuery.isEmptyObject(data.success.attached)){
-    //                 $('#'+cObjId+'-bs3').html(parseInt(c)-1);
-    //                 $(cObj).removeClass("like-post");
-    //               }else{
-    //                 $('#'+cObjId+'-bs3').html(parseInt(c)+1);
-    //                 $(cObj).addClass("like-post");
-    //               }
-    //            }
-    //         });
-
-    //     });      
-
-    //     $(document).delegate('*[data-toggle="lightbox"]', 'click', function(event) {
-    //         event.preventDefault();
-    //         $(this).ekkoLightbox();
-    //     });                                        
-    // }); 
-
-
-
-
+			$("#likeId, #dislikeId").click(function(){
+				var data = $(this).attr('class');
+				var id = $(this).attr('value');
+				$.ajax({
+					type:'POST',
+					url:'{{ url("like") }}',
+					data:{
+							post_id : id,
+							data	:data
+						},
+					success:function(data){
+						
+					}
+				});
+			});
+		});
 
 	</script>
+
+
 	
 </body>
 </html>

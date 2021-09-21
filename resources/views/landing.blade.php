@@ -56,7 +56,7 @@
 							</label>
 							</div>
 							@if (Route::has('password.request'))
-                    <a class="forgot-pwd" href="{{ route('password.request') }}">
+                    	<a class="forgot-pwd" href="{{ route('password.request') }}">
                         {{ __('Forgot your password?') }}
                     </a>
                 @endif
@@ -106,12 +106,12 @@
 							<div class="form-radio">
 							  <div class="radio">
 								<label>
-								  <input type="radio" name="radio" checked="checked"/><i class="check-box"></i>Male
+								  <input type="radio" name="gender" value="0"/><i class="check-box"></i>Male
 								</label>
 							  </div>
 							  <div class="radio">
 								<label>
-								  <input type="radio" name="radio"/><i class="check-box"></i>Female
+								  <input type="radio" name="gender" value="1"/><i class="check-box"></i>Female
 								</label>
 							  </div>
 							</div>
@@ -123,9 +123,21 @@
                               @endif
 							</div>
 							<div class="checkbox">
-							  <label>
-								<input type="checkbox" required="required"/><i class="check-box"></i>Accept Terms & Conditions ?
-							  </label>
+								@if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
+								<div class="mt-4">
+									<x-jet-label for="terms">
+										<div class="flex items-center">
+											<x-jet-checkbox name="terms" class="check-box" id="terms"/>
+												<div class="ml-2">
+													{!! __('I agree to the :terms_of_service and :privacy_policy', [
+															'terms_of_service' => '<a target="_blank" href="'.route('terms.show').'" class="underline text-sm text-gray-600 hover:text-gray-900">'.__('Terms of Service').'</a>',
+															'privacy_policy' => '<a target="_blank" href="'.route('policy.show').'" class="underline text-sm text-gray-600 hover:text-gray-900">'.__('Privacy Policy').'</a>',
+													]) !!}
+												</div>
+											</x-jet-label>
+										</div>
+								</div>
+							@endif
 							</div>
                             <a class="already-have" href="{{ route('login') }}">
                                 {{ __('Already registered?') }}

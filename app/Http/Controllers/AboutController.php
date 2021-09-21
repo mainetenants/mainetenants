@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use Auth;
+use UserWorkEducation;
 use Intervention\Image\ImageManagerStatic as Image;
 
 class AboutController extends Controller
@@ -24,26 +25,29 @@ class AboutController extends Controller
         ->leftJoin('users', 'msu_user_work_education.user_id', '=', 'users.id')
         ->where('user_id', Auth::id())
         ->first();
-
+//dd($educationInfo);
         $interestInfos = DB::table('msu_interest')
         ->leftJoin('users', 'msu_interest.user_id', '=', 'users.id')
         ->select('msu_interest.interest')
         ->where('user_id', Auth::id())
         ->get();
-        return view('about', ['profile_photo' => $users->profile_photo, 'cover_photo' => $users->cover_photo, 
-        'basicInfo' => $users,
-        'basicInfo'=> $basicInfo,
-        'studyat' => $educationInfo->studyat,
-        'description' => $educationInfo->description,
-        'fromdate' => $educationInfo->fromdate,
-        'todate' => $educationInfo->todate,
-        'city' => $educationInfo->city,
-        'todate' => $educationInfo->todate,
-        'masters' => $educationInfo->masters,
-        'graduate' => $educationInfo->graduate,
-        'interestInfos' => $interestInfos,
 
-    ]);
+        return view('about', compact('users', 'basicInfo', 'educationInfo', 'interestInfos'));
+        
+        // return view('about', ['profile_photo' => $users->profile_photo, 'cover_photo' => $users->cover_photo, 
+        // 'basicInfo' => $users,
+        // 'basicInfo'=> $basicInfo,
+        // 'studyat' => $educationInfo->studyat,
+        // 'description' => $educationInfo->description,
+        // 'fromdate' => $educationInfo->fromdate,
+        // 'todate' => $educationInfo->todate,
+        // 'city' => $educationInfo->city,
+        // 'todate' => $educationInfo->todate,
+        // 'masters' => $educationInfo->masters,
+        // 'graduate' => $educationInfo->graduate,
+        // 'interestInfos' => $interestInfos,
+
+   // ]);
     }
 
 
