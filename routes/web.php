@@ -44,7 +44,10 @@ Route::group(['middleware'=>'web'],function(){
     Route::post('edit-interest','App\Http\Controllers\ProfileUpdateController@interestInfo');
     Route::post('accountInfo','App\Http\Controllers\ProfileUpdateController@accountInfo');
     Route::post('like','App\Http\Controllers\PostController@LikePost');
-    Route::get('/edit-account-setting','App\Http\Controllers\ProfileUpdateController@accountSetting');
+    Route::post('like','App\Http\Controllers\PostController@LikePost');
+    Route::get('/delete-post/{id}','App\Http\Controllers\PostController@deletePost');
+    Route::get('/delete-post/{id}','App\Http\Controllers\PostController@deletePost');
+    // Route::get('/edit-post/{id}','App\Http\Controllers\PostController@editPost');
 });
 
 Route::get('/add-students','App\Http\Controllers\UserWorkEducationController@index');

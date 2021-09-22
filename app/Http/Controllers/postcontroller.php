@@ -106,15 +106,22 @@ class PostController extends Controller
         return Redirect('logout')->withsuccess("logout successfull");
 
     }
-    public function LikePost(Request $request){
+    public function deletePost($id){
+        $delete = DB::table('msu_community_activities')
+        ->where(['id'=>$id, 'user_id'=>Auth::id()])
+        ->delete();
+        return redirect('homepage');
 
-        $post = Auth::find($request->id);
-        $response = auth()->user()->toggleLike($post);
 
-        return response()->json(['success'=>$response]);
     }
+    public function editPost($id){
+        // $edit = DB::table('msu_community_activities')
+        // ->where(['id'=>$id, 'user_id'=>Auth::id()])
+        // ->update();
+        // return redirect('homepage');
 
 
+    }
 }
 
 
