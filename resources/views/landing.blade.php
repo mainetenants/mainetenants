@@ -122,26 +122,28 @@
                               <span class="text-danger">{{ $errors->first('email') }}</span>
                               @endif
 							</div>
-							<div class="checkbox">
+							<a class="already-have" href="{{ route('login') }}" style="width:100%;">
+                                {{ __('Already registered?') }}
+                            </a>
+							<div class="form-group checkbox" style="width:100%;">
 								@if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
-								<div class="mt-4">
+								<div>
 									<x-jet-label for="terms">
 										<div class="flex items-center">
-											<x-jet-checkbox name="terms" class="check-box" id="terms"/>
+											<x-jet-checkbox  name="terms"  id="terms"/><i class="check-box"></i>
+											{{-- <x-jet-checkbox name="terms" class="check-box" id="terms"/> --}}
 												<div class="ml-2">
 													{!! __('I agree to the :terms_of_service and :privacy_policy', [
 															'terms_of_service' => '<a target="_blank" href="'.route('terms.show').'" class="underline text-sm text-gray-600 hover:text-gray-900">'.__('Terms of Service').'</a>',
 															'privacy_policy' => '<a target="_blank" href="'.route('policy.show').'" class="underline text-sm text-gray-600 hover:text-gray-900">'.__('Privacy Policy').'</a>',
 													]) !!}
 												</div>
-											</x-jet-label>
 										</div>
+									</x-jet-label>	
 								</div>
 							@endif
 							</div>
-                            <a class="already-have" href="{{ route('login') }}">
-                                {{ __('Already registered?') }}
-                            </a>
+                           
 							<!-- <a href="#" title="" class="already-have">Already have an account</a> -->
 							<div class="submit-btns">
                             <x-jet-button class="ml-4">

@@ -17,9 +17,9 @@ class CreateProfileUpdateTable extends Migration
             $table->id()->unsigned();
             $table->string('phone')->nullable();
             $table->date('dob')->nullable();
-            $table->string('city')->nullable();
-            $table->string('gender')->nullable();
-            $table->string('country')->nullable();
+            $table->string('city',32)->nullable();
+            $table->string('gender',16)->nullable();
+            $table->string('country',32)->nullable();
             $table->text('about_me')->nullable();
             $table->integer('user_id');
             $table->integer('status')->nullable();

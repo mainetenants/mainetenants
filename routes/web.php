@@ -43,6 +43,7 @@ Route::group(['middleware'=>'web'],function(){
     Route::post('edit-interest','App\Http\Controllers\ProfileUpdateController@interestInfo');
     Route::post('accountInfo','App\Http\Controllers\ProfileUpdateController@accountInfo');
     Route::post('like','App\Http\Controllers\PostController@likeDislikePost');
+    Route::post('seen','App\Http\Controllers\PostController@seennotification');
     Route::get('/edit-account-setting','App\Http\Controllers\ProfileUpdateController@accountSetting');
 });
 

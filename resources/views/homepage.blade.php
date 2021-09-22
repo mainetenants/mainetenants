@@ -224,24 +224,33 @@
 			<ul class="setting-area">
 				<li><a href="newsfeed" title="Home" data-ripple=""><i class="ti-home"></i></a></li>
 				<li>
-					<a href="#" title="Notification" data-ripple="">
-						<i class="ti-bell"></i><span>20</span>
+					<a href="#" title="Notification"  onclick="seen_notification()" data-ripple="">
+						<i class="ti-bell"></i><span>{{ count($count) }}</span>
 					</a>
 					<div class="dropdowns">
-						<span>4 New Notifications</span>
+						<span>@if( count($count) != "" or count($count) != 0){{ count($allnotification) }}@else No @endif  New Notifications</span>
+						
 						<ul class="drops-menu">
+							@foreach ($allnotification  as $notification )		
+						    
 							<li>
 								<a href="notifications" title="">
 									<img src="{{ asset('assets/images/resources/thumb-1.jpg') }}" alt="">
 									<div class="mesg-meta">
-										<h6>sarah Loren</h6>
+										 <h6>{{ $notification->message }}</h6>
+										{{-- <h6>sarah Loren</h6>
 										<span>Hi, how r u dear ...?</span>
-										<i>2 min ago</i>
+										<i>2 min ago</i> --}}
 									</div>
 								</a>
+								@if( $notification->is_seen == '1')
 								<span class="tag green">New</span>
+								@endif
+
 							</li>
-							<li>
+
+							@endforeach
+							{{-- <li>
 								<a href="notifications" title="">
 									<img src="{{ asset('assets/images/resources/thumb-2.jpg') }}" alt="">
 									<div class="mesg-meta">
@@ -284,7 +293,7 @@
 									</div>
 								</a>
 								<span class="tag">New</span>
-							</li>
+							</li> --}}
 						</ul>
 						<a href="notifications" title="" class="more-mesg">view more</a>
 					</div>
@@ -293,7 +302,7 @@
 					<a href="#" title="Messages" data-ripple=""><i class="ti-comment"></i><span>12</span></a>
 					<div class="dropdowns">
 						<span>5 New Messages</span>
-						<ul class="drops-menu">
+						<ul class="drops-menu m-2">
 							<li>
 								<a href="notifications" title="">
 									<img src="{{ asset('assets/images/resources/thumb-1.jpg') }}" alt="">
@@ -629,6 +638,7 @@
 										<h4 class="widget-title">Who's follownig</h4>
 										<ul class="followers">
 											@foreach($allusers as $alluser)
+										
 											<li>
 												<figure><img src="{{ asset('assets/images/resources/friend-avatar2.jpg') }}" alt=""></figure>
 												<div class="friend-meta">
@@ -815,26 +825,7 @@
 														</div>
 														<p>{{ $comment->comment; }}</p>
 													</div>
-													<ul>
-														<li>
-														<div class="comet-avatar">
-															<img src="{{ asset('assets/images/resources/comet-4.jpg') }}" alt="">
-														</div>
-														
-															<div class="we-comment">
-																<div class="coment-head">
-																	<h5><a href="time-line" title="">Olivia</a></h5>
-																	<span>16 days ago</span>
-																	<a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
-																</div>
-																<p>i like lexus cars, lexus cars are most beautiful with the awesome features, but this car is really outstanding than lexus</p>
-															</div>
-														</li>
-													</ul>
-												</li>
-												<li>
-													<a href="#" title="" class="showmore underline">more comments</a>
-												</li>
+												
 												@endforeach
 
 												<li class="post-comment">
@@ -843,9 +834,10 @@
 													</div>
 													<div class="post-comt-box">
 														<form action="get-comment-list" id="comment-form" method="post" enctype="multipart/form-data">
-															  <input type="hidden" name="_token" value="{{ csrf_token() }}">
-															  <input type="hidden" name="post_id" value="{{ $user->post_id }}">
-															<textarea name="comment" id="comment" placeholder="Post your comment"></textarea>
+															  <textarea name="comment" id="comment" placeholder="Post your comment"></textarea>
+															  <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
+															  <input type="hidden" name="post_id" value="{{ $user->post_id }}"/>
+															
 															<div class="add-smiles">
 																<span class="em em-expressionless" title="add icon"></span>
 															</div>
@@ -863,7 +855,7 @@
 																<i class="em em-rage"></i>
 																<i class="em em-stuck_out_tongue"></i>
 															</div>
-															<button type="submit"></button>
+															<button type="submit" ></button>
 														</form>
 													</div>
 												</li>
@@ -1467,8 +1459,12 @@
 
     @include('includes/footer')
 	<script>
-		$('#comment').keyup(function (event) {
+		$('#comment').keypress(function (event) {
+
+			
+		
 			if (event.keyCode == 13 && event.shiftKey) {
+			  
 				var content = this.value;
 				var caret = getCaret(this);
 				this.value = content.substring(0,caret)+"\n"+content.substring(carent,content.length-1);
@@ -1476,11 +1472,13 @@
 				
 			}else if(event.keyCode == 13)
 			{
+
 				$('#comment-form').submit();
 			}
 		});
 		function getCaret(el) { 
-			if (el.selectionStart) { 
+
+	        if (el.selectionStart) { 
 				return el.selectionStart; 
 			} else if (document.selection) { 
 				el.focus(); 
@@ -1510,7 +1508,8 @@
 
 			$("#likeId, #dislikeId").click(function(){
 				var data = $(this).attr('class');
-				var id = $(this).attr('value');
+
+				var id = $(this).attr('value');;
 				$.ajax({
 					type:'POST',
 					url:'{{ url("like") }}',
@@ -1524,6 +1523,30 @@
 				});
 			});
 		});
+
+
+		function  seen_notification(){
+	
+			$.ajaxSetup({
+					headers: {
+						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+					}
+				});
+			    
+				var id = $(this).attr('value');;
+				$.ajax({
+					type:'POST',
+					url:'{{ url("seen") }}',
+					data:{
+							post_id : id,
+						
+						},
+					success:function(data){
+						
+					}
+});
+
+		}
 
 	</script>
 

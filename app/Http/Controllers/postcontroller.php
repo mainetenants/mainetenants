@@ -9,6 +9,7 @@ use Intervention\Image\ImageManagerStatic as Image;
 
 class PostController extends Controller
 {
+
     public function postList(Request $request)
     {
         $data = $request->all();
@@ -62,17 +63,45 @@ class PostController extends Controller
     public function commentList(Request $request)
 
     {
+
+        dd($request->all());
         $user = Auth::user();
         $data = $request->all();
+
         if(isset($data['comment'])){
             $request->validate([
                 'comment' => 'required',
             ]);
         }
+          
+        
+
         $values = array('user_id' => $user->id,'post_id' => $data['post_id'],'comment' => $data['comment']);
         DB::table('msu_comments')
         ->insert($values);
+       
+
+        $user_id = DB::table('msu_community_activities')
+        ->select('user_id')
+        ->where(["id" => $data['post_id']])
+        ->first();
+
+
+        $user_name = DB::table('users')
+        ->select('name')
+        ->where(['id' => $user_id->user_id])
+        ->first();
+        
+
+
+        $data_notification = array('user_id' =>$user_id->user_id,'friend_id'=>  $user->id,'message'=>$user_name->name.' Commented on Your 
+        Post'.$request->comment,'post_id' => (int)$request->post_id,'is_seen'=>'1','type' => "Comment",);
+        
+        $notification =   DB::table('msu_user_notification')
+        ->insert($data_notification);
+       
         return back();
+         
 
     }
 
@@ -94,9 +123,28 @@ class PostController extends Controller
 
         $allusers = DB::table('users')
         ->select('*')
+        ->where('id' ,"!=", $id )
         ->orderBy('name', 'ASC')
         ->get();
-        return view('homepage', ['users' => $users, 'comments' => $comments, 'allusers' => $allusers]);
+
+        $allnotification = DB::table('msu_user_notification')
+        ->select('*')
+        ->where(['friend_id' => $id])
+        ->orderBy('created','DESC')
+        ->get();
+
+
+        $count = DB::table('msu_user_notification')
+        ->select('id')
+        ->where(['friend_id' => $id ,'is_seen' => 1])
+        ->get();
+         
+
+        
+
+        
+        
+        return view('homepage', ['users' => $users, 'comments' => $comments, 'allusers' => $allusers,"allnotification" => $allnotification,'count' => $count]);
     }
 
     public function logout(Request $request){
@@ -108,7 +156,7 @@ class PostController extends Controller
     }
     public function likeDislikePost(Request $request){
         $authid = Auth::id();
-
+        
         $like = DB::table('msu_like_dislike_posts')
         ->where(['user_id'=> $authid, 'post_id' => $request->post_id])
         ->first();
@@ -139,6 +187,7 @@ class PostController extends Controller
             ->where(['user_id'=> $authid, 'post_id' => $request->post_id])
             ->update(['like_dislike' => $ld_status]);
 
+
         }
         elseif(!isset($like) && empty($like)){
             //insert like
@@ -165,13 +214,50 @@ class PostController extends Controller
         $val = DB::table('msu_community_activities')
         ->where(['id' => $request->post_id])
         ->update($values);
-         
-         return response()->json(array('success'=> true), 200);
+
+        $user_id = DB::table('msu_community_activities')
+        ->select('user_id')
+        ->where(["id" => $request->post_id])
+        ->first();
+
+        $user_name = DB::table('users')
+        ->select('name')
+        ->where(['id' => $user_id->user_id])
+        ->first();
+        $check_like = DB::table('msu_user_notification')
+          ->select('id' )
+          ->where(['user_id'=> $user_id->user_id ,'friend_id'=>$authid])
+          ->first();
+        if($request->data != 'dislike' and $check_like ==""){
+
+        $data_notification = array('user_id' =>$user_id->user_id,'friend_id'=> $authid,'message'=>$user_name->name.'  '. $request->data.' Your Post.','post_id' => (int)$request->post_id,'is_seen'=>'1','type' => "Like/Dislike",);
+        
+        $notification =   DB::table('msu_user_notification')
+        ->insert($data_notification);
+       
+        }
+
+
+        
+
+        return response()->json(array('success'=> true), 200);
 
 
     }
 
 
+    public function seennotification(Request $request){
+        $authid = Auth::id();
+
+        DB::table('msu_user_notification')
+        ->where(['friend_id'=> $authid])
+        ->update(['is_seen' => 0]);
+
+
+
+        return response()->json(array('updated sucessfully'=> true), 200);
+
+    }
 }
 
 

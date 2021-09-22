@@ -424,7 +424,6 @@
 			<span class="ti-menu main-menu" data-ripple=""></span>
 		</div>
 	</div><!-- topbar -->	
-		
 	<section>
 		<div class="feature-photo">
 			<figure><img src="{{ asset('assets/images/resources/timeline-1.jpg') }}" alt=""></figure>

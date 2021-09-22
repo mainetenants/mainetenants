@@ -16,7 +16,7 @@ class MsuMyInterest extends Migration
         Schema::create('msu_interest', function (Blueprint $table) {
             $table->id()->unsigned();
             $table->integer('user_id');
-            $table->string('interest')->nullable();
+            $table->string('interest',255)->nullable();
         });
     }
 
