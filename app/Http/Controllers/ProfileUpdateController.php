@@ -20,7 +20,7 @@ class ProfileUpdateController extends Controller
         $data = $request->all();
         //dd($data);
         // $phone="";
-        if(isset($data['phone']) && (isset($data['dob'])) && (isset($data['gender'])) && (isset($data['city'])) && (isset($data['country'])) && (isset($data['about_me'])) )
+        if(isset($data['phone']) && (isset($data['dob'])) && (isset($data['language'])) && (isset($data['gender'])) && (isset($data['city'])) && (isset($data['country'])) && (isset($data['about_me'])) )
         {
             $request->validate([
                 // 'phone' => 'required',
@@ -33,7 +33,7 @@ class ProfileUpdateController extends Controller
             
         }
         
-        $values = array('phone' => $data['phone'], 'dob' => $data['dob'], 'gender' => $data['gender'], 'city' => $data['city'], 'country' => $data['country'], 'about_me' => $data['about_me'], 'status' => 1);
+        $values = array('phone' => $data['phone'], 'dob' => $data['dob'], 'language' => $data['language'], 'gender' => $data['gender'], 'city' => $data['city'], 'country' => $data['country'], 'about_me' => $data['about_me'], 'status' => 1);
         DB::table('user_info')
         ->where(['user_id' => Auth::id()])
         ->update($values);

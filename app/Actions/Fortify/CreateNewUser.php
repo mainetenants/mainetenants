@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 use Laravel\Jetstream\Jetstream;
 use DB;
+use UserWorkEducation;
 
 class CreateNewUser implements CreatesNewUsers
 {
@@ -23,6 +24,7 @@ class CreateNewUser implements CreatesNewUsers
     {
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
+            'gender' => ['required'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => $this->passwordRules(),
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['required', 'accepted'] : '',
@@ -31,6 +33,7 @@ class CreateNewUser implements CreatesNewUsers
          $user = User::create([
             'name' => $input['name'],
             'email' => $input['email'],
+            'gender' => $input['gender'],
             'password' => Hash::make($input['password']),
         ]);
         

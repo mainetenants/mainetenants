@@ -105,12 +105,12 @@
 														<div>
 															
 															<a href="" title="">Description</a>
-															<p> {{ $description }}</p> 
+															<p> {{ $educationInfo->description }}</p> 
 															<ul class="education">
-																<li><i class="ti-map-alt"></i>{{$city }}</li>
-																<li><i class="fa fa-graduation-cap"></i> {{$studyat }}</li>
-																<li> {{ ($graduate)?('Graduated'):('') }}</li>
-																<li>{{ ($masters)?('Masters'):('') }}</li>
+																<li><i class="ti-map-alt"></i>{{$educationInfo->city }}</li>
+																<li><i class="fa fa-graduation-cap"></i> {{$educationInfo->studyat }}</li>
+																<li> {{ ($educationInfo->graduate)?('Graduated'):('') }}</li>
+																<li>{{ ($educationInfo->masters)?('Masters'):('') }}</li>
 															</ul>
 														</div>
 													</div>
@@ -124,9 +124,7 @@
 													</div>
 													<div class="tab-pane fade" id="lang" role="tabpanel">
 														<ul class="basics">
-															<li>english</li>
-															<li>french</li>
-															<li>spanish</li>
+															<li>{{$basicInfo->language }}</li>
 														</ul>
 													</div>
 												</div>
