@@ -30,6 +30,7 @@ Route::group(['middleware'=>'web'],function(){
     Route::get('see_friend/{id}', 'App\Http\Controllers\FriendsController@viewfriends');
     Route::get('add_friend/{id}', 'App\Http\Controllers\FriendsController@addFriend');
     Route::get('cancel_request/{id}', 'App\Http\Controllers\FriendsController@cancelRequest');
+    Route::get('unfrind/{id}', 'App\Http\Controllers\FriendsController@unfrind');
     Route::get('confirm_request/{id}', 'App\Http\Controllers\FriendsController@confirmRequest');
     Route::get('profile', 'App\Http\Controllers\Profile@index');
     Route::post('profile_photo', 'App\Http\Controllers\AboutController@profile_photo');
@@ -42,6 +43,8 @@ Route::group(['middleware'=>'web'],function(){
     Route::post('profile_edit','App\Http\Controllers\ProfileUpdateController@profileEdit');
     Route::post('edit-interest','App\Http\Controllers\ProfileUpdateController@interestInfo');
     Route::post('accountInfo','App\Http\Controllers\ProfileUpdateController@accountInfo');
+    Route::get('/delete-post/{id}','App\Http\Controllers\PostController@deletePost');
+    Route::get('/edit-post/{id}','App\Http\Controllers\PostController@editPost');
     Route::post('like','App\Http\Controllers\PostController@likeDislikePost');
     Route::post('seen','App\Http\Controllers\PostController@seennotification');
     Route::get('/edit-account-setting','App\Http\Controllers\ProfileUpdateController@accountSetting');

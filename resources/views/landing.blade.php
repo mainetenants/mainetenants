@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		@include('includes/head');
+		@include('includes/head')
 	 </head>
 <body>
 <!--<div class="se-pre-con"></div>-->
@@ -9,10 +9,10 @@
 	<div class="container-fluid pdng0">
 		<div class="row merged">
 			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-				<div class="land-featurearea">
+				<div class="land-featurearea bg-info">
 					<div class="land-meta">
 						<h1>Winku</h1>
-						<p>
+						<p class="text-secondary">
 							Winku is free to use for as long as you want with two active projects.
 						</p>
 						<div class="friend-logo">
@@ -24,9 +24,9 @@
 			</div>
 			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 				<div class="login-reg-bg">
-					<div class="log-reg-area sign">
-						<h2 class="log-title">Login</h2>
-							<p>
+					<div class="log-reg-area sign bg-white">
+						<h2 class="h2 log-title">Login</h2>
+							<p class="text-secondary">
 								Don’t use Winku Yet? <a href="#" title="">Take the tour</a> or <a href="#" title="">Join now</a>
 							</p>
                             <span class="text-danger">
@@ -71,9 +71,9 @@
 							</div>
 						</form>
 					</div>
-					<div class="log-reg-area reg">
-						<h2 class="log-title">Register</h2>
-							<p>
+					<div class="log-reg-area reg bg-white">
+						<h2 class="h2 log-title">Register</h2>
+							<p class="text-secondary">
 								Don’t use Winku Yet? <a href="#" title="">Take the tour</a> or <a href="#" title="">Join now</a>
 							</p>
                             <x-jet-validation-errors class="mb-4" />

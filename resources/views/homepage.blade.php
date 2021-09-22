@@ -1,20 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-	<meta name="csrf-token" content="{{ csrf_token() }}" />
-
     <head>
       @include('includes/head')
-	  	<style>
-			form#logout_id {
-			font-size: 14px;
-			text-transform: capitalize;
-			display: inline-block;
-			position: relative;
-			font-weight: 400;
-			color: #797979;
-			vertical-align: top;
-			}
-		</style>
 	</head>
 <body>
 <!--<div class="se-pre-con"></div>-->
@@ -23,7 +10,7 @@
 	<div class="responsive-header">
 		<div class="mh-head first Sticky">
 			<span class="mh-btns-left">
-				<a class="" href="#menu"><i class="fa fa-align-justify"></i></a>
+				<a class="" href="#menu"><i class="fa fa-align-justify text-secondary"></i></a>
 			</span>
 			<span class="mh-text">
 				<a href="newsfeed" title=""><img src="{{ asset('assets/images/logo2.png') }}" alt=""></a>
@@ -138,7 +125,7 @@
 				<li><a href="about-company" title="">About Us2</a></li>
 				<li><a href="contact" title="">contact</a></li>
 				<li><a href="contact-branches" title="">Contact Us2</a></li>
-				<li><a href="widgets" title="">Widgts</a></li>
+				<li><a href="widget bg-white bg-lights" title="">Widgts</a></li>
 			</ul>
 		</nav>
 		<nav id="shoppingbag">
@@ -209,20 +196,20 @@
 		</nav>
 	</div><!-- responsive header -->
 
-	<div class="topbar stick">
+	<div class="topbar stick bg-white bg-light">
 		<div class="logo">
 			<a title="" href="newsfeed"><img src="{{ asset('assets/images/logo.png') }}" alt=""></a>
 		</div>
 
-		<div class="top-area">
+		<div class="top-area bg-white bg-light">
 			<div class="top-search">
 				<form method="post" class="">
 					<input type="text" placeholder="Search Friend">
-					<button data-ripple><i class="ti-search"></i></button>
+					<button data-ripple><i class="ti-search text-secondary"></i></button>
 				</form>
 			</div>
-			<ul class="setting-area">
-				<li><a href="newsfeed" title="Home" data-ripple=""><i class="ti-home"></i></a></li>
+			<ul class="setting-area bg-white bg-light">
+				<li><a href="newsfeed" title="Home" data-ripple=""><i class="ti-home text-secondary"></i></a></li>
 				<li>
 					<a href="#" title="Notification"  onclick="seen_notification()" data-ripple="">
 						<i class="ti-bell"></i><span>{{ count($count) }}</span>
@@ -299,7 +286,7 @@
 					</div>
 				</li>
 				<li>
-					<a href="#" title="Messages" data-ripple=""><i class="ti-comment"></i><span>12</span></a>
+					<a href="#" class="text-secondary"" title="Messages" data-ripple=""><i class="ti-comment text-secondary"></i><span>12</span></a>
 					<div class="dropdowns">
 						<span>5 New Messages</span>
 						<ul class="drops-menu m-2">
@@ -362,12 +349,12 @@
 						<a href="messages" title="" class="more-mesg">view more</a>
 					</div>
 				</li>
-				<li><a href="#" title="Languages" data-ripple=""><i class="fa fa-globe"></i></a>
+				<li><a href="#" class="text-secondary"" title="Languages" data-ripple=""><i class="fa fa-globe text-secondary"></i></a>
 					<div class="dropdowns languages">
-						<a href="#" title=""><i class="ti-check"></i>English</a>
-						<a href="#" title="">Arabic</a>
-						<a href="#" title="">Dutch</a>
-						<a href="#" title="">French</a>
+						<a href="#" class="text-secondary"" title=""><i class="ti-check text-secondary"></i>English</a>
+						<a href="#" class="text-secondary"" title="">Arabic</a>
+						<a href="#" class="text-secondary"" title="">Dutch</a>
+						<a href="#" class="text-secondary"" title="">French</a>
 					</div>
 				</li>
 			</ul>
@@ -375,14 +362,14 @@
 				<img src="{{ asset('assets/images/resources/admin.jpg') }}" alt="">
 				<span class="status f-online"></span>
 				<div class="user-setting">
-					<a href="#" title=""><span class="status f-online"></span>online</a>
-					<a href="#" title=""><span class="status f-away"></span>away</a>
-					<a href="#" title=""><span class="status f-off"></span>offline</a>
-					<a href="about" title=""><i class="ti-user"></i> view profile</a>
-					<a href="#" title=""><i class="ti-pencil-alt"></i>edit profile</a>
-					<a href="#" title=""><i class="ti-target"></i>activity log</a>
-					<a href="#" title=""><i class="ti-settings"></i>account setting</a>
-					<a href="#" title=""><i class="ti-power-off"></i>log out</a>
+					<a href="#" class="text-secondary"" title=""><span class="status f-online"></span>online</a>
+					<a href="#" class="text-secondary"" title=""><span class="status f-away"></span>away</a>
+					<a href="#" class="text-secondary"" title=""><span class="status f-off"></span>offline</a>
+					<a href="about" title=""><i class="ti-user text-secondary"></i> view profile</a>
+					<a href="#" class="text-secondary"" title=""><i class="ti-pencil-alt text-secondary"></i>edit profile</a>
+					<a href="#" class="text-secondary"" title=""><i class="ti-target text-secondary"></i>activity log</a>
+					<a href="#" class="text-secondary"" title=""><i class="ti-settings text-secondary"></i>account setting</a>
+					<a href="#" class="text-secondary"" title=""><i class="ti-power-off text-secondary"></i>log out</a>
 				</div>
 			</div>
 			<span class="ti-menu main-menu" data-ripple=""></span>
@@ -390,7 +377,7 @@
 	</div><!-- topbar -->
 
 
-	<div class="fixed-sidebar right">
+	<div class="fixed-sidebar right bg-white bg-light">
 		<div class="chat-friendz">
 			<ul class="chat-users">
 				<li>
@@ -465,14 +452,14 @@
 					<span class="status f-online"></span>
 					<h6>Bucky Barnes</h6>
 					<div class="more">
-						<span class="more-optns"><i class="ti-more-alt"></i>
+						<span class="more-optns"><i class="ti-more-alt text-secondary"></i>
 							<ul>
 								<li>block chat</li>
 								<li>unblock chat</li>
 								<li>conversation</li>
 							</ul>
 						</span>
-						<span class="close-mesage"><i class="ti-close"></i></span>
+						<span class="close-mesage"><i class="ti-close text-secondary"></i></span>
 					</div>
 				</div>
 				<div class="chat-list">
@@ -511,18 +498,18 @@
 							<span title="add icon" class="em em-expressionless"></span>
 						</div>
 						<div class="smiles-bunch">
-							<i class="em em---1"></i>
-							<i class="em em-smiley"></i>
-							<i class="em em-anguished"></i>
-							<i class="em em-laughing"></i>
-							<i class="em em-angry"></i>
-							<i class="em em-astonished"></i>
-							<i class="em em-blush"></i>
-							<i class="em em-disappointed"></i>
-							<i class="em em-worried"></i>
-							<i class="em em-kissing_heart"></i>
-							<i class="em em-rage"></i>
-							<i class="em em-stuck_out_tongue"></i>
+							<i class="em em---1 text-secondary"></i>
+							<i class="em em-smiley text-secondary"></i>
+							<i class="em em-anguished text-secondary"></i>
+							<i class="em em-laughing text-secondary"></i>
+							<i class="em em-angry text-secondary"></i>
+							<i class="em em-astonished text-secondary"></i>
+							<i class="em em-blush text-secondary"></i>
+							<i class="em em-disappointed text-secondary"></i>
+							<i class="em em-worried text-secondary"></i>
+							<i class="em em-kissing_heart text-secondary"></i>
+							<i class="em em-rage text-secondary"></i>
+							<i class="em em-stuck_out_tongue text-secondary"></i>
 						</div>
 						<button type="submit"></button>
 					</form>
@@ -534,108 +521,108 @@
 	<div class="fixed-sidebar left">
 		<div class="menu-left">
 			<ul class="left-menu">
-				<li><a href="newsfeed" title="Newsfeed Page" data-toggle="tooltip" data-placement="right"><i class="ti-magnet"></i></a></li>
-				<li><a href="fav-page" title="favourit page" data-toggle="tooltip" data-placement="right"><i class="fa fa-star-o"></i></a></li>
-				<li><a href="insights" title="Account Stats" data-toggle="tooltip" data-placement="right"><i class="ti-stats-up"></i></a></li>
-				<li><a href="inbox" title="inbox" data-toggle="tooltip" data-placement="right"><i class="ti-import"></i></a></li>
-				<li><a href="messages" title="Messages" data-toggle="tooltip" data-placement="right"><i class="ti-comment-alt"></i></a></li>
-				<li><a href="edit-account-setting" title="Setting" data-toggle="tooltip" data-placement="right"><i class="ti-panel"></i></a></li>
-				<li><a href="faq" title="Faq's" data-toggle="tooltip" data-placement="right"><i class="ti-light-bulb"></i></a></li>
-				<li><a href="timeline-friends" title="Friends" data-toggle="tooltip" data-placement="right"><i class="ti-themify-favicon"></i></a></li>
-				<li><a href="widgets" title="Widgets" data-toggle="tooltip" data-placement="right"><i class="ti-eraser"></i></a></li>
-				<li><a href="notifications" title="Notification" data-toggle="tooltip" data-placement="right"><i class="ti-bookmark-alt"></i></a></li>
+				<li><a href="newsfeed" title="Newsfeed Page" data-toggle="tooltip" data-placement="right"><i class="ti-magnet text-secondary"></i></a></li>
+				<li><a href="fav-page" title="favourit page" data-toggle="tooltip" data-placement="right"><i class="fa fa-star-o text-secondary"></i></a></li>
+				<li><a href="insights" title="Account Stats" data-toggle="tooltip" data-placement="right"><i class="ti-stats-up text-secondary"></i></a></li>
+				<li><a href="inbox" title="inbox" data-toggle="tooltip" data-placement="right"><i class="ti-import text-secondary"></i></a></li>
+				<li><a href="messages" title="Messages" data-toggle="tooltip" data-placement="right"><i class="ti-comment-alt text-secondary"></i></a></li>
+				<li><a href="edit-account-setting" title="Setting" data-toggle="tooltip" data-placement="right"><i class="ti-panel text-secondary"></i></a></li>
+				<li><a href="faq" title="Faq's" data-toggle="tooltip" data-placement="right"><i class="ti-light-bulb text-secondary"></i></a></li>
+				<li><a href="timeline-friends" title="Friends" data-toggle="tooltip" data-placement="right"><i class="ti-themify-favicon text-secondary"></i></a></li>
+				<li><a href="widget bg-white bg-lights" title="widget bg-white bg-lights" data-toggle="tooltip" data-placement="right"><i class="ti-eraser text-secondary"></i></a></li>
+				<li><a href="notifications" title="Notification" data-toggle="tooltip" data-placement="right"><i class="ti-bookmark-alt text-secondary"></i></a></li>
 			</ul>
 		</div>
 	</div><!-- left sidebar menu -->
 
 	<section>
-		<div class="gap2 gray-bg">
+		<div class="gap gray-bg">
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="row merged20" id="page-contents">
 							<div class="col-lg-3">
 								<aside class="sidebar static left">
-									<div class="widget">
-										<h4 class="widget-title">Shortcuts</h4>
+									<div class="widget bg-white bg-light">
+										<h4 class="widget-title bg-white bg-light">Shortcuts</h4>
 										<ul class="naves">
 											<li>
-												<i class="ti-clipboard"></i>
-												<a href="newsfeed" title="">News feed</a>
+												<i class="ti-clipboard text-secondary"></i>
+												<a href="newsfeed" class="text-secondary" title="">News feed</a>
 											</li>
 											<li>
-												<i class="ti-mouse-alt"></i>
-												<a href="inbox" title="">Inbox</a>
+												<i class="ti-mouse-alt text-secondary"></i>
+												<a href="inbox" class="text-secondary" title="">Inbox</a>
 											</li>
 											<li>
-												<i class="ti-files"></i>
-												<a href="fav-page" title="">My pages</a>
+												<i class="ti-files text-secondary"></i>
+												<a href="fav-page" class="text-secondary" title="">My pages</a>
 											</li>
 											<li>
-												<i class="ti-user"></i>
-												<a href="timeline-friends" title="">friends</a>
+												<i class="ti-user text-secondary"></i>
+												<a href="timeline-friends" class="text-secondary" title="">friends</a>
 											</li>
 											<li>
-												<i class="ti-image"></i>
-												<a href="timeline-photos" title="">images</a>
+												<i class="ti-image text-secondary"></i>
+												<a href="timeline-photos" class="text-secondary" title="">images</a>
 											</li>
 											<li>
-												<i class="ti-video-camera"></i>
-												<a href="timeline-videos" title="">videos</a>
+												<i class="ti-video-camera text-secondary"></i>
+												<a href="timeline-videos" class="text-secondary" title="">videos</a>
 											</li>
 											<li>
-												<i class="ti-comments-smiley"></i>
-												<a href="messages" title="">Messages</a>
+												<i class="ti-comments-smiley text-secondary"></i>
+												<a href="messages" class="text-secondary" title="">Messages</a>
 											</li>
 											<li>
-												<i class="ti-bell"></i>
-												<a href="notifications" title="">Notifications</a>
+												<i class="ti-bell text-secondary"></i>
+												<a href="notifications" class="text-secondary" title="">Notifications</a>
 											</li>
 											<li>
-												<i class="ti-share"></i>
-												<a href="people-nearby" title="">People Nearby</a>
+												<i class="ti-share text-secondary"></i>
+												<a href="people-nearby" class="text-secondary" title="">People Nearby</a>
 											</li>
 											<li>
-												<i class="fa fa-bar-chart-o"></i>
-												<a href="insights" title="">insights</a>
+												<i class="fa fa-bar-chart-o text-secondary"></i>
+												<a href="insights" class="text-secondary" title="">insights</a>
 											</li>
 											<li>
-												<i class="ti-power-off"></i>
+												<i class="ti-power-off text-secondary"></i>
 												<form method="post" id="logout_id" action="{{ url("logout"); }}" enctype="multipart/form-data">
 													@csrf
-													<a href="javascript:$('#logout_id').submit();">Logout</a>			
+													<a href="javascript:$('#logout_id').submit();" class="text-secondary">Logout</a>			
 											    </form>
-												{{-- <a href="{{ url('logout'); }}" title="">Logout</a> --}}
+												
 											</li>
 										</ul>
 									</div><!-- Shortcuts -->
-									<div class="widget">
-										<h4 class="widget-title">Recent Activity</h4>
+									<div class="widget bg-white bg-light">
+										<h4 class="widget-title bg-white bg-light">Recent Activity</h4>
 										<ul class="activitiez">
 											<li>
-												<div class="activity-meta">
+												<div class="activity-meta text-secondary text-secondary">
 													<i>10 hours Ago</i>
-													<span><a href="#" title="">Commented on Video posted </a></span>
+													<span><a href="#" class="text-secondary"" title="">Commented on Video posted </a></span>
 													<h6>by <a href="time-line">black demon.</a></h6>
 												</div>
 											</li>
 											<li>
-												<div class="activity-meta">
+												<div class="activity-meta text-secondary text-secondary">
 													<i>30 Days Ago</i>
-													<span><a href="#" title="">Posted your status. “Hello guys, how are you?”</a></span>
+													<span><a href="#" class="text-secondary"" title="">Posted your status. “Hello guys, how are you?”</a></span>
 												</div>
 											</li>
 											<li>
-												<div class="activity-meta">
+												<div class="activity-meta text-secondary text-secondary">
 													<i>2 Years Ago</i>
-													<span><a href="#" title="">Share a video on her timeline.</a></span>
-													<h6>"<a href="#">you are so funny mr.been.</a>"</h6>
+													<span><a href="#" class="text-secondary"" title="">Share a video on her timeline.</a></span>
+													<h6>"<a href="#" class="text-secondary"">you are so funny mr.been.</a>"</h6>
 												</div>
 											</li>
 										</ul>
 									</div><!-- recent activites -->
-									<div class="widget stick-widget">
-										<h4 class="widget-title">Who's follownig</h4>
+									<div class="widget bg-white bg-light stick-widget bg-white bg-light">
+										<h4 class="widget-title bg-white bg-light">Who's follownig</h4>
 										<ul class="followers">
 											@foreach($allusers as $alluser)
 										
@@ -652,7 +639,7 @@
 								</aside>
 							</div><!-- sidebar -->
 							<div class="col-lg-6">
-								<div class="central-meta new-pst">
+								<div class="central-meta new-pst bg-white bg-light">
 									<div class="new-postbox">
 										<figure>
 											<img src="{{ asset('assets/images/resources/admin2.jpg') }}" alt="">
@@ -661,7 +648,7 @@
 										@if ($errors->any())
 											<div class="alert alert-secondary" role="alert">
 												<div class="alert-icon">
-													<i class="flaticon-warning "></i>
+													<i class="flaticon-warning  text-secondary"></i>
 												</div>
 												<div class="alert-text">
 													<ul>
@@ -683,32 +670,32 @@
 												<textarea rows="2" placeholder="write something" name="msg"></textarea>
 												<div class="attachments">
 													<ul>
-														<li>
-															<i class="fa fa-music"></i>
+														<li class="text-secondary">
+															<i class="fa fa-music text-secondary"></i>
 															<label class="fileContainer">
 																<input type="file" name="music">
 															</label>
 														</li>
-														<li>
-															<i class="fa fa-image"></i>
+														<li class="text-secondary">
+															<i class="fa fa-image text-secondary"></i>
 															<label class="fileContainer">
 																<input type="file" name="image">
 															</label>
 														</li>
-														<li>
-															<i class="fa fa-video-camera"></i>
+														<li class="text-secondary">
+															<i class="fa fa-video-camera text-secondary"></i>
 															<label class="fileContainer">
 																<input type="file" name="video">
 															</label>
 														</li>
-														<li>
-															<i class="fa fa-camera"></i>
+														<li class="text-secondary">
+															<i class="fa fa-camera text-secondary"></i>
 															<label class="fileContainer">
 																<input type="file">
 															</label>
 														</li>
-														<li>
-															<input type="submit" id="posts" value="Post">
+														<li class="text-secondary">
+															<input type="submit" class="btn btn-info btn-sm" id="posts" value="Post">
 														</li>
 													</ul>
 												</div>
@@ -718,14 +705,38 @@
 								</div><!-- add post new box -->
 								<div class="loadMore">
 									@foreach($users as $user)
-								<div class="central-meta item">
+								<div class="  central-meta item bg-white bg-light">
 									<div class="user-post"> 
 										<div class="friend-info">
 											<figure>
 												<img src="{{ asset('assets/images/resources/friend-avatar10.jpg') }}" alt="">
 											</figure>
+											<span>
 											<div class="friend-name">
-												<ins><a href="time-line" title="">{{$user->name}}</a></ins>
+												<span><ins><a href="time-line" title="">{{$user->name}}</a></ins> 
+													
+													  <div class="post-opt pull-right">
+														<i class="ti-more-alt" data-toggle="popover" data-content="<a href=''  data-toggle='modal' data-target='#editpost'>Edit</a><br><a class='border-top' href='/delete-post/{{ $user->post_id}}' >Delete</a>"
+														data-placement="left"  data-html="true">
+													</i>
+													</div>
+													<div class="col-4 pull-right opt-list" style="display: none">
+
+														{{--  <button type="button" class="btn btn-secondary" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Vivamus
+                                                           sagittis lacus vel augue laoreet rutrum faucibus.">
+														Popover on bottom
+														</button>  --}}
+														{{--  <div class="list-group" data-toggle="popover" data-placement="bottom" id="list-tab" role="tablist">
+														<a class="list-group-item">Edit</a>
+														<a class="list-group-item" >Delete</a>
+														</div>
+													</div>  --}} 
+												</span>
+												
+
+
+												
+												  </div>
 												<?php
 												$timestamp = strtotime($user->created_at);
 
@@ -733,19 +744,20 @@
 												?>
 												<span>published: {{$day}} </span>
 											</div>
+										</span>
 											<div class="post-meta">
 												<img src="upload/images/{{ $user->images; }}" alt="">
 												<div class="we-video-info">
 													<ul>
 														<li>
-															<span class="views" data-toggle="tooltip" title="views">
-																<i class="fa fa-eye"></i>
+															<span class="views text-secondary" data-toggle="tooltip" title="views">
+																<i class="fa fa-eye text-secondary"></i>
 																<ins>1.2k</ins>
 															</span>
 														</li>
 														<li>
-															<span class="comment" data-toggle="tooltip" title="Comments">
-																<i class="fa fa-comments-o"></i>
+															<span class="comment text-secondary" data-toggle="tooltip" title="Comments">
+																<i class="fa fa-comments-o text-secondary"></i>
 																<ins>52</ins>
 															</span>
 														</li>
@@ -766,32 +778,32 @@
 														</li>
 														<li class="social-media">
 															<div class="menu">
-															  <div class="btn trigger"><i class="fa fa-share-alt"></i></div>
+															  <div class="btn trigger"><i class="fa fa-share-alt text-secondary"></i></div>
 															  <div class="rotater">
-																<div class="btn btn-icon"><a href="#" title=""><i class="fa fa-html5"></i></a></div>
+																<div class="btn btn-icon"><a href="#" class="text-secondary"" title=""><i class="fa fa-html5 text-secondary"></i></a></div>
 															  </div>
 															  <div class="rotater">
-																<div class="btn btn-icon"><a href="#" title=""><i class="fa fa-facebook"></i></a></div>
+																<div class="btn btn-icon"><a href="#" class="text-secondary"" title=""><i class="fa fa-facebook text-secondary"></i></a></div>
 															  </div>
 															  <div class="rotater">
-																<div class="btn btn-icon"><a href="#" title=""><i class="fa fa-google-plus"></i></a></div>
+																<div class="btn btn-icon"><a href="#" class="text-secondary"" title=""><i class="fa fa-google-plus text-secondary"></i></a></div>
 															  </div>
 															  <div class="rotater">
-																<div class="btn btn-icon"><a href="#" title=""><i class="fa fa-twitter"></i></a></div>
+																<div class="btn btn-icon"><a href="#" class="text-secondary"" title=""><i class="fa fa-twitter text-secondary"></i></a></div>
 															  </div>
 															  <div class="rotater">
-																<div class="btn btn-icon"><a href="#" title=""><i class="fa fa-css3"></i></a></div>
+																<div class="btn btn-icon"><a href="#" class="text-secondary"" title=""><i class="fa fa-css3 text-secondary"></i></a></div>
 															  </div>
 															  <div class="rotater">
-																<div class="btn btn-icon"><a href="#" title=""><i class="fa fa-instagram"></i></a>
+																<div class="btn btn-icon"><a href="#" class="text-secondary"" title=""><i class="fa fa-instagram text-secondary"></i></a>
 																</div>
 															  </div>
 																<div class="rotater">
-																<div class="btn btn-icon"><a href="#" title=""><i class="fa fa-dribbble"></i></a>
+																<div class="btn btn-icon"><a href="#" class="text-secondary"" title=""><i class="fa fa-dribbble text-secondary"></i></a>
 																</div>
 															  </div>
 															  <div class="rotater">
-																<div class="btn btn-icon"><a href="#" title=""><i class="fa fa-pinterest"></i></a>
+																<div class="btn btn-icon"><a href="#" class="text-secondary"" title=""><i class="fa fa-pinterest text-secondary"></i></a>
 																</div>
 															  </div>
 
@@ -807,7 +819,7 @@
 												</div>
 											</div>
 										</div>
-										<div class="coment-area">
+										<div class="coment-area bg-white bg-light">
 											<ul class="we-comet">
 												@foreach ($comments as $comment)
 												<li>
@@ -820,15 +832,15 @@
 															<?php
 												            $timestamp = strtotime($user->created_at);
                                                              $day = date('M,d Y H:i A', $timestamp);
-												?>
-															<a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
+															?>
+															<a class="we-reply" href="#" title="Reply"><i class="fa fa-reply text-secondary"></i></a>
 														</div>
 														<p>{{ $comment->comment; }}</p>
 													</div>
 												
 												@endforeach
 
-												<li class="post-comment">
+												<li class="post-comment bg-white bg-light">
 													<div class="comet-avatar">
 														<img src="{{ asset('assets/images/resources/comet-1.jpg') }}" alt="">
 													</div>
@@ -842,30 +854,49 @@
 																<span class="em em-expressionless" title="add icon"></span>
 															</div>
 															<div class="smiles-bunch">
-																<i class="em em---1"></i>
-																<i class="em em-smiley"></i>
-																<i class="em em-anguished"></i>
-																<i class="em em-laughing"></i>
-																<i class="em em-angry"></i>
-																<i class="em em-astonished"></i>
-																<i class="em em-blush"></i>
-																<i class="em em-disappointed"></i>
-																<i class="em em-worried"></i>
-																<i class="em em-kissing_heart"></i>
-																<i class="em em-rage"></i>
-																<i class="em em-stuck_out_tongue"></i>
+																<i class="em em---1 text-secondary"></i>
+																<i class="em em-smiley text-secondary"></i>
+																<i class="em em-anguished text-secondary"></i>
+																<i class="em em-laughing text-secondary"></i>
+																<i class="em em-angry text-secondary"></i>
+																<i class="em em-astonished text-secondary"></i>
+																<i class="em em-blush text-secondary"></i>
+																<i class="em em-disappointed text-secondary"></i>
+																<i class="em em-worried text-secondary"></i>
+																<i class="em em-kissing_heart text-secondary"></i>
+																<i class="em em-rage text-secondary"></i>
+																<i class="em em-stuck_out_tongue text-secondary"></i>
 															</div>
 															<button type="submit" ></button>
 														</form>
 													</div>
 												</li>
 											</ul>
+											{{-- modal for edit post							 --}}
+											<div class="modal fade" id="editpost" tabindex="-1" aria-hidden="false">
+												<div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header py-2">
+                              <h5 class="modal-title" id="">Edit Post</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                            ...
+                            </div>
+                            <div class="modal-footer py-2">
+                              <button type="button" id="" class="btn btn-sm btn-primary">Update</button>
+                            </div>
+                          </div>
+												</div>
+											</div>
 										</div>
 									
 									</div>
 								</div>
 								@endforeach
-								<div class="central-meta item">
+								<div class=" central-meta item bg-white bg-light">
 									<div class="user-post">
 										<div class="friend-info">
 											<figure>
@@ -880,57 +911,57 @@
 												<div class="we-video-info">
 													<ul>
 														<li>
-															<span class="views" data-toggle="tooltip" title="views">
-																<i class="fa fa-eye"></i>
+															<span class="views text-secondary text-secondary" data-toggle="tooltip" title="views">
+																<i class="fa fa-eye text-secondary"></i>
 																<ins>1.2k</ins>
 															</span>
 														</li>
 														<li>
-															<span class="comment" data-toggle="tooltip" title="Comments">
-																<i class="fa fa-comments-o"></i>
+															<span class="comment text-secondary" data-toggle="tooltip" title="Comments">
+																<i class="fa fa-comments-o text-secondary"></i>
 																<ins>52</ins>
 															</span>
 														</li>
 														<li>
-															<span class="like" data-toggle="tooltip" title="like">
-																<i class="ti-heart"></i>
+															<span class="like text-success" data-toggle="tooltip" title="like">
+																<i class="ti-heart text-secondary"></i>
 																<ins>2.2k</ins>
 															</span>
 														</li>
 														<li>
-															<span class="dislike" data-toggle="tooltip" title="dislike">
-																<i class="ti-heart-broken"></i>
+															<span class="dislike text-danger" data-toggle="tooltip" title="dislike">
+																<i class="ti-heart-broken text-secondary"></i>
 																<ins>200</ins>
 															</span>
 														</li>
 														<li class="social-media">
 															<div class="menu">
-															  <div class="btn trigger"><i class="fa fa-share-alt"></i></div>
+															  <div class="btn trigger"><i class="fa fa-share-alt text-secondary"></i></div>
 															  <div class="rotater">
-																<div class="btn btn-icon"><a href="#" title=""><i class="fa fa-html5"></i></a></div>
+																<div class="btn btn-icon"><a href="#" class="text-secondary"" title=""><i class="fa fa-html5 text-secondary"></i></a></div>
 															  </div>
 															  <div class="rotater">
-																<div class="btn btn-icon"><a href="#" title=""><i class="fa fa-facebook"></i></a></div>
+																<div class="btn btn-icon"><a href="#" class="text-secondary"" title=""><i class="fa fa-facebook text-secondary"></i></a></div>
 															  </div>
 															  <div class="rotater">
-																<div class="btn btn-icon"><a href="#" title=""><i class="fa fa-google-plus"></i></a></div>
+																<div class="btn btn-icon"><a href="#" class="text-secondary"" title=""><i class="fa fa-google-plus text-secondary"></i></a></div>
 															  </div>
 															  <div class="rotater">
-																<div class="btn btn-icon"><a href="#" title=""><i class="fa fa-twitter"></i></a></div>
+																<div class="btn btn-icon"><a href="#" class="text-secondary"" title=""><i class="fa fa-twitter text-secondary"></i></a></div>
 															  </div>
 															  <div class="rotater">
-																<div class="btn btn-icon"><a href="#" title=""><i class="fa fa-css3"></i></a></div>
+																<div class="btn btn-icon"><a href="#" class="text-secondary"" title=""><i class="fa fa-css3 text-secondary"></i></a></div>
 															  </div>
 															  <div class="rotater">
-																<div class="btn btn-icon"><a href="#" title=""><i class="fa fa-instagram"></i></a>
+																<div class="btn btn-icon"><a href="#" class="text-secondary"" title=""><i class="fa fa-instagram text-secondary"></i></a>
 																</div>
 															  </div>
 																<div class="rotater">
-																<div class="btn btn-icon"><a href="#" title=""><i class="fa fa-dribbble"></i></a>
+																<div class="btn btn-icon"><a href="#" class="text-secondary"" title=""><i class="fa fa-dribbble text-secondary"></i></a>
 																</div>
 															  </div>
 															  <div class="rotater">
-																<div class="btn btn-icon"><a href="#" title=""><i class="fa fa-pinterest"></i></a>
+																<div class="btn btn-icon"><a href="#" class="text-secondary"" title=""><i class="fa fa-pinterest text-secondary"></i></a>
 																</div>
 															  </div>
 
@@ -941,12 +972,12 @@
 												<div class="description">
 
 													<p>
-														Lonely Cat Enjoying in Summer Curabitur <a href="#" title="">#mypage</a> ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc,
+														Lonely Cat Enjoying in Summer Curabitur <a href="#" class="text-secondary"" title="">#mypage</a> ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc,
 													</p>
 												</div>
 											</div>
 										</div>
-										<div class="coment-area">
+										<div class="coment-area bg-white bg-light">
 											<ul class="we-comet">
 												<li>
 													<div class="comet-avatar">
@@ -956,7 +987,7 @@
 														<div class="coment-head">
 															<h5><a href="time-line" title="">Jason borne</a></h5>
 															<span>1 year ago</span>
-															<a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
+															<a class="we-reply" href="#" title="Reply"><i class="fa fa-reply text-secondary"></i></a>
 														</div>
 														<p>we are working for the dance and sing songs. this video is very awesome for the youngster. please vote this video and like our channel</p>
 													</div>
@@ -970,17 +1001,17 @@
 														<div class="coment-head">
 															<h5><a href="time-line" title="">Sophia</a></h5>
 															<span>1 week ago</span>
-															<a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
+															<a class="we-reply" href="#" title="Reply"><i class="fa fa-reply text-secondary"></i></a>
 														</div>
 														<p>we are working for the dance and sing songs. this video is very awesome for the youngster.
-															<i class="em em-smiley"></i>
+															<i class="em em-smiley text-secondary"></i>
 														</p>
 													</div>
 												</li>
 												<li>
-													<a href="#" title="" class="showmore underline">more comments</a>
+													<a href="#" class="text-secondary"" title="" class="showmore underline">more comments</a>
 												</li>
-												<li class="post-comment">
+												<li class="post-comment bg-white bg-light">
 													<div class="comet-avatar">
 														<img src="{{ asset('assets/images/resources/comet-2.jpg') }}" alt="">
 													</div>
@@ -991,18 +1022,18 @@
 																<span class="em em-expressionless" title="add icon"></span>
 															</div>
 															<div class="smiles-bunch">
-																<i class="em em---1"></i>
-																<i class="em em-smiley"></i>
-																<i class="em em-anguished"></i>
-																<i class="em em-laughing"></i>
-																<i class="em em-angry"></i>
-																<i class="em em-astonished"></i>
-																<i class="em em-blush"></i>
-																<i class="em em-disappointed"></i>
-																<i class="em em-worried"></i>
-																<i class="em em-kissing_heart"></i>
-																<i class="em em-rage"></i>
-																<i class="em em-stuck_out_tongue"></i>
+																<i class="em em---1 text-secondary"></i>
+																<i class="em em-smiley text-secondary"></i>
+																<i class="em em-anguished text-secondary"></i>
+																<i class="em em-laughing text-secondary"></i>
+																<i class="em em-angry text-secondary"></i>
+																<i class="em em-astonished text-secondary"></i>
+																<i class="em em-blush text-secondary"></i>
+																<i class="em em-disappointed text-secondary"></i>
+																<i class="em em-worried text-secondary"></i>
+																<i class="em em-kissing_heart text-secondary"></i>
+																<i class="em em-rage text-secondary"></i>
+																<i class="em em-stuck_out_tongue text-secondary"></i>
 															</div>
 															<button type="submit"></button>
 														</form>
@@ -1012,7 +1043,7 @@
 										</div>
 									</div>
 								</div>
-								<div class="central-meta item">
+								<div class=" central-meta item bg-white bg-light">
 									<div class="user-post">
 										<div class="friend-info">
 											<figure>
@@ -1031,57 +1062,57 @@
 												<div class="we-video-info">
 													<ul>
 														<li>
-															<span class="views" data-toggle="tooltip" title="views">
-																<i class="fa fa-eye"></i>
+															<span class="views text-secondary text-secondary" data-toggle="tooltip" title="views">
+																<i class="fa fa-eye text-secondary"></i>
 																<ins>1.2k</ins>
 															</span>
 														</li>
 														<li>
-															<span class="comment" data-toggle="tooltip" title="Comments">
-																<i class="fa fa-comments-o"></i>
+															<span class="comment text-secondary" data-toggle="tooltip" title="Comments">
+																<i class="fa fa-comments-o text-secondary"></i>
 																<ins>52</ins>
 															</span>
 														</li>
 														<li>
-															<span class="like" data-toggle="tooltip" title="like">
-																<i class="ti-heart"></i>
+															<span class="like text-success" data-toggle="tooltip" title="like">
+																<i class="ti-heart text-secondary"></i>
 																<ins>2.2k</ins>
 															</span>
 														</li>
 														<li>
-															<span class="dislike" data-toggle="tooltip" title="dislike">
-																<i class="ti-heart-broken"></i>
+															<span class="dislike text-danger" data-toggle="tooltip" title="dislike">
+																<i class="ti-heart-broken text-secondary"></i>
 																<ins>200</ins>
 															</span>
 														</li>
 														<li class="social-media">
 															<div class="menu">
-															  <div class="btn trigger"><i class="fa fa-share-alt"></i></div>
+															  <div class="btn trigger"><i class="fa fa-share-alt text-secondary"></i></div>
 															  <div class="rotater">
-																<div class="btn btn-icon"><a href="#" title=""><i class="fa fa-html5"></i></a></div>
+																<div class="btn btn-icon"><a href="#" class="text-secondary"" title=""><i class="fa fa-html5 text-secondary"></i></a></div>
 															  </div>
 															  <div class="rotater">
-																<div class="btn btn-icon"><a href="#" title=""><i class="fa fa-facebook"></i></a></div>
+																<div class="btn btn-icon"><a href="#" class="text-secondary"" title=""><i class="fa fa-facebook text-secondary"></i></a></div>
 															  </div>
 															  <div class="rotater">
-																<div class="btn btn-icon"><a href="#" title=""><i class="fa fa-google-plus"></i></a></div>
+																<div class="btn btn-icon"><a href="#" class="text-secondary"" title=""><i class="fa fa-google-plus text-secondary"></i></a></div>
 															  </div>
 															  <div class="rotater">
-																<div class="btn btn-icon"><a href="#" title=""><i class="fa fa-twitter"></i></a></div>
+																<div class="btn btn-icon"><a href="#" class="text-secondary"" title=""><i class="fa fa-twitter text-secondary"></i></a></div>
 															  </div>
 															  <div class="rotater">
-																<div class="btn btn-icon"><a href="#" title=""><i class="fa fa-css3"></i></a></div>
+																<div class="btn btn-icon"><a href="#" class="text-secondary"" title=""><i class="fa fa-css3 text-secondary"></i></a></div>
 															  </div>
 															  <div class="rotater">
-																<div class="btn btn-icon"><a href="#" title=""><i class="fa fa-instagram"></i></a>
+																<div class="btn btn-icon"><a href="#" class="text-secondary"" title=""><i class="fa fa-instagram text-secondary"></i></a>
 																</div>
 															  </div>
 																<div class="rotater">
-																<div class="btn btn-icon"><a href="#" title=""><i class="fa fa-dribbble"></i></a>
+																<div class="btn btn-icon"><a href="#" class="text-secondary"" title=""><i class="fa fa-dribbble text-secondary"></i></a>
 																</div>
 															  </div>
 															  <div class="rotater">
-																<div class="btn btn-icon"><a href="#" title=""><i class="fa fa-pinterest"></i></a>
+																<div class="btn btn-icon"><a href="#" class="text-secondary"" title=""><i class="fa fa-pinterest text-secondary"></i></a>
 																</div>
 															  </div>
 
@@ -1092,12 +1123,12 @@
 												<div class="description">
 
 													<p>
-														Curabitur Lonely Cat Enjoying in Summer <a href="#" title="">#mypage</a> ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc,
+														Curabitur Lonely Cat Enjoying in Summer <a href="#" class="text-secondary"" title="">#mypage</a> ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc,
 													</p>
 												</div>
 											</div>
 										</div>
-										<div class="coment-area">
+										<div class="coment-area bg-white bg-light">
 											<ul class="we-comet">
 												<li>
 													<div class="comet-avatar">
@@ -1107,7 +1138,7 @@
 														<div class="coment-head">
 															<h5><a href="time-line" title="">Jason borne</a></h5>
 															<span>1 year ago</span>
-															<a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
+															<a class="we-reply" href="#" title="Reply"><i class="fa fa-reply text-secondary"></i></a>
 														</div>
 														<p>we are working for the dance and sing songs. this video is very awesome for the youngster. please vote this video and like our channel</p>
 													</div>
@@ -1121,17 +1152,17 @@
 														<div class="coment-head">
 															<h5><a href="time-line" title="">Sophia</a></h5>
 															<span>1 week ago</span>
-															<a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
+															<a class="we-reply" href="#" title="Reply"><i class="fa fa-reply text-secondary"></i></a>
 														</div>
 														<p>we are working for the dance and sing songs. this video is very awesome for the youngster.
-															<i class="em em-smiley"></i>
+															<i class="em em-smiley text-secondary"></i>
 														</p>
 													</div>
 												</li>
 												<li>
-													<a href="#" title="" class="showmore underline">more comments</a>
+													<a href="#" class="text-secondary"" title="" class="showmore underline">more comments</a>
 												</li>
-												<li class="post-comment">
+												<li class="post-comment bg-white bg-light">
 													<div class="comet-avatar">
 														<img src="{{ asset('assets/images/resources/comet-2.jpg') }}" alt="">
 													</div>
@@ -1142,18 +1173,18 @@
 																<span class="em em-expressionless" title="add icon"></span>
 															</div>
 															<div class="smiles-bunch">
-																<i class="em em---1"></i>
-																<i class="em em-smiley"></i>
-																<i class="em em-anguished"></i>
-																<i class="em em-laughing"></i>
-																<i class="em em-angry"></i>
-																<i class="em em-astonished"></i>
-																<i class="em em-blush"></i>
-																<i class="em em-disappointed"></i>
-																<i class="em em-worried"></i>
-																<i class="em em-kissing_heart"></i>
-																<i class="em em-rage"></i>
-																<i class="em em-stuck_out_tongue"></i>
+																<i class="em em---1 text-secondary"></i>
+																<i class="em em-smiley text-secondary"></i>
+																<i class="em em-anguished text-secondary"></i>
+																<i class="em em-laughing text-secondary"></i>
+																<i class="em em-angry text-secondary"></i>
+																<i class="em em-astonished text-secondary"></i>
+																<i class="em em-blush text-secondary"></i>
+																<i class="em em-disappointed text-secondary"></i>
+																<i class="em em-worried text-secondary"></i>
+																<i class="em em-kissing_heart text-secondary"></i>
+																<i class="em em-rage text-secondary"></i>
+																<i class="em em-stuck_out_tongue text-secondary"></i>
 															</div>
 															<button type="submit"></button>
 														</form>
@@ -1163,7 +1194,7 @@
 										</div>
 									</div>
 								</div>
-								<div class="central-meta item">
+								<div class=" central-meta item bg-white bg-light">
 									<div class="user-post">
 										<div class="friend-info">
 											<figure>
@@ -1191,57 +1222,57 @@
 												<div class="we-video-info">
 													<ul>
 														<li>
-															<span class="views" data-toggle="tooltip" title="views">
-																<i class="fa fa-eye"></i>
+															<span class="views text-secondary text-secondary" data-toggle="tooltip" title="views">
+																<i class="fa fa-eye text-secondary"></i>
 																<ins>1.2k</ins>
 															</span>
 														</li>
 														<li>
-															<span class="comment" data-toggle="tooltip" title="Comments">
-																<i class="fa fa-comments-o"></i>
+															<span class="comment text-secondary" data-toggle="tooltip" title="Comments">
+																<i class="fa fa-comments-o text-secondary"></i>
 																<ins>52</ins>
 															</span>
 														</li>
 														<li>
-															<span class="like" data-toggle="tooltip" title="like">
-																<i class="ti-heart"></i>
+															<span class="like text-success" data-toggle="tooltip" title="like">
+																<i class="ti-heart text-secondary"></i>
 																<ins>2.2k</ins>
 															</span>
 														</li>
 														<li>
-															<span class="dislike" data-toggle="tooltip" title="dislike">
-																<i class="ti-heart-broken"></i>
+															<span class="dislike text-danger" data-toggle="tooltip" title="dislike">
+																<i class="ti-heart-broken text-secondary"></i>
 																<ins>200</ins>
 															</span>
 														</li>
 														<li class="social-media">
 															<div class="menu">
-															  <div class="btn trigger"><i class="fa fa-share-alt"></i></div>
+															  <div class="btn trigger"><i class="fa fa-share-alt text-secondary"></i></div>
 															  <div class="rotater">
-																<div class="btn btn-icon"><a href="#" title=""><i class="fa fa-html5"></i></a></div>
+																<div class="btn btn-icon"><a href="#" class="text-secondary"" title=""><i class="fa fa-html5 text-secondary"></i></a></div>
 															  </div>
 															  <div class="rotater">
-																<div class="btn btn-icon"><a href="#" title=""><i class="fa fa-facebook"></i></a></div>
+																<div class="btn btn-icon"><a href="#" class="text-secondary"" title=""><i class="fa fa-facebook text-secondary"></i></a></div>
 															  </div>
 															  <div class="rotater">
-																<div class="btn btn-icon"><a href="#" title=""><i class="fa fa-google-plus"></i></a></div>
+																<div class="btn btn-icon"><a href="#" class="text-secondary"" title=""><i class="fa fa-google-plus text-secondary"></i></a></div>
 															  </div>
 															  <div class="rotater">
-																<div class="btn btn-icon"><a href="#" title=""><i class="fa fa-twitter"></i></a></div>
+																<div class="btn btn-icon"><a href="#" class="text-secondary"" title=""><i class="fa fa-twitter text-secondary"></i></a></div>
 															  </div>
 															  <div class="rotater">
-																<div class="btn btn-icon"><a href="#" title=""><i class="fa fa-css3"></i></a></div>
+																<div class="btn btn-icon"><a href="#" class="text-secondary"" title=""><i class="fa fa-css3 text-secondary"></i></a></div>
 															  </div>
 															  <div class="rotater">
-																<div class="btn btn-icon"><a href="#" title=""><i class="fa fa-instagram"></i></a>
+																<div class="btn btn-icon"><a href="#" class="text-secondary"" title=""><i class="fa fa-instagram text-secondary"></i></a>
 																</div>
 															  </div>
 																<div class="rotater">
-																<div class="btn btn-icon"><a href="#" title=""><i class="fa fa-dribbble"></i></a>
+																<div class="btn btn-icon"><a href="#" class="text-secondary"" title=""><i class="fa fa-dribbble text-secondary"></i></a>
 																</div>
 															  </div>
 															  <div class="rotater">
-																<div class="btn btn-icon"><a href="#" title=""><i class="fa fa-pinterest"></i></a>
+																<div class="btn btn-icon"><a href="#" class="text-secondary"" title=""><i class="fa fa-pinterest text-secondary"></i></a>
 																</div>
 															  </div>
 
@@ -1257,74 +1288,74 @@
 							</div><!-- centerl meta -->
 							<div class="col-lg-3">
 								<aside class="sidebar static right">
-									<div class="widget">
-										<h4 class="widget-title">Your page</h4>
+									<div class="widget bg-white bg-light">
+										<h4 class="widget-title bg-white bg-light">Your page</h4>
 										<div class="your-page">
 											<figure>
-												<a href="#" title=""><img src="{{ asset('assets/images/resources/friend-avatar9.jpg') }}" alt=""></a>
+												<a href="#" class="text-secondary"" title=""><img src="{{ asset('assets/images/resources/friend-avatar9.jpg') }}" alt=""></a>
 											</figure>
 											<div class="page-meta">
-												<a href="#" title="" class="underline">My page</a>
-												<span><i class="ti-comment"></i><a href="insight" title="">Messages <em>9</em></a></span>
-												<span><i class="ti-bell"></i><a href="insight" title="">Notifications <em>2</em></a></span>
+												<a href="#" class="text-secondary"" title="" class="underline">My page</a>
+												<span><i class="ti-comment text-secondary"></i><a href="insight" title="">Messages <em>9</em></a></span>
+												<span><i class="ti-bell text-secondary"></i><a href="insight" title="">Notifications <em>2</em></a></span>
 											</div>
 											<div class="page-likes">
 												<ul class="nav nav-tabs likes-btn">
-													<li class="nav-item"><a class="active" href="#link1" data-toggle="tab">likes</a></li>
+													<li class="nav-item"><a class="active btn btn-info btn-sm" href="#link1" data-toggle="tab">likes</a></li>
 													 <li class="nav-item"><a class="" href="#link2" data-toggle="tab">views</a></li>
 												</ul>
 												<!-- Tab panes -->
 												<div class="tab-content">
 												  <div class="tab-pane active fade show " id="link1" >
-													<span><i class="ti-heart"></i>884</span>
-													  <a href="#" title="weekly-likes">35 new likes this week</a>
+													<span><i class="ti-heart text-secondary"></i>884</span>
+													  <a href="#" class="text-secondary"" title="weekly-likes">35 new likes this week</a>
 													  <div class="users-thumb-list">
-														<a href="#" title="Anderw" data-toggle="tooltip">
+														<a href="#" class="text-secondary"" title="Anderw" data-toggle="tooltip">
 															<img src="{{ asset('assets/images/resources/userlist-1.jpg') }}" alt="">
 														</a>
-														<a href="#" title="frank" data-toggle="tooltip">
+														<a href="#" class="text-secondary"" title="frank" data-toggle="tooltip">
 															<img src="{{ asset('assets/images/resources/userlist-2.jpg') }}" alt="">
 														</a>
-														<a href="#" title="Sara" data-toggle="tooltip">
+														<a href="#" class="text-secondary"" title="Sara" data-toggle="tooltip">
 															<img src="{{ asset('assets/images/resources/userlist-3.jpg') }}" alt="">
 														</a>
-														<a href="#" title="Amy" data-toggle="tooltip">
+														<a href="#" class="text-secondary"" title="Amy" data-toggle="tooltip">
 															<img src="{{ asset('assets/images/resources/userlist-4.jpg') }}" alt="">
 														</a>
-														<a href="#" title="Ema" data-toggle="tooltip">
+														<a href="#" class="text-secondary"" title="Ema" data-toggle="tooltip">
 															<img src="{{ asset('assets/images/fav.png') }}resources/userlist-5.jpg" alt="">
 														</a>
-														<a href="#" title="Sophie" data-toggle="tooltip">
+														<a href="#" class="text-secondary"" title="Sophie" data-toggle="tooltip">
 															<img src="{{ asset('assets/images/resources/userlist-6.jpg') }}" alt="">
 														</a>
-														<a href="#" title="Maria" data-toggle="tooltip">
+														<a href="#" class="text-secondary"" title="Maria" data-toggle="tooltip">
 															<img src="{{ asset('assets/images/resources/userlist-7.jpg') }}" alt="">
 														</a>
 													  </div>
 												  </div>
 												  <div class="tab-pane fade" id="link2" >
-													  <span><i class="ti-eye"></i>440</span>
-													  <a href="#" title="weekly-likes">440 new views this week</a>
+													  <span><i class="ti-eye text-secondary"></i>440</span>
+													  <a href="#" class="text-secondary"" title="weekly-likes">440 new views this week</a>
 													  <div class="users-thumb-list">
-														<a href="#" title="Anderw" data-toggle="tooltip">
+														<a href="#" class="text-secondary"" title="Anderw" data-toggle="tooltip">
 															<img src="{{ asset('assets/images/resources/userlist-1.jpg') }}" alt="">
 														</a>
-														<a href="#" title="frank" data-toggle="tooltip">
+														<a href="#" class="text-secondary"" title="frank" data-toggle="tooltip">
 															<img src="{{ asset('assets/images/resources/userlist-2.jpg') }}" alt="">
 														</a>
-														<a href="#" title="Sara" data-toggle="tooltip">
+														<a href="#" class="text-secondary"" title="Sara" data-toggle="tooltip">
 															<img src="{{ asset('assets/images/resources/userlist-3.jpg') }}" alt="">
 														</a>
-														<a href="#" title="Amy" data-toggle="tooltip">
+														<a href="#" class="text-secondary"" title="Amy" data-toggle="tooltip">
 															<img src="{{ asset('assets/images/resources/userlist-4.jpg') }}" alt="">
 														</a>
-														<a href="#" title="Ema" data-toggle="tooltip">
+														<a href="#" class="text-secondary"" title="Ema" data-toggle="tooltip">
 															<img src="{{ asset('assets/images/resources/userlist-5.jpg') }}" alt="">
 														</a>
-														<a href="#" title="Sophie" data-toggle="tooltip">
+														<a href="#" class="text-secondary"" title="Sophie" data-toggle="tooltip">
 															<img src="{{ asset('assets/images/resources/userlist-6.jpg') }}" alt="">
 														</a>
-														<a href="#" title="Maria" data-toggle="tooltip">
+														<a href="#" class="text-secondary"" title="Maria" data-toggle="tooltip">
 															<img src="{{ asset('assets/images/resources/userlist-7.jpg') }}" alt="">
 														</a>
 													  </div>
@@ -1332,13 +1363,13 @@
 												</div>
 											</div>
 										</div>
-									</div><!-- page like widget -->
-									<div class="widget">
+									</div><!-- page like widget bg-white bg-light -->
+									<div class="widget bg-white bg-light">
 										<div class="banner medium-opacity bluesh">
-											<div class="bg-image" style="background-image: url(images/resources/baner-widgetbg.jpg)"></div>
+											<div class="bg-image" style="background-image: url(images/resources/baner-widget bg-white bg-lightbg.jpg)"></div>
 											<div class="baner-top">
 												<span><img alt="" src="images/book-icon.png"></span>
-												<i class="fa fa-ellipsis-h"></i>
+												<i class="fa fa-ellipsis-h text-secondary"></i>
 											</div>
 											<div class="banermeta">
 												<p>
@@ -1349,8 +1380,8 @@
 											</div>
 										</div>
 									</div>
-									<div class="widget stick-widget">
-										<h4 class="widget-title">Profile intro</h4>
+									<div class="widget bg-white bg-light stick-widget bg-white bg-light">
+										<h4 class="widget-title bg-white bg-light">Profile intro</h4>
 										<ul class="short-profile">
 											<li>
 												<span>about</span>
@@ -1374,13 +1405,14 @@
 			</div>
 		</div>
 	</section>
+													
 
-	<div class="bottombar">
+	<div class="bottombar bg-light">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
 					<span class="copyright">© Winku 2018. All rights reserved.</span>
-					<i><img src="{{ asset('assets/images/credit-cards.png') }}" alt=""></i>
+					<i><img src="{{ asset('assets/images/credit-cards.png') }}" alt=" text-secondary"></i>
 				</div>
 			</div>
 		</div>
@@ -1492,11 +1524,19 @@
 					rc = re.duplicate(); 
 				re.moveToBookmark(r.getBookmark()); 
 				rc.setEndPoint('EndToStart', re); 
+              return rc.text.length; 
+  }  
+  return 0; 
+}
 
-				return rc.text.length; 
-			}  
-			return 0; 
-		}
+
+
+	$('.post-opt').click(function(){
+		$('.opt-list').toggle();
+$(document).ready(function(){
+  $('[data-toggle="popover"]').popover();   
+});
+});
 
 		// like and dislike posts
 		$(document).ready(function() {     
@@ -1549,7 +1589,17 @@
 		}
 
 	</script>
-
+	<style>
+      form#logout_id {
+      font-size: 14px;
+      text-transform: capitalize;
+      display: inline-block;
+      position: relative;
+      font-weight: 400;
+      color: #797979;
+      vertical-align: top;
+    }
+	</style>
 
 	
 </body>
