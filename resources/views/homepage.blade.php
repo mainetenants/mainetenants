@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
+		<meta name="csrf-token" content="{{ csrf_token() }}" />
       @include('includes/head')
 	</head>
 <body>
@@ -716,7 +717,7 @@
 												<span><ins><a href="time-line" title="">{{$user->name}}</a></ins> 
 													
 													  <div class="post-opt pull-right">
-														<i class="ti-more-alt" data-toggle="popover" data-content="<a href=''  data-toggle='modal' data-target='#editpost'>Edit</a><br><a class='border-top' href='/delete-post/{{ $user->post_id}}' >Delete</a>"
+														<i class="ti-more-alt" data-toggle="popover" data-content="<a href=#null onclick='myFunction()' value='{{ $user->post_id}}' id='edit-post'>Edit</a><br><a class='border-top' href='/delete-post/{{ $user->post_id}}' >Delete</a>"
 														data-placement="left"  data-html="true">
 													</i>
 													</div>
@@ -874,21 +875,40 @@
 											</ul>
 											{{-- modal for edit post							 --}}
 											<div class="modal fade" id="editpost" tabindex="-1" aria-hidden="false">
+												
 												<div class="modal-dialog">
-                          <div class="modal-content">
-                            <div class="modal-header py-2">
-                              <h5 class="modal-title" id="">Edit Post</h5>
-                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                              </button>
-                            </div>
-                            <div class="modal-body">
-                            ...
-                            </div>
-                            <div class="modal-footer py-2">
-                              <button type="button" id="" class="btn btn-sm btn-primary">Update</button>
-                            </div>
-                          </div>
+													<div class="modal-content">
+														<div class="modal-header py-2">
+															<h5 class="modal-title" id="">Edit Post</h5>
+															<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																<span aria-hidden="true">&times;</span>
+															</button>
+														</div>
+														<div class="modal-body">
+                              <form method="post" id="edit_form" action="{{ url("edit-post"); }}" enctype="multipart/form-data">
+                                @csrf
+																<div class="container">
+																	<div class="row">
+																		<div class="col-sm-6">
+																			<div class="card post-card-img">
+																			</div>
+																		</div>
+																		<div class="col-sm-6">
+																			<div class="form-group">
+																				<label class="text-primary" for="">Edit</label>
+																				<div id="post_contet">
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</form>
+															
+														</div>
+														<div class="modal-footer py-2">
+														<button type="submit" id="edit-post-submit" class="btn btn-sm btn-primary">Update</button>
+														</div>
+													</div>
 												</div>
 											</div>
 										</div>
@@ -1419,6 +1439,7 @@
 	</div>
 </div>
 <div class="side-panel">
+<<<<<<< HEAD
 		<h4 class="panel-title">General Setting</h4>
 		<form method="post">
 			<div class="setting-row">
@@ -1483,6 +1504,82 @@
 		</form>
 	</div><!-- side panel -->
 
+=======
+  <h4 class="panel-title">General Setting</h4>
+  <form method="post">
+    <div class="setting-row">
+      <span>use night mode</span>
+      <input type="checkbox" id="nightmode1"/>
+      <label for="nightmode1" data-on-label="ON" data-off-label="OFF"></label>
+    </div>
+    <div class="setting-row">
+      <span>Notifications</span>
+      <input type="checkbox" id="switch22" />
+      <label for="switch22" data-on-label="ON" data-off-label="OFF"></label>
+    </div>
+    <div class="setting-row">
+      <span>Notification sound</span>
+      <input type="checkbox" id="switch33" />
+      <label for="switch33" data-on-label="ON" data-off-label="OFF"></label>
+    </div>
+    <div class="setting-row">
+      <span>My profile</span>
+      <input type="checkbox" id="switch44" />
+      <label for="switch44" data-on-label="ON" data-off-label="OFF"></label>
+    </div>
+    <div class="setting-row">
+      <span>Show profile</span>
+      <input type="checkbox" id="switch55" />
+      <label for="switch55" data-on-label="ON" data-off-label="OFF"></label>
+    </div>
+  </form>
+  <h4 class="panel-title">Account Setting</h4>
+  <form method="post">
+    <div class="setting-row">
+      <span>Sub users</span>
+      <input type="checkbox" id="switch66" />
+      <label for="switch66" data-on-label="ON" data-off-label="OFF"></label>
+    </div>
+    <div class="setting-row">
+      <span>personal account</span>
+      <input type="checkbox" id="switch77" />
+      <label for="switch77" data-on-label="ON" data-off-label="OFF"></label>
+    </div>
+    <div class="setting-row">
+      <span>Business account</span>
+      <input type="checkbox" id="switch88" />
+      <label for="switch88" data-on-label="ON" data-off-label="OFF"></label>
+    </div>
+    <div class="setting-row">
+      <span>Show me online</span>
+      <input type="checkbox" id="switch99" />
+      <label for="switch99" data-on-label="ON" data-off-label="OFF"></label>
+    </div>
+    <div class="setting-row">
+      <span>Delete history</span>
+      <input type="checkbox" id="switch101" />
+      <label for="switch101" data-on-label="ON" data-off-label="OFF"></label>
+    </div>
+    <div class="setting-row">
+      <span>Expose author name</span>
+      <input type="checkbox" id="switch111" />
+      <label for="switch111" data-on-label="ON" data-off-label="OFF"></label>
+    </div>
+    {{ csrf_field() }}
+  </form>
+</div><!-- side panel -->
+	<style>
+		form#logout_id {
+		font-size: 14px;
+		text-transform: capitalize;
+		display: inline-block;
+		position: relative;
+		font-weight: 400;
+		color: #797979;
+		vertical-align: top;
+		}
+	</style>
+>>>>>>> 842cebead891012eb83c5417d61b9d3c6a08ee90
 	<script src="{{ asset('js/main.min.js') }}"></script>
 	<script src="{{ asset('js/script.js') }}"></script>
 	<script src="{{ asset('js/map-init.js') }}"></script>
@@ -1524,22 +1621,24 @@
 					rc = re.duplicate(); 
 				re.moveToBookmark(r.getBookmark()); 
 				rc.setEndPoint('EndToStart', re); 
-              return rc.text.length; 
-  }  
-  return 0; 
-}
 
+				return rc.text.length; 
+			}  
+			return 0; 
+		}
 
+	</script>
+	<script>
+		$('.post-opt').click(function(){
+			$('.opt-list').toggle();
+		});
 
-	$('.post-opt').click(function(){
-		$('.opt-list').toggle();
-$(document).ready(function(){
-  $('[data-toggle="popover"]').popover();   
-});
-});
-
-		// like and dislike posts
-		$(document).ready(function() {     
+		$(document).ready(function(){
+		$('[data-toggle="popover"]').popover();   
+		});
+	</script>
+	<script>
+		$(document).ready(function(){     
 			$.ajaxSetup({
 					headers: {
 						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -1600,7 +1699,44 @@ $(document).ready(function(){
       vertical-align: top;
     }
 	</style>
+	<script>
+		function myFunction(){
+			var post_id = $('#edit-post').attr('value');
+				$.ajaxSetup({
+						headers: {
+							'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+						}
+				});
 
+				$.ajax({
+					type:'POST',
+					url:'{{ url("get-post") }}',
+					data:{
+							post_id : post_id
+						},
+					success:function(data){
+						console.log(data);
+            $('#editpost').modal('toggle')
+                                        
+            $('#post_contet').append('<textarea class="form-control" name="content" id="content" rows="3">'+ data.content +'</textarea><input type="hidden" name="post_id" value="'+ data.post_id +'">')
+            $('.post-card-img').append('<img class="card-img-top" src="upload/images/'+ data.image +'" alt="Card image cap">')
+					}
+				});
+		}
+    $("#editpost").on("hidden.bs.modal", function () {
+       
+        $('#content').remove();
+        $('.card-img-top').remove();
+      });
+      $('#edit-post-submit').click(function(){
+        $("#edit_form").submit();
+      });
+      $('#editpost').on('show.bs.modal', function() {
+        $('.ti-more-alt').toggle();
+      });
+
+		</script>
 	
 </body>
+
 </html>

@@ -25,11 +25,16 @@ class PostController extends Controller
             $imagename = time().'.'.$image->extension();
 
             $filePath = public_path('upload/images');
-
+            $filePathThumb = public_path('upload/images/thumbnails');
+            
             $img = Image::make($image->path());
             $img_resize = $img->resize(870, 470, function ($const) {
                 $const->aspectRatio();
             })->save($filePath.'/'.$imagename);
+
+            $img->resize(870, 470, function ($const) {
+                $const->aspectRatio();
+            })->save($filePathThumb.'/'.$imagename);
         }
 
 
@@ -250,12 +255,7 @@ class PostController extends Controller
 
 
     }
-    public function editPost($id){
-        // $edit = DB::table('msu_community_activities')
-        // ->where(['id'=>$id, 'user_id'=>Auth::id()])
-        // ->update();
-        // return redirect('homepage');
-    }
+  
 
     public function seennotification(Request $request){
         $authid = Auth::id();
@@ -267,6 +267,22 @@ class PostController extends Controller
 
 
         return response()->json(array('updated sucessfully'=> true), 200);
+
+    }
+    public function getPost(Request $request){
+       
+        $editpost = DB::table('msu_community_activities')
+        ->select('*')
+        ->where('id', $request->post_id)
+        ->first();
+        return response()->json(array('success'=> true, 'content'=>$editpost->content, 'image'=>$editpost->images, 'post_id'=>$editpost->id), 200);
+
+    }
+    public function editpost(Request $request){
+       $abc = DB::table('msu_community_activities')
+        ->where('id', $request->post_id)
+        ->update(['content' => $request->content]);
+        return redirect('homepage');
 
     }
 }
