@@ -44,12 +44,12 @@ Route::group(['middleware'=>'web'],function(){
     Route::post('edit-interest','App\Http\Controllers\ProfileUpdateController@interestInfo');
     Route::post('accountInfo','App\Http\Controllers\ProfileUpdateController@accountInfo');
     Route::get('/delete-post/{id}','App\Http\Controllers\PostController@deletePost');
-    Route::get('/edit-post/{id}','App\Http\Controllers\PostController@editPost');
     Route::post('like','App\Http\Controllers\PostController@likeDislikePost');
     Route::get('/edit-account-setting','App\Http\Controllers\ProfileUpdateController@accountSetting');
+    Route::post('/get-post','App\Http\Controllers\PostController@getPost');
+    Route::post('/edit-post','App\Http\Controllers\PostController@editPost');
 });
 
-Route::get('/add-students','App\Http\Controllers\UserWorkEducationController@index');
 
 
 Route::get('/logout', function () {

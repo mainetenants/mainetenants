@@ -2,6 +2,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>Winku Social Network Toolkit</title>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 <link rel="icon" href="{{ asset('assets/images/fav.png') }}" type="image/png" sizes="16x16">
 <link rel="stylesheet" href="{{ asset('assets/css/main.min.css')}}">
