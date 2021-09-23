@@ -132,25 +132,21 @@ class PostController extends Controller
         ->orderBy('name', 'ASC')
         ->get();
 
+       
+        $id = Auth::id();
         $allnotification = DB::table('msu_user_notification')
         ->select('*')
         ->where(['friend_id' => $id])
         ->orderBy('created','DESC')
         ->get();
-
-
         $count = DB::table('msu_user_notification')
         ->select('id')
         ->where(['friend_id' => $id ,'is_seen' => 1])
         ->get();
-         
-
         
-
-        
-        
-        return view('homepage', ['users' => $users, 'comments' => $comments, 'allusers' => $allusers,"allnotification" => $allnotification,'count' => $count]);
+        return view('homepage', ['users' => $users, 'comments' => $comments, 'allusers' => $allusers]);
     }
+
 
     public function logout(Request $request){
 
