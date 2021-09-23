@@ -18,7 +18,7 @@ class TimelineController extends Controller
       $myFriends = DB::table('msu_isfriend')
       ->leftJoin('users', 'msu_isfriend.friends_id', '=', 'users.id')
       ->select('*')
-      ->orWhere(['msu_isfriend.friends_id' => Auth::id() , 'msu_isfriend.user_id' => Auth::id()])
+      ->orWhere(['msu_isfriend.user_id' => Auth::id()])
       ->get();
       // dd($myFriends);
     return view('timeline-friends', ['friends_reqs'=> $friend_reqs, 'myFriends'=> $myFriends]);

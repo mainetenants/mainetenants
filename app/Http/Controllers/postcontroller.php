@@ -69,7 +69,7 @@ class PostController extends Controller
 
     {
 
-        dd($request->all());
+        // dd($request->all());
         $user = Auth::user();
         $data = $request->all();
 

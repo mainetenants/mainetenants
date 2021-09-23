@@ -14,7 +14,7 @@ class MsuUsernotification extends Migration
     public function up()
     {
         // user notificsations
-
+        Schema::dropIfExists('msu_user_notification');
         Schema::create('msu_user_notification', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id');
@@ -36,6 +36,6 @@ class MsuUsernotification extends Migration
     public function down()
     {
         
-        Schema::dropIfExists('msu_like_dislike_posts');
+        Schema::dropIfExists('msu_user_notification');
     }
 }

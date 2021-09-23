@@ -12,13 +12,13 @@ class CreateUsersTable extends Migration
      * @return void
      */
     public function up()
-    {
+    {   Schema::dropIfExists('users');
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name',32);
-            $table->string('email',32)->unique();
+            $table->string('email',64)->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password',32);
+            $table->string('password',128);
             $table->integer('gender');
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
