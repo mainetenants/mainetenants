@@ -40,4 +40,36 @@ function alluser(){
 
 }
 
+function user_data($id){
+
+    $user_details = DB::table('users')
+     ->select('*')
+    ->where('id' ,"!=", $id )
+    ->first();
+
+     return $user_details;
+}
+
+function get_total_friend($id){
+    
+    $count_friends = DB::table('msu_isfriend')
+    ->select('id')
+   ->where('user_id' ,"!=", $id )
+   ->get();
+
+    return count($count_friends);
+
+
+}
+
+function get_user_post($id){
+   
+    $total_post = DB::table('msu_community_activities')
+    ->select('*')
+    ->where(['user_id'=> $id])
+    ->get();
+
+    return $total_post;
+
+}
 ?>

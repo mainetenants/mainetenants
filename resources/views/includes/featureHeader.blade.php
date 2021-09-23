@@ -1,4 +1,17 @@
 @include('includes/header')
+@php
+    
+	$get_user_data = user_data($id);
+    $name = $get_user_data->name;
+    $cover_photo = $get_user_data->cover_photo;
+    $profile_photo = $get_user_data->profile_photo;
+    $get_total_followers = get_total_friend($id);
+
+
+
+
+
+@endphp
 
 <section>
     <div class="feature-photo">
@@ -8,10 +21,16 @@
             @else
             <img src="{{ asset('assets/images/resources/timeline-1.jpg') }}" alt="">
             @endif
-    </figure>
+        </figure>
         <div class="add-btn">
-            <span>1205 followers</span>
-            <a href="#" title="" data-ripple="">Add Friend</a>
+            <span>{{ $get_total_followers }}</span>
+            @if($frnd_status == 1)
+            <a href="{{ url('add_friend/'.$id )}}" title="" data-ripple="">Unfriend</a>
+            @elseif($frnd_status == 0)
+            <a href="{{ url('cancel_request/'.$id )}}" title="" data-ripple="">Requested</a>
+            @else
+            <a href="{{ url('add_friend/'.$id )}}" title="" data-ripple="">Add Friends</a>
+            @endif
         </div>
         <form action="{{ url('cover_photo') }}" class="edit-phto" id="cover_form"   enctype="multipart/form-data" method="POST">
             <i class="fa fa-camera-retro"></i>
@@ -46,7 +65,7 @@
                     <div class="timeline-info">
                         <ul>
                             <li class="admin-name">
-                            <h5>Janice Griffith</h5>
+                            <h5>{{ $name }}</h5>
                             <span>Group Admin</span>
                             </li>
                             <li>

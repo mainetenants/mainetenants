@@ -1,16 +1,4 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-		<meta name="csrf-token" content="{{ csrf_token() }}" />
-      @include('includes/head')
-	</head>
-<body>
-<!--<div class="se-pre-con"></div>-->
-<div class="theme-layout">
-	<div class="postoverlay"></div>
-     @include('includes/header')
-	
- 
+ 	     @include('includes/header')
 
 	<section>
 		<div class="gap gray-bg">
@@ -21,68 +9,7 @@
 			              @include('includes/left-sidebar')			
 							<div class="col-lg-6">
 								<div class="central-meta new-pst bg-white bg-light">
-									<div class="new-postbox">
-										<figure>
-											<img src="{{ asset('assets/images/resources/admin2.jpg') }}" alt="">
-										</figure>
-										<div class="newpst-input">
-										@if ($errors->any())
-											<div class="alert alert-secondary" role="alert">
-												<div class="alert-icon">
-													<i class="flaticon-warning  text-secondary"></i>
-												</div>
-												<div class="alert-text">
-													<ul>
-														@foreach ($errors->all() as $error)
-														<li>{{ $error }}</li>
-														@endforeach
-													</ul>
-												</div>
-											</div><br />
-										@endif
-										@if ($message = Session::get('success'))
-										<div class="alert alert-success alert-block">
-											<button type="button" class="close" data-dismiss="alert">×</button>
-												<strong>{{ $message }}</strong>
-										</div>
-										@endif
-											<form method="post" id="upload_files" action="get-post-list" enctype="multipart/form-data">
-											<input type="hidden" name="_token" value="{{ csrf_token() }}" />
-												<textarea rows="2" placeholder="write something" name="msg"></textarea>
-												<div class="attachments">
-													<ul>
-														<li class="text-secondary">
-															<i class="fa fa-music text-secondary"></i>
-															<label class="fileContainer">
-																<input type="file" name="music">
-															</label>
-														</li>
-														<li class="text-secondary">
-															<i class="fa fa-image text-secondary"></i>
-															<label class="fileContainer">
-																<input type="file" name="image">
-															</label>
-														</li>
-														<li class="text-secondary">
-															<i class="fa fa-video-camera text-secondary"></i>
-															<label class="fileContainer">
-																<input type="file" name="video">
-															</label>
-														</li>
-														<li class="text-secondary">
-															<i class="fa fa-camera text-secondary"></i>
-															<label class="fileContainer">
-																<input type="file">
-															</label>
-														</li>
-														<li class="text-secondary">
-															<input type="submit" class="btn btn-info btn-sm" id="posts" value="Post">
-														</li>
-													</ul>
-												</div>
-											</form>
-										</div>
-									</div>
+									@include('includes/postbox')
 								</div><!-- add post new box -->
 								<div class="loadMore">
 									@foreach($users as $user)
@@ -143,10 +70,7 @@
 															</span>
 														</li>
 														<li>
-															
 															<span class="like" data-toggle="tooltip" title="like" id ="likeId" value="{{$user->id}}">
-
-																
 																<i class="ti-heart"></i>
 																<ins>{{ $user->likes }}</ins>
 															</span>
@@ -770,22 +694,6 @@
     {{ csrf_field() }}
   </form>
 </div><!-- side panel -->
-	<style>
-		form#logout_id {
-		font-size: 14px;
-		text-transform: capitalize;
-		display: inline-block;
-		position: relative;
-		font-weight: 400;
-		color: #797979;
-		vertical-align: top;
-		}
-	</style>
-	<script src="{{ asset('js/main.min.js') }}"></script>
-	<script src="{{ asset('js/script.js') }}"></script>
-	<script src="{{ asset('js/map-init.js') }}"></script>
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8c55_YHLvDHGACkQscgbGLtLRdxBDCfI"></script>
-    
 
     @include('includes/footer')
 	 

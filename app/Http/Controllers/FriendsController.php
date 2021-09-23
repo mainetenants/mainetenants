@@ -6,7 +6,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 class FriendsController extends Controller
 {
-   public function viewfriends($id)
+   
+    public function viewfriends($id)
     {   
         $isfriends = DB::table('msu_friends')
         ->select('*')
