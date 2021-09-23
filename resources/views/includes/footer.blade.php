@@ -1,3 +1,14 @@
+<style>
+	form#logout_id {
+	font-size: 14px;
+	text-transform: capitalize;
+	display: inline-block;
+	position: relative;
+	font-weight: 400;
+	color: #797979;
+	vertical-align: top;
+	}
+</style>
 <script src="{{ asset('assets/js/main.min.js') }}"></script>
 <script src="{{ asset('assets/js/script.js') }}"></script>
 <script src="{{ asset('assets/js/map-init.js') }}"></script>
