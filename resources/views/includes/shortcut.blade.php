@@ -18,7 +18,7 @@
                     </li>
                     <li>
                         <i class="ti-user text-secondary"></i>
-                        <a href="timeline-friends" class="text-secondary" title="">friends</a>
+                        <a href="see_friend/{id}" class="text-secondary" title="">friends</a>
                     </li>
                     <li>
                         <i class="ti-image text-secondary"></i>

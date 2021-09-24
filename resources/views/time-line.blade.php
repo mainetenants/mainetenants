@@ -1,6 +1,7 @@
 @php
-    
+    if(isset($id)){
 	$get_user_data = user_data($id);
+	}
 	$name = $get_user_data->name;
     $profile_photo = $get_user_data->profile_photo;
 
