@@ -31,6 +31,8 @@ class FriendsController extends Controller
             
             $notification =   DB::table('msu_user_notification')
             ->insert($data_notification);
+
+        
         
             return back();
         }
@@ -66,8 +68,8 @@ class FriendsController extends Controller
             DB::table('msu_friends')
             ->where(['user_id'=>Auth::id(), 'friends_id'=>$id, 'status'=>'0'])
             ->delete();
-            $values = array('user_id' => Auth::id(),'friends_id' => $id,'status' => 1);
-            $values2 = array('friends_id' => Auth::id(),'user_id' => $id,'status' => 1);
+            $values = array('user_id' => Auth::id(),'friends_id' => $id,'status' => 1,'is_follow'=>1);
+            $values2 = array('friends_id' => Auth::id(),'user_id' => $id,'status' => 1,'is_follow'=>1);
             DB::table('msu_isfriend')->insert($values);
             DB::table('msu_isfriend')->insert($values2);   
 
@@ -78,9 +80,38 @@ class FriendsController extends Controller
             $data_notification = array('user_id' => Auth::id(),'friend_id'=> $id,'message'=> $user_name->name.' Accept your  friend request.','post_id' =>0,'is_seen'=>'1','type' => "Friend Request",);
             
             $notification =   DB::table('msu_user_notification')
+
             ->insert($data_notification);
             return back();
 
         }
     }
+    public function unfollowlist($id){
+          $user_id = Auth::id();
+          $unfollow = DB::table('msu_isfriend')
+          ->where(['user_id'=> $user_id ,'friends_id' => $id ])
+          ->update(['is_follow' => 0]);
+
+          return back(); 
+    }
+
+    public function followlist($id){
+        $user_id = Auth::id();
+        $unfollow = DB::table('msu_isfriend')
+        ->where(['user_id'=> $user_id ,'friends_id' => $id ])
+        ->update(['is_follow' => 1]);
+
+        $user_name = DB::table('users')
+        ->select('name')
+        ->where(['id' => Auth::id() ])
+        ->first();
+        $data_notification = array('user_id' => Auth::id(),'friend_id'=> $id,'message'=> $user_name->name.' is started follow.','post_id' =>0,'is_seen'=>'1','type' => "follow",);
+        
+        $notification =   DB::table('msu_user_notification')
+        ->insert($data_notification);
+    
+        return back();
+
+        return back(); 
+  }
 }

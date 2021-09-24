@@ -21,12 +21,14 @@ use App\Http\Controllers\ProfileUpdateController;
 */
 
 
-Route::group(['middleware'=>'web'],function(){
+    Route::group(['middleware'=>'web'],function(){
     Route::get('/', function () { return view('landing'); });
     Route::get('/homepage','App\Http\Controllers\PostController@homepage');
     Route::post('get-post-list','App\Http\Controllers\PostController@postList');
     Route::post('get-comment-list','App\Http\Controllers\PostController@commentList');
     Route::get('profile', 'App\Http\Controllers\Profile@index');
+    Route::get('unfollow/{id}','App\Http\Controllers\FriendsController@unfollowlist');
+    Route::get('follow/{id}','App\Http\Controllers\FriendsController@followlist');
     Route::get('see_friend/{id}', 'App\Http\Controllers\FriendsController@viewfriends');
     Route::get('add_friend/{id}', 'App\Http\Controllers\FriendsController@addFriend');
     Route::get('cancel_request/{id}', 'App\Http\Controllers\FriendsController@cancelRequest');

@@ -14,7 +14,7 @@
             </div>
             <div class="alert-text">
                 <ul>
-                    @foreach ($errors->all() as $error)
+                   @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
                     @endforeach
                 </ul>
@@ -27,10 +27,11 @@
             <strong>{{ $message }}</strong>
     </div>
     @endif
-        <form method="post" id="upload_files" action="get-post-list" enctype="multipart/form-data">
-        <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+        <form method="post" id="upload_files" action="{{url('get-post-list/')}}"  enctype="multipart/form-data">
+           
+            <input type="hidden" name="_token" value="{{ csrf_token() }}" />
             <textarea rows="2" placeholder="write something" name="msg"></textarea>
-            <div class="attachments">
+			<div class="attachments">
                 <ul>
                     <li class="text-secondary">
                         <i class="fa fa-music text-secondary"></i>
@@ -58,9 +59,35 @@
                     </li>
                     <li class="text-secondary">
                         <input type="submit" class="btn btn-info btn-sm" id="posts" value="Post">
+                        <input type="hidden" id="u_id" name="u_id" value="{{ $id }}"/>
                     </li>
                 </ul>
             </div>
         </form>
     </div>
 </div>
+
+
+<script>
+
+
+// $('#upload_files').click(function (){
+  
+//     var formData = new FormData(); 
+ 
+//     $.ajax({
+//                 type:'POST',
+//                 url:'{{ url("get-post-list") }}',
+//                 data: formData,
+//                 success:function(data){
+
+//                     console.log(data);
+                    
+//                 }
+
+// });
+
+// });
+
+
+</script>

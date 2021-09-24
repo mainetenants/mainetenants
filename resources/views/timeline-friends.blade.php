@@ -25,7 +25,7 @@
 											<li>
 												<div class="nearly-pepls">
 													<figure>
-														<a href="time-line.html" title=""><img src="{{ asset('assets/images/resources/friend-avatar9.jpg') }}" alt=""></a>
+														<a href="{{'see_friend/'.$myFriend->friends_id}}" title=""><img src="{{ asset('assets/images/resources/friend-avatar9.jpg') }}" alt=""></a>
 													</figure>
 													<div class="pepl-info">
 														<h4><a href="time-line.html" title="">{{ $myFriend->name }}</a></h4>
@@ -47,7 +47,7 @@
 														<a href="time-line.html" title=""><im<img src="{{ asset('assets/images/resources/nearly5.jpg') }}" alt=""></a>
 													</figure>
 														<div class="pepl-info">
-															<h4><a href="time-line.html" title="">{{ $friends_req->name }}</a></h4>
+															<h4><a href="{{'see_friend/'.$myFriend->friends_id}}" title="">{{ $friends_req->name }}</a></h4>
 															<a href="#" title="" class="add-butn more-action" data-ripple="">delete Request</a>
 															<a href="{{ url('confirm_request/'.$friends_req->friends_id ) }}" title="" class="add-butn" data-ripple="">Confirm</a>
 														</div>

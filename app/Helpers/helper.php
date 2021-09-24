@@ -1,4 +1,28 @@
 <?php
+
+function friend_recent_notifications($id){
+
+
+    if($id == ""){
+        $id = Auth::id();
+    }
+
+  
+    $allnotification = DB::table('msu_user_notification')
+    ->select('*')
+    ->where(['friend_id' => $id])
+    ->orderBy('created','DESC')
+    ->get();
+
+
+    
+    if(empty($allnotification)){
+        return "false";
+    }else{
+        return ["allnotification" =>$allnotification];
+    }
+
+}
 function notifications()
 {
          
@@ -26,10 +50,10 @@ function alluser(){
 
          
     $id = Auth::id();
-    $allusers = DB::table('users')
+    $allusers  = DB::table('msu_isfriend')
+    ->leftJoin('users', 'msu_isfriend.friends_id', '=', 'users.id')
     ->select('*')
-    ->where('id' ,"!=", $id )
-    ->orderBy('name', 'ASC')
+    ->Where(['msu_isfriend.user_id' =>  $id ,'msu_isfriend.is_follow'=>1])
     ->get();
    
     if(empty($allusers)){
@@ -62,6 +86,12 @@ function get_total_friend($id){
 
 }
 
+function followingUser(){
+    $id = Auth::id();
+
+
+}
+
 function get_user_post($id){
    
     $total_post = DB::table('msu_community_activities')
@@ -72,4 +102,14 @@ function get_user_post($id){
     return $total_post;
 
 }
-?>
+function get_friend_status($id){
+
+    
+    $isfriends = DB::table('msu_isfriend')
+    ->select('*')
+    ->where(['friends_id'=>$id, 'user_id'=>Auth::id()])
+    ->first();
+    
+    return $isfriends;
+}
+?>                                                                                                                           

@@ -13,7 +13,15 @@ class PostController extends Controller
     public function postList(Request $request)
     {
         $data = $request->all();
-        $user = Auth::user();
+       
+         if(isset($data['u_id'])){
+            
+            $user =  $data['u_id'];
+         }else{
+            $user1 = Auth::user();
+            $user = $user1->id;
+          
+         }
 
         $imagename ="";
         if(isset($data['image'])){
@@ -60,7 +68,7 @@ class PostController extends Controller
 
         }
 
-        $values = array('user_id' => $user->id,'content' => $data['msg'],'images' => $imagename,'videos' => $videoName,'title' => $data['msg'],'music' => $musicName,'status' => 1);
+        $values = array('user_id' => $user ,'content' => $data['msg'],'images' => $imagename,'videos' => $videoName,'title' => $data['msg'],'music' => $musicName,'status' => 1);
         DB::table('msu_community_activities')->insert($values);
         return back();
 

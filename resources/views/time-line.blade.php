@@ -1,14 +1,13 @@
 @php
-    if(isset($id)){
+
 	$get_user_data = user_data($id);
-	}
+	
 	$name = $get_user_data->name;
     $profile_photo = $get_user_data->profile_photo;
-
-	   
     $get_post = get_user_post($id)->all();
-  
-  
+
+	
+
 @endphp
 @include('includes/featureHeader')
 
@@ -47,7 +46,7 @@
 													@endif</figure>
 												<div class="friend-name">
 													<ins><a href="time-line.html" title="">{{ $name }}</a></ins>
-													<span>published: june,2 2018 19:PM</span>
+													<span>published: {{ $post->updated_at }}</span>
 												</div>
 												<div class="description">
 														
@@ -66,7 +65,6 @@
 													</div>		
 													<div class="we-video-info">
 														<ul>
-															
 															<li>
 																<span class="views" data-toggle="tooltip" title="views">
 																	<i class="fa fa-eye"></i>
@@ -618,9 +616,8 @@
 			</div>
 		</form>
 	</div><!-- side panel -->		
-	
-	<script src="js/main.min.js"></script>
-	<script src="js/script.js"></script>
 
 </body>	
 </html>
+
+@include('includes/footer')

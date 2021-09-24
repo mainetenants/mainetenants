@@ -1,102 +1,23 @@
+@php
+    $allusers = alluser();
+@endphp
 <div class="widget friend-list stick-widget">
     <h4 class="widget-title">Friends</h4>
     <div id="searchDir"></div>
     <ul id="people-list" class="friendz-list">
+
+        @foreach($allusers as $alluser)
         <li>
             <figure>
-                <img src="{{ asset('assets/images/resources/friend-avatar.jpg') }}" alt="">
+                <img src="{{ asset('upload/images/profile_photo/'.$alluser->profile_photo.'') }}" alt="">
                 <span class="status f-online"></span>
             </figure>
             <div class="friendz-meta">
-                <a href="time-line.html">bucky barnes</a>
-                <i>wintersolder@gmail.com</i>
+                <a href="time-line.html">{{$alluser->name}}</a>
+                <i>{{$alluser->email}}</i>
             </div>
         </li>
-        <li>
-            <figure>
-                <img src="{{ asset('assets/images/resources/friend-avatar2.jpg') }}" alt="">
-                <span class="status f-away"></span>
-            </figure>
-            <div class="friendz-meta">
-                <a href="time-line.html">Sarah Loren</a>
-                <i>barnes@gmail.com</i>
-            </div>
-        </li>
-        <li>
-            <figure>
-                <img src="{{ asset('assets/images/resources/friend-avatar3.jpg') }}" alt="">
-                <span class="status f-off"></span>
-            </figure>
-            <div class="friendz-meta">
-                <a href="time-line.html">jason borne</a>
-                <i>jasonb@gmail.com</i>
-            </div>
-        </li>
-        <li>
-            <figure>
-                <img src="{{ asset('assets/images/resources/friend-avatar4.jpg') }}" alt="">
-                <span class="status f-off"></span>
-            </figure>
-            <div class="friendz-meta">
-                <a href="time-line.html">Cameron diaz</a>
-                <i>jasonb@gmail.com</i>
-            </div>
-        </li>
-        <li>
-            
-            <figure>
-                <img src="{{ asset('assets/images/resources/friend-avatar5.jpg') }}" alt="">
-                <span class="status f-online"></span>
-            </figure>
-            <div class="friendz-meta">
-                <a href="time-line.html">daniel warber</a>
-                <i>jasonb@gmail.com</i>
-            </div>
-        </li>
-        <li>
-            
-            <figure>
-                <img src="{{ asset('assets/images/resources/friend-avatar6.jpg') }}" alt="">
-                <span class="status f-away"></span>
-            </figure>
-            <div class="friendz-meta">
-                <a href="time-line.html">andrew</a>
-                <i>jasonb@gmail.com</i>
-            </div>
-        </li>
-        <li>
-            
-            <figure>
-                <img src="{{ asset('assets/images/resources/friend-avatar7.jpg') }}" alt="">
-                <span class="status f-off"></span>
-            </figure>
-            <div class="friendz-meta">
-                <a href="time-line.html">amy watson</a>
-                <i>jasonb@gmail.com</i>
-            </div>
-        </li>
-        <li>
-            
-            <figure>
-                <img src="{{ asset('assets/images/resources/friend-avatar5.jpg') }}" alt="">
-                <span class="status f-online"></span>
-            </figure>
-            <div class="friendz-meta">
-                <a href="time-line.html">daniel warber</a>
-                <i>jasonb@gmail.com</i>
-            </div>
-        </li>
-        <li>
-            
-            <figure>
-                <img src="{{ asset('assets/images/resources/friend-avatar2.jpg') }}" alt="">
-                <span class="status f-away"></span>
-            </figure>
-            <div class="friendz-meta">
-                <a href="time-line.html">Sarah Loren</a>
-                <i>barnes@gmail.com</i>
-            </div>
-        </li>
+        @endforeach
     </ul>
     <div class="chat-box">
         <div class="chat-head">
