@@ -1,26 +1,27 @@
 @include('includes/header')
 @php
-      
-        if(isset($id)){
+
+          if(isset($id)){
             $get_user_data = user_data($id);
             $get_total_followers = get_total_friend($id);
             $frnd_status1 =get_friend_status($id);
+            $get_follow_status = get_follow_status($id);
+            
            
         }else{
         
         
             $id = Auth::id();
-            
+            echo $id;
             $get_user_data = user_data($id);
             $get_total_followers = get_total_friend($id);
-            $frnd_status1 =get_friend_status($id);
+           // $frnd_status1 =get_friend_status($id);
             
         }
 
         
-        $frnd_status =  isset($frnd_status1->status)? isset($frnd_status1->status) :2;
-
-    
+        $follow_status1 = isset($get_follow_status->is_follow)? $get_follow_status->is_follow : 2 ;
+        $frnd_status =  isset($frnd_status1->status)? $frnd_status1->status :2;
         $name = $get_user_data->name;
         $cover_photo = $get_user_data->cover_photo;
         $profile_photo = $get_user_data->profile_photo;
@@ -39,16 +40,27 @@
         </figure>
         <div class="add-btn">
             <span>{{ $get_total_followers }}</span>
+            
+         
             @if($frnd_status == 1)
             <a href="{{ url('add_friend/'.$id )}}" title="" data-ripple="">Unfriend</a>
+            @if($follow_status1 == '1')
             <span>
                 <a href="{{ url('unfollow/'.$id )}}" title="" class="btn btn-primary unfollow-btn"data-ripple="">unfollow</a>
             </span>
+            @elseif($follow_status1 == '0')
+            <span>
+                <a href="{{ url('follow/'.$id )}}" title="" class="btn btn-primary unfollow-btn"data-ripple="">follow</a>
+            </span>
+            @else
+
+            @endif
             @elseif($frnd_status == 0)
             <a href="{{ url('cancel_request/'.$id )}}" title="" data-ripple="">Requested</a>
             @else
             <a href="{{ url('add_friend/'.$id )}}" title="" data-ripple="">Add Friends</a>
             @endif  
+          
         </div>
         <form action="{{ url('cover_photo') }}" class="edit-phto" id="cover_form"   enctype="multipart/form-data" method="POST">
             <i class="fa fa-camera-retro"></i>

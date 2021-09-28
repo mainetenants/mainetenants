@@ -68,9 +68,8 @@ function user_data($id){
 
     $user_details = DB::table('users')
      ->select('*')
-    ->where('id' ,"!=", $id )
+    ->where(['id' => $id] )
     ->first();
-
      return $user_details;
 }
 
@@ -104,12 +103,27 @@ function get_user_post($id){
 }
 function get_friend_status($id){
 
-    
+
     $isfriends = DB::table('msu_isfriend')
-    ->select('*')
-    ->where(['friends_id'=>$id, 'user_id'=>Auth::id()])
+    ->select('status')
+    ->where(['user_id'=>Auth::id(),'friends_id' => $id])
     ->first();
     
     return $isfriends;
 }
-?>                                                                                                                           
+function get_follow_status($id){
+
+
+
+     
+    $isfriends = DB::table('msu_isfriend')
+    ->select('is_follow')
+    ->where(['user_id' =>Auth::id() , 'friends_id' => $id])
+    ->first();
+
+     return $isfriends;
+}
+
+
+
+                                                                                                             

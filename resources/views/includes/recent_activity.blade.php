@@ -11,7 +11,7 @@
  
 @endphp
 
-<div class="widget bg-white bg-light">
+<div class="widget bg-white bg-light scroll-bar">
     <h4 class="widget-title bg-white bg-light">Recent Activity</h4>
     <ul class="activitiez">
         @foreach($allnotification as $notification)

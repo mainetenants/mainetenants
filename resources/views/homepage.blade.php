@@ -131,11 +131,8 @@
 														</span>
 													</li>
 													<li>
-														
 														<span class="like" data-toggle="tooltip" title="like" id ="likeId" value="{{$user->id}}">
-
-															
-															<i class="ti-heart"></i>
+														<i class="ti-heart"></i>
 															<ins>{{ $user->likes }}</ins>
 														</span>
 													</li>
@@ -274,7 +271,7 @@
 														
 													</div>
 													<div class="modal-footer py-2">
-													<button type="submit" id="edit-post-submit" class="btn btn-sm btn-primary">Update</button>
+															<button type="submit" id="edit-post-submit" class="btn btn-sm btn-primary">Update</button>
 													</div>
 												</div>
 											</div>
@@ -284,7 +281,7 @@
 								</div>
 							</div>
 							@endforeach
-							<div class=" central-meta item bg-white bg-light">
+							{{-- <div class=" central-meta item bg-white bg-light">
 								<div class="user-post">
 									<div class="friend-info">
 										<figure>
@@ -671,7 +668,7 @@
 										</div>
 									</div>
 								</div>
-							</div>
+							</div> --}}
 							</div>
 						</div><!-- centerl meta -->
 					   @include('includes/right-sidebar')

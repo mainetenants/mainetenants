@@ -124,10 +124,12 @@ class PostController extends Controller
 
         $users = DB::table('msu_community_activities')
         ->leftJoin('users', 'msu_community_activities.user_id', '=', 'users.id')
-        ->select('users.name', 'users.created_at', 'msu_community_activities.*', 'users.id as user_id', 'msu_community_activities.id as post_id')
-        ->where('user_id', $id)
+        ->leftJoin('msu_isfriend','msu_isfriend.user_id','=','msu_community_activities.user_id')
+        ->select('users.name', 'users.created_at', 'msu_community_activities.*','msu_isfriend.user_id','msu_isfriend.is_follow', 'users.id as user_id', 'msu_community_activities.id as post_id')
+        ->where(['msu_isfriend.friends_id'=> $id ,'users.id'=> 'msu_community_activities.user_id' , 'msu_isfriend.is_follow' =>  '1' ] )
         ->orderBy('created', 'DESC')
         ->get();
+       dd($users);
 
         $comments = DB::table('msu_comments')
         ->where('user_id', $id)
