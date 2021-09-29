@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
@@ -77,7 +77,6 @@ class PostController extends Controller
 
     {
 
-        dd($request->all());
         $user = Auth::user();
         $data = $request->all();
 
@@ -126,10 +125,20 @@ class PostController extends Controller
         ->leftJoin('users', 'msu_community_activities.user_id', '=', 'users.id')
         ->leftJoin('msu_isfriend','msu_isfriend.user_id','=','msu_community_activities.user_id')
         ->select('users.name', 'users.created_at', 'msu_community_activities.*','msu_isfriend.user_id','msu_isfriend.is_follow', 'users.id as user_id', 'msu_community_activities.id as post_id')
-        ->where(['msu_isfriend.friends_id'=> $id ,'users.id'=> 'msu_community_activities.user_id' , 'msu_isfriend.is_follow' =>  '1' ] )
+        ->where(['msu_isfriend.friends_id'=> $id ,'msu_isfriend.is_follow' =>  '1' ] )
         ->orderBy('created', 'DESC')
         ->get();
-       dd($users);
+
+        $users1 = DB::table('msu_community_activities')
+        ->leftJoin('users', 'msu_community_activities.user_id', '=', 'users.id')
+         ->select('users.name', 'users.created_at', 'msu_community_activities.*','users.id as user_id', 'msu_community_activities.id as post_id')
+        ->where(['users.id'=>$id] )
+        ->orderBy('created', 'DESC')
+        ->get();
+
+
+    
+   
 
         $comments = DB::table('msu_comments')
         ->where('user_id', $id)
@@ -154,7 +163,7 @@ class PostController extends Controller
         ->where(['friend_id' => $id ,'is_seen' => 1])
         ->get();
         
-        return view('homepage', ['users' => $users, 'comments' => $comments, 'allusers' => $allusers]);
+        return view('homepage', ['users' => $users,'users1'=>$users1, 'comments' => $comments, 'allusers' => $allusers]);
     }
 
 
