@@ -10201,3 +10201,12 @@ aside.sidebar.full-style {
     transform: scale(1);
     visibility: visible;
 }
+
+.unfollow-btn{
+
+    background: #088dcd !important;
+    font-size: 13px !important;
+    border-radius: 2px !important ;
+    padding: 5px !important;
+    width: 95px !important;
+}

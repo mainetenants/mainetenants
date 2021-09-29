@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
@@ -13,7 +13,15 @@ class PostController extends Controller
     public function postList(Request $request)
     {
         $data = $request->all();
-        $user = Auth::user();
+       
+         if(isset($data['u_id'])){
+            
+            $user =  $data['u_id'];
+         }else{
+            $user1 = Auth::user();
+            $user = $user1->id;
+          
+         }
 
         $imagename ="";
         if(isset($data['image'])){
@@ -60,7 +68,7 @@ class PostController extends Controller
 
         }
 
-        $values = array('user_id' => $user->id,'content' => $data['msg'],'images' => $imagename,'videos' => $videoName,'title' => $data['msg'],'music' => $musicName,'status' => 1);
+        $values = array('user_id' => $user ,'content' => $data['msg'],'images' => $imagename,'videos' => $videoName,'title' => $data['msg'],'music' => $musicName,'status' => 1);
         DB::table('msu_community_activities')->insert($values);
         return back();
 
@@ -69,7 +77,6 @@ class PostController extends Controller
 
     {
 
-        dd($request->all());
         $user = Auth::user();
         $data = $request->all();
 
@@ -116,8 +123,16 @@ class PostController extends Controller
 
         $users = DB::table('msu_community_activities')
         ->leftJoin('users', 'msu_community_activities.user_id', '=', 'users.id')
-        ->select('users.name', 'users.created_at', 'msu_community_activities.*', 'users.id as user_id', 'msu_community_activities.id as post_id')
-        ->where('user_id', $id)
+        ->leftJoin('msu_isfriend','msu_isfriend.user_id','=','msu_community_activities.user_id')
+        ->select('users.name', 'users.created_at', 'msu_community_activities.*','msu_isfriend.user_id','msu_isfriend.is_follow', 'users.id as user_id', 'msu_community_activities.id as post_id')
+        ->where(['msu_isfriend.friends_id'=> $id ,'msu_isfriend.is_follow' =>  '1' ] )
+        ->orderBy('created', 'DESC')
+        ->get();
+
+        $users1 = DB::table('msu_community_activities')
+        ->leftJoin('users', 'msu_community_activities.user_id', '=', 'users.id')
+         ->select('users.name', 'users.created_at', 'msu_community_activities.*','users.id as user_id', 'msu_community_activities.id as post_id')
+        ->where(['users.id'=>$id] )
         ->orderBy('created', 'DESC')
         ->get();
 
@@ -144,7 +159,7 @@ class PostController extends Controller
         ->where(['friend_id' => $id ,'is_seen' => 1])
         ->get();
         
-        return view('homepage', ['users' => $users, 'comments' => $comments, 'allusers' => $allusers]);
+        return view('homepage', ['users' => $users,'users1'=>$users1, 'comments' => $comments, 'allusers' => $allusers]);
     }
 
 

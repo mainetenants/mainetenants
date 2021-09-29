@@ -6,7 +6,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 class FriendsController extends Controller
 {
-   public function viewfriends($id)
+   
+    public function viewfriends($id)
     {   
         $isfriends = DB::table('msu_friends')
         ->select('*')
@@ -26,10 +27,16 @@ class FriendsController extends Controller
             ->select('name')
             ->where(['id' => Auth::id() ])
             ->first();
+            $values = array('user_id' => Auth::id(),'friends_id' => $id,'status' => 0,'is_follow'=>0);
+            $values2 = array('friends_id' => Auth::id(),'user_id' => $id,'status' => 0,'is_follow'=>0);
+            DB::table('msu_isfriend')->insert($values);
+            DB::table('msu_isfriend')->insert($values2); 
             $data_notification = array('user_id' => Auth::id(),'friend_id'=> $id,'message'=> $user_name->name.' is send you a friend request.','post_id' =>0,'is_seen'=>'1','type' => "Friend Request",);
             
             $notification =   DB::table('msu_user_notification')
             ->insert($data_notification);
+
+        
         
             return back();
         }
@@ -41,7 +48,7 @@ class FriendsController extends Controller
             ->where(['friends_id'=>$id, 'user_id'=>Auth::id(), 'status'=>'0'])
             ->orWhere(['user_id'=>$id, 'friends_id'=>Auth::id(), 'status'=>'0'])
             ->delete();
-        return back();
+             return back();
         }
     }
     public function unfrind($id)
@@ -65,10 +72,14 @@ class FriendsController extends Controller
             DB::table('msu_friends')
             ->where(['user_id'=>Auth::id(), 'friends_id'=>$id, 'status'=>'0'])
             ->delete();
-            $values = array('user_id' => Auth::id(),'friends_id' => $id,'status' => 1);
-            $values2 = array('friends_id' => Auth::id(),'user_id' => $id,'status' => 1);
-            DB::table('msu_isfriend')->insert($values);
-            DB::table('msu_isfriend')->insert($values2);   
+            DB::table('msu_isfriend')
+            ->where(['user_id'=> Auth::id() ,'friends_id' => $id ])
+            ->update(['is_follow' => 1,'status'=>1]);
+            DB::table('msu_isfriend')
+            ->where(['friends_id'=> Auth::id() ,'user_id' => $id ])
+            ->update(['is_follow' => 1,'status'=>1]);
+            // DB::table('msu_isfriend')->up($values);
+            // DB::table('msu_isfriend')->insert($values2);   
 
             $user_name = DB::table('users')
             ->select('name')
@@ -77,9 +88,39 @@ class FriendsController extends Controller
             $data_notification = array('user_id' => Auth::id(),'friend_id'=> $id,'message'=> $user_name->name.' Accept your  friend request.','post_id' =>0,'is_seen'=>'1','type' => "Friend Request",);
             
             $notification =   DB::table('msu_user_notification')
+
             ->insert($data_notification);
             return back();
 
         }
     }
+    public function unfollowlist($id){
+
+
+          $user_id = Auth::id();
+          $unfollow = DB::table('msu_isfriend')
+          ->where(['user_id'=> $user_id ,'friends_id' => $id ])
+          ->update(['is_follow' => 0]);
+          return back(); 
+    }
+
+    public function followlist($id){
+        $user_id = Auth::id();
+        $unfollow = DB::table('msu_isfriend')
+        ->where(['user_id'=> $user_id ,'friends_id' => $id ])
+        ->update(['is_follow' => 1]);
+
+        $user_name = DB::table('users')
+        ->select('name')
+        ->where(['id' => Auth::id() ])
+        ->first();
+        $data_notification = array('user_id' => Auth::id(),'friend_id'=> $id,'message'=> $user_name->name.' is started follow.','post_id' =>0,'is_seen'=>'1','type' => "follow",);
+        
+        $notification =   DB::table('msu_user_notification')
+        ->insert($data_notification);
+    
+        return back();
+
+        return back(); 
+  }
 }

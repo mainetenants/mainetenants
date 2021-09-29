@@ -18,6 +18,7 @@ class IsFriend extends Migration
             $table->string('user_id');
             $table->string('friends_id');
             $table->integer('status');
+            $table->integer('is_follow');
             $table->timestamp('created')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
         });

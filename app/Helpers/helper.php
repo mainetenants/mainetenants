@@ -1,4 +1,28 @@
 <?php
+
+function friend_recent_notifications($id){
+
+
+    if($id == ""){
+        $id = Auth::id();
+    }
+
+  
+    $allnotification = DB::table('msu_user_notification')
+    ->select('*')
+    ->where(['friend_id' => $id])
+    ->orderBy('created','DESC')
+    ->get();
+
+
+    
+    if(empty($allnotification)){
+        return "false";
+    }else{
+        return ["allnotification" =>$allnotification];
+    }
+
+}
 function notifications()
 {
          
@@ -26,10 +50,10 @@ function alluser(){
 
          
     $id = Auth::id();
-    $allusers = DB::table('users')
+    $allusers  = DB::table('msu_isfriend')
+    ->leftJoin('users', 'msu_isfriend.friends_id', '=', 'users.id')
     ->select('*')
-    ->where('id' ,"!=", $id )
-    ->orderBy('name', 'ASC')
+    ->Where(['msu_isfriend.user_id' =>  $id ,'msu_isfriend.is_follow'=>1])
     ->get();
    
     if(empty($allusers)){
@@ -40,4 +64,66 @@ function alluser(){
 
 }
 
-?>
+function user_data($id){
+
+    $user_details = DB::table('users')
+     ->select('*')
+    ->where(['id' => $id] )
+    ->first();
+     return $user_details;
+}
+
+function get_total_friend($id){
+    
+    $count_friends = DB::table('msu_isfriend')
+    ->select('id')
+   ->where('user_id' ,"!=", $id )
+   ->get();
+
+    return count($count_friends);
+
+
+}
+
+function followingUser(){
+    $id = Auth::id();
+
+
+}
+
+function get_user_post($id){
+   
+    $total_post = DB::table('msu_community_activities')
+    ->select('*')
+    ->where(['user_id'=> $id])
+    ->get();
+
+    return $total_post;
+
+}
+function get_friend_status($id){
+
+
+    $isfriends = DB::table('msu_isfriend')
+    ->select('status')
+    ->where(['user_id'=>Auth::id(),'friends_id' => $id])
+    ->first();
+    
+    return $isfriends;
+}
+function get_follow_status($id){
+
+
+
+     
+    $isfriends = DB::table('msu_isfriend')
+    ->select('is_follow')
+    ->where(['user_id' =>Auth::id() , 'friends_id' => $id])
+    ->first();
+
+     return $isfriends;
+}
+
+
+
+                                                                                                             

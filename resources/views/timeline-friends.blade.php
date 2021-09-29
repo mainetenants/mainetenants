@@ -1,12 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		@include('includes/head')
-	 </head>
-<body>
-<!--<div class="se-pre-con"></div>-->
-<div class="theme-layout">
-	
 	@include('includes.featureHeader')
 
 	<section>
@@ -15,75 +6,7 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="row merged20" id="page-contents">
-							<div class="col-lg-3">
-								<aside class="sidebar static">
-									<div class="widget">
-											<h4 class="widget-title">Shortcuts</h4>
-											<ul class="naves">
-												<li>
-													<i class="ti-clipboard"></i>
-													<a href="newsfeed.html" title="">News feed</a>
-												</li>
-												<li>
-													<i class="ti-mouse-alt"></i>
-													<a href="inbox.html" title="">Inbox</a>
-												</li>
-												<li>
-													<i class="ti-files"></i>
-													<a href="fav-page.html" title="">My pages</a>
-												</li>
-												<li>
-													<i class="ti-user"></i>
-													<a href="timeline-friends.html" title="">friends</a>
-												</li>
-												<li>
-													<i class="ti-image"></i>
-													<a href="timeline-photos.html" title="">images</a>
-												</li>
-												<li>
-													<i class="ti-video-camera"></i>
-													<a href="timeline-videos.html" title="">videos</a>
-												</li>
-												<li>
-													<i class="ti-comments-smiley"></i>
-													<a href="messages.html" title="">Messages</a>
-												</li>
-												<li>
-													<i class="ti-bell"></i>
-													<a href="notifications.html" title="">Notifications</a>
-												</li>
-												<li>
-													<i class="ti-share"></i>
-													<a href="people-nearby.html" title="">People Nearby</a>
-												</li>
-												<li>
-													<i class="fa fa-bar-chart-o"></i>
-													<a href="insights.html" title="">insights</a>
-												</li>
-												<li>
-													<i class="ti-power-off"></i>
-													<a href="landing.html" title="">Logout</a>
-												</li>
-											</ul>
-										</div><!-- Shortcuts -->
-									<div class="widget stick-widget">
-										<h4 class="widget-title">Profile intro</h4>
-										<ul class="short-profile">
-											<li>
-												<span>about</span>
-												<p>Hi, i am jhon kates, i am 32 years old and worked as a web developer in microsoft company. </p>
-											</li>
-											<li>
-												<span>fav tv show</span>
-												<p>Hi, i am jhon kates, i am 32 years old and worked as a web developer in microsoft company. </p>
-											</li>
-											<li>
-												<span>favourit music</span>
-												<p>Hi, i am jhon kates, i am 32 years old and worked as a web developer in microsoft company. </p>
-											</li>
-										</ul>
-									</div><!-- profile intro widget -->
-
+					        @includeIf('includes/shortcut')
 								</aside>
 							</div><!-- sidebar -->
 							<div class="col-lg-6">
@@ -102,7 +25,7 @@
 											<li>
 												<div class="nearly-pepls">
 													<figure>
-														<a href="time-line.html" title=""><img src="{{ asset('assets/images/resources/friend-avatar9.jpg') }}" alt=""></a>
+														<a href="{{'see_friend/'.$myFriend->friends_id}}" title=""><img src="{{ asset('assets/images/resources/friend-avatar9.jpg') }}" alt=""></a>
 													</figure>
 													<div class="pepl-info">
 														<h4><a href="time-line.html" title="">{{ $myFriend->name }}</a></h4>
@@ -124,7 +47,7 @@
 														<a href="time-line.html" title=""><im<img src="{{ asset('assets/images/resources/nearly5.jpg') }}" alt=""></a>
 													</figure>
 														<div class="pepl-info">
-															<h4><a href="time-line.html" title="">{{ $friends_req->name }}</a></h4>
+															<h4><a href="{{'see_friend/'.$friends_req->friends_id}}" title="">{{ $friends_req->name }}</a></h4>
 															<a href="#" title="" class="add-butn more-action" data-ripple="">delete Request</a>
 															<a href="{{ url('confirm_request/'.$friends_req->friends_id ) }}" title="" class="add-butn" data-ripple="">Confirm</a>
 														</div>
@@ -140,47 +63,9 @@
 							</div><!-- centerl meta -->
 							<div class="col-lg-3">
 								<aside class="sidebar static">
-									<div class="widget">
-										<h4 class="widget-title">Who's follownig</h4>
-										<ul class="followers">
-											<li>
-												<figure><img src="{{ asset('assets/images/resources/friend-avatar2.jpg') }}" alt=""></figure>
-												<div class="friend-meta">
-													<h4><a href="time-line.html" title="">Kelly Bill</a></h4>
-													<a href="#" title="" class="underline">Add Friend</a>
-												</div>
-											</li>
-											<li>
-												<figure><img src="{{ asset('assets/images/resources/friend-avatar4.jpg') }}" alt=""></figure>
-												<div class="friend-meta">
-													<h4><a href="time-line.html" title="">Issabel</a></h4>
-													<a href="#" title="" class="underline">Add Friend</a>
-												</div>
-											</li>
-											<li>
-												<figure><img src="{{ asset('assets/images/resources/friend-avatar6.jpg') }}" alt=""></figure>
-												<div class="friend-meta">
-													<h4><a href="time-line.html" title="">Andrew</a></h4>
-													<a href="#" title="" class="underline">Add Friend</a>
-												</div>
-											</li>
-											<li>
-												<figure><img src="{{ asset('assets/images/resources/friend-avatar8.jpg') }}" alt=""></figure>
-												<div class="friend-meta">
-													<h4><a href="time-line.html" title="">Sophia</a></h4>
-													<a href="#" title="" class="underline">Add Friend</a>
-												</div>
-											</li>
-											<li>
-												<figure><img src="{{ asset('assets/images/resources/friend-avatar3.jpg') }}" alt=""></figure>
-												<div class="friend-meta">
-													<h4><a href="time-line.html" title="">Allen</a></h4>
-													<a href="#" title="" class="underline">Add Friend</a>
-												</div>
-											</li>
-										</ul>
-									</div><!-- who's following -->
-									<div class="widget friend-list stick-widget">
+								     @include('includes/who-is-following')
+									 @include('includes/friends')
+									{{-- <div class="widget friend-list stick-widget">
 										<h4 class="widget-title">Friends</h4>
 										<div id="searchDir"></div>
 										<ul id="people-list" class="friendz-list">
@@ -342,7 +227,7 @@
 												</form>
 											</div>
 										</div>
-									</div><!-- friends list sidebar -->
+									</div><!-- friends list sidebar --> --}}
 									
 								</aside>
 							</div><!-- sidebar -->
@@ -353,7 +238,7 @@
 		</div>	
 	</section>
 
-	<footer>
+	{{-- <footer>
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-4 col-md-4">
@@ -426,7 +311,7 @@
 				</div>
 			</div>
 		</div>
-	</footer><!-- footer -->
+	</footer><!-- footer --> --}}
 	<div class="bottombar">
 		<div class="container">
 			<div class="row">

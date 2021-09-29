@@ -154,6 +154,6 @@
     // reactions on post
     $('#likeId').click(function(){
         $('.reaction').toggle();
-        // $('.reaction').delay(10000).fadeOut();
+        $('.reaction').delay(10000).fadeOut();
     });
 </script>

@@ -1148,7 +1148,7 @@ header.sticky {
 }
 
 .add-btn > span {
-    color: #fff;
+    color: black;
     margin-right: 20px;
     text-shadow: 0 2px 0 #4a4a4a;
 }
@@ -2021,10 +2021,14 @@ li.post-comment .comet-avatar {
     padding: 0 20px;
 }
 
-#people-list {
+#people-list,.invition {
     margin-top: 20px;
-    max-height: 450px;
+    /* max-height: 450px; */
     position: relative;
+}
+
+.widget{
+    height: auto;
 }
 
 #people-list figure {
@@ -3976,7 +3980,7 @@ a.forgot-pwd {
 }
 
 .sidebar .widget .invition {
-    max-height: 320px;
+    /* max-height: 320px; */
     position: relative;
 }
 
@@ -4072,6 +4076,14 @@ a.forgot-pwd {
     padding-bottom: 0;
 }
 
+.unfollow-btn{
+
+    background: #088dcd !important;
+    font-size: 13px !important;
+    border-radius: 2px !important ;
+    padding: 5px !important;
+    width: 95px !important;
+}
 .notification-box > ul li > i.del {
     color: red;
     cursor: pointer;
@@ -10203,6 +10215,7 @@ aside.sidebar.full-style {
     visibility: visible;
 }
 
-
-
-
+.scroll-bar{
+    overflow-y: scroll;
+    height: 270px;
+}
