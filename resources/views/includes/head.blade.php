@@ -9,6 +9,7 @@
 <link rel="icon" href="{{ asset('assets/css/favicon.jpg') }}">
 <link rel="stylesheet" href="{{ asset('assets/themify-icons/themify-icons.css')}}">
 <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/css/color.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/css/fontawesome-all.css') }}">

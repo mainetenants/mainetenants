@@ -163,60 +163,68 @@ class PostController extends Controller
     }
     public function likeDislikePost(Request $request){
         $authid = Auth::id();
-        
+        // get the like status from db
         $like = DB::table('msu_like_dislike_posts')
         ->where(['user_id'=> $authid, 'post_id' => $request->post_id])
         ->first();
-        if(isset($like) && !empty($like)){
-            if(($like->like_dislike ==1) && ($request->data =='like')){
-                $ld_status = 0;
+        $values = array(); 
+        // update like dislike and reaction
+        if (isset($like) && !empty($like)) {
+            if (($like->like_dislike ==1) && ($request->data =='emoji') && isset($request->reaction)) {
+                $values = array('reaction' => $request->reaction);
             }
 
-            if(($like->like_dislike ==2) && ($request->data =='like')){
-                $ld_status = 1;
-            }          
-            if(($like->like_dislike ==2) && ($request->data =='dislike' )){
-                $ld_status = 0;
-                
+            if (($like->like_dislike ==2) && ($request->data =='emoji') && isset($request->reaction)) {
+                $values = array('like_dislike' => 1, 'reaction' => $request->reaction);
+                // dd($values);
             }
 
-            if(($like->like_dislike ==1) && ($request->data =='dislike' )){
-                $ld_status = 2;
-                
+            if (($like->like_dislike ==1) && ($request->data =='emoji')) {
+                $values = array('like_dislike' => 0, 'reaction' => 0);
             }
-            if(($like->like_dislike ==0) && ($request->data =='dislike')){
-                $ld_status = 2;
+            if (($like->like_dislike ==2) && ($request->data =='dislike')) {
+                $values = array('like_dislike' => 0, 'reaction' => 0);
             }
-            if(($like->like_dislike ==0) && ($request->data =='like')){
-                $ld_status = 1;
+            if (($like->like_dislike ==1) && ($request->data =='dislike')) {
+                $values = array('like_dislike' => 2, 'reaction' => 0);
             }
-            DB::table('msu_like_dislike_posts')
+            if (($like->like_dislike ==0) && ($request->data =='dislike')) {
+                $values = array('like_dislike' => 2, 'reaction' => 0);
+            }
+            if (($like->like_dislike ==0) && ($request->data =='emoji')) {
+                $values = array('like_dislike' => 1, 'reaction' => $request->reaction);
+            }
+
+            $aa = DB::table('msu_like_dislike_posts')
             ->where(['user_id'=> $authid, 'post_id' => $request->post_id])
-            ->update(['like_dislike' => $ld_status]);
-
-
-        }
-        elseif(!isset($like) && empty($like)){
-            //insert like
-            if($request->data =='like'){
-                $values = array('user_id' => $authid,'like_dislike' => ($request->data =='like')?('1'):(''),'post_id' => $request->post_id);
-                $val = DB::table('msu_like_dislike_posts')
-                ->insert($values);
-                
+            ->update($values);
+        } elseif (!isset($like) && empty($like)) {
+            //add like to the post
+            if ($request->data =='emoji') {
+                if (isset($request->reaction) && !empty($request->reaction)) {
+                    $values = array('user_id' => $authid,'reaction' => $request->reaction,'like_dislike' => ($request->data =='emoji')?('1'):(''),'post_id' => $request->post_id, 'reaction' => $request->reaction);
+                } elseif(!isset($request->reaction) && empty($request->reaction)) {
+                    $values = array('user_id' => $authid,'reaction' => $request->reaction,'like_dislike' => ($request->data =='emoji')?('1'):(''),'post_id' => $request->post_id);
+                }
             }
-            if($request->data =='dislike'){
+            // add dislike to post
+            if ($request->data =='dislike') {
                 $values = array('user_id' => $authid,'like_dislike' => ($request->data =='dislike')?('2'):(''),'post_id' => $request->post_id);
-                $val = DB::table('msu_like_dislike_posts')
-                ->insert($values);
             }
-            
+
+            $val = DB::table('msu_like_dislike_posts')
+            ->insert($values);
+            dd($val);
         }
+
         $like = DB::table('msu_like_dislike_posts')
         ->where(['post_id' => $request->post_id, 'like_dislike' =>1])
         ->count();
+    
         $dislikes = DB::table('msu_like_dislike_posts')
         ->where(['post_id' => $request->post_id, 'like_dislike' =>2])
         ->count();
+
         $values = array('likes' => $like,'dislikes' => $dislikes);
         $val = DB::table('msu_community_activities')
         ->where(['id' => $request->post_id])
@@ -231,25 +239,20 @@ class PostController extends Controller
         ->select('name')
         ->where(['id' => $user_id->user_id])
         ->first();
-        $check_like = DB::table('msu_user_notification')
-          ->select('id' )
-          ->where(['user_id'=> $user_id->user_id ,'friend_id'=>$authid])
-          ->first();
-        if($request->data != 'dislike' and $check_like ==""){
 
-        $data_notification = array('user_id' =>$user_id->user_id,'friend_id'=> $authid,'message'=>$user_name->name.'  '. $request->data.' Your Post.','post_id' => (int)$request->post_id,'is_seen'=>'1','type' => "Like/Dislike",);
-        
-        $notification =   DB::table('msu_user_notification')
-        ->insert($data_notification);
-       
+        $check_like = DB::table('msu_user_notification')
+        ->select('id')
+        ->where(['user_id'=> $user_id->user_id ,'friend_id'=>$authid])
+        ->first();
+
+        if ($request->data != 'dislike' and $check_like =="") {
+            $data_notification = array('user_id' =>$user_id->user_id,'friend_id'=> $authid,'message'=>$user_name->name.'  '. $request->data.' Your Post.','post_id' => (int)$request->post_id,'is_seen'=>'1','type' => "Like/Dislike",);
+    
+            $notification =   DB::table('msu_user_notification')
+            ->insert($data_notification);
         }
 
-
-        
-
         return response()->json(array('success'=> true), 200);
-
-
     }
   
 

@@ -18,6 +18,7 @@ class LikesDislikes extends Migration
             $table->integer('user_id');
             $table->integer('post_id');
             $table->integer('like_dislike');
+            $table->string('reaction',11);
             $table->timestamp('created')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
         });

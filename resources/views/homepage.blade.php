@@ -97,7 +97,7 @@
 													</button>  --}}
 													{{--  <div class="list-group" data-toggle="popover" data-placement="bottom" id="list-tab" role="tablist">
 													<a class="list-group-item">Edit</a>
-													<a class="list-group-item" >Delete</a>
+													<a class="list-group-item">Delete</a>
 													</div>
 												</div>  --}} 
 											</span>
@@ -117,6 +117,23 @@
 										<div class="post-meta">
 											<img src="upload/images/{{ $user->images; }}" alt="">
 											<div class="we-video-info">
+												<span class="reaction" value="{{$user->id}}">
+                                       <i id="1"><img src="/assets/images/s_emoji/like.png"  class="emoji img-fluid custom-img-height" /></i>
+													<i id="2"><img src="/assets/images/s_emoji/love.png"  class="emoji img-fluid custom-img-height" /></i>
+													<i id="3"><img src="/assets/images/s_emoji/haha.png"  class="emoji img-fluid custom-img-height" /></i>
+													<i id="4"><img src="/assets/images/s_emoji/angry.png"  class="emoji img-fluid custom-img-height" /></i>
+													<i id="5"><img src="/assets/images/s_emoji/care.png"  class="emoji img-fluid custom-img-height" /></i>
+												   <i id="6"><img src="/assets/images/s_emoji/wow.png"  class="emoji img-fluid custom-img-height" /></i>
+													<i id="7"><img src="/assets/images/s_emoji/sad.png"  class="emoji img-fluid custom-img-height" /></i>
+													
+                                       {{-- <i id="1" class="em em---1"></i>
+													<i id="2" class="em em-heart"></i>
+													<i id="3" class="em em-laughing"></i>
+													<i id="4" class="em em-anguished"></i>
+													<i id="5" class="em em-astonished"></i>
+													<i id="6" class="em em-cry"></i>
+													<i id="7" class="em em-rage"></i> --}}
+												</span>
 												<ul>
 													<li>
 														<span class="views text-secondary" data-toggle="tooltip" title="views">
@@ -132,9 +149,7 @@
 													</li>
 													<li>
 														
-														<span class="like" data-toggle="tooltip" title="like" id ="likeId" value="{{$user->id}}">
-
-															
+														<span class="like" id ="likeId" value="{{$user->id}}">
 															<i class="ti-heart"></i>
 															<ins>{{ $user->likes }}</ins>
 														</span>
@@ -236,7 +251,7 @@
 															<i class="em em-rage text-secondary"></i>
 															<i class="em em-stuck_out_tongue text-secondary"></i>
 														</div>
-														<button type="submit" ></button>
+														<button type="submit"></button>
 													</form>
 												</div>
 											</li>
@@ -758,12 +773,6 @@
 {{ csrf_field() }}
 </form>
 </div><!-- side panel -->
-
-<script src="{{ asset('js/main.min.js') }}"></script>
-<script src="{{ asset('js/script.js') }}"></script>
-<script src="{{ asset('js/map-init.js') }}"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8c55_YHLvDHGACkQscgbGLtLRdxBDCfI"></script>
-
 
 @include('includes/footer')
  

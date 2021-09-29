@@ -1,0 +1,28 @@
+form#logout_id {
+        font-size: 14px;
+        text-transform: capitalize;
+        display: inline-block;
+        position: relative;
+        font-weight: 400;
+        color: #797979;
+        vertical-align: top;
+    }
+    span.reaction {
+        font-size: 30px;
+        padding: 2px 5px;
+        display: none;
+        border-radius: 20px;
+        background-color: #eaeaea;
+    }
+    .reaction > i {
+        cursor: pointer;
+        display: inline-block;
+        max-width: 7%;
+        margin-bottom: 8px;
+    }
+    .custom-img-height:hover {
+        -ms-transform: scale(1.3); /* IE 9 */
+        -webkit-transform: scale(1.3); /* Safari 3-8 */
+        transform: scale(1.3);
+        margin-top: -15px;
+      }
