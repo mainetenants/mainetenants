@@ -136,10 +136,6 @@ class PostController extends Controller
         ->orderBy('created', 'DESC')
         ->get();
 
-
-    
-   
-
         $comments = DB::table('msu_comments')
         ->where('user_id', $id)
         ->orderBy('created', 'DESC')
