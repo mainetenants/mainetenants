@@ -129,7 +129,6 @@ class PostController extends Controller
         ->where(['msu_isfriend.friends_id'=> $id ,'users.id'=> 'msu_community_activities.user_id' , 'msu_isfriend.is_follow' =>  '1' ] )
         ->orderBy('created', 'DESC')
         ->get();
-       dd($users);
 
         $comments = DB::table('msu_comments')
         ->where('user_id', $id)
