@@ -123,14 +123,6 @@
                                  <i id="5"><img src="/assets/images/s_emoji/care.png"  class="emoji img-fluid custom-img-height" /></i>
                                  <i id="6"><img src="/assets/images/s_emoji/wow.png"  class="emoji img-fluid custom-img-height" /></i>
                                  <i id="7"><img src="/assets/images/s_emoji/sad.png"  class="emoji img-fluid custom-img-height" /></i>
-                                 
-                                 {{-- <i id="1" class="em em---1"></i>
-                                 <i id="2" class="em em-heart"></i>
-                                 <i id="3" class="em em-laughing"></i>
-                                 <i id="4" class="em em-anguished"></i>
-                                 <i id="5" class="em em-astonished"></i>
-                                 <i id="6" class="em em-cry"></i>
-                                 <i id="7" class="em em-rage"></i> --}}
                               </span>
                               <ul>
                                  <li>
@@ -143,6 +135,24 @@
                                     <span class="comment text-secondary" data-toggle="tooltip" title="Comments">
                                        <i class="fa fa-comments-o text-secondary"></i>
                                        <ins>52</ins>
+                                    </span>
+                                 </li>
+                                 <li class="emooo">
+                                    <span class="comment text-secondary" data-toggle="tooltip" title="reaction">
+                                       <div class="rec" data_id="{{$user->id}}">
+                                          <span class="rec1">
+                                             <img src="/assets/images/s_emoji/like.png"  class="emoji-reaction" />
+                                          </span>
+
+                                          <span class="rec2">
+                                             <img src="/assets/images/s_emoji/love.png"  class="emoji-reaction" />
+                                          </span>
+
+                                          <span class="rec3">
+                                             <img src="/assets/images/s_emoji/sad.png"  class="emoji-reaction" />
+                                          </span>
+                                    </div>
+                                       <ins class="mrgn">52</ins>
                                     </span>
                                  </li>
                                  <li>
@@ -286,6 +296,48 @@
 									 </div>
 								  </div>
 							   </div>
+                        <!-- Modal  for reactions emoticons-->
+                        <div class="modal fade" id="reaction" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                           <div class="modal-dialog modal-md" role="document">
+                           <div class="modal-content">
+                              <div class="modal-header pb-0">
+                                 <ul class="nav nav-tabs" role="tablist">
+                                    <li class="nav-link active" role="presentation" class="active"><a href="#all" class="tab-a" role="tab" data-toggle="tab">All</a>
+                                    </li>
+                                    <li class="nav-link" role="presentation"><a href="#like" class="tab-a" role="tab" data-toggle="tab"><img src="/assets/images/s_emoji/like.png"  class="img-reaction" /><ins class="ins_like"></ins></a>
+                                    </li>
+                                    <li class="nav-link" role="presentation"><a href="#love" class="tab-a" role="tab" data-toggle="tab"><img src="/assets/images/s_emoji/love.png"  class="img-reaction" /><ins class="ins_love"></ins></a>
+                                    </li>
+                                    <li class="nav-link" role="presentation"><a href="#haha" class="tab-a" role="tab" data-toggle="tab"><img src="/assets/images/s_emoji/haha.png"  class="img-reaction" /><ins class="ins_haha"></ins></a>
+                                    </li>
+                                    <li class="nav-link" role="presentation"><a href="#sad" class="tab-a" role="tab" data-toggle="tab"><img src="/assets/images/s_emoji/sad.png"  class="img-reaction" /><ins class="ins_sad"></ins></a>
+                                    </li>
+                                    <li class="nav-link" role="presentation"><a href="#angry" class="tab-a" role="tab" data-toggle="tab"><img src="/assets/images/s_emoji/angry.png"  class="img-reaction" /><ins class="ins_angry"></ins></a>
+                                    </li>
+                                    <li class="nav-link" role="presentation"><a href="#care" class="tab-a" role="tab" data-toggle="tab"><img src="/assets/images/s_emoji/wow.png"  class="img-reaction" /><ins class="ins_wow"></ins></a>
+                                    </li>
+                                    <li class="nav-link" role="presentation"><a href="#wow" class="tab-a" role="tab" data-toggle="tab"><img src="/assets/images/s_emoji/wow.png"  class="img-reaction" /><ins class="ins_wow"></ins></a>
+                                    </li>
+                                 </ul>
+                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                 </button>
+                              </div>
+                              <div class="modal-body">
+                              <div class="tab-content">
+                                    <div role="tabpanel" class="tab-pane active allfrnd" id="all"></div>
+                                    <div role="tabpanel" class="tab-pane like_rc" id="like"></div>
+                                    <div role="tabpanel" class="tab-pane sad_rc" id="sad"></div>
+                                    <div role="tabpanel" class="tab-pane love_rc" id="love"></div>
+                                    <div role="tabpanel" class="tab-pane haha_rc" id="haha"></div>
+                                    <div role="tabpanel" class="tab-pane angry_rc" id="angry"></div>
+                                    <div role="tabpanel" class="tab-pane care_rc" id="care"></div>
+                                    <div role="tabpanel" class="tab-pane wow_rc" id="wow"></div>
+                              </div>
+                              </div>
+                           </div>
+                           </div>
+                        </div>
 							</div>
 						 </div>
 						@endforeach
@@ -956,10 +1008,7 @@
    </form>
 </div>
 <!-- side panel -->
-<script src="{{ asset('js/main.min.js') }}"></script>
-<script src="{{ asset('js/script.js') }}"></script>
-<script src="{{ asset('js/map-init.js') }}"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8c55_YHLvDHGACkQscgbGLtLRdxBDCfI"></script>
+
 @include('includes/footer')
 </body>
 </html>

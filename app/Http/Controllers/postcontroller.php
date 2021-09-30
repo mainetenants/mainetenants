@@ -74,9 +74,7 @@ class PostController extends Controller
 
     }
     public function commentList(Request $request)
-
     {
-
         $user = Auth::user();
         $data = $request->all();
 
@@ -85,13 +83,10 @@ class PostController extends Controller
                 'comment' => 'required',
             ]);
         }
-          
-        
 
         $values = array('user_id' => $user->id,'post_id' => $data['post_id'],'comment' => $data['comment']);
         DB::table('msu_comments')
         ->insert($values);
-       
 
         $user_id = DB::table('msu_community_activities')
         ->select('user_id')
@@ -186,17 +181,17 @@ class PostController extends Controller
         // update like dislike and reaction
         if (isset($like) && !empty($like)) {
             if (($like->like_dislike ==1) && ($request->data =='emoji') && isset($request->reaction)) {
-                $values = array('reaction' => $request->reaction);
+                if($like->reaction == $request->reaction){
+                    $values = array('like_dislike' => 0, 'reaction' => 0);
+                }else{
+                    $values = array('like_dislike' => 1, 'reaction' => $request->reaction);
+                }
             }
 
             if (($like->like_dislike ==2) && ($request->data =='emoji') && isset($request->reaction)) {
                 $values = array('like_dislike' => 1, 'reaction' => $request->reaction);
-                // dd($values);
             }
-
-            if (($like->like_dislike ==1) && ($request->data =='emoji')) {
-                $values = array('like_dislike' => 0, 'reaction' => 0);
-            }
+           
             if (($like->like_dislike ==2) && ($request->data =='dislike')) {
                 $values = array('like_dislike' => 0, 'reaction' => 0);
             }
@@ -208,6 +203,7 @@ class PostController extends Controller
             }
             if (($like->like_dislike ==0) && ($request->data =='emoji')) {
                 $values = array('like_dislike' => 1, 'reaction' => $request->reaction);
+
             }
 
             $aa = DB::table('msu_like_dislike_posts')
@@ -229,7 +225,7 @@ class PostController extends Controller
 
             $val = DB::table('msu_like_dislike_posts')
             ->insert($values);
-            dd($val);
+            // dd($val);
         }
 
         $like = DB::table('msu_like_dislike_posts')
@@ -290,6 +286,15 @@ class PostController extends Controller
         ->where('id', $request->post_id)
         ->first();
         return response()->json(array('success'=> true, 'content'=>$editpost->content, 'image'=>$editpost->images, 'post_id'=>$editpost->id), 200);
+
+    }
+    public function getReaction(Request $request){
+        $allReaction = DB::table('msu_like_dislike_posts')
+        ->leftJoin('users', 'msu_like_dislike_posts.user_id', '=', 'users.id')
+        ->select('users.name','users.id','users.profile_photo','msu_like_dislike_posts.reaction')
+        ->where('post_id', $request->post_id)
+        ->get();       
+        return response()->json(array('success'=> true, 'allReaction'=>$allReaction), 200);
 
     }
     public function editpost(Request $request){
