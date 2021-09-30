@@ -186,7 +186,8 @@
                     var count_sad_rc = '';
 
                     $.each(data.allReaction, function(key,val) {
-                        $('.allfrnd').append('<div class="user_card"><div class="row"><div class="col-sm-6 text-left"><img src="upload/images/'+ val.profile_photo +'.jpg" class="rc_profile_pic" style="max-width: 60px" alt=""><span class="rc_name">'+ val.name +'</span></div><div class="col-sm-6 text-right"><a href="see_friend/'+ val.id +'" class="btn btn-primary btn-sm add_rc_frnd">Add Friends</a></div></div></div>');
+                        var html_add = (val.is_frnd_status==1)?(''):('<a href="see_friend/'+ val.id +'" class="btn btn-primary btn-sm add_rc_frnd">Add Friends</a>');
+                        $('.allfrnd').append('<div class="user_card"><div class="row"><div class="col-sm-6 text-left"><img src="upload/images/'+ val.profile_photo +'.jpg" class="rc_profile_pic" style="max-width: 60px" alt=""><span class="rc_name">'+ val.name +'</span></div><div class="col-sm-6 text-right">'+ html_add +'</div></div></div>');
 
 
                         if(val.reaction==1){
@@ -217,15 +218,16 @@
                             var selector = 'sad_rc';
                             count_sad_rc++;
                         }
-                        $('.'+selector).append('<div class="user_card"><div class="row"><div class="col-sm-6 text-left"><img src="upload/images/'+ val.profile_photo +'.jpg" class="rc_profile_pic" style="max-width: 60px" alt=""><span class="rc_name">'+ val.name +'</span></div><div class="col-sm-6 text-right"><a href="see_friend/'+ val.id +'" class="btn btn-primary btn-sm add_rc_frnd">Add Friends</a></div></div></div>');
+                      
+                        $('.'+selector).append('<div class="user_card"><div class="row"><div class="col-sm-6 text-left"><img src="upload/images/'+ val.profile_photo +'.jpg" class="rc_profile_pic" style="max-width: 60px" alt=""><span class="rc_name">'+ val.name +'</span></div><div class="col-sm-6 text-right">'+ html_add +'</div></div></div>');
                     });
-                    $('.ins_like').html(count_like_rc);
-                    $('.ins_love').html(count_love_rc);
-                    $('.ins_haha').html(count_haha_rc);
-                    $('.ins_angry').html(count_angry_rc);
-                    $('.ins_care').html(count_care_rc);
-                    $('.ins_wow').html(count_wow_rc);
-                    $('.ins_sad').html(count_sad_rc);
+                    $('.ins_like').html('&nbsp;'+count_like_rc);
+                    $('.ins_love').html('&nbsp;'+count_love_rc);
+                    $('.ins_haha').html('&nbsp;'+count_haha_rc);
+                    $('.ins_angry').html('&nbsp;'+count_angry_rc);
+                    $('.ins_care').html('&nbsp;'+count_care_rc);
+                    $('.ins_wow').html('&nbsp;'+count_wow_rc);
+                    $('.ins_sad').html('&nbsp;'+count_sad_rc);
                     if(count_like_rc == ''){
                         $('.ins_like').parent().parent().remove()
                     }if(count_love_rc == ''){

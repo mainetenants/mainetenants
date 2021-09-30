@@ -72,3 +72,6 @@ form#logout_id {
     .user_card {
         padding: 10px;
     }
+    li.nav-link a ins {
+        text-decoration: none;
+    }
