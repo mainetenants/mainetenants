@@ -51,7 +51,7 @@
     });
 
     $(document).ready(function(){
-    $('[data-toggle="popover"]').popover();   
+        $('[data-toggle="popover"]').popover();   
     });
 </script>
 <script>
@@ -61,6 +61,10 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
+<<<<<<< HEAD
+=======
+            // like dislike and reaction emoticons
+>>>>>>> 833ff8b73ff9e427c23a6d0f5abc127152cc0feb
         $(".reaction i img, #dislikeId").click(function(){
             
             var id ='';
@@ -72,7 +76,6 @@
               }else{
                 id = $(this).attr('value');
               }
-            // alert(reaction);
             $.ajax({
                 type:'POST',
                 url:'{{ url("like") }}',
@@ -114,7 +117,7 @@
 
 </script>
 <script>
-    //edit posts description
+    
     function myFunction(){
         var post_id = $('#edit-post').attr('value');
         $.ajaxSetup({
@@ -122,7 +125,7 @@
               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
           }
         });
-
+        //edit posts description
         $.ajax({
             type:'POST',
             url:'{{ url("get-post") }}',
@@ -137,6 +140,8 @@
                 $('.post-card-img').append('<img class="card-img-top" src="upload/images/'+ data.image +'" alt="Card image cap">')
             }
         });
+        //emoticons listing
+       
     }
     $("#editpost").on("hidden.bs.modal", function () {
         $('#content').remove();
@@ -218,4 +223,105 @@ $('.we-reply').click(function(){
     });
 
 
+    // add remove active class form navtabs in reaction listing 
+    $('.tab-a').click(function(){
+        $('.nav-tabs .nav-link').removeClass('active');
+        $(this).parent().addClass('active');
+    });
+    
+    $('.rec').click(function(){
+        $.ajax({
+            type:'POST',
+            url:'{{ url("get-reaction") }}',
+            data:{
+                    post_id : $(this).attr('data_id')
+                },
+            success:function(data){
+                $('.user_card').remove();
+                console.log(data);
+                if(data.allReaction){
+                    var selector = '';
+                    var count=[];
+                    var count_like_rc = '';
+                    var count_love_rc = '';
+                    var count_haha_rc = '';
+                    var count_angry_rc = '';
+                    var count_care_rc = '';
+                    var count_wow_rc = '';
+                    var count_sad_rc = '';
+
+                    $.each(data.allReaction, function(key,val) {
+                        var html_add = (val.is_frnd_status==1)?(''):('<a href="see_friend/'+ val.id +'" class="btn btn-primary btn-sm add_rc_frnd">Add Friends</a>');
+                        $('.allfrnd').append('<div class="user_card"><div class="row"><div class="col-sm-6 text-left"><img src="upload/images/'+ val.profile_photo +'.jpg" class="rc_profile_pic" style="max-width: 60px" alt=""><span class="rc_name">'+ val.name +'</span></div><div class="col-sm-6 text-right">'+ html_add +'</div></div></div>');
+
+
+                        if(val.reaction==1){
+                            var selector = 'like_rc';
+                            count_like_rc++;
+                        }
+                        if(val.reaction==2){
+                            var selector = 'love_rc';
+                            count_love_rc++;
+                        }
+                        if(val.reaction==3){
+                            var selector = 'haha_rc';
+                            count_haha_rc++;
+                        }
+                        if(val.reaction==4){
+                            var selector = 'angry_rc';
+                            count_angry_rc++;
+                        }
+                        if(val.reaction==5){
+                            var selector = 'care_rc';
+                            count_care_rc++;
+                        }
+                        if(val.reaction==6){
+                            var selector = 'wow_rc';
+                            count_wow_rc++;
+                        }
+                        if(val.reaction==7){
+                            var selector = 'sad_rc';
+                            count_sad_rc++;
+                        }
+                      
+                        $('.'+selector).append('<div class="user_card"><div class="row"><div class="col-sm-6 text-left"><img src="upload/images/'+ val.profile_photo +'.jpg" class="rc_profile_pic" style="max-width: 60px" alt=""><span class="rc_name">'+ val.name +'</span></div><div class="col-sm-6 text-right">'+ html_add +'</div></div></div>');
+                    });
+                    $('.ins_like').html('&nbsp;'+count_like_rc);
+                    $('.ins_love').html('&nbsp;'+count_love_rc);
+                    $('.ins_haha').html('&nbsp;'+count_haha_rc);
+                    $('.ins_angry').html('&nbsp;'+count_angry_rc);
+                    $('.ins_care').html('&nbsp;'+count_care_rc);
+                    $('.ins_wow').html('&nbsp;'+count_wow_rc);
+                    $('.ins_sad').html('&nbsp;'+count_sad_rc);
+                    if(count_like_rc == ''){
+                        $('.ins_like').parent().parent().remove()
+                    }if(count_love_rc == ''){
+                        $('.ins_love').parent().parent().remove()
+                    }if(count_haha_rc == ''){
+                        $('.ins_haha').parent().parent().remove()
+                    }if(count_angry_rc == ''){
+                        $('.ins_angry').parent().parent().remove()
+                    }if(count_care_rc == ''){
+                        $('.ins_care').parent().parent().remove()
+                    }if(count_wow_rc == ''){
+                        $('.ins_wow').parent().parent().remove()
+                    }if(count_sad_rc == ''){
+                        $('.ins_sad').parent().parent().remove()
+                    }
+                    var count = [count_like_rc, count_love_rc, count_haha_rc, count_angry_rc, count_care_rc, count_wow_rc, count_sad_rc];
+                    console.log(count.sort().reverse());
+
+
+                }
+                
+                // trigger modal 
+                $('#reaction').modal('toggle');
+               
+            }
+        });
+        // alert();
+    });
+
+
+    
 </script>

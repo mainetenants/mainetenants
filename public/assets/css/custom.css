@@ -224,4 +224,52 @@ input.filterinput {
     .tox .tox-tbtn svg {
         display: block;
         fill: #ffffff !important;
+     li.nav-link .img-reaction{
+         max-width: 20px;
+     }
+     .nav-tabs li.nav-link {
+        padding: 6px;
+        font-size: 12px;
+    }
+    .rec3 {
+        position: relative;
+        left: -11px;
+        z-index: -999;
+    }
+    .rec1 {
+        position: relative;
+        left: 11px;
+        z-index: 10;
+    }
+    .emoji-reaction{
+        max-width: 18px;
+    }
+    li.emooo {
+        display: inline-flex !important;
+    }
+    ins.mrgn {
+        position: relative;
+        left: 58px !important;
+    }
+    .rec {
+        cursor: pointer;
+    }
+    .add_rc_frnd{
+        position: absolute;
+        bottom: 10px;
+        right: 30px;
+    }
+    img.rc_profile_pic {
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+    }
+    .rc_name{
+        margin: 0 20px;
+    }
+    .user_card {
+        padding: 10px;
+    }
+    li.nav-link a ins {
+        text-decoration: none;
     }

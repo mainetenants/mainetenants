@@ -21,7 +21,7 @@ class MsuUsernotification extends Migration
             $table->integer('friend_id');
             $table->integer('post_id');
             $table->string('message');
-            $table->integer('type');
+            $table->string('type');
             $table->integer('is_seen');
             $table->timestamp('created')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();

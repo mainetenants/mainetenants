@@ -50,13 +50,14 @@ use App\Http\Controllers\PageController;
     Route::post('edit-interest','App\Http\Controllers\ProfileUpdateController@interestInfo');
     Route::post('accountInfo','App\Http\Controllers\ProfileUpdateController@accountInfo');
     Route::get('/delete-post/{id}','App\Http\Controllers\PostController@deletePost');
-    Route::post('like','App\Http\Controllers\PostController@likeDislikePost');
     Route::post('seen','App\Http\Controllers\PostController@seennotification');
     Route::get('/edit-account-setting','App\Http\Controllers\ProfileUpdateController@accountSetting');
     Route::post('/get-post','App\Http\Controllers\PostController@getPost');
     Route::post('/edit-post','App\Http\Controllers\PostController@editPost');
     Route::post('add_page_pic','App\Http\Controllers\PageController@add_profile_pic');
     Route::post('fav-page','App\Http\Controllers\PageController@save_page_post_cmt');
+    Route::post('like','App\Http\Controllers\PostController@likeDislikePost');
+    Route::post('get-reaction','App\Http\Controllers\PostController@getReaction');
 });
 
 
