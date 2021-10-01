@@ -228,12 +228,22 @@
 										</div>
 										<p>{{ $comment->comment; }}</p>
 									 </div>
-									 @endforeach
-								  <li class="post-comment bg-white bg-light">
-									 <div class="comet-avatar">
-										<img src="{{ asset('assets/images/resources/comet-1.jpg') }}" alt="">
-									 </div>
-									 <div class="post-comt-box">
+									 @endforeach 
+                            <div class="post-comt-box">
+                              <form method="post" id="page_post_comments" enctype="multipart/form-data"   action="{{url("homepage")}}">
+                                   @csrf
+                                   <div class="row m-4">
+                                   <div class="col-sm-10">
+                                   <textarea placeholder="Post your comment" id="comment" name="comment"></textarea>
+                             </div> <div class="col-sm-1">
+                                <input type="hidden" name="post_id" id="post_id" value="{{ $user->id }}"/>
+                                <input type="hidden" name="user_id" id="user_id" value="{{ $user->user_id }}"/>
+                                <input type="hidden" name="status" id="status" value ="1"/>
+                                <button type="submit" class="btn btn-primary"><i class="far fa-paper-plane"></i></button>
+                             </div>
+                          </form> 
+                          </div>
+									 {{-- <div class="post-comt-box">
 										<form action="get-comment-list" id="comment-form" method="post" enctype="multipart/form-data">
 										   <textarea name="comment" id="comment" placeholder="Post your comment"></textarea>
 										   <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
@@ -257,7 +267,7 @@
 										   </div>
 										   <button type="submit" ></button>
 										</form>
-									 </div>
+									 </div> --}}
 								  </li>
 							   </ul>
 							   {{-- modal for edit post							 --}}

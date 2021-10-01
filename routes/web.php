@@ -44,6 +44,8 @@ use App\Http\Controllers\PageController;
     Route::get('about', 'App\Http\Controllers\AboutController@index');
     Route::get('timeline-friends', 'App\Http\Controllers\timelineController@index');
     Route::get('edit-profile-basic', 'App\Http\Controllers\ProfileUpdateController@editBasic');
+
+    Route::post('homepage','App\Http\Controllers\postcontroller@commentList');
    // Route::get('about', 'App\Http\Controllers\ProfileUpdateController@userInfo');
     Route::post('/edit-work-eductation','App\Http\Controllers\ProfileUpdateController@workEducationInfo');
     Route::post('profile_edit','App\Http\Controllers\ProfileUpdateController@profileEdit');

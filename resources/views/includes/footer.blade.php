@@ -220,6 +220,11 @@ $('.we-reply').click(function(){
     });
 
 
+      
+    
+
+
+
     // add remove active class form navtabs in reaction listing 
     $('.tab-a').click(function(){
         $('.nav-tabs .nav-link').removeClass('active');
@@ -325,4 +330,15 @@ $('.we-reply').click(function(){
 
 
     
+</script>
+
+<script>
+  tinymce.init({
+      selector: "#comment",
+      plugins: "emoticons",
+      height :100,
+      toolbar: "emoticons",
+      toolbar_location: "bottom",
+      menubar: false
+    });
 </script>
