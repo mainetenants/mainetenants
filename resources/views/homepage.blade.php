@@ -226,7 +226,7 @@
 											  ?>
 										   <a class="we-reply" href="#" title="Reply"><i class="fa fa-reply text-secondary"></i></a>
 										</div>
-										<p>{{ $comment->comment; }}</p>
+										<p> @php echo $comment->comment @endphp</p>
 									 </div>
 									 @endforeach 
                             <div class="post-comt-box">
