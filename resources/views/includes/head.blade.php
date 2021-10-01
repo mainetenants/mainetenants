@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="{{ asset('assets/css/color.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/css/fontawesome-all.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <script src="https://use.fontawesome.com/8ca71c61c1.js"></script>
 <script src="{{ asset('assets/js/jquery-3.6.0.min.js') }}"></script>

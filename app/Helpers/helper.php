@@ -88,7 +88,6 @@ function get_total_friend($id){
 function followingUser(){
     $id = Auth::id();
 
-
 }
 
 function get_user_post($id){
@@ -103,7 +102,6 @@ function get_user_post($id){
 }
 function get_friend_status($id){
 
-
     $isfriends = DB::table('msu_isfriend')
     ->select('status')
     ->where(['user_id'=>Auth::id(),'friends_id' => $id])
@@ -113,9 +111,6 @@ function get_friend_status($id){
 }
 function get_follow_status($id){
 
-
-
-     
     $isfriends = DB::table('msu_isfriend')
     ->select('is_follow')
     ->where(['user_id' =>Auth::id() , 'friends_id' => $id])
@@ -125,5 +120,61 @@ function get_follow_status($id){
 }
 
 
+function get_page(){
 
-                                                                                                             
+    $user = Auth::id();
+    $get_page = DB::table('msu_user_page')
+    ->select('*')
+    ->where(['user_id'=>$user,'is_active'=> 1])
+    ->first();
+   
+    return $get_page;
+}
+
+function get_user_nane($id){
+
+    $get_page = DB::table('users')
+    ->select('name')
+    ->where(['id'=>$id])
+    ->first();
+ 
+    return $get_page;
+
+}
+
+
+function get_page_post($id){
+   
+     $get_page_post = DB::table('msu_page_post')
+     ->select('*')
+     ->where(['id' => $id ])
+     ->get();
+
+
+     return $get_page_post;
+
+
+}
+
+function get_user_nane1($id){
+
+    $get_page = DB::table('users')
+    ->select('name')
+    ->where(['id'=>$id])
+    ->first();
+  
+    return $get_page->name;
+
+}
+      
+function get_page_post_cmt($id){
+   
+      $get_page_post_cmt = DB::table('page_post_comments')
+      ->select('*')
+      ->where(['page_id'=>$id])
+      ->get();
+
+      return $get_page_post_cmt;
+
+}
+

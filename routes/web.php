@@ -8,6 +8,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\FriendsController;
 use App\Http\Controllers\TimelineController;
 use App\Http\Controllers\ProfileUpdateController;
+use App\Http\Controllers\PageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +25,9 @@ use App\Http\Controllers\ProfileUpdateController;
     Route::group(['middleware'=>'web'],function(){
     Route::get('/', function () { return view('landing'); });
     Route::get('/homepage','App\Http\Controllers\PostController@homepage');
+    Route::post('create_page_user','App\Http\Controllers\PageController@create_new_page');
+    Route::get('fav-page','App\Http\Controllers\PageController@create_new_page');
+    Route::post('add_page_post','App\Http\Controllers\PageController@create_new_post');
     Route::post('get-post-list','App\Http\Controllers\PostController@postList');
     Route::post('get-comment-list','App\Http\Controllers\PostController@commentList');
     Route::get('profile', 'App\Http\Controllers\Profile@index');
@@ -51,6 +55,8 @@ use App\Http\Controllers\ProfileUpdateController;
     Route::get('/edit-account-setting','App\Http\Controllers\ProfileUpdateController@accountSetting');
     Route::post('/get-post','App\Http\Controllers\PostController@getPost');
     Route::post('/edit-post','App\Http\Controllers\PostController@editPost');
+    Route::post('add_page_pic','App\Http\Controllers\PageController@add_profile_pic');
+    Route::post('fav-page','App\Http\Controllers\PageController@save_page_post_cmt');
 });
 
 
@@ -65,6 +71,11 @@ Route::get('/404', function () {
 Route::get('/404-2', function () {
     return view('404-2');
 });
+
+Route::get('/create-page', function () {
+    return view('create-page');
+});
+
 
 Route::get('/about-company', function () {
     return view('about-company');

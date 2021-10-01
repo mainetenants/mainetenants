@@ -1,22 +1,24 @@
 <script src="{{ asset('assets/js/main.min.js') }}"></script>
 <script src="{{ asset('assets/js/script.js') }}"></script>
 <script src="{{ asset('assets/js/map-init.js') }}"></script>
+
+<script src="{{ asset('js/progress-bar.js') }}"></script>
+
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8c55_YHLvDHGACkQscgbGLtLRdxBDCfI">
 </script>
 <script>
     //comments on post ajax
     $('#comment').keypress(function (event) {
+
     
         if (event.keyCode == 13 && event.shiftKey) {
           
             var content = this.value;
             var caret = getCaret(this);
             this.value = content.substring(0,caret)+"\n"+content.substring(carent,content.length-1);
-            event.stopPropagation();
-            
+            event.stopPropagation();    
         }else if(event.keyCode == 13)
         {
-
             $('#comment-form').submit();
         }
     });
@@ -59,8 +61,8 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-
         $(".reaction i img, #dislikeId").click(function(){
+            
             var id ='';
             var reaction ='';
             var data = $(this).attr('class').split(' ')[0];
@@ -156,4 +158,64 @@
         $('.reaction').toggle();
         $('.reaction').delay(10000).fadeOut();
     });
+
+    $('#fileid').change(function() {
+			$('#profile_form').submit();
+		});
+
+
+ /// page post comment
+
+ $('#page_post_comments').submit(function (){
+
+
+     var formdata = new FormData();
+
+     $.ajax({
+        type:'POST',
+            url:'{{ url("fav-page") }}',
+            data:{
+                    data : formdata
+                },
+     });
+});
+
+$('.we-reply').click(function(){
+     alert('efdkld');
+     
+
+     $("#new_cmt_box").toggle();
+
+
+});
+
+
+
+</script>
+<script src="https://cdn.tiny.cloud/1/ueqxpvc9gv7hzpnpf4jj0kq9h4n1c3ijg41bb4aqnlyvfa28/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+
+<script>
+    tinymce.init({
+      selector: "#page_post_comment",
+      plugins: "emoticons",
+      height :100,
+      toolbar: "emoticons",
+      toolbar_location: "bottom",
+      menubar: false
+    });
+
+  </script>
+
+<script>
+    
+    tinymce.init({
+      selector: "#page_post_reply_comment",
+      plugins: "emoticons",
+      height :100,
+      toolbar: "emoticons",
+      toolbar_location: "bottom",
+      menubar: false
+    });
+
+
 </script>

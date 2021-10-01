@@ -871,6 +871,8 @@
                         </div>
                      </div>
                   </div>
+               </div>
+            </div>
 	
                <!-- centerl meta -->
                @include('includes/right-sidebar')
@@ -955,11 +957,7 @@
       {{ csrf_field() }}
    </form>
 </div>
-<!-- side panel -->
-<script src="{{ asset('js/main.min.js') }}"></script>
-<script src="{{ asset('js/script.js') }}"></script>
-<script src="{{ asset('js/map-init.js') }}"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8c55_YHLvDHGACkQscgbGLtLRdxBDCfI"></script>
+
 @include('includes/footer')
 </body>
 </html>

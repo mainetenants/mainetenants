@@ -26,3 +26,202 @@ form#logout_id {
         transform: scale(1.3);
         margin-top: -15px;
       }
+
+
+      * {
+    margin: 0;
+    padding: 0
+}
+  
+html {
+    height: 100%
+}
+  
+h2{
+    color: #088dcd;
+}
+#form {
+    text-align: center;
+    position: relative;
+    margin-top: 20px
+}
+  
+#form fieldset {
+    background: white;
+    border: 0 none;
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0;
+    padding-bottom: 20px;
+    position: relative
+}
+  
+.finish {
+    text-align: center
+}
+  
+#form fieldset:not(:first-of-type) {
+    display: none
+}
+  
+#form .previous-step, .next-step {
+    width: 100px;
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 0px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 5px 10px 0px;
+    float: right
+}
+  
+.form, .previous-step {
+    background: #616161;
+}
+  
+.form, .next-step {
+    background: #088dcd;
+}
+  
+#form .previous-step:hover,
+#form .previous-step:focus {
+    background-color: #000000
+}
+  
+#form .next-step:hover,
+#form .next-step:focus {
+    background-color: #088dcd
+}
+  
+.text {
+    color: #088dcd;
+    font-weight: normal
+}
+.custom-heading-color{
+
+
+    color: #088dcd;
+    font-weight: 700;
+
+
+}
+
+  
+#progressbar {
+    margin-bottom: 30px;
+    position: relative;
+    left:12%;
+    overflow: hidden;
+    color: lightgrey
+}
+  
+#progressbar .active {
+    color: #088dcd
+}
+  
+#progressbar li {
+    list-style-type: none;
+    font-size: 15px;
+    width: 25%;
+    float: left;
+    position: relative;
+    font-weight: 400
+}
+  
+#progressbar #step1:before {
+    content: "1"
+}
+  
+#progressbar #step2:before {
+    content: "2"
+}
+  
+#progressbar #step3:before {
+    content: "3"
+}
+  
+#progressbar #step4:before {
+    content: "4"
+}
+  
+#progressbar li:before {
+    width: 50px;
+    height: 50px;
+    line-height: 45px;
+    display: block;
+    font-size: 20px;
+    color: #ffffff;
+    background: lightgray;
+    border-radius: 50%;
+    margin: 0 auto 10px auto;
+    padding: 2px
+}
+  
+#progressbar li:after {
+    content: '';
+    width: 100%;
+    height: 2px;
+    background: lightgray;
+    position: absolute;
+    left: 0;
+    top: 25px;
+    z-index: -1
+}
+  
+#progressbar li.active:before,
+#progressbar li.active:after {
+    background: #088dcd
+}
+  
+.progress {
+    height: 20px
+}
+  
+.progress-bar {
+    background-color: #088dcd
+}
+
+input.page_info {
+    height: 90px;
+    padding: 20px;
+    border-radius: 11px;
+    border: 1px solid #bfbfbf;
+}
+label.custom-label {
+    font-weight: 900;
+}
+
+input.filterinput {
+    height: 90px;
+    padding: 20px;
+    border-radius: 11px;
+    border: 1px solid #bfbfbf !important;
+}
+.full-width {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+} 
+  .justify-content-center {
+    display: flex;
+    align-self: center;
+    width: 100%;
+  }
+  .lead.emoji-picker-container {
+    width: 300px;
+    display: block;
+  }
+    input {
+      width: 100%;
+      height: 20px;
+    }
+    .tox-statusbar {
+        display: none !important;
+    }
+
+    .tox .tox-tbtn svg {
+        display: block;
+        fill: #ffffff !important;
+    }

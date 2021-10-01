@@ -1949,7 +1949,7 @@ li.post-comment .comet-avatar {
 
 .add-smiles {
     position: absolute;
-    right: 10px;
+    right: 20px;
     top: 50%;
     transform: translateY(-50%);
     width: auto;
@@ -2001,9 +2001,9 @@ li.post-comment .comet-avatar {
 
 .post-comt-box form button {
     bottom: 2px;
-    position: absolute;
+    /* position: absolute; */
     right: 0;
-    background: none;
+    background: #088dcd !important;
 }
 
 
