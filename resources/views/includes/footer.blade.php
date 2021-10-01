@@ -61,10 +61,7 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-<<<<<<< HEAD
-=======
             // like dislike and reaction emoticons
->>>>>>> 833ff8b73ff9e427c23a6d0f5abc127152cc0feb
         $(".reaction i img, #dislikeId").click(function(){
             
             var id ='';
@@ -228,7 +225,11 @@ $('.we-reply').click(function(){
         $('.nav-tabs .nav-link').removeClass('active');
         $(this).parent().addClass('active');
     });
-    
+    $.ajaxSetup({
+          headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+        });
     $('.rec').click(function(){
         $.ajax({
             type:'POST',
