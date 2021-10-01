@@ -342,12 +342,13 @@ $get_page_post_cmt = get_page_post_cmt($get_page->msu_user_page_id);
                                                 <div class="row m-4">
                                                 <div class="col-sm-10">
                                                 <textarea placeholder="Post your comment" id="page_post_reply_comment" name="page_post_reply_comment"></textarea>
-                                          </div></form>  <div class="col-sm-1">
+                                          </div> <div class="col-sm-1">
                                              <input type="hidden" name="post_id" id="post_id" value="{{ $post->id }}"/>
                                              <input type="hidden" name="user_id" id="user_id" value="{{ $post->user_id }}"/>
                                              <input type="hidden" name="status" id="status" value ="1"/>
                                              <button type="submit" class="btn btn-primary"><i class="far fa-paper-plane"></i></button>
                                           </div>
+                                       </form> 
                                        </div>
                                     </li>
                                     @endforeach
@@ -357,7 +358,7 @@ $get_page_post_cmt = get_page_post_cmt($get_page->msu_user_page_id);
                                     </li>
                                  
                               </div>
-                              <div class="post-comt-box{{  }}">
+                              <div class="post-comt-box">
                               <form method="post" id="page_post_comments" enctype="multipart/form-data"   action="{{url('fav-page')}}">
                                  @csrf
 
