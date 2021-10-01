@@ -230,7 +230,11 @@ $('.we-reply').click(function(){
         $('.nav-tabs .nav-link').removeClass('active');
         $(this).parent().addClass('active');
     });
-    
+    $.ajaxSetup({
+          headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+        });
     $('.rec').click(function(){
         $.ajax({
             type:'POST',
