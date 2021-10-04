@@ -14,7 +14,7 @@
                     </li>
                     <li>
                         <i class="ti-files text-secondary"></i>
-                        <a href="../fav-page" class="text-secondary" title="">My pages</a>
+                        <a href="../your_page/" class="text-secondary" title="">My pages</a>
                     </li>
                     <li>
                         <i class="ti-user text-secondary"></i>

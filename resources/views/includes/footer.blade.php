@@ -182,14 +182,17 @@
      });
 });
 
-$('.we-reply').click(function(){
-     alert('efdkld');
-     
 
-     $("#new_cmt_box").toggle();
+$('.we-reply').click(function (){
+
+ 
+    alert('efdkld');
+      $("#new_cmt_box0").toggle();
+     
 
 
 });
+
 
 
 
@@ -328,13 +331,115 @@ $('.we-reply').click(function(){
         // alert();
     });
 
+    function send_invitation(){
+
+       
+        var friend_id = $('#friend_id').val();
+        var post_id = $('#post_id').val();
+
+       $.ajax({
+        type:'POST',
+            url:'{{ url("invite-friend") }}',
+            data:{
+                    friend_id : friend_id,
+                    post_id : post_id
+                },
+            success:function(data){
+
+               if(data['status'] == 1){
+
+                    $('#invitation_cancel').show();
+                    $('#send_invitation').hide();
+
+               }
+              
+
+            },
+       });
+
+    }
+
+    $('#invitation_cancel').click(function (){
+       
+          
+        var friend_id = $('#friend_id').val();
+        var post_id = $('#post_id').val();
+
+       $.ajax({
+        type:'POST',
+            url:'{{ url("cancel_invitation") }}',
+            data:{
+                    friend_id : friend_id,
+                    post_id : post_id
+                },
+            success:function(data){
+
+               if(data['status'] == 1){
+
+                    $('#invitation_cancel').hide();
+                    $('#send_invitation').show();
+
+               }
+              
+
+            },
+       });
+
+    });
+
+     $('#like_page').click(function(){
+         var page_id =  $('#like_page_id').val();
+         var friend_id  = $('#like_friend_id').val();
+          $.ajax({
+            type:'POST',
+            url:'{{ url("like_page") }}',
+            data:{
+                    page_id : page_id,
+                    friend_id: friend_id
+                }, 
+            success:function(data){
+
+                if(data['status'] == 1){
+
+                      $('#like_page').hide();
+                      $('#unlike_page').show();
+                }
+
+            },
+
+          });
+     });
+
+     $('#unlike_page').click(function(){
+        var page_id =  $('#like_page_id').val();
+        var friend_id  = $('#like_friend_id').val();
+         
+        $.ajax({
+            type:'POST',
+            url:'{{ url("unlike_page") }}',
+            data:{
+                    page_id : page_id,
+                    friend_id: friend_id
+                }, 
+            success:function(data){
+
+                if(data['status'] == 1){
+
+                      $('#like_page').show();
+                      $('#unlike_page').hide();
+                }
+
+            },
+
+          });
+     });
 
     
 </script>
 
 <script>
   tinymce.init({
-      selector: "#comment",
+      selector: ".comment_1243",
       plugins: "emoticons",
       height :100,
       toolbar: "emoticons",

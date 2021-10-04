@@ -26,7 +26,7 @@ use App\Http\Controllers\PageController;
     Route::get('/', function () { return view('landing'); });
     Route::get('/homepage','App\Http\Controllers\PostController@homepage');
     Route::post('create_page_user','App\Http\Controllers\PageController@create_new_page');
-    Route::get('fav-page','App\Http\Controllers\PageController@create_new_page');
+   // Route::get('fav-page','App\Http\Controllers\PageController@create_new_page');
     Route::post('add_page_post','App\Http\Controllers\PageController@create_new_post');
     Route::post('get-post-list','App\Http\Controllers\PostController@postList');
     Route::post('get-comment-list','App\Http\Controllers\PostController@commentList');
@@ -60,6 +60,11 @@ use App\Http\Controllers\PageController;
     Route::post('fav-page','App\Http\Controllers\PageController@save_page_post_cmt');
     Route::post('like','App\Http\Controllers\PostController@likeDislikePost');
     Route::post('get-reaction','App\Http\Controllers\PostController@getReaction');
+    Route::post('invite-friend','App\Http\Controllers\InviteFriendController@invite_friend');
+    Route::post('cancel_invitation','App\Http\Controllers\InviteFriendController@cancel_invitation');
+    Route::get('/fav-page/{id}','App\Http\Controllers\InviteFriendController@view_user_page');
+    Route::post('/like_page/','App\Http\Controllers\InviteFriendController@like_page');
+    Route::post('/unlike_page/','App\Http\Controllers\InviteFriendController@unlike_page');
 });
 
 
@@ -67,6 +72,15 @@ use App\Http\Controllers\PageController;
 Route::get('/logout', function () {
     return view('logout');
 });
+Route::get('/your_page', function () {
+    
+    return view('your_page');
+});
+Route::get('/like_user_page',function(){
+
+     return view('like_user_page');
+});
+
 
 Route::get('/404', function () {
     return view('404');

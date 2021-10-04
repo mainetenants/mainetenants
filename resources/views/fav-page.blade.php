@@ -1,9 +1,13 @@
 @php
 
-$get_page  = get_page();
+$get_page  = get_page($id);
+$user_id = Auth::id();
 $user_name = get_user_nane($get_page->user_id );
 $get_page_post = get_page_post($get_page->msu_user_page_id);
 $get_page_post_cmt = get_page_post_cmt($get_page->msu_user_page_id);
+$get_page_post_cmt1 = get_page_post_cmt1($get_page->msu_user_page_id);
+$get_like_page_status = get_like_page_status($get_page->msu_user_page_id);
+
 
 @endphp
 
@@ -14,7 +18,16 @@ $get_page_post_cmt = get_page_post_cmt($get_page->msu_user_page_id);
 	   </figure>
 	   <div class="add-btn">
 		  <span>1.3k followers</span>
-		  <a href="#" title="" data-ripple="">Add button</a>
+
+        @if($get_page->user_id != $user_id)
+            <a href="#"  id="like_page" @if($get_like_page_status == 1) style="display:none;" @endif @endphp    title="" data-ripple="">like Page</a>
+            <a href="#"  id="unlike_page" title=""  @if($get_like_page_status == null) style="display:none;" @endif @endphp  data-ripple="">liked <i class="fa fa-check" style="display:none;" aria-hidden="true"></i></a>
+            <input type="hidden" id="like_page_id" name="like_page_id" value="{{ $get_page->msu_user_page_id }}"/>
+            <input type="hidden" id="like_friend_id" name="like_friend_id" value="{{ $get_page->user_id }}"/>
+        @else
+        
+         
+        @endif
 	   </div>
 	   <form class="edit-phto">
 		  <i class="fa fa-camera-retro"></i>
@@ -80,7 +93,7 @@ $get_page_post_cmt = get_page_post_cmt($get_page->msu_user_page_id);
                               </li>
                               <li>
                                  <i class="ti-files text-secondary"></i>
-                                 <a href="../fav-page" class="text-secondary" title="">My pages</a>
+                                 <a href="../fav-page/@php echo get_page_id() @endphp" class="text-secondary" title="">My pages</a>
                               </li>
                               <li>
                                  <i class="ti-user text-secondary"></i>
@@ -245,6 +258,7 @@ $get_page_post_cmt = get_page_post_cmt($get_page->msu_user_page_id);
                                        </p>
                                     </div>
                                  </div>
+                                 
                                  {{-- <div class="post-meta">
                                     <img src="{{ asset('assets/images/resources/user-post6.jpg') }}" alt="">												
                                     <div class="we-video-info">
@@ -326,24 +340,32 @@ $get_page_post_cmt = get_page_post_cmt($get_page->msu_user_page_id);
                                           <div class="coment-head">
                                              <h5><a href="time-line.html" title="">@php echo  get_user_nane1($post_cmt->user_id) @endphp</a></h5>
                                              <span>{{ $post_cmt->created }}</span>
-                                             <a class="we-reply" href="#" onclick="return false" id="we-reply"  title="Reply"><i class="fa fa-reply"></i></a>
+                                             <a class="we-reply" href="#" onclick="return false" id="we-reply{{ $key }}"  title="Reply"><i class="fa fa-reply"></i></a>
+                                             
                                           </div>
-                                          <p>
-
-                                            @php echo $post_cmt->comment @endphp
+                                           <p>
+                                                @php echo $post_cmt->comment @endphp
                                           </p>
                                        </div>
+                                       @foreach($get_page_post_cmt1 as $inner_cmt)
+                                                
+                                         <p>  
+                                            @php echo $inner_cmt->comment @endphp
+                                        </p>
+ 
+
+                                        @endforeach
                                        <div id="new_cmt_box" style="display:none;">
 
-
+                                       
                                           <div class="post-comt-box">
                                            <form method="post" id="page_post_comments" enctype="multipart/form-data"   action="{{url("fav-page")}}">
                                                 @csrf
                                                 <div class="row m-4">
-                                                <div class="col-sm-10">
+                                                <div class="col-sm-10 p-0">
                                                 <textarea placeholder="Post your comment" id="page_post_reply_comment" name="page_post_reply_comment"></textarea>
                                           </div> <div class="col-sm-1">
-                                             <input type="hidden" name="post_id" id="post_id" value="{{ $post->id }}"/>
+                                             <input type="hidden" name="post_id" id="post_id" value="{{ $post->id }}"/>    
                                              <input type="hidden" name="user_id" id="user_id" value="{{ $post->user_id }}"/>
                                              <input type="hidden" name="status" id="status" value ="1"/>
                                              <button type="submit" class="btn btn-primary"><i class="far fa-paper-plane"></i></button>
@@ -363,7 +385,7 @@ $get_page_post_cmt = get_page_post_cmt($get_page->msu_user_page_id);
                                  @csrf
 
                                  <div class="row">
-                                    <div class="col-sm-10">
+                                    <div class="col-sm-10 p-0">
                                         <textarea placeholder="Post your comment" id="page_post_comment" name="page_post_cmt"></textarea>
                                     </div>
                                     <div class="col-sm-1">

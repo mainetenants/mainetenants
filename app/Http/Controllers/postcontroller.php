@@ -102,7 +102,7 @@ class PostController extends Controller
         ->where(['id' => $user_id->user_id])
         ->first();
         
-
+    
 
         $data_notification = array('user_id' =>$user_id->user_id,'friend_id'=>  $user->id,'message'=>$user_name->name.' Commented on Your 
         Post'.$request->comment,'post_id' => (int)$request->post_id,'is_seen'=>'1','type' => "Comment",);
@@ -127,6 +127,9 @@ class PostController extends Controller
         ->orderBy('created', 'DESC')
         ->get();
 
+        
+
+
         $users1 = DB::table('msu_community_activities')
         ->leftJoin('users', 'msu_community_activities.user_id', '=', 'users.id')
          ->select('users.name', 'users.created_at', 'msu_community_activities.*','users.id as user_id', 'msu_community_activities.id as post_id')
@@ -134,11 +137,13 @@ class PostController extends Controller
         ->orderBy('created', 'DESC')
         ->get();
 
+        
         $comments = DB::table('msu_comments')
-        ->where('user_id', $id)
-        ->orderBy('created', 'DESC')
+        ->leftJoin('msu_community_activities','msu_community_activities.id','=','msu_comments.post_id')
+        ->select('msu_comments.*','msu_community_activities.*')
+        ->where(['msu_comments.user_id'=>$id])
+        ->orderBy('msu_comments.created', 'DESC')
         ->get();
-
         $allusers = DB::table('users')
         ->select('*')
         ->where('id' ,"!=", $id )
