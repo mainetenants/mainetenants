@@ -1,51 +1,57 @@
 form#logout_id {
-        font-size: 14px;
-        text-transform: capitalize;
-        display: inline-block;
-        position: relative;
-        font-weight: 400;
-        color: #797979;
-        vertical-align: top;
-    }
-    span.reaction {
-        font-size: 30px;
-        padding: 2px 5px;
-        display: none;
-        border-radius: 20px;
-        background-color: #eaeaea;
-    }
-    .reaction > i {
-        cursor: pointer;
-        display: inline-block;
-        max-width: 7%;
-        margin-bottom: 8px;
-    }
-    .custom-img-height:hover {
-        -ms-transform: scale(1.3); /* IE 9 */
-        -webkit-transform: scale(1.3); /* Safari 3-8 */
-        transform: scale(1.3);
-        margin-top: -15px;
-      }
+    font-size: 14px;
+    text-transform: capitalize;
+    display: inline-block;
+    position: relative;
+    font-weight: 400;
+    color: #797979;
+    vertical-align: top;
+}
+
+span.reaction {
+    font-size: 30px;
+    padding: 2px 5px;
+    display: none;
+    border-radius: 20px;
+    background-color: #eaeaea;
+}
+
+.reaction>i {
+    cursor: pointer;
+    display: inline-block;
+    max-width: 7%;
+    margin-bottom: 8px;
+}
+
+.custom-img-height:hover {
+    -ms-transform: scale(1.3);
+    /* IE 9 */
+    -webkit-transform: scale(1.3);
+    /* Safari 3-8 */
+    transform: scale(1.3);
+    margin-top: -15px;
+}
 
 
-      * {
+* {
     margin: 0;
     padding: 0
 }
-  
+
 html {
     height: 100%
 }
-  
-h2{
+
+h2 {
     color: #088dcd;
 }
+
 #form {
     text-align: center;
     position: relative;
     margin-top: 20px
 }
-  
+
 #form fieldset {
     background: white;
     border: 0 none;
@@ -56,16 +62,17 @@ h2{
     padding-bottom: 20px;
     position: relative
 }
-  
+
 .finish {
     text-align: center
 }
-  
+
 #form fieldset:not(:first-of-type) {
     display: none
 }
-  
-#form .previous-step, .next-step {
+
+#form .previous-step,
+.next-step {
     width: 100px;
     font-weight: bold;
     color: white;
@@ -76,30 +83,33 @@ h2{
     margin: 10px 5px 10px 0px;
     float: right
 }
-  
-.form, .previous-step {
+
+.form,
+.previous-step {
     background: #616161;
 }
-  
-.form, .next-step {
+
+.form,
+.next-step {
     background: #088dcd;
 }
-  
+
 #form .previous-step:hover,
 #form .previous-step:focus {
     background-color: #000000
 }
-  
+
 #form .next-step:hover,
 #form .next-step:focus {
     background-color: #088dcd
 }
-  
+
 .text {
     color: #088dcd;
     font-weight: normal
 }
-.custom-heading-color{
+
+.custom-heading-color {
 
 
     color: #088dcd;
@@ -108,19 +118,18 @@ h2{
 
 }
 
-  
+
 #progressbar {
     margin-bottom: 30px;
-    position: relative;
-    left:12%;
+    margin: inherit;
     overflow: hidden;
     color: lightgrey
 }
-  
+
 #progressbar .active {
     color: #088dcd
 }
-  
+
 #progressbar li {
     list-style-type: none;
     font-size: 15px;
@@ -129,23 +138,23 @@ h2{
     position: relative;
     font-weight: 400
 }
-  
+
 #progressbar #step1:before {
     content: "1"
 }
-  
+
 #progressbar #step2:before {
     content: "2"
 }
-  
+
 #progressbar #step3:before {
     content: "3"
 }
-  
+
 #progressbar #step4:before {
     content: "4"
 }
-  
+
 #progressbar li:before {
     width: 50px;
     height: 50px;
@@ -158,7 +167,7 @@ h2{
     margin: 0 auto 10px auto;
     padding: 2px
 }
-  
+
 #progressbar li:after {
     content: '';
     width: 100%;
@@ -169,95 +178,131 @@ h2{
     top: 25px;
     z-index: -1
 }
-  
+
 #progressbar li.active:before,
 #progressbar li.active:after {
     background: #088dcd
 }
-  
+
 .progress {
     height: 20px
 }
-  
+
 .progress-bar {
     background-color: #088dcd
 }
 
-input.page_info {
-    height: 90px;
+input.page_info, input.filterinput{
+    height: 50px;
     padding: 20px;
     border-radius: 11px;
     border: 1px solid #bfbfbf;
 }
+
 label.custom-label {
     font-weight: 900;
 }
 
-input.filterinput {
-    height: 90px;
+/* input.filterinput {
+    height: 50px;
     padding: 20px;
     border-radius: 11px;
     border: 1px solid #bfbfbf !important;
-}
-.full-width {
-  width: 100%;
-  height: 100vh;
-  display: flex;
-} 
-    .tox-statusbar {
-        display: none !important;
-    }
+} */
 
-    .tox .tox-tbtn svg {
-        display: block;
-        fill: #ffffff !important;
-    }
-     li.nav-link .img-reaction{
-         max-width: 20px;
-     }
-     .nav-tabs li.nav-link {
-        padding: 6px;
-        font-size: 12px;
-    }
-    .rec3 {
-        position: relative;
-        left: -11px;
-        z-index: -999;
-    }
-    .rec1 {
-        position: relative;
-        left: 11px;
-        z-index: 10;
-    }
-    .emoji-reaction{
-        max-width: 18px;
-    }
-    li.emooo {
-        display: inline-flex !important;
-    }
-    ins.mrgn {
-        position: relative;
-        left: 58px !important;
-    }
-    .rec {
-        cursor: pointer;
-    }
-    .add_rc_frnd{
-        position: absolute;
-        bottom: 10px;
-        right: 30px;
-    }
-    img.rc_profile_pic {
-        border-radius: 50%;
-        width: 50px;
-        height: 50px;
-    }
-    .rc_name{
-        margin: 0 20px;
-    }
-    .user_card {
-        padding: 10px;
-    }
-    li.nav-link a ins {
-        text-decoration: none;
-    }
+.full-width {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+}
+
+.tox-statusbar {
+    display: none !important;
+}
+
+.tox .tox-tbtn svg {
+    display: block;
+    fill: #ffffff !important;
+}
+
+li.nav-link .img-reaction {
+    max-width: 20px;
+}
+
+.nav-tabs li.nav-link {
+    padding: 6px;
+    font-size: 12px;
+}
+
+.rec3 {
+    position: relative;
+    left: -11px;
+    z-index: -999;
+}
+
+.rec1 {
+    position: relative;
+    left: 11px;
+    z-index: 10;
+}
+
+.emoji-reaction {
+    max-width: 18px;
+}
+
+li.emooo {
+    display: inline-flex !important;
+}
+
+ins.mrgn {
+    position: relative;
+    left: 58px !important;
+}
+
+.rec {
+    cursor: pointer;
+}
+
+.add_rc_frnd {
+    position: absolute;
+    bottom: 10px;
+    right: 30px;
+}
+
+img.rc_profile_pic {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+}
+
+.rc_name {
+    margin: 0 20px;
+}
+
+.user_card {
+    padding: 10px;
+}
+
+li.nav-link a ins {
+    text-decoration: none;
+}
+div#searchEvent {
+    padding: 0 25px 20px;
+}
+li ul.naves {
+    position: relative;
+    left: 30px;
+    top: 10px;
+}
+span.host img {
+    border-radius: 100%;
+}
+span.owner22 {
+    display: inline-grid;
+    position: relative;
+    top: -9px;
+    left: 7px;
+}
+.card {
+    height: 100%;
+}

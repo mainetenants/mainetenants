@@ -17,10 +17,10 @@ class MsuUserPage extends Migration
         Schema::create('msu_user_page', function (Blueprint $table) {
             $table->increments('msu_user_page_id');
             $table->integer('user_id');
-            $table->string('page_info');
+            $table->string('page_info')->nullable();
             $table->string('page_category');
             $table->string('page_descripition');
-            $table->string('profile_image')->nullable();
+            $table->string('profile_image');
             $table->string('cover_image')->nullable();
             $table->integer('is_active');
             $table->timestamp('created')->useCurrent();
