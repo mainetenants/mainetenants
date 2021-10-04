@@ -152,7 +152,7 @@
                                              <img src="/assets/images/s_emoji/sad.png"  class="emoji-reaction" />
                                           </span>
                                     </div>
-                                       <ins class="mrgn">52</ins>
+                                       <ins class="mrgn">{{ $user->likes }}</ins>
                                     </span>
                                  </li>
                                  <li>

@@ -60,6 +60,9 @@ use App\Http\Controllers\PageController;
     Route::post('fav-page','App\Http\Controllers\PageController@save_page_post_cmt');
     Route::post('like','App\Http\Controllers\PostController@likeDislikePost');
     Route::post('get-reaction','App\Http\Controllers\PostController@getReaction');
+
+    Route::post('create_event','App\Http\Controllers\PageController@create_event');
+
 });
 
 
@@ -77,6 +80,13 @@ Route::get('/404-2', function () {
 
 Route::get('/create-page', function () {
     return view('create-page');
+});
+Route::get('/events', function () {
+    return view('events');
+});
+
+Route::get('/create-event', function () {
+    return view('create-event');
 });
 
 
