@@ -27,15 +27,16 @@ class InviteFriendController extends Controller
                 ->where(['id' => Auth::id() ])
                 ->first();
 
-               $data_notification = array('user_id' => $user_id,'friend_id'=> $data['friend_id'],'message'=> $user_name->name.' is send you a page invitation.','post_id' => $insert->post_id,'is_seen'=>'1','type' => "page     Request",);
+               $data_notification = array('user_id' => $user_id,'friend_id'=> $data['friend_id'],'message'=> $user_name->name.' is send you a page invitation.','post_id'=>0,'page_id' =>  $insert->post_id,'is_seen'=>'1','type' => "pageRequest",);
             
                $notification =   DB::table('msu_user_notification')
                ->insert($data_notification);
    
                
               
-               return response()->json(array('invitation sent'=> true,'status'=>$insert->status), 200);
-    }
+  
+ 
+            }
     public function cancel_invitation(Request $request){
                $data = $request->all();
                $user_id=Auth::id();

@@ -56,7 +56,6 @@ class AboutController extends Controller
     {
         $data = $request->all();
         $id = Auth::id();
-        
         $imagename ="";
         if(isset($data['profile_photo'])){
             $request->validate([

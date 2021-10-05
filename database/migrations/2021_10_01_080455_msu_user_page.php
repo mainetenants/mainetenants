@@ -20,7 +20,7 @@ class MsuUserPage extends Migration
             $table->string('page_info')->nullable();
             $table->string('page_category');
             $table->string('page_descripition');
-            $table->string('profile_image');
+            $table->string('profile_image')->nullable();
             $table->string('cover_image')->nullable();
             $table->integer('is_active');
             $table->timestamp('created')->useCurrent();

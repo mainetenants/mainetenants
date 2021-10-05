@@ -1,8 +1,8 @@
 @include('includes/header')
-
 @php
-     $get_all_page = get_all_page(); 
-     $get_page_invitation_like = get_page_invitation_like();
+$get_all_page = get_all_page();
+$get_page_invitation_like = get_page_invitation_like();
+$get_page_notifications = get_page_notifications();
 @endphp
 <section>
    <div class="gap gray-bg">
@@ -10,156 +10,229 @@
          <div class="row">
             <div class="col-lg-12">
                <div class="row merged20" id="page-contents">
-                <div class="col-lg-3">
-								
-                    <aside class="sidebar static">
+                  <div class="col-lg-3">
+                     <aside class="sidebar static">
                         <div class="widget">
-                        <h4 class="widget-title">Pages</h4>
-                        <div class="container mb-4">
+                           <h4 class="widget-title">Pages</h4>
+                           <div class="container mb-4">
                               <div class="col-sm-12">
-                                  <ul>
-                                      @if($get_all_page != "")
-                                      @foreach($get_all_page as $all_page)
-                                       <li><a href="/fav-page/{{ $all_page->msu_user_page_id  }}" ><h5 class="text-dark">{{ $all_page->page_info }}</h6></a></li>
-                                      @endforeach
-                                       @else
-                                        <li><a href="#" ><h5 class="text-dark">No pages.</h6></a></li>
-                                      @endif
-                                  </ul>
+                                 <ul>
+                                    @if($get_all_page != "")
+                                    @foreach($get_all_page as $all_page)
+                                    <li>
+                                       <a href="/fav-page/{{ $all_page->msu_user_page_id  }}" >
+                                        @if($all_page->profile_image != "")
+                                        <img src="{{  url('upload/images/profile_photo/'.$all_page->profile_image) }}" class="rc_profile_pic mr-3" style="max-width: 60px" alt="">
+                                         @else
+                                         <img src="../assets/images/user_image.png" class="rc_profile_pic mr-3" style="max-width: 60px" alt="">
+                                        @endif 
+                                        <span class="text-dark ">
+                                          {{ $all_page->page_info }}</span>
+                                       </a>
+                                    </li>
+                                    @endforeach
+                                    @else
+                                    <li>
+                                       <a href="#" >
+                                          <h5 class="text-dark">
+                                          No pages.</h6>
+                                       </a>
+                                    </li>
+                                    @endif
+                                 </ul>
                               </div>
-                           
+                           </div>
+                           <ul class="naves">
+                              <li>
+                                 <a  title=""  class="btn btn-sm btn-info text-white col-sm-12  " href="/create-page">Create New Page</a>
+                              </li>
+                              <li>
+                                 <i class="ti-home"></i>
+                                 <a href="" onclick="return false" id="homepage_nav">Home</a>
+                              </li>
+                              <li>
+                                <i class="fas fa-user-plus"></i>
+                                <a href="" onclick="return false" id="notifications_nav">Invitation</a>
+                             </li>
+                              <li>
+                                 <i class="fa fa-thumbs-up"></i>
+                                 <a title="" href="#" onclick="return false" id="list_user_page_nav">liked pages</a>
+                              </li>
+                
+                           </ul>
                         </div>
-                        <ul class="naves">
-                            
-                            <li>
-                                <a  title="" class="btn btn-sm btn-info text-white" href="/create-page">Create New Pages</a>
-                            </li>
-                            <li>
-                                <i class="ti-home"></i>
-                                <a title="/homepage" href="">Home</a>
-                            </li>
-                            {{-- <li>
-                                <i class="ti-user"></i>
-                                <a title="" href="">Your Pages</a>
-                                <ul class="naves">
-                                    <li>
-                                        <i class="fa fa-check-circle-o" aria-hidden="true"></i>
-                                        <a title="" href="">Going</a>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-envelope-o" aria-hidden="true"></i>
-                                        <a title="" href="">Invitation</a>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <a title="" href="">Interested</a>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-h-square" aria-hidden="true"></i>
-                                        <a title="" href="">Hosting</a>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-home" aria-hidden="true"></i>
-                                        <a title="" href="">Past Pages</a>
-                                    </li>
-                                </ul>
-                            </li> --}}
-                            <li>
-                                <i class="fa fa-thumbs-up"></i>
-                                <a title="" href="/like_user_page">liks pages</a>
-                            </li>
-                            <li>
-                                <i class="fa fa-bell-o"></i>
-                                <a title="" href="">Notification</a>
-                            </li>
-                            
-                        </ul>
-                    </div>
-                    </aside>
-                </div>
-               	<div class="col-lg-9">
-                    <div class="feature-photo dashboard"  style="display: none;">
+                     </aside>
+                  </div>
+                  <div class="col-lg-9">
+                     <div class="feature-photo dashboard"  id="Dashboard">
                         <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="timeline-info">
-                                        <ul>
-                                            <li><span><h4><i class="fa fa-search"></i>&nbsp;&nbsp;Discover Pages</h4></span></li>
-                                            <li class="float-right">
-                                                <a class="" href="time-line.html" title="" data-ripple="">Top</a>
-                                                <a class="" href="timeline-photos.html" title="" data-ripple="">This weak</a>
-                                                <a class="" href="timeline-videos.html" title="" data-ripple="">Online Pages</a>
-                                            </li>
-                                        </ul>
+                           <div class="row">
+                              <div class="col-lg-12">
+                                 {{-- 
+                                 <div class="timeline-info">
+                                    <ul>
+                                       <li>
+                                          <span>
+                                             <h4><i class="fa fa-search"></i>&nbsp;&nbsp;Discover Pages</h4>
+                                          </span>
+                                       </li>
+                                       <li class="float-right">
+                                          <a class="" href="time-line.html" title="" data-ripple="">Top</a>
+                                          <a class="" href="timeline-photos.html" title="" data-ripple="">This weak</a>
+                                          <a class="" href="timeline-videos.html" title="" data-ripple="">Online Pages</a>
+                                       </li>
+                                    </ul>
+                                 </div>
+                                 --}}
+                              </div>
+                              <div class="col-lg-12 mt-1">
+                                <div class=" card-header p-3 mb-0 ">
                                         
-                                    </div>
+                                    <h5 class="card-title mb-0"><i class="fa fa-thumbs-up mr-3"></i><span class="text-dark">Pages you manage</span></h5>
                                 </div>
-                                <div class="col-lg-6 mt-5">
-                                    <div class="card" style="width: 18rem;">
-                                        <img class="card-img-top" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22286%22%20height%3D%22180%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20286%20180%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_17c3bc71fca%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A14pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_17c3bc71fca%22%3E%3Crect%20width%3D%22286%22%20height%3D%22180%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22107.203125%22%20y%3D%2296.3375%22%3E286x180%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="Card image cap">
-                                        <div class="card-body">
-                                          <h5 class="card-title">Card title</h5>
-                                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                          <a href="#" class="btn btn-sm btn-info float-right"><i class="ti-share"></i></a>
-                                          <a href="#" class="btn btn-sm btn-info mx-2 float-right">Interested</a>
-                                        </div>
-                                      </div>
-                                </div>
-                                <div class="col-lg-6 mt-5">
-                                    <div class="card" style="width: 18rem;">
-                                        <img class="card-img-top" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22286%22%20height%3D%22180%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20286%20180%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_17c3bc71fca%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A14pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_17c3bc71fca%22%3E%3Crect%20width%3D%22286%22%20height%3D%22180%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22107.203125%22%20y%3D%2296.3375%22%3E286x180%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="Card image cap">
-                                        <div class="card-body">
-                                          <h5 class="card-title">Card title</h5>
-                                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                          <a href="#" class="btn btn-sm btn-info float-right"><i class="ti-share"></i></a>
-                                          <a href="#" class="btn btn-sm btn-info mx-2 float-right">Interested</a>
-                                        </div>
-                                      </div>
-                                </div>
-                               
-                            </div>
-                        </div>
-                    </div>
-   
-<!-- Notifications  --> 
-                    <div class="feature-photo notifications" id="notifications">
-                        <div class="container-fluid">
-                            <div class="row">
-                                
-                                <div class="col-lg-12 mt-5">
-                                    <div class="card" style="width: 100%;">
-                                        <div class="card-body">
-                                          <h5 class="card-title">invitations  </h5>
-
-                                          @foreach($get_page_invitation_like as $list_page)
-
-                                          <div class="user_card">
-                                              <div class="row">
-                                                  <div class="col-sm-6 text-left">
-
-                                                      <img src="assets/images/resources/user-avatar2.jpg" class="rc_profile_pic" style="max-width: 60px" alt="">
-                                                      <span class="rc_name">{{ $like_page->page_info }}</span>
-                                                    </div>
-                                                    <div class="col-sm-6 text-right">
-                                                        <button type="button" name="like_page" id="like_page" class="btn btn-primary col-sm-5">Liked</button>
-                                                    </div>
-                                                </div>
-                                         </div>
-
-                                           @endforeach
-
+                                 <div class="card mt-3" style="width: 100%;">
+                                    <div class="card-body">
+                                       @if(!empty($get_all_page))
+                                       @foreach($get_all_page as $key => $like_page)
+                                       <div class="user_card">
+                                          <div class="row">
+                                             <div class="col-sm-6 text-left">
+                                                @if($like_page->profile_image != "")
+                                                <img src="{{  url('upload/images/profile_photo/'.$like_page->profile_image) }}" class="rc_profile_pic mr-3" style="max-width: 60px" alt="">
                                          
-                                        </div>
-                                      </div>
-                                </div>
-                            </div>
+                                                
+                                                @else
+                                                    <img src="../assets/images/user_image.png" class="rc_profile_pic" style="max-width: 60px" alt="">
+                                                @endif
+
+
+                                                <span class="rc_name">{{ $like_page->page_info }}</span>
+                                             </div>
+                                             <div class="col-sm-6 text-right">
+                                                <button type="button" name="page_notifications" id="page_notifications_nav" onclick="page_notifications({{ $like_page->msu_user_page_id }},{{ $key }})" class="btn btn-primary col-sm-5"><i class="fas fa-globe mr-2"></i>Notifications</button>
+                                                <button type="button" name="message" id="message" class="btn btn-primary col-sm-5"><i class="fas fa-envelope mr-2"></i>Message</button>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       @endforeach
+                                       @else 
+                                       <h4 class="text-center">No page found </h4>
+                                       @endif
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
                         </div>
-                    </div>
-                </div>
-                 
+                     </div>
+                     <!-- list page -->
+                     <div class="feature-photo notifications" id="list_user_page" style="display:none;">
+                        <div class="container-fluid">
+                           <div class="row">
+                              <div class="col-lg-12">
+                                <div class=" card-header p-3 mb-0 ">
+                                        
+                                    <h5 class="card-title mb-0"><i class="fa fa-thumbs-up mr-3"></i><span class="text-dark">Liked Page</span></h5>
+                                </div>
+                                 <div class="card mt-3" style="width: 100%;">
+                                    <div class="card-body">
+                                        @if(!empty($get_user_like_page))
+                                       @foreach($get_user_like_page as $like_page)
+                                       <div class="user_card">
+                                          <div class="row">
+                                             <div class="col-sm-6 text-left">
+                                                @if($like_page->profile_photo != "")
+                                                <img src="../assets/images/{{ $like_page->profile_photo  }}" class="rc_profile_pic" style="max-width: 60px" alt="">
+                                             
+                                                @else
+                                                    <img src="../assets/images/user_image.png" class="rc_profile_pic" style="max-width: 60px" alt="">
+                                                @endif
+                                                 <span class="rc_name">{{ $like_page->page_info }}</span>
+                                             </div>
+                                             <div class="col-sm-6 text-right">
+                                                <button type="button" name="like_page" id="like_page" class="btn btn-primary col-sm-5">Liked</button>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       @endforeach
+                                       @else 
+                                       <h4 class="text-center">No page like</h4>
+                                       @endif
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                        <!-- Notifications  --> 
+                        <div class="feature-photo notifications" id="notifications" style="display: none;"  >
+                           <div class="container-fluid">
+                              <div class="row mt-1">
+                                 <div class="col-lg-12 ">
+                                    <div class=" card-header p-3 mb-0 ">
+                                        
+                                        <h5 class="card-title mb-0"><i class="fa fa-thumbs-up mr-3"></i><span class="text-dark">Invitations</span></h5>
+                                    </div>
+                                    <div class="card mt-3 " style="width: 100%;">
+                                       <div class="card-body">
+                                        
+                                          @foreach($get_page_invitation_like as $list_page)
+                                          
+                                          <div class="user_card">
+                                             <div class="row">
+                                                <div class="col-sm-6 text-left">
+                                                    @if($list_page->profile_photo != "")
+                                                    <img src="../assets/images/{{ $list_page->profile_photo }}" class="rc_profile_pic" style="max-width: 60px" alt="">
+                                                 
+                                                    @else
+                                                        <img src="../assets/images/user_image.png" class="rc_profile_pic" style="max-width: 60px" alt="">
+                                                    @endif
+                                                    <span class="rc_name">{{ $list_page->name }}</span>
+                                                </div>
+                                                @if( $list_page->invitation_status == '0' )
+                                                <div class="col-sm-6 text-right">
+                                                   <button type="button" name="like_page" id="like_page" class="btn btn-primary col-sm-5">Pending</button>
+                                                </div>
+                                                @elseif($list_page->invitation_status == '1')
+                                                <div class="col-sm-6 text-right">
+                                                   <button type="button" name="like_page" id="like_page" class="btn btn-primary col-sm-5">Accept</button>
+                                                </div>
+                                                @endif
+                                             </div>
+                                          </div>
+                                          @endforeach
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <!-- Page  Notifications -->
+                        <div class=" notifications" id="page_notifications"  style="display: none;">
+                           <div class="container-fluid">
+                              <div class="row">
+                              
+                                 <div class="col-lg-12 mt-1" > 
+                                    <div class=" card-header p-3 mb-0 ">
+                                        
+                                        <h5 class="card-title mb-0"><i class="fa fa-thumbs-up mr-3"></i><span class="text-dark">Notifications</span></h5>
+                                    </div>
+                                    <div class="card mt-3" style="width: 100%;">
+                                        
+                                        <div class="card-body">
+                                             <div class="user_card">
+                                              <div class="row" id="page_notfiction_response">
+
+                                               </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
                </div>
-            </div>
-	
                <!-- centerl meta -->
             </div>
          </div>
@@ -243,7 +316,6 @@
    </form>
 </div>
 <!-- side panel -->
-
 @include('includes/footer')
 </body>
 </html>

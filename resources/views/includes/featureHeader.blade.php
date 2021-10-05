@@ -75,7 +75,7 @@
                 <div class="col-lg-2 col-sm-3">
                     <div class="user-avatar">
                         <figure>
-                            @if (isset($profile_photo))
+                            @if ($profile_photo != "")
                             <img src="{{ asset('upload/images/profile_photo/'.$profile_photo) }}">
                             @else
                             <img src="{{ asset('assets/images/resources/user-avatar.jpg') }}" alt="">

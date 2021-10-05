@@ -169,10 +169,9 @@ function get_page_post($id){
    
      $get_page_post = DB::table('msu_page_post')
      ->select('*')
-     ->where(['id' => $id ])
+     ->where(['page_id' => $id ])
+     ->orderBy('created','DESC')
      ->get();
-
-
      return $get_page_post;
 
 
@@ -193,7 +192,7 @@ function get_page_post_cmt($id){
    
       $get_page_post_cmt = DB::table('page_post_comments')
       ->select('*')
-      ->where(['page_id'=>$id ,'user_id'=>Auth::id(),'status' =>0])
+      ->where(['post_id'=>$id ,'status' =>0])
       ->get();
 
       return $get_page_post_cmt;
@@ -207,7 +206,7 @@ function get_page_post_cmt1($id){
 
     $get_page_post_cmt = DB::table('page_post_comments')
     ->select('*')
-    ->where(['page_id'=>$id ,'status' =>1])
+    ->where(['post_id'=>$id ,'status' =>1])
     ->get();
 
     return $get_page_post_cmt;
@@ -340,13 +339,24 @@ function get_page_invitation_like(){
 
         $user_id = Auth::id();
         $get_page_invitation =DB::table('msu_invite_friends')
-        ->select('*')
+        ->leftJoin('users','msu_invite_friends.friend_id','=','users.id')
+        ->select('users.*','msu_invite_friends.*')
         ->where(['user_id'=>$user_id])
         ->get();
 
-        dd($get_page_invitation);
 
-        return "";
+        return $get_page_invitation;
 
+
+}
+
+function get_page_notifications(){
+
+     $get_page_notifications = DB::table('msu_user_notification')
+     ->where(['type'=>'page Request'])
+     ->get();
+
+
+     return $get_page_notifications;
 
 }

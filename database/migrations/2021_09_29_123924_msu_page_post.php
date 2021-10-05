@@ -14,7 +14,7 @@ class MsuPagePost extends Migration
     public function up()
     {
        Schema::create('msu_page_post', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->string('title')->nullable();
             $table->text('content')->nullable();
             $table->text('images')->nullable();
@@ -23,6 +23,7 @@ class MsuPagePost extends Migration
             $table->integer('likes')->nullable();
             $table->integer('dislikes')->nullable();
             $table->integer('user_id');
+            $table->integer('page_id');
             $table->timestamp('created')->useCurrent();
             $table->integer('status');
             
@@ -37,7 +38,7 @@ class MsuPagePost extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('msu_community_activities');
+        Schema::dropIfExists('msu_page_post');
        
     }
 }
