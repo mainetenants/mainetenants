@@ -66,7 +66,7 @@ use App\Http\Controllers\PageController;
     Route::post('/like_page/','App\Http\Controllers\InviteFriendController@like_page');
     Route::post('/unlike_page/','App\Http\Controllers\InviteFriendController@unlike_page');
 
-    Route::post('create_event','App\Http\Controllers\PageController@create_event');
+    // Route::post('create_event','App\Http\Controllers\PageController@create_event');
 
 });
 
