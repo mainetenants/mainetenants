@@ -20,7 +20,7 @@
                         <ul class="naves">
                             
                             <li>
-                                <a title="" class="btn btn-sm btn-info text-white" href="">Create New Events</a>
+                                <a title="" class="btn btn-sm btn-info text-white" href="{{ url('/create-event') }}">Create New Event</a>
                             </li>
                             <li>
                                 <i class="ti-home"></i>

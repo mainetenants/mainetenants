@@ -1,4 +1,4 @@
- <!-- Modal -->
+git  <!-- Modal -->
 <div class="modal fade" id="deletepost" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -21,6 +21,7 @@
   </div>
  
  <script src="{{ asset('assets/js/main.min.js') }}"></script>
+<script src="{{ asset('assets/js/main.min.js') }}"></script>
 <script src="{{ asset('assets/js/script.js') }}"></script>
 <script src="{{ asset('assets/js/map-init.js') }}"></script>
 
@@ -454,8 +455,6 @@ $('.we-reply').click(function (){
                     $('#send_invitation').show();
 
                }
-              
-
             },
        });
 
@@ -472,11 +471,9 @@ $('.we-reply').click(function (){
                     friend_id: friend_id
                 }, 
             success:function(data){
-
                 if(data['status'] == 1){
-
-                      $('#like_page').hide();
-                      $('#unlike_page').show();
+                    $('#like_page').hide();
+                    $('#unlike_page').show();
                 }
 
             },
@@ -637,4 +634,10 @@ function delete_comment(cmt_id){
       toolbar_location: "bottom",
       menubar: false
     });
+    $('input[type=radio]').change(function() {
+        $('.card').removeClass('card_select');
+        $(this).parent().parent().parent().addClass("card_select");
+        alert($(this).attr('id'));
+    });
 </script>
+{{-- border: 3px solid #088dcd !important; --}}

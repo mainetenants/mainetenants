@@ -75,6 +75,9 @@ use App\Http\Controllers\PageController;
     Route::post('/delete-post','App\Http\Controllers\PageController@deletePost');
     Route::post('/delete-comment','App\Http\Controllers\PageController@deletecomment');
     
+
+    // Route::post('create_event','App\Http\Controllers\PageController@create_event');
+
 });
 
 
