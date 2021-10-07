@@ -74,10 +74,14 @@ use App\Http\Controllers\PageController;
     Route::post('/delete-post','App\Http\Controllers\PageController@deletePost');
     Route::post('/delete-post','App\Http\Controllers\PageController@deletePost');
     Route::post('/delete-comment','App\Http\Controllers\PageController@deletecomment');
-    
+    Route::post('/like_page_post_cmt','App\Http\Controllers\PageController@like_page_post_cmt');
+    Route::post('/dislike_page_post_cmt','App\Http\Controllers\PageController@dislike_page_post_cmt');
+    Route::post('/save-reply-comment','App\Http\Controllers\PageController@add_replay_comments');
+    Route::post('/like_page_post_inner_cmt','App\Http\Controllers\PageController@like_page_post_inner_cmt');
+    Route::post('/dislike_page_post_inner_cmt','App\Http\Controllers\PageController@dislike_page_inner_post_cmt');
+   
 
     // Route::post('create_event','App\Http\Controllers\PageController@create_event');
-
 });
 
 

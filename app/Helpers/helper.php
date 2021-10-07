@@ -200,13 +200,13 @@ function get_page_post_cmt($id){
 }
 
       
-function get_page_post_cmt1($id){
+function get_page_post_cmt1($id,$cmt_id){
    
 
 
-    $get_page_post_cmt = DB::table('page_post_comments')
+    $get_page_post_cmt = DB::table('msu_page_post_reply_comment')
     ->select('*')
-    ->where(['post_id'=>$id ,'status' =>1])
+    ->where(['post_id'=>$id,'comment_id'=>$cmt_id ,'status' =>1])
     ->get();
 
     return $get_page_post_cmt;
@@ -360,3 +360,33 @@ function get_page_notifications(){
      return $get_page_notifications;
 
 }
+function get_post_user_id($id){
+      
+    $get_post_id = DB::table('msu_page_post')
+    ->select('user_id')
+    ->where(['id'=>$id])
+    ->first();
+     return $get_post_id;
+}
+function  get_post_cmt_like($id,$cmt_id){
+
+     $get_page_like_cmt = DB::table('msu_page_post_like_comment')
+     ->select('is_like')
+     ->where(['post_id'=>$id,'comment_id'=>$cmt_id])
+     ->first();
+      return $get_page_like_cmt;
+
+
+}
+
+function  get_post_inner_cmt_like($id,$cmt_id){
+
+    $get_post_inner_cmt_like = DB::table('msu_page_post_inner_like_comment')
+    ->select('is_like')
+    ->where(['post_id'=>$id,'comment_id'=>$cmt_id])
+    ->first();
+     return $get_post_inner_cmt_like;
+
+
+}
+

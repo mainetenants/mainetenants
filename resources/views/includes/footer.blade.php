@@ -1,4 +1,4 @@
-git  <!-- Modal -->
+<!-- Modal -->
 <div class="modal fade" id="deletepost" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -166,6 +166,8 @@ git  <!-- Modal -->
     function myPageFuntction(){
         var post_id = $('#edit-post').attr('value');
 
+
+
         $.ajaxSetup({
           headers: {
               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -183,6 +185,8 @@ git  <!-- Modal -->
                  console.log(data);
                  if(data['status']==1){
                     var content = data['get_page_post'];
+                    $('.popover-body').hide ();
+                    $('.arrow').hide();
                     $('#editpost').modal('toggle')
                     $('#post_contet').append('<textarea class="form-control" style="border: 1px solid #e5e5e5;"Placeholder="Whats on your mind?" name="content" id="content" rows="3">'+ content.content +'</textarea><input type="hidden" name="post_id" value="'+ content.id +'">')
                     if(content.images != ""){
@@ -211,11 +215,17 @@ git  <!-- Modal -->
 
     $('#edit-post-submit').click(function(){
         $("#edit_form").submit();
-    });
+        $('.popover-body').hide ();
+        $('.arrow').hide();
 
-    $('#editpost').on('show.bs.modal', function() {
-        $('.ti-more-alt').toggle();
     });
+    $('.ti-more-alt').click(function (){
+        $('.popover-body').show();
+        $('.arrow').show();
+    });
+    // $('#editpost').on('show.bs.modal', function() {
+    //     $('.ti-more-alt').toggle();
+    // });
 
 
 </script>
@@ -253,17 +263,6 @@ git  <!-- Modal -->
                     data : formdata
                 },
      });
-});
-
-
-$('.we-reply').click(function (){
-
- 
-    alert('efdkld');
-      $("#new_cmt_box0").toggle();
-     
-
-
 });
 
 
@@ -308,7 +307,7 @@ $('.we-reply').click(function (){
         $('.nav-tabs .nav-link').removeClass('active');
         $(this).parent().addClass('active');
     });
-    $.ajaxSetup({
+    $.ajaxSetup({    
           headers: {
               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
           }
@@ -581,15 +580,20 @@ function readURL(input) {
 
             $('#display_img').append('<img src="'+e.target.result+'" name="edit_image23" id="edit_image23" class="img-fluid col-sm-12 " />');
         }
-
         reader.readAsDataURL(input.files[0]);
     }
 }
 function openMoodal(id){
+       $('.popover-body').hide();
+       $('.arrow').hide();
        $('#deletepost').modal('toggle');
        $('#modal_post_id').val(id);
-       $('.postoverlay').show();
 }
+$('.ti-more-alt').click(function (){
+      
+      $('.popover-body').show();
+
+});
 $('#delete_page_post').click(function (){
   var post_id = $('#modal_post_id').val();
   $.ajax({
@@ -624,6 +628,101 @@ function delete_comment(cmt_id){
      });
 
 }
+function like_page_post_cmt(cmt_id,post_id){
+
+    $.ajax({
+    type:'post',
+    url:"{{ url('/like_page_post_cmt') }}",
+    data :{
+       cmt_id:cmt_id,
+       post_id:post_id
+    },
+    success:function(data){
+        if(data['status_res'] == 1){
+            location.reload();
+        }
+    }
+    });
+
+
+}
+
+function dislike_page_post_cmt(cmt_id,post_id){
+
+    $.ajax({
+    type:'post',
+    url:"{{ url('/dislike_page_post_cmt') }}",
+    data :{
+       cmt_id:cmt_id,
+       post_id:post_id
+    },
+    success:function(data){
+        if(data['status_res'] == 1){
+            location.reload();
+        }
+    }
+    });
+
+
+}
+// var numItems = $('.we-reply').length;
+// var i;
+// for(i=0;i<numItems;i++){
+// $('#we-reply'+i).click(function(){
+
+//     alert('hi');
+//     $("#new_cmt_box:nth-child("+i+")" ).show();
+// });
+$('.we-reply').click(function(){
+    var post_id = $('#post_id1').val();
+    var comment_id = $(this).attr('data-id');
+   alert( $(this).attr('data-id'));
+$(this).parent().parent().parent().append('<div id="new_cmt_box" ><form method="post" id="page_post_replay_comments" enctype="multipart/form-data"  action="{{url("save-reply-comment")}}">@csrf<div class="row m-4"><div class="col-sm-11 p-0"><textarea placeholder="Post your comment" id="page_post_reply_comment" name="page_post_reply_comment"></textarea></div><div class="col-sm-1"><input type="hidden" name="post_id1" id="post_id1" value="'+post_id+'"><input type="hidden" name="comment_id" id="comment_id" value ="'+ comment_id +'"/><input type="hidden" name="status" id="status" value ="1"/><button type="submit" id="replay_comments" class="btn btn-primary"><i class="far fa-paper-plane"></i></button></div></div>');
+
+});
+
+// }
+
+$('#replay_comments').click(function (){
+     $('#page_post_replay_comments').submit();
+});
+
+function like_page_post_inner_cmt(cmt_id,post_id){
+
+$.ajax({
+type:'post',
+url:"{{ url('/like_page_post_inner_cmt') }}",
+data :{
+   cmt_id:cmt_id,
+   post_id:post_id
+},
+success:function(data){
+    if(data['status_res'] == 1){
+        location.reload();
+    }
+}
+});
+
+
+}
+function dislike_page_post_inner_cmt(cmt_id,post_id){
+
+$.ajax({
+type:'post',
+url:"{{ url('/dislike_page_post_inner_cmt') }}",
+data :{
+   cmt_id:cmt_id,
+   post_id:post_id
+},
+success:function(data){
+    if(data['status_res'] == 1){
+        location.reload();
+    }
+}
+});
+
+
+}
 </script>
 <script>
   tinymce.init({
@@ -640,4 +739,5 @@ function delete_comment(cmt_id){
         alert($(this).attr('id'));
     });
 </script>
+
 {{-- border: 3px solid #088dcd !important; --}}
