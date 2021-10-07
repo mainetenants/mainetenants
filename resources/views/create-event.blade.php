@@ -3,10 +3,8 @@
     <div class="gap gray-bg">
         <div class="container">
             <div class="row">
-
                 <div class="row merged20" id="page-contents">
                     <div class="col-lg-3 col-md-12 col-sm-12">
-
                         <aside class="sidebar static">
                             <div class="widget">
                                 <h4 class="widget-title">Create Events</h4>
@@ -67,240 +65,275 @@
                     <div class="col-lg-9 col-md-12 col-sm-12">
                         <div class="feature-photo">
                             <div class="container-fluid">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="timeline-info">
-                                            <ul>
-                                                <li><span>
-                                                        <h4><i class="fa fa-search"></i>&nbsp;&nbsp;Discover Events
-                                                        </h4>
-                                                    </span></li>
-                                                <li class="float-right">
-                                                    <a class="" href="time-line.html" title="" data-ripple="">Top</a>
-                                                    <a class="" href="timeline-photos.html" title="" data-ripple="">This
-                                                        weak</a>
-                                                    <a class="" href="timeline-videos.html" title=""
-                                                        data-ripple="">Online Events</a>
-                                                </li>
-                                            </ul>
+                                <div class="col-md-12">
+                                    <div class="timeline-info">
+                                        <ul>
+                                            <li><span>
+                                                    <h4><i class="fa fa-search"></i>&nbsp;&nbsp;Discover Events
+                                                    </h4>
+                                                </span></li>
+                                            <li class="float-right">
+                                                <a class="" href="time-line.html" title="" data-ripple="">Top</a>
+                                                <a class="" href="timeline-photos.html" title="" data-ripple="">This
+                                                    weak</a>
+                                                <a class="" href="timeline-videos.html" title="" data-ripple="">Online
+                                                    Events</a>
+                                            </li>
+                                        </ul>
 
-                                        </div>
                                     </div>
-                                    
-                             
+                                </div>
+
+                                <form id="event" method="POST" enctype="multipart/form-data" action="{{ url('create-event-form') }}">
+                                    @csrf
                                     <div class="col-md-12 text-center p-0 mt-3 mb-2">
                                         <div class="mt-3 mb-3">
-                                            <form id="form" method="POST" name="create_page" class="create_page" action="create_page_user">
-                            
-                                                @csrf
-                                                <div class="col-md-8 offset-md-2">
-                                                    <ul id="progressbar">
-                                                        <li class="active" id="step1">
-                                                            <strong>Step 1</strong>
-                                                        </li>
-                                                        <li id="step2"><strong>Step 2</strong></li>
-                                                        <li id="step3"><strong>Step 3</strong></li>
-                                                    </ul>
+                                            <div class="probress-btns col-md-8 offset-md-2" style="display: none">
+                                                <ul id="progressbar">
+                                                    <li class="active" id="step1"><strong>Step 1</strong></li>
+                                                    <li id="step2"><strong>Step 2</strong></li>
+                                                    <li id="step3"><strong>Step 3</strong></li>
+                                                </ul>
+                                            </div>
+                                            <br>
+                                            <div class="container create-event">
+                                                <div class="row mt-5 ">
+                                                    <div class="col-sm-6">
+                                                        <div class="card">
+                                                            <div class="card-body text-center">
+                                                                <label for="online">
+
+                                                                    <input type="radio" name="create_event" id="online"
+                                                                        class="card-radio radio" style="float: left;"
+                                                                        value="online" />
+                                                                    <h4><i class="ti-world" aria-hidden="true"></i>
+                                                                    </h4>
+                                                                    <h5 class="card-title">Online</h5>
+                                                                    <p class="card-text">Video chat with Messenger
+                                                                        Rooms,
+                                                                        broadcast with Facebook Live or add an
+                                                                        external link.
+                                                                    </p>
+                                                            </div>
+
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <div class="card">
+                                                            <label for="in_person">
+                                                                <div class="card-body text-center">
+                                                                    <input type="radio" name="create_event"
+                                                                        id="in_person" class="card-radio radio"
+                                                                        style="float: left;" value="in_person" />
+                                                                    <h4><i class="fa fa-users" aria-hidden="true"></i>
+                                                                    </h4>
+                                                                    <h5 class="card-title">In Person</h5>
+                                                                    <p class="card-text">Get together with people in
+                                                                        a specific
+                                                                        location.</p>
+                                                                </div>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="container p-4">
+                                                        <input type="button" id="create-event"
+                                                            class="btn btn-info float-right" value="Next" />
+                                                    </div>
                                                 </div>
-                                                <br>
-                                                <fieldset class="bg-color">
-                                                    <div class="container ">
-                                                        <div class="row mt-5">
-                                                            <div class="col-sm-6">
-                                                                <div class="card">
-                                                                    <div class="card-body text-center">
-                                                                        <label for="online">
-                                                                            
-                                                                        {{-- <input type="checkbox" name="online" id ="online"  class="d-none" /> --}}
-                                                                        <input type="radio" name="create_event" id ="online" class="radio" style="float: left;" />
-                                                                            <h4><i class="ti-world" aria-hidden="true"></i></h4>
-                                                                            <h5 class="card-title">Online</h5>
-                                                                            <p class="card-text">Video chat with Messenger Rooms,
-                                                                                broadcast with Facebook Live or add an external link.
-                                                                            </p>
-                                                                        </div>
-                                                                    
-                                                                    </label>
+                                            </div>
+                                            <div class="container event-type" style="display: none">
+                                                <div class="row mt-5 ">
+                                                    <div class="col-sm-6">
+                                                        <div class="card">
+                                                            <label for="general">
+                                                                <div class="card-body text-center">
+                                                                    <input type="radio" name="event_type"
+                                                                        class="card-radio radio" id="general" />
+                                                                    <h4><i class="ti-world" aria-hidden="true"></i>
+                                                                    </h4>
+                                                                    <h5 class="card-title">General</h5>
+                                                                    <p class="card-text">Add event details, a cover
+                                                                        photo and
+                                                                        choose your audience.</p>
                                                                 </div>
-                                                            </div>
-                                                            <div class="col-sm-6">
-                                                                <div class="card">
-                                                                    <label for="in_person">
-                                                                    <div class="card-body text-center">
-                                                                            {{-- <input type="checkbox" name="in_person" id ="in_person"  class="d-none" /> --}}
-                                                                            <input type="radio" name="create_event" id ="in_person" class="radio" style="float: left;" />
-                                                                            <h4><i class="fa fa-users" aria-hidden="true"></i></h4>
-                                                                            <h5 class="card-title">In Person</h5>
-                                                                            <p class="card-text">Get together with people in a specific
-                                                                                location.</p>
-                                                                            </div>
-                                                                        </label>
-                                                                </div>
-                                                            </div>
+                                                            </label>
                                                         </div>
                                                     </div>
-                            
-                                                    <input type="button" name="next-step" id="btn_event_next" class="next-step" value="Next" />
-                                                </fieldset>
-                                                <fieldset class="bg-color">
-                                                    <div class="container ">
-                                                        <div class="row mt-5">
-                                                            <div class="col-sm-6">
-                                                                <div class="card">
-                                                                    <div class="card-body text-center">
-                                                                        <label for="general">
-                                                                        <input type="radio" name="general" id ="general" />
-                                                                            <h4><i class="ti-world" aria-hidden="true"></i></h4>
-                                                                            <h5 class="card-title">General</h5>
-                                                                            <p class="card-text">Add event details, a cover photo and
-                                                                                choose your audience.</p>
-                                                                            </div>
-                                                                        </label>
+                                                    <div class="col-sm-6">
+                                                        <div class="card">
+                                                            <label for="class">
+                                                                <div class="card-body text-center">
+                                                                    <input type="radio" name="event_type" id="class"
+                                                                        class="card-radio radio" />
+                                                                    <h4><i class="fa fa-users" aria-hidden="true"></i>
+                                                                    </h4>
+                                                                    <h5 class="card-title">Class</h5>
+                                                                    <p class="card-text">Schedule live and
+                                                                        interactive classes.
+                                                                    </p>
                                                                 </div>
-                                                            </div>
-                                                            <div class="col-sm-6">
-                                                                <div class="card">
-                                                                    <div class="card-body text-center">
-                                                                        <label for="class">
-                                                                        <input type="radio" name="class" id ="class" />
-                                                                            <h4><i class="fa fa-users" aria-hidden="true"></i></h4>
-                                                                            <h5 class="card-title">Class</h5>
-                                                                            <p class="card-text">Schedule live and interactive classes.
-                                                                            </p>
-                                                                        </div>
-                                                                    </label>
-                                                                </div>
-                                                            </div>
+                                                            </label>
                                                         </div>
                                                     </div>
-                            
-                                                    <input type="button" id="page_desc_btn" name="next-step" class="next-step" value="Next Step" />
-                                                    <input type="button" name="previous-step" class="previous-step" value="Back" />
-                                                </fieldset>
-                                                <fieldset class="bg-color">
-                                                    <div class="form-group col-sm-12 mx-auto text-left">
-                                                        <label for="exampleFormControlInput1" class="custom-label">Page Description</label>
-                                                        <textarea type="text" class="form-control page_info" id="page_Description"
-                                                            name="page_descripition" placeholder="Page Name(required)"></textarea>
-                                                    </div>
-                                                    <input type="button" name="previous-step" class="previous-step" value="Back" />
-                                                    <input type="submit" class="next-step" name="submit" id="submit" value="Submit" />
-                                                </fieldset>
-                                            </form>
+                                                </div>
+                                                <div class="container p-4">
+                                                    <input type="button" id="event-type"
+                                                        class="btn btn-info float-right" value="Next" />
+                                                </div>
+                                            </div>
+
                                         </div>
                                     </div>
-                                    <form action="post" class="col-md-12" action="{{url("abc")}}" ">
-                                        <div class="col-md-8 order-md-1 offset-md-2 bg-light mt-5 p-4">
-                                            <h2 class="text-center">Event details</h2>
-                                            <div class="p-3">
-                                                <div class="mb-3">
-                                                    <label for="email">Event Name</label>
-                                                    <input type="text" class="form-control" id="event_name"
-                                                        placeholder="Event Name">
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-6 mb-3">
-                                                        <label for="start_date">Start Date</label>
-                                                        <input type="date" class="form-control" id="start_date" required="">
-                                                    </div>
-                                                    <div class="col-md-6 mb-3">
-                                                        <label for="start_time">Start Time</label>
-                                                        <input type="time" class="form-control" id="start_time" required="">
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-6 mb-3">
-                                                        <label for="end_date">End Date</label>
-                                                        <input type="date" class="form-control" id="end_date" required="">
-                                                    </div>
-                                                    <div class="col-md-6 mb-3">
-                                                        <label for="end_time">End Time</label>
-                                                        <input type="time" class="form-control" id="end_time" required="">
-                                                    </div>
-                                                </div>
-
-
-
-                                                <div class="mb-3">
-                                                    <label for="country">Privacy</label>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="privacy"
-                                                            id="private">
-                                                        <label class="form-check-label" for="private">
-                                                            Private
-                                                        </label>
-                                                    </div>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="privacy"
-                                                            id="friends" checked>
-                                                        <label class="form-check-label" for="friends">
-                                                            Friends
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                                <hr class="mb-4">
-                                                <button class="btn btn-info btn-sm float-right" type="submit">Next</button>
+                                    <div class="event-details col-md-8 offset-md-2 bg-light mt-5 p-4"
+                                        style="display: none">
+                                        <h2 class="text-center">Event details</h2>
+                                        <div class="p-3">
+                                            <div class="event-alert">
                                             </div>
-                                        </div>
-                                        <div class="col-md-8 order-md-1 offset-md-2 bg-light mt-5 p-4">
-                                            <h2 class="text-center">Location</h2>
-                                            <h6 class="text-muted text-center">Choose a way for people to join your event
-                                                online.</h6>
-                                            <div class="p-3">
-                                                <div class="mb-3">
-                                                    <div class="form-check">
-                                                        <input class="form-check-other" type="radio" name="location"
-                                                            id="other">
-                                                        <label class="form-check-label" for="other">
-                                                            Other
-                                                        </label>
-                                                    </div>
-                                                    <div class="form-check">
-                                                        <input class="form-check-external_link" type="radio" name="location"
-                                                            id="external_link" checked="">
-                                                        <label class="form-check-label" for="external_link">
-                                                            External Link
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                                <div class="mb-3 mt-3">
-                                                    <label for="event_link">Event Link</label>
-                                                    <input type="text" class="form-control" id="event_link" required="">
-                                                </div>
-                                                <div class="mb-3 mt-3">
-                                                    <label for="event_link">Description</label>
-                                                    <textarea class="form-control" id="description" required=""></textarea>
-                                                </div>
-                                                <hr class="mb-4">
-                                                <button class="btn btn-info btn-sm float-right" type="submit">Next</button>
+                                            <div class="mb-3">
+                                                <label for="email">Event Name</label>
+                                                <input type="text" class="form-control" id="event_name"
+                                                    name="event_name" placeholder="Event Name">
                                             </div>
-                                        </div>
-                                        <div class="col-md-8 order-md-1 offset-md-2 bg-light mt-5 p-4">
-                                            <h2 class="text-center">Additional details</h2>
-                                            <div class="p-3">
-                                                <div class="mb-3 mt-3">
-                                                    <label for="event_link">Cover photo</label>
-                                                    <input type="file" class="form-control" id="cover_photo" required="">
+                                            <div class="row">
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="start_date">Start Date</label>
+                                                    <input type="date" class="form-control" id="start_date"
+                                                        name="start_date">
                                                 </div>
-                                                
-                                                <div class="mb-3 mt-3">
-                                                    <label for="event_link">Co-host</label>
-                                                    <input type="text" class="form-control" id="add_frnd" placeholder="Add Friend" required="">
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="start_time">Start Time</label>
+                                                    <input type="time" class="form-control" id="start_time"
+                                                        name="start_time">
                                                 </div>
-                                                
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="end_date">End Date</label>
+                                                    <input type="date" class="form-control" id="end_date"
+                                                        name="end_date">
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="end_time">End Time</label>
+                                                    <input type="time" class="form-control" id="end_time"
+                                                        name="end_time">
+                                                </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="country">Privacy</label>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" name="show_guest_list"
-                                                        id="show_guest_list" checked>
-                                                    <label class="form-check-label" for="show_guest_list">
-                                                        Show Guest List
+                                                    <input class="form-check-input" type="radio" name="privacy"
+                                                        id="private" value="privacy">
+                                                    <label class="form-check-label" for="private">
+                                                        privacy
                                                     </label>
                                                 </div>
-                                                <hr class="mb-4">
-                                                <button class="btn btn-info btn-sm float-right" type="submit">Next</button>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="privacy"
+                                                        id="friends" value="friends" checked>
+                                                    <label class="form-check-label" for="friends">
+                                                        Friends
+                                                    </label>
+                                                </div>
                                             </div>
+                                            <div class="mb3">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" name="guest_invite"
+                                                        id="guest_invite" value="guest_invite">
+                                                    <label class="form-check-label" for="guest_invite">
+                                                        Guests can invite friends <small> (If this is on, guests can
+                                                            invite their friends to the event.)</small>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <hr class="mb-4">
+                                            <button class="btn btn-info btn-sm float-right" type="button"
+                                                id="event-details">Next</button>
                                         </div>
-                                    </form>
-                                </div>
+                                    </div>
+                                    <div class="locations col-md-8 offset-md-2 bg-light mt-5 p-4" style="display:none">
+                                        <h2 class="text-center">Location</h2>
+                                        <h6 class="text-muted text-center">Choose a way for people to join your event
+                                            online.</h6>
+                                        <div class="p-3">
+                                            <div class="mb-3">
+                                                <div class="form-check">
+                                                    <input class="form-check-other" type="radio" name="locations"
+                                                        id="other" value="other">
+                                                    <label class="form-check-label" for="other">
+                                                        Other <small>(Include clear instructions in your event details
+                                                            on how to participate.)</small>
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-external_link" type="radio" name="locations"
+                                                        id="external_link" value="external_link">
+                                                    <label class="form-check-label" for="external_link">
+                                                        External Link
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3 mt-3 event_link" style="display: none">
+                                                <label for="event_link">Event Link</label>
+                                                <input type="text" class="form-control" id="event_link"
+                                                    name="event_link">
+                                            </div>
+                                            <div class="mb-3 mt-3">
+                                                <label for="event_link">Description</label>
+                                                <textarea class="form-control" id="description"
+                                                    name="description"></textarea>
+                                            </div>
+                                            <hr class="mb-4">
+                                            {{-- <button class="btn btn-info btn-sm float-right" id="location" >Next</button> --}}
+                                            <input type="button" id="join" class="btn btn-info float-right"
+                                                value="Next" />
+                                        </div>
+                                    </div>
+                                    <div class="addition_relation col-md-8 offset-md-2 bg-light mt-5 p-4"
+                                        style="display: none">
+                                        <h2 class="text-center">Additional details</h2>
+                                        <div class="p-3">
+                                            <div class="mb-3 mt-3">
+                                                <label for="event_link">Cover photo</label>
+                                                <input type="file" class="form-control" id="cover_photo"
+                                                    name="cover_photo">
+                                            </div>
+
+                                            <div class="mb-3 mt-3">
+                                                <label for="event_link">Co-host</label>
+                                                <input type="text" class="form-control" id="add_frnd"  placeholder="Add Friend">
+                                                <input type="hidden" id="co_host" name="co_host"
+                                                >
+                                            </div>
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" name="show_guest_list"
+                                                    id="show_guest_list" value="1">
+                                                <label class="form-check-label" for="show_guest_list">
+                                                    Show Guest List
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" name="admin_add_post"
+                                                    id="admin_add_post" value="1">
+                                                <label class="form-check-label" for="admin_add_post">
+                                                    Only admins can post in event
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" name="post_approve"
+                                                    id="post_approve" value="1">
+                                                <label class="form-check-label" for="post_approve">
+                                                    Posts must be approved by a host or co-host.
+                                                </label>
+                                            </div>
+                                            <hr class="mb-4">
+                                            <button class="btn btn-info btn-sm float-right" id="addition_relation"
+                                                type="submit">Submit</button>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -387,11 +420,9 @@
             <input type="checkbox" id="switch111" />
             <label for="switch111" data-on-label="ON" data-off-label="OFF"></label>
         </div>
-        {{ csrf_field() }}
     </form>
 </div>
 <!-- side panel -->
-
 @include('includes/footer')
 </body>
 

@@ -15,11 +15,11 @@ class MsuInviteFriends extends Migration
     {
         Schema::dropIfExists('msu_invite_friends');
         Schema::create('msu_invite_friends', function (Blueprint $table) {
-            $table->id();
-            $table->integer('user_id',11);
-            $table->integer('friend_id',64);
+            $table->increments('id')->unsigned();;
+            $table->integer('user_id');
+            $table->integer('friend_id');
             $table->integer('post_id');
-            $table->integer('status',128);
+            $table->integer('status');
             $table->integer('invitation_status');
             $table->integer('is_active');
             $table->timestamps();

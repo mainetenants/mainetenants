@@ -66,7 +66,9 @@ use App\Http\Controllers\PageController;
     Route::post('/like_page/','App\Http\Controllers\InviteFriendController@like_page');
     Route::post('/unlike_page/','App\Http\Controllers\InviteFriendController@unlike_page');
 
-    // Route::post('create_event','App\Http\Controllers\PageController@create_event');
+    Route::get('/create-event','App\Http\Controllers\EventController@index');
+    Route::post('/create-event-form','App\Http\Controllers\EventController@create_event');
+    Route::get('/events', 'App\Http\Controllers\EventController@events_view');
 
 });
 
@@ -95,13 +97,9 @@ Route::get('/404-2', function () {
 Route::get('/create-page', function () {
     return view('create-page');
 });
-Route::get('/events', function () {
-    return view('events');
-});
 
-Route::get('/create-event', function () {
-    return view('create-event');
-});
+
+
 
 
 Route::get('/about-company', function () {
