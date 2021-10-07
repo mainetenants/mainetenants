@@ -228,15 +228,17 @@
                           <div class="post-comt-box">
                            <form method="post" id="page_post_comments" enctype="multipart/form-data"   action="{{url("homepage")}}">
                                 @csrf
-                                <div class="row m-4">
-                                <div class="col-sm-10">
-                                <textarea placeholder="Post your comment" id="commen_1234" class="comment_1243" name="comment"></textarea>
-                          </div> <div class="col-sm-1">
-                             <input type="hidden" name="post_id" id="post_id" value="{{ $user->id }}"/>
-                             <input type="hidden" name="user_id" id="user_id" value="{{ $user->user_id }}"/>
-                             <input type="hidden" name="status" id="status" value ="1"/>
-                             <button type="submit" class="btn btn-primary"><i class="far fa-paper-plane"></i></button>
-                          </div></div>
+                              <div class="row m-4">
+                                 <div class="col-sm-10">
+                                       <textarea placeholder="Post your comment" id="commen_1234" class="comment_1243" name="comment"></textarea>
+                                 </div>
+                                 <div class="col-sm-1">
+                                    <input type="hidden" name="post_id" id="post_id" value="{{ $user->id }}"/>
+                                    <input type="hidden" name="user_id" id="user_id" value="{{ $user->user_id }}"/>
+                                    <input type="hidden" name="status" id="status" value ="1"/>
+                                    <button type="submit" class="btn btn-primary"><i class="far fa-paper-plane"></i></button>
+                                 </div>
+                            </div>
                        </form> 
                        </div>
                          
@@ -275,15 +277,19 @@
 										   <div class="container">
 											  <div class="row">
 												 <div class="col-sm-6">
+
 													<div class="card post-card-img">
+                                       
 													</div>
 												 </div>
 												 <div class="col-sm-6">
 													<div class="form-group">
 													   <label class="text-primary" for="">Edit</label>
+                                          
 													   <div id="post_contet">
 													   </div>
-													</div>
+                                        
+													</div> 
 												 </div>
 											  </div>
 										   </div>

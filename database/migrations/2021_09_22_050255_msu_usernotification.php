@@ -19,7 +19,8 @@ class MsuUsernotification extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->integer('friend_id');
-            $table->integer('post_id');
+            $table->integer('post_id')->nullable();
+            $table->integer('page_id')->nullable();
             $table->string('message');
             $table->string('type');
             $table->integer('is_seen');

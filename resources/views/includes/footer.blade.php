@@ -1,3 +1,26 @@
+git  <!-- Modal -->
+<div class="modal fade" id="deletepost" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Delete Post</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Are you sure you want to Delete the Post?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <button type="button" id="delete_page_post" class="btn btn-primary" >OK</button>
+          <input type="hidden" name="modal_post_id" id="modal_post_id" value=""/>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+ <script src="{{ asset('assets/js/main.min.js') }}"></script>
 <script src="{{ asset('assets/js/main.min.js') }}"></script>
 <script src="{{ asset('assets/js/script.js') }}"></script>
 <script src="{{ asset('assets/js/map-init.js') }}"></script>
@@ -138,6 +161,47 @@
         //emoticons listing
        
     }
+    function myPageFuntction(){
+        var post_id = $('#edit-post').attr('value');
+
+        $.ajaxSetup({
+          headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+        });
+        //edit posts description
+        $.ajax({
+            type:'POST',
+            url:'{{ url("get_page_post") }}',
+            data:{
+                    post_id : post_id
+                },
+            success:function(data){
+
+                 console.log(data);
+                 if(data['status']==1){
+                    var content = data['get_page_post'];
+                    $('#editpost').modal('toggle')
+                    $('#post_contet').append('<textarea class="form-control" style="border: 1px solid #e5e5e5;"Placeholder="Whats on your mind?" name="content" id="content" rows="3">'+ content.content +'</textarea><input type="hidden" name="post_id" value="'+ content.id +'">')
+                    if(content.images != ""){
+                        $('.img-exist').show();
+                        $('.post-card-img').append('<img class="card-img-top  col-sm-12 mx-auto" width="50%" style="width: fit-content;" src="http://127.0.0.1:8000/upload/images/profile_photo/'+content.images+'" alt="Card image cap">')
+                    }
+                    if(content.videos != ""){
+                        $('.img-exist').show();
+                    $('.post-card-img').append('<video width="400" controls><source src="'+content.videos+'" type="video/mp4"></video>');
+                    }
+                    if(content.music != ""){
+                        $('.img-exist').show();
+                    $('.post-card-img').append('<audio controls><source src="'+content.music+'" type="audio/mpeg"></audio>');
+                    }
+                    
+                }
+            },
+        });
+        //emoticons listing
+       
+    }
     $("#editpost").on("hidden.bs.modal", function () {
         $('#content').remove();
         $('.card-img-top').remove();
@@ -155,6 +219,7 @@
 
     });
 
+
 </script>
 <script>
     // reactions on post
@@ -167,6 +232,14 @@
 			$('#profile_form').submit();
 		});
 
+   $('#fileid_change').change(function(){
+
+            $('#submit_profile_photo').submit();
+   });
+
+   $('#file_cover_chnage').change(function(){
+        $('#edit_cover_photo').submit();
+    });
 
  /// page post comment
 
@@ -194,6 +267,8 @@ $('.we-reply').click(function (){
 
 
 });
+
+
 
 
 
@@ -430,10 +505,127 @@ $('.we-reply').click(function (){
 
           });
      });
-
+     
+     function page_notifications(id ,key){
+        var page_id = id;
     
-</script>
+        $.ajax({
+            type:'POST',
+            url:'{{ url("get_page_notifications") }}',
+            data:{
+                    page_id : page_id,
+                }, 
+                success:function(data){
+                   
+                    if(data['status']== 1 ){
+                        $("#page_notifications").show();
+                        $('#Dashboard').hide();
+                        $('#page_notfiction_response').append(data['get_page_notifications']);
 
+                    }
+                },
+        });
+     }
+     $('#homepage_nav').click(function(){
+         $('#Dashboard').show();
+         $('#page_notifications').hide();
+         $("#page_notfiction_response div").remove();
+         $('#notifications').hide();
+         $('#list_user_page').hide();
+     });
+     $('#page_notifications_nav').click(function(){
+         $('#Dashboard').hide();
+         $("#page_notfiction_response div").remove();
+         $('#page_notifications').show();
+         $('#notifications').hide();
+         $('#list_user_page').hide();
+     });
+     $('#notifications_nav').click(function(){
+         $('#Dashboard').hide();
+         $('#page_notifications').hide();
+         $("#page_notfiction_response div").remove();
+         $('#notifications').show();
+         $('#list_user_page').hide();
+     });
+     $('#list_user_page_nav').click(function(){
+         $('#Dashboard').hide();
+         $('#page_notifications').hide();
+         $("#page_notfiction_response div").remove();
+       
+         $('#notifications').hide();
+         $('#list_user_page').show();
+     });
+
+
+     function get_profile_pic(){
+        
+           $('#submit_profile_photo').submit(); 
+     }
+
+     $('#edit-page-post-submit').click(function (){
+           $('#edit_page_form').submit();
+ 
+     });
+
+     $('.page_post_image').change(function(){
+        
+         readURL(this);
+
+      })
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+
+            //$('#edit_image23').attr('src', e.target.result);
+
+            $('#display_img').append('<img src="'+e.target.result+'" name="edit_image23" id="edit_image23" class="img-fluid col-sm-12 " />');
+        }
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+function openMoodal(id){
+       $('#deletepost').modal('toggle');
+       $('#modal_post_id').val(id);
+       $('.postoverlay').show();
+}
+$('#delete_page_post').click(function (){
+  var post_id = $('#modal_post_id').val();
+  $.ajax({
+        type:'post',
+        url :'{{ url("/delete-post") }}',
+        data:{
+           post_id : post_id,
+        },
+        success:function(data){
+                 
+             console.log(data);
+               if(data['status_res'] == 1){
+
+                location.reload();
+               }
+        },
+      }); 
+});
+function delete_comment(cmt_id){
+     $.ajax({
+        type:'post',
+        url:"{{ url('/delete-comment')}}",
+        data :{
+            cmt_id:cmt_id,
+        },
+        success:function(data){
+            console.log(data);
+            if(data['status_res'] == 1){
+                location.reload();
+            }
+        },
+     });
+
+}
+</script>
 <script>
   tinymce.init({
       selector: ".comment_1243",

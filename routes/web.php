@@ -43,7 +43,7 @@ use App\Http\Controllers\PageController;
     Route::post('cover_photo', 'App\Http\Controllers\AboutController@cover_photo');
     Route::get('about', 'App\Http\Controllers\AboutController@index');
     Route::get('timeline-friends', 'App\Http\Controllers\timelineController@index');
-    Route::get('edit-profile-basic', 'App\Http\Controllers\ProfileUpdateController@editBasic');
+    //Route::get('edit-profile-basic', 'App\Http\Controllers\ProfileUpdateController@editBasic');
 
     Route::post('homepage','App\Http\Controllers\postcontroller@commentList');
    // Route::get('about', 'App\Http\Controllers\ProfileUpdateController@userInfo');
@@ -65,6 +65,16 @@ use App\Http\Controllers\PageController;
     Route::get('/fav-page/{id}','App\Http\Controllers\InviteFriendController@view_user_page');
     Route::post('/like_page/','App\Http\Controllers\InviteFriendController@like_page');
     Route::post('/unlike_page/','App\Http\Controllers\InviteFriendController@unlike_page');
+    Route::post('create_event','App\Http\Controllers\PageController@create_event');
+    Route::post('get_page_notifications','App\Http\Controllers\PageController@get_page_notifications');
+    Route::post('/edit_profile_pic','App\Http\Controllers\PageController@edit_profile_pic');
+    Route::post('/edit_cover_pic','App\Http\Controllers\PageController@edit_cover_pic');
+    Route::post('/get_page_post','App\Http\Controllers\PageController@get_page_post');
+    Route::post('/edit-page-post','App\Http\Controllers\PageController@edit_page_post');
+    Route::post('/delete-post','App\Http\Controllers\PageController@deletePost');
+    Route::post('/delete-post','App\Http\Controllers\PageController@deletePost');
+    Route::post('/delete-comment','App\Http\Controllers\PageController@deletecomment');
+    
 
     Route::get('/create-event','App\Http\Controllers\EventController@index');
     Route::post('/create-event-form','App\Http\Controllers\EventController@create_event');

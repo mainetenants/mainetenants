@@ -229,15 +229,12 @@
 						
 						<ul class="drops-menu">
 							@foreach ($allnotification  as $notification )		
-						    
+							@if($notification->type =="pageRequest")
 							<li>
-								<a href="notifications" title="">
+								<a href="/fav-page/{{ $notification->page_id }}"  title="">
 									<img src="{{ asset('assets/images/resources/thumb-1.jpg') }}" alt="">
-									<div class="mesg-meta">
+								<div class="mesg-meta">
 										 <h6>{{ $notification->message }}</h6>
-										{{-- <h6>sarah Loren</h6>
-										<span>Hi, how r u dear ...?</span>
-										<i>2 min ago</i> --}}
 									</div>
 								</a>
 								@if( $notification->is_seen == '1')
@@ -245,6 +242,20 @@
 								@endif
 
 							</li>
+							@else
+							<li>
+								<a href="notifications" title="">
+									<img src="{{ asset('assets/images/resources/thumb-1.jpg') }}" alt="">
+								<div class="mesg-meta">
+										 <h6>{{ $notification->message }}</h6>
+										</div>
+								</a>
+								@if( $notification->is_seen == '1')
+								<span class="tag green">New</span>
+								@endif
+
+							</li>
+                       	@endif
 
 							@endforeach
 							{{-- <li>

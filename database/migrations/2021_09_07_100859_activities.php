@@ -14,7 +14,7 @@ class Activities extends Migration
     public function up()
     {    Schema::dropIfExists('msu_community_activities');
         Schema::create('msu_community_activities', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->string('title')->nullable();
             $table->text('content')->nullable();
             $table->text('images')->nullable();
