@@ -83,7 +83,7 @@ $(document).ready(function () {
   
    }
 
-});
+    });
 
     $(".previous-step").click(function () {
   

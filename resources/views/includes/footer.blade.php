@@ -24,6 +24,7 @@
 <script src="{{ asset('assets/js/main.min.js') }}"></script>
 <script src="{{ asset('assets/js/script.js') }}"></script>
 <script src="{{ asset('assets/js/map-init.js') }}"></script>
+<script src="{{ asset('assets/js/custom.js') }}"></script>
 
 <script src="{{ asset('js/progress-bar.js') }}"></script>
 
@@ -78,7 +79,6 @@
     });
 </script>
 <script>
-    $(document).ready(function(){     
         $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -86,7 +86,6 @@
             });
             // like dislike and reaction emoticons
         $(".reaction i img, #dislikeId").click(function(){
-            
             var id ='';
             var reaction ='';
             var data = $(this).attr('class').split(' ')[0];
@@ -109,7 +108,6 @@
                 }
             });
         });
-    });
 
 
     function  seen_notification(){
@@ -211,12 +209,18 @@
     $("#editpost").on("hidden.bs.modal", function () {
         $('#content').remove();
         $('.card-img-top').remove();
+        $(".postoverlay").css({"display": "none", "opacity": "0.837666"});
     });
 
     $('#edit-post-submit').click(function(){
         $("#edit_form").submit();
         $('.popover-body').hide ();
         $('.arrow').hide();
+
+    $('#editpost').on('show.bs.modal', function() {
+        $('.ti-more-alt').toggle();
+        $(".postoverlay").css({"display": "block", "opacity": "0.837666"});
+        $(".central-meta.new-pst").css({"z-index": "0"});
 
     });
     $('.ti-more-alt').click(function (){
@@ -332,7 +336,7 @@
                     var count_care_rc = '';
                     var count_wow_rc = '';
                     var count_sad_rc = '';
-
+                    console.log(data.allReaction);
                     $.each(data.allReaction, function(key,val) {
                         var html_add = (val.is_frnd_status==1)?(''):('<a href="see_friend/'+ val.id +'" class="btn btn-primary btn-sm add_rc_frnd">Add Friends</a>');
                         $('.allfrnd').append('<div class="user_card"><div class="row"><div class="col-sm-6 text-left"><img src="upload/images/'+ val.profile_photo +'.jpg" class="rc_profile_pic" style="max-width: 60px" alt=""><span class="rc_name">'+ val.name +'</span></div><div class="col-sm-6 text-right">'+ html_add +'</div></div></div>');
@@ -366,7 +370,6 @@
                             var selector = 'sad_rc';
                             count_sad_rc++;
                         }
-                      
                         $('.'+selector).append('<div class="user_card"><div class="row"><div class="col-sm-6 text-left"><img src="upload/images/'+ val.profile_photo +'.jpg" class="rc_profile_pic" style="max-width: 60px" alt=""><span class="rc_name">'+ val.name +'</span></div><div class="col-sm-6 text-right">'+ html_add +'</div></div></div>');
                     });
                     $('.ins_like').html('&nbsp;'+count_like_rc);
@@ -391,8 +394,8 @@
                     }if(count_sad_rc == ''){
                         $('.ins_sad').parent().parent().remove()
                     }
-                    var count = [count_like_rc, count_love_rc, count_haha_rc, count_angry_rc, count_care_rc, count_wow_rc, count_sad_rc];
-                    console.log(count.sort().reverse());
+                    // var count = [count_like_rc, count_love_rc, count_haha_rc, count_angry_rc, count_care_rc, count_wow_rc, count_sad_rc];
+                    // console.log(count.sort().reverse());
 
 
                 }
@@ -733,11 +736,7 @@ success:function(data){
       toolbar_location: "bottom",
       menubar: false
     });
-    $('input[type=radio]').change(function() {
-        $('.card').removeClass('card_select');
-        $(this).parent().parent().parent().addClass("card_select");
-        alert($(this).attr('id'));
-    });
+   
 </script>
 
 {{-- border: 3px solid #088dcd !important; --}}

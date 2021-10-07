@@ -79,9 +79,10 @@ use App\Http\Controllers\PageController;
     Route::post('/save-reply-comment','App\Http\Controllers\PageController@add_replay_comments');
     Route::post('/like_page_post_inner_cmt','App\Http\Controllers\PageController@like_page_post_inner_cmt');
     Route::post('/dislike_page_post_inner_cmt','App\Http\Controllers\PageController@dislike_page_inner_post_cmt');
-   
+    Route::get('/create-event','App\Http\Controllers\EventController@index');
+    Route::post('/create-event-form','App\Http\Controllers\EventController@create_event');
+    Route::get('/events', 'App\Http\Controllers\EventController@events_view');
 
-    // Route::post('create_event','App\Http\Controllers\PageController@create_event');
 });
 
 
@@ -109,13 +110,9 @@ Route::get('/404-2', function () {
 Route::get('/create-page', function () {
     return view('create-page');
 });
-Route::get('/events', function () {
-    return view('events');
-});
 
-Route::get('/create-event', function () {
-    return view('create-event');
-});
+
+
 
 
 Route::get('/about-company', function () {
