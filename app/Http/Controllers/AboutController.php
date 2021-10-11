@@ -33,21 +33,6 @@ class AboutController extends Controller
         ->get();
 
         return view('about', compact('users', 'basicInfo', 'educationInfo', 'interestInfos'));
-        
-        // return view('about', ['profile_photo' => $users->profile_photo, 'cover_photo' => $users->cover_photo, 
-        // 'basicInfo' => $users,
-        // 'basicInfo'=> $basicInfo,
-        // 'studyat' => $educationInfo->studyat,
-        // 'description' => $educationInfo->description,
-        // 'fromdate' => $educationInfo->fromdate,
-        // 'todate' => $educationInfo->todate,
-        // 'city' => $educationInfo->city,
-        // 'todate' => $educationInfo->todate,
-        // 'masters' => $educationInfo->masters,
-        // 'graduate' => $educationInfo->graduate,
-        // 'interestInfos' => $interestInfos,
-
-   // ]);
     }
 
 

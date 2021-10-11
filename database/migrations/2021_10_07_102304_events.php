@@ -17,6 +17,7 @@ class Events extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->string('create_event');
+            $table->string('event_type');
             $table->string('event_name');
             $table->date('start_date');
             $table->time('start_time');
@@ -27,8 +28,9 @@ class Events extends Migration
             $table->string('event_link')->nullable();
             $table->string('description')->nullable();
             $table->string('cover_photo')->nullable();
-            $table->integer('co_host')->nullable();
+            $table->string('co_host')->nullable();
             $table->integer('show_guest_list')->nullable();
+            $table->integer('guest_invite')->nullable();
             $table->integer('admin_add_post')->nullable();
             $table->integer('post_approve')->nullable();
             $table->timestamp('created')->useCurrent();

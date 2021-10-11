@@ -79,6 +79,7 @@ use App\Http\Controllers\PageController;
     Route::get('/create-event','App\Http\Controllers\EventController@index');
     Route::post('/create-event-form','App\Http\Controllers\EventController@create_event');
     Route::get('/events', 'App\Http\Controllers\EventController@events_view');
+    Route::get('/your-events', 'App\Http\Controllers\EventController@your_events_listing');
 
 });
 

@@ -316,3 +316,8 @@ fieldset.bg-color {
   .border-bg{
     border-color: red;
 }
+.inner-container {
+    background-color: #eaeaea;
+    border-radius: 5px;
+    padding: 0;
+}

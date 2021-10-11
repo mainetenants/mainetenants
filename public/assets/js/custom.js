@@ -1,3 +1,4 @@
+var html_alert = '<div class="alert alert-danger mb-1" role="alert">Please enter the required fields!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></div></button>';
 // change css of active event card
 $('.card-radio input[type=radio]').change(function() {
     alert('testing');
@@ -31,10 +32,22 @@ $('#event-type').click(function(){
      }
     
 });
+$('#event-type-back').click(function(){
+        $('.create-event').show();
+        $('.event-type').hide();
+        $('.probress-btns').hide();
+});
+$('input[name=privacy]').change(function() {
+    
+    if($("input[name='privacy']:checked").val() == 'private'){
+        $('.guest-box').show();
+    }else{
+        $('.guest-box').hide();
+    }
+});
 $('#event-details').click(function(){
-    var html_alert = '<div class="alert alert-danger mb-1" role="alert">Please enter the required fields!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></div></button>';
     $('.alert').alert();
-         $('.alert').hide();
+    $('.alert').hide();
     $('input[type=text], input[type=date],  input[type=time]').removeClass("border-bg");
     $("input").keyup(function(){
         $(this).removeClass("border-bg");
@@ -68,7 +81,9 @@ $('#event-details').click(function(){
         $('#step2').addClass('active');
     }
 });
-
+$('#event-details-back').click(function(){
+    location.reload();
+});
 $('input[name=locations]').change(function() {
     if($(this).attr('id')== 'external_link'){
         $('.event_link').show();
@@ -78,10 +93,37 @@ $('input[name=locations]').change(function() {
     }
 });
 $('#join').click(function(){
+    $("input, textarea").keyup(function(){
+        $(this).removeClass("border-bg");
+    });
+    $('.alert').hide();
+    if($("#external_link").prop("checked") && ($('#event_link').val()=="")){
+        $("#event_link").addClass("border-bg");
+        $(".event-alert-loc").html(html_alert);
+    }
+    else if($('#description').val()==""){
+        $("#description").addClass("border-bg");
+        $(".event-alert-loc").html(html_alert);
+        alert('test');
+    }else{
+        $('.locations').hide();
+        $('.addition_relation').show();
+        $('#step2').removeClass('active');
+        $('#step3').addClass('active');
+    }
+});
+$('#join-back').click(function(){
     $('.locations').hide();
-    $('.addition_relation').show();
+    $('.event-details').show();
     $('#step2').removeClass('active');
-    $('#step3').addClass('active');
+    $('#step1').addClass('active');
+});
+
+$('#addition_relation-back').click(function(){
+    $('.addition_relation').hide();
+    $('.locations').show();
+    $('#step3').removeClass('active');
+    $('#step2').addClass('active');
 });
 
 

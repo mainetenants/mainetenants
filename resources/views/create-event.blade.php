@@ -138,7 +138,7 @@
                                                     </div>
                                                     <div class="container p-4">
                                                         <input type="button" id="create-event"
-                                                            class="btn btn-info float-right" value="Next" />
+                                                            class="btn btn-info btn-sm float-right" value="Next" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -149,7 +149,7 @@
                                                             <label for="general">
                                                                 <div class="card-body text-center">
                                                                     <input type="radio" name="event_type"
-                                                                        class="card-radio radio" id="general" />
+                                                                        class="card-radio radio" id="general" value="general" />
                                                                     <h4><i class="ti-world" aria-hidden="true"></i>
                                                                     </h4>
                                                                     <h5 class="card-title">General</h5>
@@ -165,7 +165,7 @@
                                                             <label for="class">
                                                                 <div class="card-body text-center">
                                                                     <input type="radio" name="event_type" id="class"
-                                                                        class="card-radio radio" />
+                                                                        class="card-radio radio" value="class"/>
                                                                     <h4><i class="fa fa-users" aria-hidden="true"></i>
                                                                     </h4>
                                                                     <h5 class="card-title">Class</h5>
@@ -179,13 +179,15 @@
                                                 </div>
                                                 <div class="container p-4">
                                                     <input type="button" id="event-type"
-                                                        class="btn btn-info float-right" value="Next" />
+                                                        class="btn btn-info btn-sm float-right" value="Next" />
+                                                    <input type="button" id="event-type-back"
+                                                        class="btn btn-secondary btn-sm float-right mx-2" value="Back" />
                                                 </div>
                                             </div>
 
                                         </div>
                                     </div>
-                                    <div class="event-details col-md-8 offset-md-2 bg-light mt-5 p-4"
+                                    <div class="event-details col-md-8 offset-md-2 bg-light mt-2 p-4"
                                         style="display: none">
                                         <h2 class="text-center">Event details</h2>
                                         <div class="p-3">
@@ -224,9 +226,9 @@
                                                 <label for="country">Privacy</label>
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="radio" name="privacy"
-                                                        id="private" value="privacy">
+                                                        id="private" value="private">
                                                     <label class="form-check-label" for="private">
-                                                        privacy
+                                                        Private
                                                     </label>
                                                 </div>
                                                 <div class="form-check">
@@ -237,10 +239,10 @@
                                                     </label>
                                                 </div>
                                             </div>
-                                            <div class="mb3">
+                                            <div class="mb3 guest-box" style="display:none">
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="checkbox" name="guest_invite"
-                                                        id="guest_invite" value="guest_invite">
+                                                        id="guest_invite" value="1">
                                                     <label class="form-check-label" for="guest_invite">
                                                         Guests can invite friends <small> (If this is on, guests can
                                                             invite their friends to the event.)</small>
@@ -250,19 +252,25 @@
                                             <hr class="mb-4">
                                             <button class="btn btn-info btn-sm float-right" type="button"
                                                 id="event-details">Next</button>
+                                            <button class="btn btn-secondary btn-sm float-right mx-2" type="button"
+                                                id="event-details-back">Back</button>
                                         </div>
                                     </div>
-                                    <div class="locations col-md-8 offset-md-2 bg-light mt-5 p-4" style="display:none">
+                                    <div class="locations col-md-8 offset-md-2 bg-light mt-2 p-4" style="display:none">
                                         <h2 class="text-center">Location</h2>
                                         <h6 class="text-muted text-center">Choose a way for people to join your event
                                             online.</h6>
+                                            <div class="event-alert-loc">
+
+                                            </div>
+
                                         <div class="p-3">
                                             <div class="mb-3">
                                                 <div class="form-check">
                                                     <input class="form-check-other" type="radio" name="locations"
-                                                        id="other" value="other">
+                                                        id="other" value="other" checked >
                                                     <label class="form-check-label" for="other">
-                                                        Other <small>(Include clear instructions in your event details
+                                                        Other <small>( Mention instructions in your event details
                                                             on how to participate.)</small>
                                                     </label>
                                                 </div>
@@ -285,12 +293,13 @@
                                                     name="description"></textarea>
                                             </div>
                                             <hr class="mb-4">
-                                            {{-- <button class="btn btn-info btn-sm float-right" id="location" >Next</button> --}}
-                                            <input type="button" id="join" class="btn btn-info float-right"
+                                            <input type="button" id="join" class="btn btn-info btn-sm float-right"
                                                 value="Next" />
+                                                <input type="button" id="join-back" class="btn btn-secondary btn-sm float-right mx-2"
+                                                value="Back" />
                                         </div>
                                     </div>
-                                    <div class="addition_relation col-md-8 offset-md-2 bg-light mt-5 p-4"
+                                    <div class="addition_relation col-md-8 offset-md-2 bg-light mt-2 p-4"
                                         style="display: none">
                                         <h2 class="text-center">Additional details</h2>
                                         <div class="p-3">
@@ -329,8 +338,9 @@
                                                 </label>
                                             </div>
                                             <hr class="mb-4">
-                                            <button class="btn btn-info btn-sm float-right" id="addition_relation"
-                                                type="submit">Submit</button>
+                                            <button class="btn btn-info btn-sm float-right" id="addition_relation">Submit</button>
+                                            <button class="btn btn-info btn-sm float-right mx-2" id="addition_relation-back"
+                                                type="button">Back</button>
                                         </div>
                                     </div>
                                 </form>
