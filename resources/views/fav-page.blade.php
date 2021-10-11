@@ -69,8 +69,7 @@ $get_like_page_status = get_like_page_status($get_page->msu_user_page_id);
 						<h5>{{ $get_page->page_info }}</h5>
 						 <h6><i class="mr-2">Created By :<a href="/see_friend/{{ $get_page->user_id }}">@ {{ $user_name->name }}</a> .</i>{{ $get_page->page_category }}</h6>
 					  </li>
-					  
-				   </ul>
+					 </ul>
 				</div>
 			 </div>
 		  </div>
@@ -195,8 +194,7 @@ $get_like_page_status = get_like_page_status($get_page->msu_user_page_id);
                         
                            @php 
                               $get_page_post_cmt = get_page_post_cmt($post->id);
-                              $get_page_post_cmt1 = get_page_post_cmt1($post->id);
-
+                              
                               @endphp
                             <div class="central-meta item">
                            <div class="user-post">
@@ -209,12 +207,10 @@ $get_like_page_status = get_like_page_status($get_page->msu_user_page_id);
                                           <ins><a href="time-line.html" title="">@php echo  get_user_nane1($post->user_id) @endphp</a></ins>
                                           <span>published: {{ $post->created }}</span>
                                           <div class="post-opt pull-right">
-
-                                         <i class="ti-more-alt" data-toggle="popover" data-content="<a href=#null  onclick='myPageFuntction()' value='{{ $post->id}}' id='edit-post'>Edit</a><br><a class='border-top'  onclick='openMoodal({{ $post->id}})'  href='#' >Delete</a>"
-                                           data-placement="left"  data-html="true">
-                                         </i>
-                                         
-                                       </div>
+                                                <i class="ti-more-alt" data-toggle="popover" data-content="<a href=#null  onclick='myPageFuntction()' value='{{ $post->id}}' id='edit-post'>Edit</a><br><a class='border-top'  onclick='openMoodal({{ $post->id}})'  href='#' >Delete</a>"
+                                                data-placement="left"  data-html="true">
+                                             </i>
+                                         </div>
                                        <div class="col-4 pull-right opt-list" style="display: none">
                                          {{--  <button type="button" class="btn btn-secondary" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Vivamus
                                            sagittis lacus vel augue laoreet rutrum faucibus.">
@@ -406,16 +402,29 @@ $get_like_page_status = get_like_page_status($get_page->msu_user_page_id);
                               <div class="coment-area">
                                  <ul class="we-comet">
                                     @foreach($get_page_post_cmt as $key => $post_cmt)
-                                    <li>
-                                       <div class="comet-avatar">
+                                    
+                                           
+                                       @php 
+                                         $get_post_user_id = get_post_user_id($post_cmt->post_id);
+                                         $get_post_cmt_like= get_post_cmt_like($post_cmt->post_id,$post_cmt->id);
+                                         $is_like = !empty($get_post_cmt_like->is_like)? $get_post_cmt_like->is_like:'0';
+                                         $get_page_post_cmt1 = get_page_post_cmt1($post->id,$post_cmt->id);
+                                       
+                                       @endphp
+                                       <li>
+                                         <div class="comet-avatar">
                                           <img src="{{ asset('assets/images/resources/comet-1.jpg') }}" alt="">
                                        </div>
                                        <div class="we-comment">
                                           <div class="coment-head">
                                              <h5><a href="time-line.html" title="">@php echo  get_user_nane1($post_cmt->user_id) @endphp</a></h5>
                                              <span>{{ $post_cmt->created }}</span>
-                                             <a class="we-reply" href="#" onclick="return false" id="we-reply{{ $key }}"  title="Reply"><i class="fa fa-reply"></i></a>
+                                             @if( $is_like == 1)<a class="like"  onclick="dislike_page_post_cmt({{ $post_cmt->id }},{{ $post_cmt->post_id }})" href="#" ><i class="fa fa-thumbs-up" style="color:#088dcd;" aria-hidden="true"></i> </a>@else<a class="like"  onclick="like_page_post_cmt({{ $post_cmt->id }},{{ $post_cmt->post_id }})" href="#" ><i class="fa fa-thumbs-up  icon-color" aria-hidden="true"></i></a> @endif
+                                             <a class="we-reply" href="#" onclick="return false" data-id="{{ $post_cmt->id }}" id="we-reply{{ $key }}"  title="Reply"><i class="fa fa-reply"></i></a>
+                                             
                                              @if($post_cmt->user_id == $user_id)
+                                             <a class="delete"  href="#" onclick="delete_comment({{ $post_cmt->id }})"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a>     
+                                             @elseif($get_post_user_id->user_id == $user_id)
                                              <a class="delete"  href="#" onclick="delete_comment({{ $post_cmt->id }})"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a>     
                                              @endif
                                           </div>
@@ -424,44 +433,63 @@ $get_like_page_status = get_like_page_status($get_page->msu_user_page_id);
                                           </p>
                                          
                                        </div>
+                                       <ul>
+
                                        @foreach($get_page_post_cmt1 as $inner_cmt)
-                                                
-                                         <p>  
-                                            @php echo $inner_cmt->comment @endphp
-                                        </p>
+                                       @php 
+                                        $get_post_inner_cmt_like= get_post_inner_cmt_like($inner_cmt->post_id,$inner_cmt->id);
+                                        
+                                       $is_like_inner = !empty($get_post_inner_cmt_like->is_like)? $get_post_inner_cmt_like->is_like:'0'; @endphp
 
-                                        @endforeach
-                                       <div id="new_cmt_box" style="display:none;">
-
-                                       
-                                          <div class="post-comt-box">
-                                           <form method="post" id="page_post_comments" enctype="multipart/form-data"   action="{{url("fav-page")}}">
-                                                @csrf
-                                                <div class="row m-4">
-                                                <div class="col-sm-10 p-0">
-                                                <textarea placeholder="Post your comment" id="page_post_reply_comment" name="page_post_reply_comment"></textarea>
-                                          </div> <div class="col-sm-1">
-                                             <input type="hidden" name="post_id" id="post_id" value="{{ $post->id }}"/>    
-                                             <input type="hidden" name="user_id" id="user_id" value="{{ $post->user_id }}"/>
-                                             <input type="hidden" name="status" id="status" value ="1"/>
-                                             <button type="submit" class="btn btn-primary"><i class="far fa-paper-plane"></i></button>
-                                          </div>
-                                       </form> 
+                                       <li>
+                                       <div class="comet-avatar">
+                                          <img src="{{ asset('assets/images/resources/comet-1.jpg') }}" alt="">
                                        </div>
-                                    </li>
+                                       <div class="we-comment">
+                                        <div class="coment-head">
+                                      
+                                             <h5><a href="time-line.html" title="">@php echo  get_user_nane1($post_cmt->user_id) @endphp</a></h5>
+                                             <span>{{ $inner_cmt->created }}</span>
+                                             @if($is_like_inner == 1)<a class="like"  onclick="dislike_page_post_inner_cmt({{ $inner_cmt->id }},{{ $inner_cmt->post_id }})" href="#" ><i class="fa fa-thumbs-up" style="color:#088dcd;" aria-hidden="true"></i> </a>@else<a class="like"  onclick="like_page_post_inner_cmt({{ $inner_cmt->id }},{{ $inner_cmt->post_id }})" href="#" ><i class="fa fa-thumbs-up  icon-color" aria-hidden="true"></i></a> @endif
+                                             <a class="we-reply" href="#" onclick="return false" data-id="{{ $inner_cmt->id }}" id="we-reply"  title="Reply"><i class="fa fa-reply"></i></a>
+                                             
+                                             @if($inner_cmt->user_id == $user_id)
+                                             <a class="delete"  href="#" onclick="delete_comment({{ $inner_cmt->id }})"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a>     
+                                             @elseif($inner_cmt->user_id == $user_id)
+                                             <a class="delete"  href="#" onclick="delete_comment({{ $inner_cmt ->id }})"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a>     
+                                            @endif
+                                          </div>
+                                           <p>
+                                                @php echo $inner_cmt->comment @endphp
+                                          </p>
+                                         </div>
+                                       </li>
+                                         {{-- <p>  
+                                            @php echo $inner_cmt->comment @endphp
+                                         </p> --}}
+
+                                         @endforeach
+                                       </ul>
+                                       </li>
+                                     <input type="hidden" name="post_id1" id="post_id1" value="{{ $post->id }}"/>
+                                       
+                                   
                                     @endforeach
-                                    
-                                    <li>
-                                       <a href="#" title="" class="showmore underline">more comments</a>
-                                    </li>
-                                 
+                                      
+                              <li>
+                                 <a href="#" title="" class="showmore underline">more comments</a>
+                              </li>
+
                               </div>
+
+                            
+                           
                               <div class="post-comt-box">
                               <form method="post" id="page_post_comments" enctype="multipart/form-data"   action="{{url('fav-page')}}">
                                  @csrf
 
                                  <div class="row">
-                                    <div class="col-sm-10 p-0">
+                                    <div class="col-sm-11 p-0">
                                         <textarea placeholder="Post your comment" id="page_post_comment" name="page_post_cmt"></textarea>
                                     </div>
                                     <div class="col-sm-1">
@@ -471,7 +499,7 @@ $get_like_page_status = get_like_page_status($get_page->msu_user_page_id);
                                        <button type="submit" class="btn btn-primary"><i class="far fa-paper-plane"></i></button>
                                     </div>
                                  </div>
-                           </form>	
+                              </form>	
                               
                            </div>
                               </li>

@@ -98,11 +98,9 @@ $get_page_notifications = get_page_notifications();
                                           <div class="row">
                                              <div class="col-sm-6 text-left">
                                                 @if($like_page->profile_image != "")
-                                                <img src="{{  url('upload/images/profile_photo/'.$like_page->profile_image) }}" class="rc_profile_pic mr-3" style="max-width: 60px" alt="">
-                                         
-                                                
+                                                   <img src="{{  url('upload/images/profile_photo/'.$like_page->profile_image) }}" class="rc_profile_pic mr-3" style="max-width: 60px" alt="">
                                                 @else
-                                                    <img src="../assets/images/user_image.png" class="rc_profile_pic" style="max-width: 60px" alt="">
+                                                   <img src="../assets/images/user_image.png" class="rc_profile_pic" style="max-width: 60px" alt="">
                                                 @endif
 
 
@@ -181,8 +179,7 @@ $get_page_notifications = get_page_notifications();
                                              <div class="row">
                                                 <div class="col-sm-6 text-left">
                                                     @if($list_page->profile_photo != "")
-                                                    <img src="../assets/images/{{ $list_page->profile_photo }}" class="rc_profile_pic" style="max-width: 60px" alt="">
-                                                 
+                                                       <img src="../assets/images/{{ $list_page->profile_photo }}" class="rc_profile_pic" style="max-width: 60px" alt="">
                                                     @else
                                                         <img src="../assets/images/user_image.png" class="rc_profile_pic" style="max-width: 60px" alt="">
                                                     @endif
@@ -263,7 +260,7 @@ $get_page_notifications = get_page_notifications();
          <span>Notifications</span>
          <input type="checkbox" id="switch22" />
          <label for="switch22" data-on-label="ON" data-off-label="OFF"></label>
-      </div>
+      </div>0
       <div class="setting-row">
          <span>Notification sound</span>
          <input type="checkbox" id="switch33" />

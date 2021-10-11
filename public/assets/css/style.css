@@ -1928,7 +1928,7 @@ for some reason nth-child(1) is always busy and elements starting from 2 */
     text-transform: capitalize;
     font-size: 13px;
     display: inline-block;
-    margin-left: 10px;
+    /* margin-left: 10px; */
 }
 
 .coment-head>span {
@@ -10290,4 +10290,8 @@ aside.sidebar.full-style {
 .scroll-bar {
     overflow-y: scroll;
     height: 270px;
+}
+
+.like {
+    margin-left: 10px;
 }

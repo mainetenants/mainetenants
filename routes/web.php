@@ -74,13 +74,22 @@ use App\Http\Controllers\PageController;
     Route::post('/delete-post','App\Http\Controllers\PageController@deletePost');
     Route::post('/delete-post','App\Http\Controllers\PageController@deletePost');
     Route::post('/delete-comment','App\Http\Controllers\PageController@deletecomment');
-    
-
+    Route::post('/like_page_post_cmt','App\Http\Controllers\PageController@like_page_post_cmt');
+    Route::post('/dislike_page_post_cmt','App\Http\Controllers\PageController@dislike_page_post_cmt');
+    Route::post('/save-reply-comment','App\Http\Controllers\PageController@add_replay_comments');
+    Route::post('/like_page_post_inner_cmt','App\Http\Controllers\PageController@like_page_post_inner_cmt');
+    Route::post('/dislike_page_post_inner_cmt','App\Http\Controllers\PageController@dislike_page_inner_post_cmt');
     Route::get('/create-event','App\Http\Controllers\EventController@index');
     Route::post('/create-event-form','App\Http\Controllers\EventController@create_event');
     Route::get('/events', 'App\Http\Controllers\EventController@events_view');
     Route::get('/your-events', 'App\Http\Controllers\EventController@your_events_listing');
 
+    Route::post('like_post_cmt','App\Http\Controllers\PostController@like_post_cmt');
+    Route::post('dislike_post_cmt','App\Http\Controllers\PostController@dislike_post_cmt');
+    Route::post('delete_post_comment','App\Http\Controllers\PostController@delete_post_comment');
+    Route::post('save-inner-comments','App\Http\Controllers\PostController@save_inner_comments');
+    Route::post('inner_post_cmt_like','App\Http\Controllers\PostController@inner_post_cmt_like');
+    Route::post('inner_post_cmt_dislike','App\Http\Controllers\PostController@inner_post_cmt_dislike'); 
 });
 
 

@@ -1,10 +1,10 @@
 @include('includes/header')
 
+@php 
+    $user_id = Auth::id();
+@endphp 
 
-@php
-   
-@endphp
-<section>
+   <section>
    <div class="gap gray-bg">
       <div class="container">
          <div class="row">
@@ -80,6 +80,10 @@
                      <!-- add post new box -->
                      <div class="loadMore">
                         @foreach($users1 as $user)
+
+                        @php $get_post_comments = get_post_comments($user->id); 
+                        @endphp
+
 						<div class="  central-meta item bg-white bg-light">
 							<div class="user-post">
 							   <div class="friend-info">
@@ -119,6 +123,11 @@
 							   </span>
 							   <div class="post-meta">
 								  <img src="upload/images/{{ $user->images; }}" alt="">
+                          <div class="description">
+                           <p>
+                             {{ $user->content; }}
+                           </p>
+                         </div>
                           <div class="we-video-info">
                               <span class="reaction" value="{{$user->id}}">
                                  <i id="1"><img src="/assets/images/s_emoji/like.png"  class="emoji img-fluid custom-img-height" /></i>
@@ -208,58 +217,103 @@
                                  </li>
                               </ul>
                            </div>
-								  <div class="description">
-									 <p>
-										{{ $user->content; }}
-									 </p>
-								  </div>
+								  
 							   </div>
 							</div>
 							<div class="coment-area bg-white bg-light">
 							   <ul class="we-comet">
-								  {{-- @foreach ($comments as $comment) --}}
+								  
+                          
+                             @foreach ($get_post_comments as $comment)
+
+                             @php 
+                                  $get_post_cmt1 = get_post_cmt1($comment->id);
+                                  $get_post_comment_like = get_post_comment_like($comment->id);
+                                  $is_like  = isset($get_post_comment_like->is_like)?$get_post_comment_like->is_like:'0';
+                             @endphp 
+                             <li>
+                                 <div class="comet-avatar">
+                                    <img src="{{ asset('assets/images/resources/comet-1.jpg') }}" alt="">
+                                 </div>
+                                 <div class="we-comment">
+                                    <div class="coment-head">
+                                       <h5><a href="time-line" title="">@php echo  get_user_nane1($comment->user_id) @endphp</a></h5>
+                            
+                                    @if( $is_like == 1)<a class="like"  onclick="dislike_post_cmt({{ $comment->id }},{{ $comment->post_id }})" href="#" ><i class="fa fa-thumbs-up" style="color:#088dcd;" aria-hidden="true"></i> </a>@else<a class="like"  onclick="like_post_cmt({{ $comment->id }},{{ $comment->post_id }})" href="#" ><i class="fa fa-thumbs-up  icon-color" aria-hidden="true"></i></a> @endif                                    
+                                        <a class="we-reply1" href="#" onclick="return false" data-id="{{ $comment->id }}" post-id ="{{ $comment->post_id }}" id="we-reply"  title="Reply"><i class="fa fa-reply"></i></a>
+                                         @if($comment->user_id == $user_id)
+                                             <a class="delete"  href="#" onclick="delete_post_comment({{ $comment->id }})"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a>     
+                                        @elseif($user->user_id == $user_id)
+                                             <a class="delete"  href="#" onclick="delete_post_comment({{ $comment->id }})"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a>     
+                                        @endif
+                                    </div>
+                                    <p> @php echo $comment->comment @endphp</p>
+                                 </div>
+                                 <ul>
+
+                                    @foreach($get_post_cmt1 as $inner_cmt)
+                                    {{-- @php 
+                                     $get_inner_cmt_like= get_inner_cmt_like($inner_cmt->post_id,$inner_cmt->id);
+                                     
+                                    $is_like_inner = !empty($get_inner_cmt_like->is_like)? $get_inner_cmt_like->is_like:'0'; @endphp --}}
+
+                                    <li>
+                                    <div class="comet-avatar">
+                                       <img src="{{ asset('assets/images/resources/comet-1.jpg') }}" alt="">
+                                    </div>
+                                    <div class="we-comment">
+                                     <div class="coment-head">
+                                   
+                                          <h5><a href="time-line.html" title="">@php echo  get_user_nane1($inner_cmt->user_id) @endphp</a></h5>
+                                          <span>{{ $inner_cmt->created }}</span>
+                                          {{-- @if($is_like_inner == 1)<a class="like"  onclick="dislike_post_inner_cmt({{ $inner_cmt->id }},{{ $inner_cmt->post_id }})" href="#" ><i class="fa fa-thumbs-up" style="color:#088dcd;" aria-hidden="true"></i> </a>@else<a class="like"  onclick="like_post_inner_cmt({{ $inner_cmt->id }},{{ $inner_cmt->post_id }})" href="#" ><i class="fa fa-thumbs-up  icon-color" aria-hidden="true"></i></a> @endif --}}
+                                          <a class="we-reply" href="#" onclick="return false" data-id="{{ $inner_cmt->id }}" id="we-reply"  title="Reply"><i class="fa fa-reply"></i></a>
+                                          
+                                          @if($inner_cmt->user_id == $user_id)
+                                          <a class="delete"  href="#" onclick="delete_comment({{ $inner_cmt->id }})"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a>     
+                                          @elseif($inner_cmt->user_id == $user_id)
+                                          <a class="delete"  href="#" onclick="delete_comment({{ $inner_cmt ->id }})"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a>     
+                                         @endif
+                                       </div>
+                                        <p>
+                                             @php echo $inner_cmt->comment @endphp
+                                       </p>
+                                      </div>
+                                    </li>
+                                      {{-- <p>  
+                                         @php echo $inner_cmt->comment @endphp
+                                      </p> --}}
+
+                                      @endforeach
+                                 </ul>
+                             </li>
+									 @endforeach 
+                         
                        
-                          @php  
+                          {{-- @php  
 
 
                                  get_post_cmt($user->post_id);
 
-                          @endphp
+                          @endphp --}}
                           <div class="post-comt-box">
-                           <form method="post" id="page_post_comments" enctype="multipart/form-data"   action="{{url("homepage")}}">
-                                @csrf
-                              <div class="row m-4">
-                                 <div class="col-sm-10">
+                              <form method="post" id="page_post_comments" enctype="multipart/form-data"   action="{{url("homepage")}}">
+                                 @csrf
+                                 <div class="row">
+                                    <div class="col-sm-11">
                                        <textarea placeholder="Post your comment" id="commen_1234" class="comment_1243" name="comment"></textarea>
+                                    </div>
+                                    <div class="col-sm-1">
+                                       <input type="hidden" name="post_id" id="post_id" value="{{ $user->id }}"/>
+                                       <input type="hidden" name="user_id" id="user_id" value="{{ $user->user_id }}"/>
+                                       <input type="hidden" name="status" id="status" value ="1"/>
+                                       <button type="submit" class="btn btn-primary"><i class="far fa-paper-plane"></i></button>
+                                    </div>
                                  </div>
-                                 <div class="col-sm-1">
-                                    <input type="hidden" name="post_id" id="post_id" value="{{ $user->id }}"/>
-                                    <input type="hidden" name="user_id" id="user_id" value="{{ $user->user_id }}"/>
-                                    <input type="hidden" name="status" id="status" value ="1"/>
-                                    <button type="submit" class="btn btn-primary"><i class="far fa-paper-plane"></i></button>
-                                 </div>
-                            </div>
-                       </form> 
-                       </div>
+                              </form> 
+                          </div>
                          
-								   {{-- <li>
-									<div class="comet-avatar">
-										<img src="{{ asset('assets/images/resources/comet-1.jpg') }}" alt="">
-									 </div>
-									 <div class="we-comment">
-										<div class="coment-head">
-										   <h5><a href="time-line" title="">{{$user->name}}</a></h5>
-										   <?php
-											  //$timestamp = strtotime($user->created_at);
-											 //  $day = date('M,d Y H:i A', $timestamp);
-											  ?>
-										   <a class="we-reply" href="#" title="Reply"><i class="fa fa-reply text-secondary"></i></a>
-										</div>
-										<p> @php echo $comment->comment @endphp</p>
-									 </div>
-									 @endforeach 
-                             
-								</li>--}}
+								 
 							   </ul>
 							   {{-- modal for edit post							 --}}
 							   <div class="modal fade" id="editpost" tabindex="-1" aria-hidden="false">
@@ -350,7 +404,7 @@
 					</div>	
 				     <div >
                      @foreach($users as $user)
-
+                       @php $get_post_cmt = get_post_cmt($user->id) @endphp
                      <div class="  central-meta item bg-white bg-light">
                         <div class="user-post">
                            <div class="friend-info">
@@ -390,6 +444,11 @@
                            </span>
                            <div class="post-meta">
                              <img src="upload/images/{{ $user->images; }}" alt="">
+                             <div class="description">
+                              <p>
+                                {{ $user->content; }}
+                              </p>
+                            </div>
                              <div class="we-video-info">
                                  <span class="reaction" value="{{$user->id}}">
                                     <i id="1"><img src="/assets/images/s_emoji/like.png"  class="emoji img-fluid custom-img-height" /></i>
@@ -448,68 +507,80 @@
                                        <div class="menu">
                                           <div class="btn trigger"><i class="fa fa-share-alt text-secondary"></i></div>
                                           <div class="rotater">
-                                          <div class="btn btn-icon"><a href="#" class="text-secondary"" title=""><i class="fa fa-html5 text-secondary"></i></a></div>
+                                             <div class="btn btn-icon"><a href="#" class="text-secondary"" title=""><i class="fa fa-html5 text-secondary"></i></a></div>
                                           </div>
                                           <div class="rotater">
-                                          <div class="btn btn-icon"><a href="#" class="text-secondary"" title=""><i class="fa fa-facebook text-secondary"></i></a></div>
+                                             <div class="btn btn-icon"><a href="#" class="text-secondary"" title=""><i class="fa fa-facebook text-secondary"></i></a></div>
                                           </div>
                                           <div class="rotater">
-                                          <div class="btn btn-icon"><a href="#" class="text-secondary"" title=""><i class="fa fa-google-plus text-secondary"></i></a></div>
+                                             <div class="btn btn-icon"><a href="#" class="text-secondary"" title=""><i class="fa fa-google-plus text-secondary"></i></a></div>
                                           </div>
                                           <div class="rotater">
-                                          <div class="btn btn-icon"><a href="#" class="text-secondary"" title=""><i class="fa fa-twitter text-secondary"></i></a></div>
+                                             <div class="btn btn-icon"><a href="#" class="text-secondary"" title=""><i class="fa fa-twitter text-secondary"></i></a></div>
                                           </div>
                                           <div class="rotater">
-                                          <div class="btn btn-icon"><a href="#" class="text-secondary"" title=""><i class="fa fa-css3 text-secondary"></i></a></div>
+                                             <div class="btn btn-icon"><a href="#" class="text-secondary"" title=""><i class="fa fa-css3 text-secondary"></i></a></div>
                                           </div>
                                           <div class="rotater">
-                                          <div class="btn btn-icon"><a href="#" class="text-secondary"" title=""><i class="fa fa-instagram text-secondary"></i></a>
-                                          </div>
-                                          </div>
-                                          <div class="rotater">
-                                          <div class="btn btn-icon"><a href="#" class="text-secondary"" title=""><i class="fa fa-dribbble text-secondary"></i></a>
+                                             <div class="btn btn-icon"><a href="#" class="text-secondary"" title=""><i class="fa fa-instagram text-secondary"></i></a>
                                           </div>
                                           </div>
                                           <div class="rotater">
-                                          <div class="btn btn-icon"><a href="#" class="text-secondary"" title=""><i class="fa fa-pinterest text-secondary"></i></a>
+                                             <div class="btn btn-icon"><a href="#" class="text-secondary"" title=""><i class="fa fa-dribbble text-secondary"></i></a>
                                           </div>
                                           </div>
-   
-                                       </div>
+                                          <div class="rotater">
+                                             <div class="btn btn-icon"><a href="#" class="text-secondary"" title=""><i class="fa fa-pinterest text-secondary"></i></a>
+                                          </div>
+                                          </div>
+                                        </div>
                                     </li>
                                  </ul>
                               </div>
-                             <div class="description">
-                               <p>
-                                 {{ $user->content; }}
-                               </p>
-                             </div>
+                             
                            </div>
                         </div>
                         <div class="coment-area bg-white bg-light">
                            <ul class="we-comet">
                              {{-- @foreach ($comments as $comment) --}}
-                          
-                             @php  
-   
-   
-                                    get_post_cmt($user->post_id);
-   
-                             @endphp
-                             <div class="post-comt-box">
-                              <form method="post" id="page_post_comments" enctype="multipart/form-data"   action="{{url("homepage")}}">
-                                   @csrf
-                                   <div class="row m-4">
-                                   <div class="col-sm-10">
-                                   <textarea placeholder="Post your comment" id="commen_1234" class="comment_1243" name="comment"></textarea>
-                             </div> <div class="col-sm-1">
-                                <input type="hidden" name="post_id" id="post_id" value="{{ $user->id }}"/>
-                                <input type="hidden" name="user_id" id="user_id" value="{{ $user->user_id }}"/>
-                                <input type="hidden" name="status" id="status" value ="1"/>
-                                <button type="submit" class="btn btn-primary"><i class="far fa-paper-plane"></i></button>
-                             </div>
-                          </form> 
-                          </div>
+                             
+                             @foreach ($get_post_comments as $comment)
+
+                             
+                             @php $get_post_comment_like = get_post_comment_like($comment->id);
+                                  $is_like  = isset($get_post_comment_like->is_like)?$get_post_comment_like->is_like:'0';
+                             @endphp 
+                             <li>
+                                 <div class="comet-avatar">
+                                    <img src="{{ asset('assets/images/resources/comet-1.jpg') }}" alt="">
+                                 </div>
+                                 <div class="we-comment">
+                                    <div class="coment-head">
+                                       <h5><a href="time-line" title="">{{$user->name}}</a></h5>  
+                                       <a class="we-reply" href="#" title="Reply"><i class="fa fa-reply text-secondary"></i></a>
+                                    </div>
+                                    <p> @php echo $comment->comment @endphp</p>
+                                 </div>
+                              </li>
+                              
+                         @endforeach 
+                        
+                                 <div class="post-comt-box">
+                                    <form method="post" id="page_post_comments" enctype="multipart/form-data"   action="{{url("homepage")}}">
+                                             @csrf
+                                          <div class="row">
+                                             <div class="col-sm-11">
+                                                <textarea placeholder="Post your comment" id="commen_1234" class="comment_1243" name="comment"></textarea>
+                                             </div> 
+                                             <div class="col-sm-1">
+                                                <input type="hidden" name="post_id" id="post_id" value="{{ $user->id }}"/>
+                                                <input type="hidden" name="user_id" id="user_id" value="{{ $user->user_id }}"/>
+                                                <input type="hidden" name="status" id="status" value ="1"/>
+                                                <button type="submit" class="btn btn-primary"><i class="far fa-paper-plane"></i></button>
+                                             </div>
+                                          </div>
+                                    </form> 
+                              </div>
                             
                               {{-- <li>
                               <div class="comet-avatar">

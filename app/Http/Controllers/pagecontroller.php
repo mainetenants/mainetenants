@@ -9,6 +9,9 @@ use App\Models\msu_user_page;
 use App\Models\page_category;
 use App\Models\msu_page_post;
 use App\Models\page_post_comments;
+use App\Models\msu_page_post_reply_comment;
+use App\Models\likepagepost;
+use App\Models\page_post_inner_like_cmt;
 use App\Http\Controllers\AboutController;
 use Intervention\Image\ImageManagerStatic as Image;
 
@@ -326,4 +329,67 @@ public function deletecomment(Request $request){
 
 
 }
+
+Public function like_page_post_cmt(Request $request){
+       $data = $request->all();
+       $user_id = Auth::id();
+               $insert = new likepagepost();
+        $insert->user_id = $user_id;
+        $insert->comment_id = $data['cmt_id'];
+        $insert->post_id = $data['post_id'];
+        $insert->is_like = 1;
+        $insert->is_active = 1;
+        $insert->save();
+       
+        return response()->json(array('status'=>"like Succesfully",'status_res'=>1));
+}
+
+public  function dislike_page_post_cmt(Request $request){
+        $data = $request->all();
+        $user_id = Auth::id();
+      
+        likepagepost::where(['comment_id'=>$data['cmt_id'],'post_id'=>$data['post_id'],'user_id'=>Auth::id()])->delete();
+      
+  
+        return response()->json(array('status'=>"dislike Succesfully",'status_res'=>1));
+} 
+
+public function add_replay_comments(Request $request){
+      $data = $request->all();
+      $user_id = Auth::id(); 
+      $page_post = new msu_page_post_reply_comment();
+      $page_post->user_id = $user_id;
+      $page_post->comment_id = $data['comment_id'];
+      $page_post->post_id = $data['post_id1'];
+      $page_post->comment = $data['page_post_reply_comment'];
+      $page_post->is_active = 1;
+      $page_post->status = $data['status'];
+      $page_post->save();
+      return back();
+}
+
+
+Public function like_page_post_inner_cmt(Request $request){
+    $data = $request->all();
+    $user_id = Auth::id();
+     $insert = new page_post_inner_like_cmt();
+     $insert->user_id = $user_id;
+     $insert->comment_id = $data['cmt_id'];
+     $insert->post_id = $data['post_id'];
+     $insert->is_like = 1;
+     $insert->is_active = 1;
+     $insert->save();
+    
+     return response()->json(array('status'=>"like Succesfully",'status_res'=>1));
+}
+
+public  function dislike_page_inner_post_cmt(Request $request){
+     $data = $request->all();
+     $user_id = Auth::id();
+   
+     page_post_inner_like_cmt::where(['comment_id'=>$data['cmt_id'],'post_id'=>$data['post_id'],'user_id'=>Auth::id()])->delete();
+   
+
+     return response()->json(array('status'=>"dislike Succesfully",'status_res'=>1));
+} 
 }
