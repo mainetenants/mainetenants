@@ -80,9 +80,6 @@ class PostController extends Controller
     {
         $user = Auth::user();
         $data = $request->all();
-
-
-
         if(isset($data['comment'])){
             $request->validate([
                 'comment' => 'required',

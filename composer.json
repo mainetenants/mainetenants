@@ -13,7 +13,9 @@
         "laravel/jetstream": "^2.3",
         "laravel/sanctum": "^2.6",
         "laravel/tinker": "^2.5",
-        "livewire/livewire": "^2.5"
+        "livewire/livewire": "^2.5",
+        "munafio/chatify": "^1.2",
+        "pusher/pusher-php-server": "^7.0"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

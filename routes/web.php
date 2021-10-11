@@ -20,8 +20,6 @@ use App\Http\Controllers\PageController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-
     Route::group(['middleware'=>'web'],function(){
     Route::get('/', function () { return view('landing'); });
     Route::get('/homepage','App\Http\Controllers\PostController@homepage');
