@@ -257,7 +257,7 @@ function get_post_cmt($id){
       $string ="";
       foreach($users  as $user){
        $string .='<li><div class="comet-avatar">'.
-       '<img src="{{ asset(\"assets/images/resources/comet-1.jpg\") }}\" alt="">'.
+       '<img src="{{ asset(\'assets\images\resources\comet-1.jpg\') }}" alt="">'.
      '</div>'.
     '<div class="we-comment">'.
        '<div class="coment-head">'.
@@ -387,6 +387,35 @@ function  get_post_inner_cmt_like($id,$cmt_id){
     ->first();
      return $get_post_inner_cmt_like;
 
-
 }
 
+function get_post_comments($id){
+
+    $get_post_comments = DB::table('msu_comments')
+    ->select('*')
+    ->where(['post_id'=>$id])
+    ->get();
+
+    return $get_post_comments; 
+}
+function get_post_comment_like($id){
+      $user_id = Auth::id();
+      $get_post_comment_like = DB::table('msu_post_like_comment')
+      ->select('is_like')
+      ->where(['comment_id'=>$id,'user_id'=>$user_id])
+      ->first();
+
+ return $get_post_comment_like;
+}
+
+function get_post_cmt1($cmt_id){
+     
+
+    $get_post_cmt1 = DB::table('msu_post_inner_comment')
+    ->select('*')
+    ->where(['comment_id'=>$cmt_id])
+    ->get();
+     return $get_post_cmt1;
+
+}
+    

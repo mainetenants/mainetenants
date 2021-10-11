@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use DB;
 use Auth;
 use Illuminate\Support\Facades\Auth as FacadesAuth;
+use App\Models\like_post_cmt;
+use App\Models\post_inner_comment;
 use Intervention\Image\ImageManagerStatic as Image;
 
 class PostController extends Controller
@@ -118,7 +120,7 @@ class PostController extends Controller
     public function homepage(Request $request)
     {
         $id = Auth::id();
-
+      
         $users = DB::table('msu_community_activities')
         ->leftJoin('users', 'msu_community_activities.user_id', '=', 'users.id')
         ->leftJoin('msu_isfriend','msu_isfriend.user_id','=','msu_community_activities.user_id')
@@ -136,6 +138,8 @@ class PostController extends Controller
         ->where(['users.id'=>$id] )
         ->orderBy('created', 'DESC')
         ->get();
+
+
 
         
         $comments = DB::table('msu_comments')
@@ -315,6 +319,67 @@ class PostController extends Controller
         return redirect('homepage');
 
     }
+
+    Public function like_post_cmt(Request $request){
+        $data = $request->all();
+        $user_id = Auth::id();
+
+        
+        $like_post_cmt = new like_post_cmt();
+        $like_post_cmt->user_id =$user_id;
+        $like_post_cmt->post_id =$data['post_id'];
+        $like_post_cmt->comment_id =$data['cmt_id'];
+        $like_post_cmt->is_like = 1;
+        $like_post_cmt->is_active = 1;
+        $like_post_cmt->save();
+ 
+        return response()->json(array('status'=>'like Successfully','status_res'=>1));
+    }
+    Public function dislike_post_cmt(Request $request){
+        $data = $request->all();
+        $user_id = Auth::id();
+    
+        like_post_cmt::where(['comment_id'=>$data['cmt_id'],'post_id'=>$data['post_id']])->delete();
+        return response()->json(array('status'=>'dislike Successfully','status_res'=>1));
+
+    }
+    public function delete_post_comment(Request $request){
+       $data = $request->all();
+       $user_id = Auth::id();
+
+       $delete_post_comment = DB::table('msu_comments')
+       ->where(['id'=>$data['cmt_id']])
+       ->delete();
+       return response()->json(array('status'=>'delete post','status_res'=>1));
+
+
+    }
+    public function save_inner_comments(Request $request){
+          $data = $request->all();
+          $user_id = Auth::id();
+             $insert = new post_inner_comment();
+             $insert->user_id = $user_id ;
+             $insert->post_id = $data['post_id1'] ;
+             $insert->comment_id = $data['comment_id'];
+             $insert->comment = $data['page_post_reply_comment'] ; 
+             $insert->is_like = 1;
+             $insert->is_active = 1;
+             $insert->save();
+
+          return back();
+
+    }
+    // public function inner_post_cmt_like(Request $request){
+    //        $data = $request->all();
+    //        $user_id =Auth::id();
+    //        $msu_page_post_inner_like_comment = new msu_page_post_inner_like_comment
+
+
+    // }
+    // public function inner_post_cmt_dislike(Request $request){
+    //        $data = $request->all();
+    //        $user_id = Auth::id();
+    // }
 }
 
 

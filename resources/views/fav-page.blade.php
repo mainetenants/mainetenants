@@ -402,6 +402,7 @@ $get_like_page_status = get_like_page_status($get_page->msu_user_page_id);
                               <div class="coment-area">
                                  <ul class="we-comet">
                                     @foreach($get_page_post_cmt as $key => $post_cmt)
+                                    
                                            
                                        @php 
                                          $get_post_user_id = get_post_user_id($post_cmt->post_id);
