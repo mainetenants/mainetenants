@@ -25,7 +25,7 @@ class AboutController extends Controller
         ->leftJoin('users', 'msu_user_work_education.user_id', '=', 'users.id')
         ->where('user_id', Auth::id())
         ->first();
-//dd($educationInfo);
+       //dd($educationInfo);
         $interestInfos = DB::table('msu_interest')
         ->leftJoin('users', 'msu_interest.user_id', '=', 'users.id')
         ->select('msu_interest.interest')

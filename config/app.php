@@ -166,7 +166,7 @@ return [
         /*
          * Package Service Providers...
          */
-
+        \Chatify\ChatifyServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -192,6 +192,7 @@ return [
     */
 
     'aliases' => [
+        'Chatify' => Chatify\Facades\ChatifyMessenger::class,
         'Image' => Intervention\Image\Facades\Image::class,
         'App' => Illuminate\Support\Facades\App::class,
         'Arr' => Illuminate\Support\Arr::class,
