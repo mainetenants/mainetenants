@@ -80,6 +80,8 @@ use App\Http\Controllers\PageController;
     Route::get('/create-event','App\Http\Controllers\EventController@index');
     Route::post('/create-event-form','App\Http\Controllers\EventController@create_event');
     Route::get('/events', 'App\Http\Controllers\EventController@events_view');
+    Route::get('/your-events', 'App\Http\Controllers\EventController@your_events_listing');
+
     Route::post('like_post_cmt','App\Http\Controllers\PostController@like_post_cmt');
     Route::post('dislike_post_cmt','App\Http\Controllers\PostController@dislike_post_cmt');
     Route::post('delete_post_comment','App\Http\Controllers\PostController@delete_post_comment');
