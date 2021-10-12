@@ -103,7 +103,7 @@
                 data: data
             },
             success: function (data) {
-
+                $('.reaction').hide();
             }
         });
     });
@@ -151,13 +151,13 @@
                 // console.log(data);
                 $('#editpost').modal('toggle');
                 $("[data-toggle='popover']").popover('hide');
-            $(".postoverlay").css({
-                "display": "block",
-                "opacity": "0.837666"
-            });
-            $(".central-meta.new-pst").css({
-                "z-index": "0"
-            });
+                $(".postoverlay").css({
+                    "display": "block",
+                    "opacity": "0.837666"
+                });
+                $(".central-meta.new-pst").css({
+                    "z-index": "0"
+                });
 
                 $('#post_contet').append(
                     '<textarea class="form-control" name="content" id="content" rows="3">' + data
@@ -334,12 +334,7 @@
                             '" class="btn btn-primary btn-sm add_rc_frnd">Add Friends</a>'
                             );
                         $('.allfrnd').append(
-                            '<div class="user_card"><div class="row"><div class="col-sm-6 text-left"><img src="upload/images/' +
-                            val.profile_photo +
-                            '.jpg" class="rc_profile_pic" style="max-width: 60px" alt=""><span class="rc_name">' +
-                            val.name +
-                            '</span></div><div class="col-sm-6 text-right">' +
-                            html_add + '</div></div></div>');
+                            '<div class="user_card"><div class="row"><div class="col-sm-6 text-left"><img src="upload/images/' + val.profile_photo + '.jpg" class="rc_profile_pic" style="max-width: 60px" alt=""><span class="rc_name">' + val.name + '</span></div><div class="col-sm-6 text-right">' + html_add + '</div></div></div>');
 
 
                         if (val.reaction == 1) {
@@ -385,6 +380,7 @@
                     $('.ins_care').html('&nbsp;' + count_care_rc);
                     $('.ins_wow').html('&nbsp;' + count_wow_rc);
                     $('.ins_sad').html('&nbsp;' + count_sad_rc);
+                    alert(count_wow_rc);
                     if (count_like_rc == '') {
                         $('.ins_like').parent().parent().remove()
                     }

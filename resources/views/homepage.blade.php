@@ -373,7 +373,7 @@
                                     </li>
                                     <li class="nav-link" role="presentation"><a href="#angry" class="tab-a" role="tab" data-toggle="tab"><img src="/assets/images/s_emoji/angry.png"  class="img-reaction" /><ins class="ins_angry"></ins></a>
                                     </li>
-                                    <li class="nav-link" role="presentation"><a href="#care" class="tab-a" role="tab" data-toggle="tab"><img src="/assets/images/s_emoji/wow.png"  class="img-reaction" /><ins class="ins_wow"></ins></a>
+                                    <li class="nav-link" role="presentation"><a href="#care" class="tab-a" role="tab" data-toggle="tab"><img src="/assets/images/s_emoji/care.png"  class="img-reaction" /><ins class="ins_care"></ins></a>
                                     </li>
                                     <li class="nav-link" role="presentation"><a href="#wow" class="tab-a" role="tab" data-toggle="tab"><img src="/assets/images/s_emoji/wow.png"  class="img-reaction" /><ins class="ins_wow"></ins></a>
                                     </li>
