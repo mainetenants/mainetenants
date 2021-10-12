@@ -83,7 +83,7 @@
                                     </div>
                                 </div>
                                 @foreach ($events as $event)
-                                    <div class="col-lg-6 mt-5">
+                                    <div class="col-lg-6 mt-5 col d-flex justify-content-center">
                                         <div class="card" style="width: 18rem;">
                                             @if(isset($event->cover_photo) && !empty($event->cover_photo))
                                             <img class="card-img-top" src="{{ asset('upload/images/events/'.$event->cover_photo) }}" alt="Card image cap">
@@ -94,7 +94,7 @@
                                             <h5 class="card-title">{{ $event->event_name }}</h5>
                                             <p class="card-text">{{ $event->description }}</p>
                                             <a href="#" class="btn btn-sm btn-info float-right"><i class="ti-share"></i></a>
-                                            <a href="#" class="btn btn-sm btn-info mx-2 float-right">Interested</a>
+                                            <button class="btn btn-sm btn-info mx-2 float-right inst-btn" data-id="{{ $event->id }}">Interested</button>
                                             </div>
                                         </div>
                                     </div>
@@ -108,7 +108,13 @@
                  
                </div>
             </div>
-	
+            <div class="col-lg-12">
+                @if(Session::has('success'))
+                    <div class="alert alert-success">
+                        {{Session::get('success')}}
+                    </div>
+                @endif
+            </div>
                <!-- centerl meta -->
             </div>
          </div>

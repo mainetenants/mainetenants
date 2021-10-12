@@ -149,7 +149,15 @@
             },
             success: function (data) {
                 // console.log(data);
-                $('#editpost').modal('toggle')
+                $('#editpost').modal('toggle');
+                $("[data-toggle='popover']").popover('hide');
+            $(".postoverlay").css({
+                "display": "block",
+                "opacity": "0.837666"
+            });
+            $(".central-meta.new-pst").css({
+                "z-index": "0"
+            });
 
                 $('#post_contet').append(
                     '<textarea class="form-control" name="content" id="content" rows="3">' + data
@@ -268,6 +276,9 @@
 
     $('#file_cover_chnage').change(function () {
         $('#edit_cover_photo').submit();
+    });
+    $('#coverid').change(function () {
+        $('#cover_form').submit();
     });
 
     /// page post comment

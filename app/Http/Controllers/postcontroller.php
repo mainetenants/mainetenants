@@ -303,7 +303,7 @@ class PostController extends Controller
         ->leftJoin('msu_isfriend', 'msu_isfriend.user_id', '=', 'msu_like_dislike_posts.user_id')
         ->select('users.name','users.id','users.profile_photo','msu_like_dislike_posts.reaction','msu_isfriend.status as is_frnd_status')
         ->where('post_id', $request->post_id)
-        ->where('msu_like_dislike_posts.user_id','!=', Auth::id())
+        // ->where('msu_like_dislike_posts.user_id','=', Auth::id())
         ->get();   
         // dd($allReaction);    
         return response()->json(array('success'=> true, 'allReaction'=>$allReaction), 200);

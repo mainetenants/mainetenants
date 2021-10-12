@@ -104,7 +104,6 @@ $('#join').click(function(){
     else if($('#description').val()==""){
         $("#description").addClass("border-bg");
         $(".event-alert-loc").html(html_alert);
-        alert('test');
     }else{
         $('.locations').hide();
         $('.addition_relation').show();
@@ -126,5 +125,26 @@ $('#addition_relation-back').click(function(){
     $('#step2').addClass('active');
 });
 
+$('.inst-btn').click(function(){
+    
+    // alert();return
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+   
+    var id = $(this).attr('data-id');
+    $.ajax({
+        type: 'POST',
+        url: 'event-action',
+        data: {
+            event_id : id,
+        },
+        success: function (data) {
+            
+        }
+    });
 
+});
 

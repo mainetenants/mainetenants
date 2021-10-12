@@ -81,13 +81,15 @@ use App\Http\Controllers\PageController;
     Route::post('/create-event-form','App\Http\Controllers\EventController@create_event');
     Route::get('/events', 'App\Http\Controllers\EventController@events_view');
     Route::get('/your-events', 'App\Http\Controllers\EventController@your_events_listing');
+    Route::post('event-action','App\Http\Controllers\EventController@event_action');
 
     Route::post('like_post_cmt','App\Http\Controllers\PostController@like_post_cmt');
     Route::post('dislike_post_cmt','App\Http\Controllers\PostController@dislike_post_cmt');
     Route::post('delete_post_comment','App\Http\Controllers\PostController@delete_post_comment');
     Route::post('save-inner-comments','App\Http\Controllers\PostController@save_inner_comments');
     Route::post('inner_post_cmt_like','App\Http\Controllers\PostController@inner_post_cmt_like');
-    Route::post('inner_post_cmt_dislike','App\Http\Controllers\PostController@inner_post_cmt_dislike'); 
+    Route::post('inner_post_cmt_dislike','App\Http\Controllers\PostController@inner_post_cmt_dislike');
+    
 });
 
 

@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use DB;
 use Intervention\Image\ImageManagerStatic as Image;
-// use App\Models\event;
+use App\Models\event;
+use App\Models\user_event_details;
 
 class EventController extends Controller
 {
@@ -17,7 +18,7 @@ class EventController extends Controller
      $events = DB::table('msu_events')
      ->select('*')
      ->get();
-     // dd($events);
+    //  dd($events);
      return view('events', compact('events'));
    }
    public function your_events_listing()
@@ -91,7 +92,32 @@ class EventController extends Controller
     // dd($values);
            $data = DB::table('msu_events')
            ->insert($values);
-           return back();
+           return redirect('events')->with(['success'=>'Event created Successfully']);
+   }
+   public function event_action(Request $request){
+    $data = $request->all();
+
+    // $user = msu_user_event_details::Where($email)->first();
+    $user_event_details = new user_event_details;
+    $event_action = DB::table('msu_user_event_details')
+        ->select('id')
+        ->where(['user_id' => Auth::id()])
+        ->where(['event_id' => $data['event_id']])
+        ->first();
+        if($event_action){
+          $user_event_details = user_event_details::find($event_action->id);
+          $user_event_details->action = 0;
+          $user_event_details->save();
+        }else{
+          $user_event_details->user_id = Auth::id();
+          $user_event_details->event_id = $data['event_id'];
+          $user_event_details->action = 1;
+          $user_event_details->save();
+          
+        }
+    return response()->json(array('success'=> true), 200);
+
+
    }
        
 }

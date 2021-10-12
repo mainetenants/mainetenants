@@ -72,7 +72,6 @@ class AboutController extends Controller
     {
         $data = $request->all();
         $id = Auth::id();
-        
         $covername ="";
         if(isset($data['cover_photo'])){
             $request->validate([
@@ -87,7 +86,6 @@ class AboutController extends Controller
             $img_resize = $img->resize(1366, 350)->save($filePath.'/'.$covername);
             
         }  //dd  
-        //dd($imagename);
             $values = array('images' => $covername,);
             DB::table('users')
             ->where('id', $id)
