@@ -380,7 +380,6 @@
                     $('.ins_care').html('&nbsp;' + count_care_rc);
                     $('.ins_wow').html('&nbsp;' + count_wow_rc);
                     $('.ins_sad').html('&nbsp;' + count_sad_rc);
-                    alert(count_wow_rc);
                     if (count_like_rc == '') {
                         $('.ins_like').parent().parent().remove()
                     }
