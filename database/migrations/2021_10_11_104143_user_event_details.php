@@ -15,6 +15,7 @@ class UserEventDetails extends Migration
     {
         Schema::create('msu_user_event_details', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('event_id');
             $table->integer('user_id');
             $table->integer('action');
             $table->integer('going');
