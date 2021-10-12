@@ -63,11 +63,11 @@
           
         </div>
         <form action="{{ url('cover_photo') }}" class="edit-phto" id="cover_form"   enctype="multipart/form-data" method="POST">
+            @csrf
             <i class="fa fa-camera-retro"></i>
             <label class="fileContainer">
                 Edit Cover Photo
                 <input type="file" id="coverid" name="cover_photo"/>
-                @csrf
             </label>
         </form>
         <div class="container-fluid">
