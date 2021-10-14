@@ -17,9 +17,8 @@ class UserEventDetails extends Migration
             $table->increments('id');
             $table->integer('event_id');
             $table->integer('user_id');
-            $table->integer('action');
-            $table->integer('going');
-            $table->integer('notification');
+            $table->integer('action')->nullable();
+            $table->integer('notification')->nullable();
 
             $table->timestamp('created')->useCurrent();
         });

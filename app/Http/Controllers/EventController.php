@@ -16,15 +16,18 @@ class EventController extends Controller
    }
    public function events_view(){
      $events = DB::table('msu_events')
-     ->select('*')
+     ->leftJoin('msu_user_event_details', 'msu_user_event_details.event_id', '=', 'msu_events.id')
+     ->select('msu_events.*', 'msu_user_event_details.action')
      ->get();
-    //  dd($events);
+    //  dd($events); 
      return view('events', compact('events'));
    }
-   public function your_events_listing()
-   {      
+   public function your_events_listing(){      
 
         return view('your-events');
+   }
+   public function event_page(){      
+        return view('event-page');
    }
 
    public function create_event(Request $request){
@@ -96,7 +99,7 @@ class EventController extends Controller
    }
    public function event_action(Request $request){
     $data = $request->all();
-
+// dd($data);
     // $user = msu_user_event_details::Where($email)->first();
     $user_event_details = new user_event_details;
     $event_action = DB::table('msu_user_event_details')
@@ -106,14 +109,13 @@ class EventController extends Controller
         ->first();
         if($event_action){
           $user_event_details = user_event_details::find($event_action->id);
-          $user_event_details->action = 0;
+          $user_event_details->action = $data['action_id'];
           $user_event_details->save();
         }else{
           $user_event_details->user_id = Auth::id();
           $user_event_details->event_id = $data['event_id'];
-          $user_event_details->action = 1;
+          $user_event_details->action = (isset($data['action_id']))?($data['action_id']):(1);
           $user_event_details->save();
-          
         }
     return response()->json(array('success'=> true), 200);
 

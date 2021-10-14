@@ -1,4 +1,28 @@
 @include('includes/header')
+<style>
+    .calender-icon{
+        width: 15%;
+        padding: 5px;
+        text-align: center;
+        background: #f8f9fa;
+        border-radius: 20px;
+        box-shadow: 5px 10px 12px #888888;
+    }
+    .calender-icon span {
+        color: #dc3545;
+        font-size: 70px;
+    }
+    small.date-event {
+        font-size: 18px;
+        font-weight: 500;
+        color: #dc3545;
+    }
+    small.hours {
+        font-size: 80%;
+        font-weight: bold;
+        color: #050505;
+    }
+</style>
 <section>
    <div class="gap gray-bg">
       <div class="container">
@@ -69,64 +93,43 @@
                     <div class="feature-photo">
                         <div class="container-fluid">
                             <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="timeline-info">
-                                        <ul>
-                                            <li><span><h4><i class="fa fa-search"></i>&nbsp;&nbsp;Discover Events</h4></span></li>
-                                            <li class="float-right">
-                                                <a class="" href="time-line.html" title="" data-ripple="">Top</a>
-                                                <a class="" href="timeline-photos.html" title="" data-ripple="">This weak</a>
-                                                <a class="" href="timeline-videos.html" title="" data-ripple="">Online Events</a>
-                                            </li>
-                                        </ul>
-                                        
-                                    </div>
-                                </div>
-                                @foreach ($events as $event)
-                                    <div class="col-lg-6 mt-5 col d-flex justify-content-center">
-                                        <div class="card" style="width: 18rem;">
-                                            @if(isset($event->cover_photo) && !empty($event->cover_photo))
-                                            <img class="card-img-top" src="{{ asset('upload/images/events/'.$event->cover_photo) }}" alt="Card image cap">
-                                            @else
-                                                <img class="card-img-top" src="{{ asset('assets/images/default/card280_180.svg') }}" alt="Card image cap">
-                                            @endif
-                                            <div class="card-body">
-                                            <h5 class="card-title">{{ $event->event_name }}</h5>
-                                            <p class="card-text">{{ $event->description }}</p>
-                                            <a href="#" class="btn btn-sm btn-info float-right"><i class="ti-share"></i></a>
-                                            
-                                                @if (isset($event->action))
-                                                <div class="dropdown" id="aaa">
-                                                    <input class="btn btn-sm btn-info dropdown-toggle" type="button" id="dropdownMenuButton" btn-act="{{ $event->id }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" value="Intereseted">
-                                                    
-                                                    <div class="dropdown-menu px-2 dp-id" aria-labelledby="dropdownMenuButton">
-                                                        <div class="form-check dropdown-item ">
-                                                            <label class="form-check-label">
-                                                                <input type="radio" name="action" class="form-check-input inst-rdo" data-id="{{ $event->id }}" act-id="1">Interested
-                                                            </label>
-                                                        </div>
-                                                        <div class="form-check dropdown-item ">
-                                                            <label class="form-check-label">
-                                                                <input type="radio" name="action" class="form-check-input inst-rdo" data-id="{{ $event->id }}" act-id="2">Going
-                                                            </label>
-                                                        </div>
-                                                        <div class="form-check dropdown-item ">
-                                                            <label class="form-check-label">
-                                                                <input type="radio" name="action" class="form-check-input inst-rdo" data-id="{{ $event->id }}" act-id="3">Not Interested
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                    @else
-                                                    <button class="btn btn-sm btn-info mx-2 float-right inst-btn" data-id="{{ $event->id }}">Interested</button>
-                                                @endif
-
+                                <div class="col-lg-12 mb-5">
+                                    <div class="feature-photo">
+                                        <figure>
+                                            <img src="http://127.0.0.1:8000/upload/images/profile_photo/1634035119.png">
+                                        </figure>
+                                        <div class="calender-icon">
+                                            <span>
+                                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                                            </span>
+                                            <div class="timing">
+                                                <small class="date-event">15 Friday</small><br>
+                                                <small class="hours">At 18:00</small>
+                                            </div>
+                                            <div class="event-details">
+                                                
                                             </div>
                                         </div>
                                     </div>
-                                @endforeach
-                                
-                               
+                                </div>
+                                <div class="col-lg-7">
+                                    <div class="card w-100">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Card title</h5>
+                                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                            <a href="#" class="btn btn-primary">Button</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-5">
+                                    <div class="card w-100">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Card title</h5>
+                                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                            <a href="#" class="btn btn-primary">Button</a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -137,7 +140,7 @@
             <div class="col-lg-12">
                 @if(Session::has('success'))
                     <div class="alert alert-success">
-                        {{Session::get('success')}}
+                        {{ Session::get('success') }}
                     </div>
                 @endif
             </div>

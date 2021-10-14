@@ -124,7 +124,9 @@
 													</div>
 													<div class="tab-pane fade" id="lang" role="tabpanel">
 														<ul class="basics">
-															<li>{{$basicInfo->language }}</li>
+															{{-- @foreach ($basicInfo as $basicInfos )
+															<li>{{$basicInfos->language }}</li>
+															@endforeach --}}
 														</ul>
 													</div>
 												</div>

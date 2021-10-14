@@ -134,17 +134,55 @@ $('.inst-btn').click(function(){
         }
     });
    
-    var id = $(this).attr('data-id');
+    var event_id = $(this).attr('data-id');
+    var action_id = $(this).attr('act-id');
     $.ajax({
         type: 'POST',
         url: 'event-action',
         data: {
-            event_id : id,
+            event_id : event_id,
+            action_id : action_id,
         },
         success: function (data) {
             
         }
     });
 
+});
+$('input[name="action"]').on('change', function(){
+    var that = $(this)
+    
+        
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+   
+    var event_id = $(this).attr('data-id');
+    var action_id = $(this).attr('act-id');
+    var action_name="";
+    if(action_id=='1'){
+        action_name = 'Interested';
+    }else if(action_id=='2'){
+        action_name = 'Going';
+    }else if(action_id=='3'){
+        action_name = 'Not Interested';
+    }
+
+    $.ajax({
+        type: 'POST',
+        url: 'event-action',
+        data: {
+            event_id : event_id,
+            action_id : action_id,
+        },
+        success: function (data) {
+            var selector1 = $( that ).parent().parent().parent().parent().attr('class');
+            var selector2 = $('.'+selector1).find("#dropdownMenuButton").attr('id');
+            $('#'+selector2).val(action_name);
+        
+        }   
+    });
 });
 
