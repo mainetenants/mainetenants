@@ -31,10 +31,10 @@
     position: relative;
     bottom: 90px;
     left: 40px;
-}
+    }
     .event-details h2 {
         font-weight: 600;
-        color: #dc3545;
+        color: black;
     }
 </style>
 <section>
@@ -123,7 +123,7 @@
                                                 </div>
                                             </div>
                                             <div class="event-details">
-                                                <h2>Dushera</h2>
+                                                <h2>Dussehra</h2>
                                                 <span>Online Event</span>
                                             </div>
                                         </div>
@@ -151,8 +151,8 @@
                                                 <div class="pl-3 events-about">
                                                     <p class="card-text"><i class="fa fa-users" aria-hidden="true"></i>&nbsp 2 people responded</p>
                                                     <p>Event by</p>
-                                                    <p>Location</p>
-                                                    <p>Tickets</p>
+                                                    <p><i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp Location</p>
+                                                    <p<i class="fa fa-ticket" aria-hidden="true"></i>&nbps  Tickets</p>
                                                     <p>Class by</p>
                                                     <p><i class="fa fa-user" aria-hidden="true"></i>&nbsp Events by <span>Username</span></p>
                                                     <p><i class="fa fa-globe" aria-hidden="true"></i>&nbsp Public .Anyone on or off Facebook</p>

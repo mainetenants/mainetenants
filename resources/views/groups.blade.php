@@ -6,7 +6,6 @@
 <body>
 <!--<div class="se-pre-con"></div>-->
 <div class="theme-layout">
-	
 	<div class="responsive-header">
 		<div class="mh-head first Sticky">
 			<span class="mh-btns-left">
@@ -14,7 +13,7 @@
 			</span>
 			<span class="mh-text">
 				<a href="newsfeed" title=""><img src="{{ asset('assets/images/logo2.png') }}" alt="">
-					</a>
+				</a>
 			</span>
 			<span class="mh-btns-right">
 				<a class="fa fa-sliders" href="#shoppingbag"></a>
