@@ -55,7 +55,7 @@ class EventController extends Controller
            $filePath = public_path('upload/images/events');
            
            $img = Image::make($image->path());
-           $img_resize = $img->resize(280, 180)->save($filePath.'/'.$covername);
+           $img_resize = $img->resize(800, 500)->save($filePath.'/'.$covername);
            
        } 
        if(isset($data['privacy'])){
