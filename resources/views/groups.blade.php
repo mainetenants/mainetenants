@@ -13,7 +13,7 @@
 				<a class="" href="#menu"><i class="fa fa-align-justify"></i></a>
 			</span>
 			<span class="mh-text">
-				<a href="newsfeed.html" title=""><img src="{{ asset('assets/images/logo2.png') }}" alt="">
+				<a href="newsfeed" title=""><img src="{{ asset('assets/images/logo2.png') }}" alt="">
 					</a>
 			</span>
 			<span class="mh-btns-right">
@@ -30,103 +30,103 @@
 			<ul>
 				<li><span>Home</span>
 					<ul>
-						<li><a href="index.html" title="">Home Social</a></li>
-						<li><a href="index2.html" title="">Home Social 2</a></li>
-						<li><a href="index-company.html" title="">Home Company</a></li>
-						<li><a href="landing.html" title="">Login page</a></li>
-						<li><a href="logout.html" title="">Logout Page</a></li>
-						<li><a href="newsfeed.html" title="">news feed</a></li>
+						<li><a href="index" title="">Home Social</a></li>
+						<li><a href="index2" title="">Home Social 2</a></li>
+						<li><a href="index-company" title="">Home Company</a></li>
+						<li><a href="landing" title="">Login page</a></li>
+						<li><a href="logout" title="">Logout Page</a></li>
+						<li><a href="newsfeed" title="">news feed</a></li>
 					</ul>
 				</li>
 				<li><span>Time Line</span>
 					<ul>
-						<li><a href="time-line.html" title="">timeline</a></li>
-						<li><a href="timeline-friends.html" title="">timeline friends</a></li>
-						<li><a href="timeline-groups.html" title="">timeline groups</a></li>
-						<li><a href="timeline-pages.html" title="">timeline pages</a></li>
-						<li><a href="timeline-photos.html" title="">timeline photos</a></li>
-						<li><a href="timeline-videos.html" title="">timeline videos</a></li>
-						<li><a href="social-post-single.html" title="">Post Single</a></li>
-						<li><a href="fav-page.html" title="">favourit page</a></li>
-						<li><a href="groups.html" title="">groups page</a></li>
-						<li><a href="page-likers.html" title="">Likes page</a></li>
-						<li><a href="people-nearby.html" title="">people nearby</a></li>
+						<li><a href="time-line" title="">timeline</a></li>
+						<li><a href="timeline-friends" title="">timeline friends</a></li>
+						<li><a href="timeline-groups" title="">timeline groups</a></li>
+						<li><a href="timeline-pages" title="">timeline pages</a></li>
+						<li><a href="timeline-photos" title="">timeline photos</a></li>
+						<li><a href="timeline-videos" title="">timeline videos</a></li>
+						<li><a href="social-post-single" title="">Post Single</a></li>
+						<li><a href="fav-page" title="">favourit page</a></li>
+						<li><a href="groups" title="">groups page</a></li>
+						<li><a href="page-likers" title="">Likes page</a></li>
+						<li><a href="people-nearby" title="">people nearby</a></li>
 						
 						
 					</ul>
 				</li>
 				<li><span>Account Setting</span>
 					<ul>
-						<li><a href="create-fav-page.html" title="">create fav page</a></li>
-						<li><a href="edit-account-setting.html" title="">edit account setting</a></li>
-						<li><a href="edit-interest.html" title="">edit-interest</a></li>
-						<li><a href="edit-password.html" title="">edit-password</a></li>
-						<li><a href="edit-profile-basic.html" title="">edit profile basics</a></li>
-						<li><a href="edit-work-eductation.html" title="">edit work educations</a></li>
-						<li><a href="messages.html" title="">message box</a></li>
-						<li><a href="inbox.html" title="">Inbox</a></li>
-						<li><a href="notifications.html" title="">notifications page</a></li>
+						<li><a href="create-fav-page" title="">create fav page</a></li>
+						<li><a href="edit-account-setting" title="">edit account setting</a></li>
+						<li><a href="edit-interest" title="">edit-interest</a></li>
+						<li><a href="edit-password" title="">edit-password</a></li>
+						<li><a href="edit-profile-basic" title="">edit profile basics</a></li>
+						<li><a href="edit-work-eductation" title="">edit work educations</a></li>
+						<li><a href="messages" title="">message box</a></li>
+						<li><a href="inbox" title="">Inbox</a></li>
+						<li><a href="notifications" title="">notifications page</a></li>
 					</ul>
 				</li>
 				<li><span>forum</span>
 					<ul>
-						<li><a href="forum.html" title="">Forum Page</a></li>
-						<li><a href="forums-category.html" title="">Fourm Category</a></li>
-						<li><a href="forum-open-topic.html" title="">Forum Open Topic</a></li>
-						<li><a href="forum-create-topic.html" title="">Forum Create Topic</a></li>
+						<li><a href="forum" title="">Forum Page</a></li>
+						<li><a href="forums-category" title="">Fourm Category</a></li>
+						<li><a href="forum-open-topic" title="">Forum Open Topic</a></li>
+						<li><a href="forum-create-topic" title="">Forum Create Topic</a></li>
 					</ul>
 				</li>
 				<li><span>Our Shop</span>
 					<ul>
-						<li><a href="shop.html" title="">Shop Products</a></li>
-						<li><a href="shop-masonry.html" title="">Shop Masonry Products</a></li>
-						<li><a href="shop-single.html" title="">Shop Detail Page</a></li>
-						<li><a href="shop-cart.html" title="">Shop Product Cart</a></li>
-						<li><a href="shop-checkout.html" title="">Product Checkout</a></li>
+						<li><a href="shop" title="">Shop Products</a></li>
+						<li><a href="shop-masonry" title="">Shop Masonry Products</a></li>
+						<li><a href="shop-single" title="">Shop Detail Page</a></li>
+						<li><a href="shop-cart" title="">Shop Product Cart</a></li>
+						<li><a href="shop-checkout" title="">Product Checkout</a></li>
 					</ul>
 				</li>
 				<li><span>Our Blog</span>
 					<ul>
-						<li><a href="blog-grid-wo-sidebar.html" title="">Our Blog</a></li>
-						<li><a href="blog-grid-right-sidebar.html" title="">Blog with R-Sidebar</a></li>
-						<li><a href="blog-grid-left-sidebar.html" title="">Blog with L-Sidebar</a></li>
-						<li><a href="blog-masonry.html" title="">Blog Masonry Style</a></li>
-						<li><a href="blog-list-wo-sidebar.html" title="">Blog List Style</a></li>
-						<li><a href="blog-list-right-sidebar.html" title="">Blog List with R-Sidebar</a></li>
-						<li><a href="blog-list-left-sidebar.html" title="">Blog List with L-Sidebar</a></li>
-						<li><a href="blog-detail.html" title="">Blog Post Detail</a></li>
+						<li><a href="blog-grid-wo-sidebar" title="">Our Blog</a></li>
+						<li><a href="blog-grid-right-sidebar" title="">Blog with R-Sidebar</a></li>
+						<li><a href="blog-grid-left-sidebar" title="">Blog with L-Sidebar</a></li>
+						<li><a href="blog-masonry" title="">Blog Masonry Style</a></li>
+						<li><a href="blog-list-wo-sidebar" title="">Blog List Style</a></li>
+						<li><a href="blog-list-right-sidebar" title="">Blog List with R-Sidebar</a></li>
+						<li><a href="blog-list-left-sidebar" title="">Blog List with L-Sidebar</a></li>
+						<li><a href="blog-detail" title="">Blog Post Detail</a></li>
 					</ul>
 				</li>
 				<li><span>Portfolio</span>
 					<ul>
-						<li><a href="portfolio-2colm.html" title="">Portfolio 2col</a></li>
-						<li><a href="portfolio-3colm.html" title="">Portfolio 3col</a></li>
-						<li><a href="portfolio-4colm.html" title="">Portfolio 4col</a></li>
+						<li><a href="portfolio-2colm" title="">Portfolio 2col</a></li>
+						<li><a href="portfolio-3colm" title="">Portfolio 3col</a></li>
+						<li><a href="portfolio-4colm" title="">Portfolio 4col</a></li>
 					</ul>
 				</li>
 				<li><span>Support & Help</span>
 					<ul>
-						<li><a href="support-and-help.html" title="">Support & Help</a></li>
-						<li><a href="support-and-help-detail.html" title="">Support & Help Detail</a></li>
-						<li><a href="support-and-help-search-result.html" title="">Support & Help Search Result</a></li>
+						<li><a href="support-and-help" title="">Support & Help</a></li>
+						<li><a href="support-and-help-detail" title="">Support & Help Detail</a></li>
+						<li><a href="support-and-help-search-result" title="">Support & Help Search Result</a></li>
 					</ul>
 				</li>
 				<li><span>More pages</span>
 					<ul>
-						<li><a href="careers.html" title="">Careers</a></li>
-						<li><a href="career-detail.html" title="">Career Detail</a></li>
-						<li><a href="404.html" title="">404 error page</a></li>
-						<li><a href="404-2.html" title="">404 Style2</a></li>
-						<li><a href="faq.html" title="">faq's page</a></li>
-						<li><a href="insights.html" title="">insights</a></li>
-						<li><a href="knowledge-base.html" title="">knowledge base</a></li>
+						<li><a href="careers" title="">Careers</a></li>
+						<li><a href="career-detail" title="">Career Detail</a></li>
+						<li><a href="404" title="">404 error page</a></li>
+						<li><a href="404-2" title="">404 Style2</a></li>
+						<li><a href="faq" title="">faq's page</a></li>
+						<li><a href="insights" title="">insights</a></li>
+						<li><a href="knowledge-base" title="">knowledge base</a></li>
 					</ul>
 				</li>
-				<li><a href="about.html" title="">about</a></li>
-				<li><a href="about-company.html" title="">About Us2</a></li>
-				<li><a href="contact.html" title="">contact</a></li>
-				<li><a href="contact-branches.html" title="">Contact Us2</a></li>
-				<li><a href="widgets.html" title="">Widgts</a></li>
+				<li><a href="about" title="">about</a></li>
+				<li><a href="about-company" title="">About Us2</a></li>
+				<li><a href="contact" title="">contact</a></li>
+				<li><a href="contact-branches" title="">Contact Us2</a></li>
+				<li><a href="widgets" title="">Widgts</a></li>
 			</ul>
 		</nav>
 		<nav id="shoppingbag">
@@ -199,7 +199,7 @@
 	
 	<div class="topbar stick">
 		<div class="logo">
-			<a title="" href="newsfeed.html"><img src="{{ asset('assets/images/logo.png') }}" alt=""></a>
+			<a title="" href="newsfeed"><img src="{{ asset('assets/images/logo.png') }}" alt=""></a>
 		</div>
 		
 		<div class="top-area">
@@ -207,54 +207,54 @@
 				<li>
 					<a href="#" title="">Home</a>
 					<ul>
-						<li><a href="index.html" title="">Home Social</a></li>
-						<li><a href="index2.html" title="">Home Social 2</a></li>
-						<li><a href="index-company.html" title="">Home Company</a></li>
-						<li><a href="landing.html" title="">Login page</a></li>
-						<li><a href="logout.html" title="">Logout Page</a></li>
-						<li><a href="newsfeed.html" title="">news feed</a></li>
+						<li><a href="index" title="">Home Social</a></li>
+						<li><a href="index2" title="">Home Social 2</a></li>
+						<li><a href="index-company" title="">Home Company</a></li>
+						<li><a href="landing" title="">Login page</a></li>
+						<li><a href="logout" title="">Logout Page</a></li>
+						<li><a href="newsfeed" title="">news feed</a></li>
 					</ul>
 				</li>
 				<li>
 					<a href="#" title="">timeline</a>
 					<ul>
-						<li><a href="time-line.html" title="">timeline</a></li>
-						<li><a href="timeline-friends.html" title="">timeline friends</a></li>
-						<li><a href="timeline-groups.html" title="">timeline groups</a></li>
-						<li><a href="timeline-pages.html" title="">timeline pages</a></li>
-						<li><a href="timeline-photos.html" title="">timeline photos</a></li>
-						<li><a href="timeline-videos.html" title="">timeline videos</a></li>
-						<li><a href="social-post-single.html" title="">Post Single</a></li>
-						<li><a href="fav-page.html" title="">favourit page</a></li>
-						<li><a href="groups.html" title="">groups page</a></li>
-						<li><a href="page-likers.html" title="">Likes page</a></li>
-						<li><a href="people-nearby.html" title="">people nearby</a></li>
+						<li><a href="time-line" title="">timeline</a></li>
+						<li><a href="timeline-friends" title="">timeline friends</a></li>
+						<li><a href="timeline-groups" title="">timeline groups</a></li>
+						<li><a href="timeline-pages" title="">timeline pages</a></li>
+						<li><a href="timeline-photos" title="">timeline photos</a></li>
+						<li><a href="timeline-videos" title="">timeline videos</a></li>
+						<li><a href="social-post-single" title="">Post Single</a></li>
+						<li><a href="fav-page" title="">favourit page</a></li>
+						<li><a href="groups" title="">groups page</a></li>
+						<li><a href="page-likers" title="">Likes page</a></li>
+						<li><a href="people-nearby" title="">people nearby</a></li>
 					</ul>
 				</li>
 				<li>
 					<a href="#" title="">account settings</a>
 					<ul>
-						<li><a href="create-fav-page.html" title="">create fav page</a></li>
-						<li><a href="edit-account-setting.html" title="">edit account setting</a></li>
-						<li><a href="edit-interest.html" title="">edit-interest</a></li>
-						<li><a href="edit-password.html" title="">edit-password</a></li>
-						<li><a href="edit-profile-basic.html" title="">edit profile basics</a></li>
-						<li><a href="edit-work-eductation.html" title="">edit work educations</a></li>
-						<li><a href="messages.html" title="">message box</a></li>
-						<li><a href="inbox.html" title="">Inbox</a></li>
-						<li><a href="notifications.html" title="">notifications page</a></li>
+						<li><a href="create-fav-page" title="">create fav page</a></li>
+						<li><a href="edit-account-setting" title="">edit account setting</a></li>
+						<li><a href="edit-interest" title="">edit-interest</a></li>
+						<li><a href="edit-password" title="">edit-password</a></li>
+						<li><a href="edit-profile-basic" title="">edit profile basics</a></li>
+						<li><a href="edit-work-eductation" title="">edit work educations</a></li>
+						<li><a href="messages" title="">message box</a></li>
+						<li><a href="inbox" title="">Inbox</a></li>
+						<li><a href="notifications" title="">notifications page</a></li>
 					</ul>
 				</li>
 				<li>
 					<a href="#" title="">more pages</a>
 					<ul>
-						<li><a href="404.html" title="">404 error page</a></li>
-						<li><a href="about.html" title="">about</a></li>
-						<li><a href="contact.html" title="">contact</a></li>
-						<li><a href="faq.html" title="">faq's page</a></li>
-						<li><a href="insights.html" title="">insights</a></li>
-						<li><a href="knowledge-base.html" title="">knowledge base</a></li>
-						<li><a href="widgets.html" title="">Widgts</a></li>
+						<li><a href="404" title="">404 error page</a></li>
+						<li><a href="about" title="">about</a></li>
+						<li><a href="contact" title="">contact</a></li>
+						<li><a href="faq" title="">faq's page</a></li>
+						<li><a href="insights" title="">insights</a></li>
+						<li><a href="knowledge-base" title="">knowledge base</a></li>
+						<li><a href="widgets" title="">Widgts</a></li>
 					</ul>
 				</li>
 			</ul>
@@ -268,7 +268,7 @@
 						</form>
 					</div>
 				</li>
-				<li><a href="newsfeed.html" title="Home" data-ripple=""><i class="ti-home"></i></a></li>
+				<li><a href="newsfeed" title="Home" data-ripple=""><i class="ti-home"></i></a></li>
 				<li>
 					<a href="#" title="Notification" data-ripple="">
 						<i class="ti-bell"></i><span>20</span>
@@ -277,7 +277,7 @@
 						<span>4 New Notifications</span>
 						<ul class="drops-menu">
 							<li>
-								<a href="notifications.html" title="">
+								<a href="notifications" title="">
 									<img src="{{ asset('assets/images/resources/thumb-1.jpg') }}" alt="">
 									<div class="mesg-meta">
 										<h6>sarah Loren</h6>
@@ -288,7 +288,7 @@
 								<span class="tag green">New</span>
 							</li>
 							<li>
-								<a href="notifications.html" title="">
+								<a href="notifications" title="">
 									<img src="{{ asset('assets/images/resources/thumb-2.jpg') }}" alt="">
 									<div class="mesg-meta">
 										<h6>Jhon doe</h6>
@@ -299,7 +299,7 @@
 								<span class="tag red">Reply</span>
 							</li>
 							<li>
-								<a href="notifications.html" title="">
+								<a href="notifications" title="">
 									<img src="{{ asset('assets/images/resources/thumb-3.jpg') }}" alt="">
 									<div class="mesg-meta">
 										<h6>Andrew</h6>
@@ -310,7 +310,7 @@
 								<span class="tag blue">Unseen</span>
 							</li>
 							<li>
-								<a href="notifications.html" title="">
+								<a href="notifications" title="">
 									<img src="{{ asset('assets/images/resources/thumb-4.jpg') }}" alt="">
 									<div class="mesg-meta">
 										<h6>Tom cruse</h6>
@@ -321,7 +321,7 @@
 								<span class="tag">New</span>
 							</li>
 							<li>
-								<a href="notifications.html" title="">
+								<a href="notifications" title="">
 									<img src="{{ asset('assets/images/resources/thumb-5.jpg') }}" alt="">
 									<div class="mesg-meta">
 										<h6>Amy</h6>
@@ -332,7 +332,7 @@
 								<span class="tag">New</span>
 							</li>
 						</ul>
-						<a href="notifications.html" title="" class="more-mesg">view more</a>
+						<a href="notifications" title="" class="more-mesg">view more</a>
 					</div>
 				</li>
 				<li>
@@ -341,7 +341,7 @@
 						<span>5 New Messages</span>
 						<ul class="drops-menu">
 							<li>
-								<a href="notifications.html" title="">
+								<a href="notifications" title="">
 									<img src="{{ asset('assets/images/resources/thumb-1.jpg') }}" alt="">
 									<div class="mesg-meta">
 										<h6>sarah Loren</h6>
@@ -352,7 +352,7 @@
 								<span class="tag green">New</span>
 							</li>
 							<li>
-								<a href="notifications.html" title="">
+								<a href="notifications" title="">
 									<img src="{{ asset('assets/images/resources/thumb-2.jpg') }}" alt="">
 									<div class="mesg-meta">
 										<h6>Jhon doe</h6>
@@ -363,7 +363,7 @@
 								<span class="tag red">Reply</span>
 							</li>
 							<li>
-								<a href="notifications.html" title="">
+								<a href="notifications" title="">
 									<img src="{{ asset('assets/images/resources/thumb-3.jpg') }}" alt="">
 									<div class="mesg-meta">
 										<h6>Andrew</h6>
@@ -374,7 +374,7 @@
 								<span class="tag blue">Unseen</span>
 							</li>
 							<li>
-								<a href="notifications.html" title="">
+								<a href="notifications" title="">
 									<img src="{{ asset('assets/images/resources/thumb-4.jpg') }}" alt="">
 									<div class="mesg-meta">
 										<h6>Tom cruse</h6>
@@ -385,7 +385,7 @@
 								<span class="tag">New</span>
 							</li>
 							<li>
-								<a href="notifications.html" title="">
+								<a href="notifications" title="">
 									<img src="{{ asset('assets/images/resources/thumb-5.jpg') }}" alt="">
 									<div class="mesg-meta">
 										<h6>Amy</h6>
@@ -396,7 +396,7 @@
 								<span class="tag">New</span>
 							</li>
 						</ul>
-						<a href="messages.html" title="" class="more-mesg">view more</a>
+						<a href="messages" title="" class="more-mesg">view more</a>
 					</div>
 				</li>
 				<li><a href="#" title="Languages" data-ripple=""><i class="fa fa-globe"></i></a>
@@ -431,7 +431,7 @@
 			<div class="header-inner">
 				<h2>your Searched Groups</h2>
 				<nav class="breadcrumb">
-				  <a href="index.html" class="breadcrumb-item"><i class="fa fa-home"></i></a>
+				  <a href="index" class="breadcrumb-item"><i class="fa fa-home"></i></a>
 				  <span class="breadcrumb-item active">Groups</span>
 				</nav>
 			</div>
@@ -451,51 +451,51 @@
 											<ul class="naves">
 												<li>
 													<i class="ti-clipboard"></i>
-													<a href="newsfeed.html" title="">News feed</a>
+													<a href="newsfeed" title="">News feed</a>
 												</li>
 												<li>
 													<i class="ti-mouse-alt"></i>
-													<a href="inbox.html" title="">Inbox</a>
+													<a href="inbox" title="">Inbox</a>
 												</li>
 												<li>
 													<i class="ti-files"></i>
-													<a href="fav-page.html" title="">My pages</a>
+													<a href="fav-page" title="">My pages</a>
 												</li>
 												<li>
 													<i class="ti-user"></i>
-													<a href="timeline-friends.html" title="">friends</a>
+													<a href="timeline-friends" title="">friends</a>
 												</li>
 												<li>
 													<i class="ti-image"></i>
-													<a href="timeline-photos.html" title="">images</a>
+													<a href="timeline-photos" title="">images</a>
 												</li>
 												<li>
 													<i class="ti-video-camera"></i>
-													<a href="timeline-videos.html" title="">videos</a>
+													<a href="timeline-videos" title="">videos</a>
 												</li>
 												<li>
 													<i class="ti-comments-smiley"></i>
-													<a href="messages.html" title="">Messages</a>
+													<a href="messages" title="">Messages</a>
 												</li>
 												<li>
 													<i class="ti-bell"></i>
-													<a href="notifications.html" title="">Notifications</a>
+													<a href="notifications" title="">Notifications</a>
 												</li>
 												<li>
 													<i class="ti-share"></i>
-													<a href="people-nearby.html" title="">People Nearby</a>
+													<a href="people-nearby" title="">People Nearby</a>
 												</li>
 												<li>
 													<i class="fa fa-bar-chart-o"></i>
-													<a href="insights.html" title="">insights</a>
+													<a href="insights" title="">insights</a>
 												</li>
 												<li>
 													<i class="ti-power-off"></i>
-													<a href="landing.html" title="">Logout</a>
+													<a href="landing" title="">Logout</a>
 												</li>
 											</ul>
 										</div><!-- Shortcuts -->
-									<div class="widget stick-widget">
+									{{-- <div class="widget stick-widget">
 										<h4 class="widget-title">Profile intro</h4>
 										<ul class="short-profile">
 											<li>
@@ -511,7 +511,7 @@
 												<p>Hi, i am jhon kates, i am 32 years old and worked as a web developer in microsoft company. </p>
 											</li>
 										</ul>
-									</div><!-- profile intro widget -->
+									</div><!-- profile intro widget --> --}}
 
 								</aside>
 							</div><!-- sidebar -->
@@ -524,10 +524,10 @@
 										<li>
 											<div class="nearly-pepls">
 												<figure>
-													<a href="time-line.html" title=""><img src="{{ asset('assets/images/resources/group1.jpg') }}" alt=""></a>
+													<a href="time-line" title=""><img src="{{ asset('assets/images/resources/group1.jpg') }}" alt=""></a>
 												</figure>
 												<div class="pepl-info">
-													<h4><a href="time-line.html" title="">funparty</a></h4>
+													<h4><a href="time-line" title="">funparty</a></h4>
 													<span>public group</span>
 													<em>32k Members</em>
 													<a href="#" title="" class="add-butn" data-ripple="">join now</a>
@@ -537,36 +537,36 @@
 										<li>
 											<div class="nearly-pepls">
 												<figure>
-													<a href="time-line.html" title=""><img src="{{ asset('assets/images/resources/group2.jpg') }}" alt=""></a>
+													<a href="time-line" title=""><img src="{{ asset('assets/images/resources/group2.jpg') }}" alt=""></a>
 												</figure>
 												<div class="pepl-info">
-													<h4><a href="time-line.html" title="">ABC News</a></h4>
+													<h4><a href="time-line" title="">ABC News</a></h4>
 													<span>Private group</span>
 													<em>5M Members</em>
 													<a href="#" title="" class="add-butn" data-ripple="">join now</a>
 												</div>
 											</div>
 										</li>
-										<li>
+										{{-- <li>
 											<div class="nearly-pepls">
 												<figure>
-													<a href="time-line.html" title=""><img src="{{ asset('assets/images/resources/group3.jpg') }}" alt=""></a>
+													<a href="time-line" title=""><img src="{{ asset('assets/images/resources/group3.jpg') }}" alt=""></a>
 												</figure>
 												<div class="pepl-info">
-													<h4><a href="time-line.html" title="">SEO Zone</a></h4>
+													<h4><a href="time-line" title="">SEO Zone</a></h4>
 													<span>Public group</span>
 													<em>32k Members</em>
 													<a href="#" title="" class="add-butn" data-ripple="">join now</a>
 												</div>
 											</div>
-										</li>
-										<li>
+										</li> --}}
+										{{-- <li>
 											<div class="nearly-pepls">
 												<figure>
-													<a href="time-line.html" title=""><img src="{{ asset('assets/images/resources/group4.jpg') }}" alt=""></a>
+													<a href="time-line" title=""><img src="{{ asset('assets/images/resources/group4.jpg') }}" alt=""></a>
 												</figure>
 												<div class="pepl-info">
-													<h4><a href="time-line.html" title="">Max Us</a></h4>
+													<h4><a href="time-line" title="">Max Us</a></h4>
 													<span>Public group</span>
 													<em> 756 Members</em>
 													<a href="#" title="" class="add-butn" data-ripple="">join now</a>
@@ -576,10 +576,10 @@
 										<li>
 											<div class="nearly-pepls">
 												<figure>
-													<a href="time-line.html" title=""><img src="{{ asset('assets/images/resources/group5.jpg') }}" alt=""></a>
+													<a href="time-line" title=""><img src="{{ asset('assets/images/resources/group5.jpg') }}" alt=""></a>
 												</figure>
 												<div class="pepl-info">
-													<h4><a href="time-line.html" title="">Banana Group</a></h4>
+													<h4><a href="time-line" title="">Banana Group</a></h4>
 													<span>Friends Group</span>
 													<em>32k Members</em>
 													<a href="#" title="" class="add-butn" data-ripple="">join now</a>
@@ -589,10 +589,10 @@
 										<li>
 											<div class="nearly-pepls">
 												<figure>
-													<a href="time-line.html" title=""><img src="{{ asset('assets/images/resources/group6.jpg') }}" alt=""></a>
+													<a href="time-line" title=""><img src="{{ asset('assets/images/resources/group6.jpg') }}" alt=""></a>
 												</figure>
 												<div class="pepl-info">
-													<h4><a href="time-line.html" title="">Bad boys n Girls</a></h4>
+													<h4><a href="time-line" title="">Bad boys n Girls</a></h4>
 													<span>Public group</span>
 													<em>32k Members</em>
 													<a href="#" title="" class="add-butn" data-ripple="">join now</a>
@@ -602,10 +602,10 @@
 										<li>
 											<div class="nearly-pepls">
 												<figure>
-													<a href="time-line.html" title=""><img src="{{ asset('assets/images/resources/group7.jpg') }}" alt=""></a>
+													<a href="time-line" title=""><img src="{{ asset('assets/images/resources/group7.jpg') }}" alt=""></a>
 												</figure>
 												<div class="pepl-info">
-													<h4><a href="time-line.html" title="">bachelor's fun</a></h4>
+													<h4><a href="time-line" title="">bachelor's fun</a></h4>
 													<span>Public Group</span>
 													<em>500 Members</em>
 													<a href="#" title="" class="add-butn" data-ripple="">join now</a>
@@ -615,10 +615,10 @@
 										<li>
 											<div class="nearly-pepls">
 												<figure>
-													<a href="time-line.html" title=""><img src="{{ asset('assets/images/resources/group4.jpg') }}" alt=""></a>
+													<a href="time-line" title=""><img src="{{ asset('assets/images/resources/group4.jpg') }}" alt=""></a>
 												</figure>
 												<div class="pepl-info">
-													<h4><a href="time-line.html" title="">Max Us</a></h4>
+													<h4><a href="time-line" title="">Max Us</a></h4>
 													<span>Public group</span>
 													<em> 756 Members</em>
 													<a href="#" title="" class="add-butn" data-ripple="">join now</a>
@@ -628,224 +628,22 @@
 										<li>
 											<div class="nearly-pepls">
 												<figure>
-													<a href="time-line.html" title=""><img src="{{ asset('assets/images/resources/group3.jpg') }}" alt=""></a>
+													<a href="time-line" title=""><img src="{{ asset('assets/images/resources/group3.jpg') }}" alt=""></a>
 												</figure>
 												<div class="pepl-info">
-													<h4><a href="time-line.html" title="">SEO Zone</a></h4>
+													<h4><a href="time-line" title="">SEO Zone</a></h4>
 													<span>Public group</span>
 													<em>32k Members</em>
 													<a href="#" title="" class="add-butn" data-ripple="">join now</a>
 												</div>
 											</div>
-										</li>
+										</li> --}}
 									</ul>
 								</div><!-- photos -->
 							</div><!-- centerl meta -->
 							<div class="col-lg-3">
-								<aside class="sidebar static">
-									<div class="widget">
-										<h4 class="widget-title">Who's follownig</h4>
-										<ul class="followers">
-											<li>
-												<figure><img src="{{ asset('assets/images/resources/friend-avatar2.jpg') }}" alt=""></figure>
-												<div class="friend-meta">
-													<h4><a href="time-line.html" title="">Kelly Bill</a></h4>
-													<a href="#" title="" class="underline">Add Friend</a>
-												</div>
-											</li>
-											<li>
-												<figure><img src="{{ asset('assets/images/resources/friend-avatar4.jpg') }}" alt=""></figure>
-												<div class="friend-meta">
-													<h4><a href="time-line.html" title="">Issabel</a></h4>
-													<a href="#" title="" class="underline">Add Friend</a>
-												</div>
-											</li>
-											<li>
-												<figure><img src="{{ asset('assets/images/resources/friend-avatar6.jpg') }}" alt=""></figure>
-												<div class="friend-meta">
-													<h4><a href="time-line.html" title="">Andrew</a></h4>
-													<a href="#" title="" class="underline">Add Friend</a>
-												</div>
-											</li>
-											<li>
-												<figure><img src="{{ asset('assets/images/resources/friend-avatar8.jpg') }}" alt=""></figure>
-												<div class="friend-meta">
-													<h4><a href="time-line.html" title="">Sophia</a></h4>
-													<a href="#" title="" class="underline">Add Friend</a>
-												</div>
-											</li>
-											<li>
-												<figure><img src="{{ asset('assets/images/resources/friend-avatar3.jpg') }}" alt=""></figure>
-												<div class="friend-meta">
-													<h4><a href="time-line.html" title="">Allen</a></h4>
-													<a href="#" title="" class="underline">Add Friend</a>
-												</div>
-											</li>
-										</ul>
-									</div><!-- who's following -->
-									<div class="widget friend-list stick-widget">
-										<h4 class="widget-title">Friends</h4>
-										<div id="searchDir"></div>
-										<ul id="people-list" class="friendz-list">
-											<li>
-												<figure>
-													<img src="{{ asset('assets/images/resources/friend-avatar.jpg') }}" alt="">
-													<span class="status f-online"></span>
-												</figure>
-												<div class="friendz-meta">
-													<a href="time-line.html">bucky barnes</a>
-													<i>wintersolder@gmail.com</i>
-												</div>
-											</li>
-											<li>
-												<figure>
-													<img src="{{ asset('assets/images/resources/friend-avatar2.jpg') }}" alt="">
-													<span class="status f-away"></span>
-												</figure>
-												<div class="friendz-meta">
-													<a href="time-line.html">Sarah Loren</a>
-													<i>barnes@gmail.com</i>
-												</div>
-											</li>
-											<li>
-												<figure>
-													<img src="{{ asset('assets/images/resources/friend-avatar3.jpg') }}" alt="">
-													<span class="status f-off"></span>
-												</figure>
-												<div class="friendz-meta">
-													<a href="time-line.html">jason borne</a>
-													<i>jasonb@gmail.com</i>
-												</div>
-											</li>
-											<li>
-												<figure>
-													<img src="{{ asset('assets/images/resources/friend-avatar4.jpg') }}" alt="">
-													<span class="status f-off"></span>
-												</figure>
-												<div class="friendz-meta">
-													<a href="time-line.html">Cameron diaz</a>
-													<i>jasonb@gmail.com</i>
-												</div>
-											</li>
-											<li>
-												
-												<figure>
-													<img src="{{ asset('assets/images/resources/friend-avatar5.jpg') }}" alt="">
-													<span class="status f-online"></span>
-												</figure>
-												<div class="friendz-meta">
-													<a href="time-line.html">daniel warber</a>
-													<i>jasonb@gmail.com</i>
-												</div>
-											</li>
-											<li>
-												
-												<figure>
-													<img src="{{ asset('assets/images/resources/friend-avatar6.jpg') }}" alt="">
-													<span class="status f-away"></span>
-												</figure>
-												<div class="friendz-meta">
-													<a href="time-line.html">andrew</a>
-													<i>jasonb@gmail.com</i>
-												</div>
-											</li>
-											<li>
-												
-												<figure>
-													<img src="{{ asset('assets/images/resources/friend-avatar7.jpg') }}" alt="">
-													<span class="status f-off"></span>
-												</figure>
-												<div class="friendz-meta">
-													<a href="time-line.html">amy watson</a>
-													<i>jasonb@gmail.com</i>
-												</div>
-											</li>
-											<li>
-												
-												<figure>
-													<img src="{{ asset('assets/images/resources/friend-avatar5.jpg') }}" alt="">
-													<span class="status f-online"></span>
-												</figure>
-												<div class="friendz-meta">
-													<a href="time-line.html">daniel warber</a>
-													<i>jasonb@gmail.com</i>
-												</div>
-											</li>
-											<li>
-												
-												<figure>
-													<img src="{{ asset('assets/images/resources/friend-avatar2.jpg') }}" alt="">
-													<span class="status f-away"></span>
-												</figure>
-												<div class="friendz-meta">
-													<a href="time-line.html">Sarah Loren</a>
-													<i>barnes@gmail.com</i>
-												</div>
-											</li>
-										</ul>
-										<div class="chat-box">
-											<div class="chat-head">
-												<span class="status f-online"></span>
-												<h6>Bucky Barnes</h6>
-												<div class="more">
-													<span><i class="ti-more-alt"></i></span>
-													<span class="close-mesage"><i class="ti-close"></i></span>
-												</div>
-											</div>
-											<div class="chat-list">
-												<ul>
-													<li class="me">
-														<div class="chat-thumb"><img src="{{ asset('assets/images/resources/chatlist1.jpg') }}" alt=""></div>
-														<div class="notification-event">
-															<span class="chat-message-item">
-																Hi James! Please remember to buy the food for tomorrow! I’m gonna be handling the gifts and Jake’s gonna get the drinks
-															</span>
-															<span class="notification-date"><time datetime="2004-07-24T18:18" class="entry-date updated">Yesterday at 8:10pm</time></span>
-														</div>
-													</li>
-													<li class="you">
-														<div class="chat-thumb"><img src="{{ asset('assets/images/resources/chatlist2.jpg') }}" alt=""></div>
-														<div class="notification-event">
-															<span class="chat-message-item">
-																Hi James! Please remember to buy the food for tomorrow! I’m gonna be handling the gifts and Jake’s gonna get the drinks
-															</span>
-															<span class="notification-date"><time datetime="2004-07-24T18:18" class="entry-date updated">Yesterday at 8:10pm</time></span>
-														</div>
-													</li>
-													<li class="me">
-														<div class="chat-thumb"><img src="{{ asset('assets/images/resources/chatlist1.jpg') }}" alt=""></div>
-														<div class="notification-event">
-															<span class="chat-message-item">
-																Hi James! Please remember to buy the food for tomorrow! I’m gonna be handling the gifts and Jake’s gonna get the drinks
-															</span>
-															<span class="notification-date"><time datetime="2004-07-24T18:18" class="entry-date updated">Yesterday at 8:10pm</time></span>
-														</div>
-													</li>
-												</ul>
-												<form class="text-box">
-													<textarea placeholder="Post enter to post..."></textarea>
-													<div class="add-smiles">
-														<span title="add icon" class="em em-expressionless"></span>
-													</div>
-													<div class="smiles-bunch">
-														<i class="em em---1"></i>
-														<i class="em em-smiley"></i>
-														<i class="em em-anguished"></i>
-														<i class="em em-laughing"></i>
-														<i class="em em-angry"></i>
-														<i class="em em-astonished"></i>
-														<i class="em em-blush"></i>
-														<i class="em em-disappointed"></i>
-														<i class="em em-worried"></i>
-														<i class="em em-kissing_heart"></i>
-														<i class="em em-rage"></i>
-														<i class="em em-stuck_out_tongue"></i>
-													</div>
-													<button type="submit"></button>
-												</form>
-											</div>
-										</div>
-									</div><!-- friends list sidebar -->								
+								<aside class="sidebar static right">
+									@include('includes/who-is-following')
 								</aside>
 							</div><!-- sidebar -->
 						</div>	
@@ -862,7 +660,7 @@
 					<div class="widget">
 						<div class="foot-logo">
 							<div class="logo">
-								<a href="index.html" title=""><img src="{{ asset('assets/images/logo.png') }}" alt=""></a>
+								<a href="index" title=""><img src="{{ asset('assets/images/logo.png') }}" alt=""></a>
 							</div>	
 							<p>
 								The trio took this simple idea and built it into the world’s leading carpooling platform.
@@ -896,11 +694,11 @@
 					<div class="widget">
 						<div class="widget-title"><h4>Navigate</h4></div>
 						<ul class="list-style">
-							<li><a href="about.html" title="">about us</a></li>
-							<li><a href="contact.html" title="">contact us</a></li>
-							<li><a href="terms.html" title="">terms & Conditions</a></li>
+							<li><a href="about" title="">about us</a></li>
+							<li><a href="contact" title="">contact us</a></li>
+							<li><a href="terms" title="">terms & Conditions</a></li>
 							<li><a href="#" title="">RSS syndication</a></li>
-							<li><a href="sitemap.html" title="">Sitemap</a></li>
+							<li><a href="sitemap" title="">Sitemap</a></li>
 						</ul>
 					</div>
 				</div>

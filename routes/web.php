@@ -83,6 +83,8 @@ use App\Http\Controllers\PageController;
     Route::get('/your-events', 'App\Http\Controllers\EventController@your_events_listing');
     Route::get('/event-page', 'App\Http\Controllers\EventController@event_page');
     Route::post('event-action','App\Http\Controllers\EventController@event_action');
+    Route::get('/create-group','App\Http\Controllers\GroupController@index');
+    Route::get('/group-list','App\Http\Controllers\GroupController@group_list');
 
     Route::post('like_post_cmt','App\Http\Controllers\PostController@like_post_cmt');
     Route::post('dislike_post_cmt','App\Http\Controllers\PostController@dislike_post_cmt');

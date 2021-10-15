@@ -264,7 +264,7 @@
                                     <div class="we-comment">
                                      <div class="coment-head">
                                    
-                                          <h5><a href="time-line.html" title="">@php echo  get_user_nane1($inner_cmt->user_id) @endphp</a></h5>
+                                          <h5><a href="time-line" title="">@php echo  get_user_nane1($inner_cmt->user_id) @endphp</a></h5>
                                           <span>{{ $inner_cmt->created }}</span>
                                           {{-- @if($is_like_inner == 1)<a class="like"  onclick="dislike_post_inner_cmt({{ $inner_cmt->id }},{{ $inner_cmt->post_id }})" href="#" ><i class="fa fa-thumbs-up" style="color:#088dcd;" aria-hidden="true"></i> </a>@else<a class="like"  onclick="like_post_inner_cmt({{ $inner_cmt->id }},{{ $inner_cmt->post_id }})" href="#" ><i class="fa fa-thumbs-up  icon-color" aria-hidden="true"></i></a> @endif --}}
                                           <a class="we-reply" href="#" onclick="return false" data-id="{{ $inner_cmt->id }}" id="we-reply"  title="Reply"><i class="fa fa-reply"></i></a>
