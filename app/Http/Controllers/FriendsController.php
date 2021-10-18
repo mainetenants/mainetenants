@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Models\User;
 class FriendsController extends Controller
 {
    
@@ -15,6 +16,26 @@ class FriendsController extends Controller
         ->first();
         return view('time-line', ['id' => $id,'frnd_status' => isset($isfriends)?($isfriends->status):(2)]);   
     }
+
+    
+    public function getFriends(Request $request){
+
+        $search = $request->search;
+  
+        if($search == ''){
+           $employees = User::orderby('name','asc')->select('id','name')->limit(5)->get();
+        }else{
+           $employees = User::orderby('name','asc')->select('id','name')->where('name', 'like', '%' .$search . '%')->limit(5)->get();
+        }
+  
+        $response = array();
+        foreach($employees as $employee){
+           $response[] = array("value"=>$employee->id,"label"=>$employee->name);
+        }
+  
+        return response()->json($response);
+     }
+
     public function addFriend($id)
     {
         if (isset($id)) {
@@ -95,13 +116,11 @@ class FriendsController extends Controller
         }
     }
     public function unfollowlist($id){
-
-
-          $user_id = Auth::id();
-          $unfollow = DB::table('msu_isfriend')
-          ->where(['user_id'=> $user_id ,'friends_id' => $id ])
-          ->update(['is_follow' => 0]);
-          return back(); 
+        $user_id = Auth::id();
+        $unfollow = DB::table('msu_isfriend')
+        ->where(['user_id'=> $user_id ,'friends_id' => $id ])
+        ->update(['is_follow' => 0]);
+        return back(); 
     }
 
     public function followlist($id){

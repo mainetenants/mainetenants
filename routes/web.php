@@ -40,6 +40,9 @@ use App\Http\Controllers\PageController;
     Route::post('profile_photo', 'App\Http\Controllers\AboutController@profile_photo');
     Route::post('cover_photo', 'App\Http\Controllers\AboutController@cover_photo');
     Route::get('about', 'App\Http\Controllers\AboutController@index');
+
+    Route::post('getFriends','App\Http\Controllers\FriendsController@getFriends');
+
     Route::get('timeline-friends', 'App\Http\Controllers\timelineController@index');
     //Route::get('edit-profile-basic', 'App\Http\Controllers\ProfileUpdateController@editBasic');
 

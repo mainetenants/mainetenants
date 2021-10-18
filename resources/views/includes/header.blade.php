@@ -214,7 +214,7 @@
 		<div class="top-area bg-white bg-light">
 			<div class="top-search">
 				<form method="post" class="">
-					<input type="text" placeholder="Search Friend">
+					<input type="text" placeholder="Search Friend" id="employee_search">
 					<button data-ripple><i class="ti-search text-secondary"></i></button>
 				</form>
 			</div>
@@ -538,5 +538,39 @@
 		</div>
 	</div><!-- right sidebar user chat -->
 
+
+	    <!-- Script -->
+		<script type="text/javascript">
+
+			// CSRF Token
+			var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+			$(document).ready(function(){
+		
+			  $( "#employee_search" ).autocomplete({
+				source: function( request, response ) {
+				  // Fetch data
+				  $.ajax({
+					url:"#",
+					type: 'post',
+					dataType: "json",
+					data: {
+					   _token: CSRF_TOKEN,
+					   search: request.term
+					},
+					success: function( data ) {
+					   response( data );
+					}
+				  });
+				},
+				select: function (event, ui) {
+				   // Set selection
+				   $('#employee_search').val(ui.item.label); // display the selected text
+				   $('#employeeid').val(ui.item.value); // save selected id to input
+				   return false;
+				}
+			  });
+		
+			});
+			</script>
 
 	
