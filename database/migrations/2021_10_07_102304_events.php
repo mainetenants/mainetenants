@@ -33,7 +33,8 @@ class Events extends Migration
             $table->integer('guest_invite')->nullable();
             $table->integer('admin_add_post')->nullable();
             $table->integer('post_approve')->nullable();
-            $table->timestamp('created')->useCurrent();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
         });
     }
 

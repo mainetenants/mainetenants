@@ -84,6 +84,7 @@
             </div>
             @foreach ($events as $event)
                 <div class="col-lg-6 mt-5 col d-flex justify-content-center">
+                    <a href="event-page/{{ $event->id }}">
                     <div class="card" style="width: 18rem;">
                         @if(isset($event->cover_photo) && !empty($event->cover_photo))
                         <img class="card-img-top" src="{{ asset('upload/images/events/'.$event->cover_photo) }}" alt="Card image cap">
@@ -97,23 +98,31 @@
                         
                             @if (isset($event->action))
                             <div class="dropdown" id="aaa">
-                                <input class="btn btn-sm btn-info dropdown-toggle" type="button" id="dropdownMenuButton" btn-act="{{ $event->id }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" value="Intereseted">
+                                @php
+                                    if($event->action==1){
+                                        $action = "Intereseted";
+                                    }elseif($event->action==2) {
+                                        $action = "Going";
+                                    }elseif($event->action==3) {
+                                        $action = "Not Interested";
+                                    }
+                                @endphp
+                                <input class="btn btn-sm btn-info dropdown-toggle" type="button" id="dropdownMenuButton" btn-act="{{ $event->id }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" value="{{ $action }}">
                                 
                                 <div class="dropdown-menu px-2 dp-id" aria-labelledby="dropdownMenuButton">
                                     <div class="form-check dropdown-item ">
-                                        <label class="form-check
-                                        -label">
-                                            <input type="radio" name="action" class="form-check-input inst-rdo" data-id="{{ $event->id }}" act-id="1">Interested
+                                        <label class="form-check-label">
+                                            <input type="radio" name="action" class="form-check-input inst-rdo" data-id="{{ $event->id }}" {{ ($event->action==1)?("checked=checked"):("") }}  act-id="1">Interested
                                         </label>
                                     </div>
                                     <div class="form-check dropdown-item ">
                                         <label class="form-check-label">
-                                            <input type="radio" name="action" class="form-check-input inst-rdo" data-id="{{ $event->id }}" act-id="2">Going
+                                            <input type="radio" name="action" class="form-check-input inst-rdo" data-id="{{ $event->id }}" {{ ($event->action==2)?("checked=checked"):("") }} act-id="2">Going
                                         </label>
                                     </div>
                                     <div class="form-check dropdown-item ">
                                         <label class="form-check-label">
-                                            <input type="radio" name="action" class="form-check-input inst-rdo" data-id="{{ $event->id }}" act-id="3">Not Interested
+                                            <input type="radio" name="action" class="form-check-input inst-rdo" data-id="{{ $event->id }}" {{ ($event->action==3)?("checked=checked"):("") }} act-id="3">Not Interested
                                         </label>
                                     </div>
                                 </div>
@@ -124,6 +133,7 @@
 
                         </div>
                     </div>
+                    </a>
                 </div>
             @endforeach
             
