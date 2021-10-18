@@ -19,8 +19,8 @@ class UserEventDetails extends Migration
             $table->integer('user_id');
             $table->integer('action')->nullable();
             $table->integer('notification')->nullable();
-
-            $table->timestamp('created')->useCurrent();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
         });
     }
 

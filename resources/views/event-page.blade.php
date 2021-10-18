@@ -1,42 +1,4 @@
 @include('includes/header')
-<style>
-    .calender-icon{
-        width: 15%;
-        padding: 5px;
-        text-align: center;
-        background: #f8f9fa;
-        border-radius: 20px;
-        box-shadow: 5px 10px 12px #888888;
-    }
-    .calender-icon span {
-        color: #dc3545;
-        font-size: 70px;
-    }
-    small.date-event {
-        font-size: 20px;
-        font-weight: 500;
-        color: #dc3545;
-    }
-    small.hours {
-        font-size: 80%;
-        font-weight: bold;
-        color: #050505;
-    }
-    .event-details {
-        position: relative;
-        top: 100px;
-        left: 17px;
-    }
-    .outer-div.d-flex {
-    position: relative;
-    bottom: 90px;
-    left: 40px;
-    }
-    .event-details h2 {
-        font-weight: 600;
-        color: black;
-    }
-</style>
 <section>
    <div class="gap gray-bg">
       <div class="container">
@@ -123,7 +85,7 @@
                                                 </div>
                                             </div>
                                             <div class="event-details">
-                                                <h2>Dussehra</h2>
+                                                <h2>{{ $events->event_name }}</h2>
                                                 <span>Online Event</span>
                                             </div>
                                         </div>
@@ -151,8 +113,8 @@
                                                 <div class="pl-3 events-about">
                                                     <p class="card-text"><i class="fa fa-users" aria-hidden="true"></i>&nbsp 2 people responded</p>
                                                     <p>Event by</p>
-                                                    <p><i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp Location</p>
-                                                    <p<i class="fa fa-ticket" aria-hidden="true"></i>&nbps  Tickets</p>
+                                                    <p>Location</p>
+                                                    <p>Tickets</p>
                                                     <p>Class by</p>
                                                     <p><i class="fa fa-user" aria-hidden="true"></i>&nbsp Events by <span>Username</span></p>
                                                     <p><i class="fa fa-globe" aria-hidden="true"></i>&nbsp Public .Anyone on or off Facebook</p>

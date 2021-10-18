@@ -6,167 +6,160 @@ $('.card-radio input[type=radio]').change(function() {
     $(this).parent().parent().parent().addClass("card_select");
 });
 
-$('#create-event').click(function(){
-    if($('#online').is(':checked')){ 
+$('#create-event').click(function() {
+    if ($('#online').is(':checked')) {
         $('.create-event').hide();
         $('.event-type').show();
-    }
-    else if($('#in_person').is(':checked')){
+    } else if ($('#in_person').is(':checked')) {
         $('.create-event').hide();
         $('.event-details').show();
         $('.probress-btns').show();
-    }else{
+    } else {
         alert("Select atleast one option");
-     }
-    
+    }
+
 });
 
-$('#event-type').click(function(){
-    if($('#general').is(':checked') || $('#class').is(':checked')) { 
+$('#event-type').click(function() {
+    if ($('#general').is(':checked') || $('#class').is(':checked')) {
         $('.event-type').hide();
         $('.event-details').show();
         $('.probress-btns').show();
-        
-    }else{
+
+    } else {
         alert("Select atleast one option");
-     }
-    
+    }
+
 });
-$('#event-type-back').click(function(){
-        $('.create-event').show();
-        $('.event-type').hide();
-        $('.probress-btns').hide();
+$('#event-type-back').click(function() {
+    $('.create-event').show();
+    $('.event-type').hide();
+    $('.probress-btns').hide();
 });
 $('input[name=privacy]').change(function() {
-    
-    if($("input[name='privacy']:checked").val() == 'private'){
+
+    if ($("input[name='privacy']:checked").val() == 'private') {
         $('.guest-box').show();
-    }else{
+    } else {
         $('.guest-box').hide();
     }
 });
-$('#event-details').click(function(){
+$('#event-details').click(function() {
     $('.alert').alert();
     $('.alert').hide();
     $('input[type=text], input[type=date],  input[type=time]').removeClass("border-bg");
-    $("input").keyup(function(){
+    $("input").keyup(function() {
         $(this).removeClass("border-bg");
     });
-    $("input").blur(function(){
+    $("input").blur(function() {
         $(this).removeClass("border-bg");
     });
-    if($('#event_name').val()==""){
+    if ($('#event_name').val() == "") {
         $("#event_name").addClass("border-bg");
         $(".event-alert").html(html_alert);
-    }
-    else if($('#start_date').val()==""){
+    } else if ($('#start_date').val() == "") {
         $("#start_date").addClass("border-bg");
         $(".event-alert").html(html_alert);
-    }
-    else if($('#start_time').val()==""){
+    } else if ($('#start_time').val() == "") {
         $("#start_time").addClass("border-bg");
         $(".event-alert").html(html_alert);
-    }
-    else if($('#end_date').val()==""){
+    } else if ($('#end_date').val() == "") {
         $("#end_date").addClass("border-bg");
         $(".event-alert").html(html_alert);
-    }
-    else if($('#end_time').val()==""){
+    } else if ($('#end_time').val() == "") {
         $("#end_time").addClass("border-bg");
         $(".event-alert").html(html_alert);
-    }else{
+    } else {
         $('.event-details').hide();
         $('.locations').show();
         $('#step1').removeClass('active');
         $('#step2').addClass('active');
     }
 });
-$('#event-details-back').click(function(){
+$('#event-details-back').click(function() {
     location.reload();
 });
 $('input[name=locations]').change(function() {
-    if($(this).attr('id')== 'external_link'){
+    if ($(this).attr('id') == 'external_link') {
         $('.event_link').show();
-    }
-    else{
+    } else {
         $('.event_link').hide();
     }
 });
-$('#join').click(function(){
-    $("input, textarea").keyup(function(){
+$('#join').click(function() {
+    $("input, textarea").keyup(function() {
         $(this).removeClass("border-bg");
     });
     $('.alert').hide();
-    if($("#external_link").prop("checked") && ($('#event_link').val()=="")){
+    if ($("#external_link").prop("checked") && ($('#event_link').val() == "")) {
         $("#event_link").addClass("border-bg");
         $(".event-alert-loc").html(html_alert);
-    }
-    else if($('#description').val()==""){
+    } else if ($('#description').val() == "") {
         $("#description").addClass("border-bg");
         $(".event-alert-loc").html(html_alert);
-    }else{
+    } else {
         $('.locations').hide();
         $('.addition_relation').show();
         $('#step2').removeClass('active');
         $('#step3').addClass('active');
     }
 });
-$('#join-back').click(function(){
+$('#join-back').click(function() {
     $('.locations').hide();
     $('.event-details').show();
     $('#step2').removeClass('active');
     $('#step1').addClass('active');
 });
 
-$('#addition_relation-back').click(function(){
+$('#addition_relation-back').click(function() {
     $('.addition_relation').hide();
     $('.locations').show();
     $('#step3').removeClass('active');
     $('#step2').addClass('active');
 });
 
-$('.inst-btn').click(function(){
-    
+$('.inst-btn').click(function() {
+
     // alert();return
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
-   
+
     var event_id = $(this).attr('data-id');
     var action_id = $(this).attr('act-id');
     $.ajax({
         type: 'POST',
         url: 'event-action',
         data: {
-            event_id : event_id,
-            action_id : action_id,
+            event_id: event_id,
+            action_id: action_id,
         },
-        success: function (data) {
-            
+        success: function(data) {
+
         }
     });
 
 });
-$('input[name="action"]').on('change', function(){
+$('input[name="action"]').on('change', function() {
     var that = $(this)
-    
-        
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-   
+
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
     var event_id = $(this).attr('data-id');
     var action_id = $(this).attr('act-id');
-    var action_name="";
-    if(action_id=='1'){
+    var action_name = "";
+    if (action_id == '1') {
         action_name = 'Interested';
-    }else if(action_id=='2'){
+    } else if (action_id == '2') {
         action_name = 'Going';
-    }else if(action_id=='3'){
+    } else if (action_id == '3') {
         action_name = 'Not Interested';
     }
 
@@ -174,15 +167,15 @@ $('input[name="action"]').on('change', function(){
         type: 'POST',
         url: 'event-action',
         data: {
-            event_id : event_id,
-            action_id : action_id,
+            event_id: event_id,
+            action_id: action_id,
         },
-        success: function (data) {
-            var selector1 = $( that ).parent().parent().parent().parent().attr('class');
-            var selector2 = $('.'+selector1).find("#dropdownMenuButton").attr('id');
-            $('#'+selector2).val(action_name);
-        
-        }   
+        success: function(data) {
+            alert(data.success);
+            var selector1 = $(that).parent().parent().parent().parent().attr('class');
+            var selector2 = $('.' + selector1).find("#dropdownMenuButton").attr('id');
+            $('#' + selector2).val(action_name);
+
+        }
     });
 });
-

@@ -32,7 +32,6 @@ span.reaction {
     margin-top: -15px;
 }
 
-
 * {
     margin: 0;
     padding: 0
@@ -110,14 +109,9 @@ h2 {
 }
 
 .custom-heading-color {
-
-
     color: #088dcd;
     font-weight: 700;
-
-
 }
-
 
 #progressbar {
     margin-bottom: 30px;
@@ -192,7 +186,8 @@ h2 {
     background-color: #088dcd
 }
 
-input.page_info, input.filterinput{
+input.page_info,
+input.filterinput {
     height: 50px;
     padding: 20px;
     border-radius: 11px;
@@ -202,6 +197,7 @@ input.page_info, input.filterinput{
 label.custom-label {
     font-weight: 900;
 }
+
 
 /* input.filterinput {
     height: 50px;
@@ -286,38 +282,90 @@ img.rc_profile_pic {
 li.nav-link a ins {
     text-decoration: none;
 }
+
 div#searchEvent {
     padding: 0 25px 20px;
 }
+
 li ul.naves {
     position: relative;
     left: 30px;
     top: 10px;
 }
+
 span.host img {
     border-radius: 100%;
 }
+
 span.owner22 {
     display: inline-grid;
     position: relative;
     top: -9px;
     left: 7px;
 }
+
 .card {
     height: 100%;
 }
+
 fieldset.bg-color {
     background: #f4f2f2 !important;
 }
+
 .card_select {
     border-radius: 6px;
     border: 3px solid #088dcd !important;
-  }
-  .border-bg{
+}
+
+.border-bg {
     border-color: red;
 }
+
 .inner-container {
     background-color: #eaeaea;
     border-radius: 5px;
     padding: 0;
+}
+
+.calender-icon {
+    width: 15%;
+    padding: 5px;
+    text-align: center;
+    background: #f8f9fa;
+    border-radius: 20px;
+    box-shadow: 5px 10px 12px #888888;
+}
+
+.calender-icon span {
+    color: #dc3545;
+    font-size: 70px;
+}
+
+small.date-event {
+    font-size: 20px;
+    font-weight: 500;
+    color: #dc3545;
+}
+
+small.hours {
+    font-size: 80%;
+    font-weight: bold;
+    color: #050505;
+}
+
+.event-details {
+    position: relative;
+    top: 100px;
+    left: 17px;
+}
+
+.outer-div.d-flex {
+    position: relative;
+    bottom: 90px;
+    left: 40px;
+}
+
+.event-details h2 {
+    font-weight: 600;
+    color: #dc3545;
 }
