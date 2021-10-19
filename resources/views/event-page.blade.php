@@ -18,7 +18,6 @@
                             </div>
                         </div>
                         <ul class="naves">
-                            
                             <li>
                                 <a title="" class="btn btn-sm btn-secondary text-white" href="{{ url('/create-event') }}">Create New Event</a>
                             </li>
@@ -72,7 +71,7 @@
                                 <div class="col-lg-12 mb-5">
                                     <div class="feature-photo">
                                         <figure>
-                                            <img src="https://www.learningcontainer.com/wp-content/uploads/2020/09/Sample-Image-File-for-Testing.png?ezimgfmt=ng%3Awebp%2Fngcb4%2Frs%3Adevice%2Frscb4-1">
+                                            <img src="{{ $events->cover_photo }}">
                                         </figure>
                                         <div class="outer-div d-flex">
                                             <div class="calender-icon">
@@ -81,6 +80,7 @@
                                                 </span>
                                                 <div class="timing">
                                                     <small class="date-event">15 Friday</small><br>
+                                                    <small class="hours">At 18:00</small><br>
                                                     <small class="hours">At 18:00</small>
                                                 </div>
                                             </div>
@@ -113,9 +113,10 @@
                                                 <div class="pl-3 events-about">
                                                     <p class="card-text"><i class="fa fa-users" aria-hidden="true"></i>&nbsp 2 people responded</p>
                                                     <p>Event by</p>
-                                                    <p>Location</p>
-                                                    <p>Tickets</p>
-                                                    <p>Class by</p>
+                                                    <p><i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp Location</p>
+                                                    <p><i class="fa fa-ticket" aria-hidden="true"></i>&nbsp Tickets</p>
+                                                    <p><i class="fa fa-users" aria-hidden="true"></i>&nbsp Class by</p>
+                                                    <p><i class="fa fa-users" aria-hidden="true"></i>&nbsp Duration</p>
                                                     <p><i class="fa fa-user" aria-hidden="true"></i>&nbsp Events by <span>Username</span></p>
                                                     <p><i class="fa fa-globe" aria-hidden="true"></i>&nbsp Public .Anyone on or off Facebook</p>
                                                     <p>Celebrate with us</p>
