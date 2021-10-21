@@ -700,6 +700,7 @@ header.sticky {
     text-align: right;
     vertical-align: middle;
     width: 84%;
+    height: 45px;
 }
 
 .top-area>ul {
@@ -1365,6 +1366,8 @@ header.sticky {
     border: 1px solid #eee;
     display: block;
     padding: 10px;
+    position:relative;
+    top:-16px;
     text-align: right;
     border-top: 0;
     background: #fff;
@@ -10294,4 +10297,14 @@ aside.sidebar.full-style {
 
 .like {
     margin-left: 10px;
+}
+
+#search_result{
+
+    list-style:none;    
+}
+
+li.label {
+    padding: 5px 5px 5px 10px;
+    border-bottom: 1px solid #efe3e3;
 }

@@ -21,20 +21,22 @@ class FriendsController extends Controller
     public function getFriends(Request $request){
 
         $search = $request->search;
+        $user_id = Auth::id();
   
         if($search == ''){
-           $employees = User::orderby('name','asc')->select('id','name')->limit(5)->get();
+           $employees = User::orderby('name','asc')->select('id','name')->where('id','!=',$user_id)->limit(5)->get();
         }else{
-           $employees = User::orderby('name','asc')->select('id','name')->where('name', 'like', '%' .$search . '%')->limit(5)->get();
+           $employees = User::orderby('name','asc')->select('id','name')->where('name', 'like', '%' .$search . '%')->where('id','!=',$user_id)->limit(5)->get();
         }
-  
         $response = array();
-        foreach($employees as $employee){
-           $response[] = array("value"=>$employee->id,"label"=>$employee->name);
-        }
-  
-        return response()->json($response);
-     }
+        foreach ($employees as $employee) {
+                $response[] = array("value"=>$employee->id,"label"=>$employee->name);
+            }
+    
+    
+         return response()->json(array($response));
+      
+    }
 
     public function addFriend($id)
     {

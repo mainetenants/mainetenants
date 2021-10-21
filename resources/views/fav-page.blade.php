@@ -230,7 +230,13 @@ $get_like_page_status = get_like_page_status($get_page->msu_user_page_id);
                                  <div class="post-meta">
 
                                     @if($post->images)
-                                     <img src="{{ url('upload/images/thumbnails/'.$post->images) }}" class="img-fluid mx-auto"alt="">
+                                       <img src="{{ url('upload/images/thumbnails/'.$post->images) }}" class="img-fluid mx-auto"alt="">
+                                    @elseif($post->videos)
+                                       <video width="100%" height="400" controls>
+                                          <source src="upload/videos/{{ $post->videos }}" type="video/mp4">
+                                          <source src="upload/videos/{{ $post->videos }}" type="video/ogg">
+                                          Your browser does not support the video tag.
+                                          </video>
                                      @endif
                                      <div class="description">
                                        <p>

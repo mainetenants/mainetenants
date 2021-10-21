@@ -692,7 +692,7 @@
         var post_id = $('#post_id1').val();
         var comment_id = $(this).attr('data-id');
         alert($(this).attr('data-id'));
-        $(this).parent().parent().parent().append(
+        $(this).parent().parent().parent().html(
             '<div id="new_cmt_box" ><form method="post" id="page_post_replay_comments" enctype="multipart/form-data"  action="{{ url("save-reply-comment") }}">@csrf<div class="row m-4"><div class="col-sm-11 p-0"><textarea placeholder="Post your comment" id="page_post_reply_comment" name="page_post_reply_comment"></textarea></div><div class="col-sm-1"><input type="hidden" name="post_id1" id="post_id1" value="' +
             post_id + '"><input type="hidden" name="comment_id" id="comment_id" value ="' + comment_id +
             '"/><input type="hidden" name="status" id="status" value ="1"/><button type="submit" id="replay_comments" class="btn btn-primary"><i class="far fa-paper-plane"></i></button></div></div>'
@@ -705,6 +705,25 @@
     $('#replay_comments').click(function () {
         $('#page_post_replay_comments').submit();
     });
+    function delete_post_reply_comment(cmt_id,post_id){
+
+       $.ajax({
+         type:'post',
+         url :'{{ url("delete_reply_comments")}}',
+         data:{
+            cmt_id: cmt_id,
+            post_id: post_id
+                 
+         },
+        success:function(data){
+            if (data['status_res'] == 1) {
+                    location.reload();
+                }
+            }
+       });
+
+
+    }
 
     function like_page_post_inner_cmt(cmt_id, post_id) {
 
@@ -806,11 +825,13 @@
         var post_id = $(this).attr('post-id');
         var comment_id = $(this).attr('data-id');
 
+        
         $(this).parent().parent().parent().append(
             '<div id="new_cmt_box" ><form method="post" id="post_replay_comments" enctype="multipart/form-data"  action="{{ url("save-inner-comments") }}">@csrf<div class="row m-4"><div class="col-sm-11 p-0"><textarea placeholder="Post your comment" id="page_post_reply_comment" name="page_post_reply_comment"></textarea></div><div class="col-sm-1"><input type="hidden" name="post_id1" id="post_id1" value="' +
             post_id + '"><input type="hidden" name="comment_id" id="comment_id" value ="' + comment_id +
             '"/><input type="hidden" name="status" id="status" value ="1"/><button type="submit" id="replay_comments" class="btn btn-primary"><i class="far fa-paper-plane"></i></button></div></div>'
             );
+        
 
     });
     $('#replay_comments').click(function () {
@@ -830,7 +851,8 @@
             },
             success: function (data) {
                 console.log(data)
-                if (data['status_res'] == 1) {
+                if (data['status'] == 1) {
+                    
 
 
                 }
@@ -847,6 +869,30 @@
         });
 
     }
+
+    $('#friend_search').keyup(function(){
+
+        var search = $('#friend_search').val();    
+        $.ajax({
+              type:'post',
+              url :'{{ url("/getFriends") }}',
+              data :{
+                   search : search 
+              },
+              success:function(data){
+
+                   var i;                   
+                    var filter = search.toLowerCase();
+                    var value = "";
+                    $.each(data, function (i) {
+                        $.each(data[i], function (key, val) {
+                           value += "<li class='label'><a href='/see_friend/"+val['value']+"'>"+val['label']+"</a></li>";
+                        });
+                    });  
+                 $('#search_result').html(value);    
+              }
+            });       
+        });
 
 </script>
 <script>
@@ -882,3 +928,33 @@
     });
 
 </script>
+
+
+<script src="{{ asset('assets/js/config.js')  }}"></script>
+<script src="{{ asset('assets/js/util.js') }}"></script>
+<script src="{{ asset('assets/js/jquery.emojiarea.js') }}"></script>
+<script src="{{ asset('assets/js/emoji-picker.js') }}"  ></script>
+<script>
+    $(function() {
+      // Initializes and creates emoji set from sprite sheet
+      window.emojiPicker = new EmojiPicker({
+        emojiable_selector: '[data-emojiable=true]',
+        assetsPath: '{{ asset("assets/img/") }}',
+        popupButtonClasses: 'fa fa-smile-o'
+      });
+      // Finds all elements with `emojiable_selector` and converts them to rich emoji input fields
+      // You may want to delay this step if you have dynamically created input fields that appear later in the loading process
+      // It can be called as many times as necessary; previously converted input fields will not be converted again
+      window.emojiPicker.discover();
+    });
+  </script>
+  <script>
+    // Google Analytics
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-49610253-3', 'auto');
+    ga('send', 'pageview');
+  </script>
