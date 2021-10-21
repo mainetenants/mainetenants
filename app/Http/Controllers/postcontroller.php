@@ -352,8 +352,8 @@ class PostController extends Controller
 
     }
     public function save_inner_comments(Request $request){
-          $data = $request->all();
-          $user_id = Auth::id();
+             $data = $request->all();
+             $user_id = Auth::id();
              $insert = new post_inner_comment();
              $insert->user_id = $user_id ;
              $insert->post_id = $data['post_id1'] ;
@@ -366,17 +366,7 @@ class PostController extends Controller
           return back();
 
     }
-    // public function inner_post_cmt_like(Request $request){
-    //        $data = $request->all();
-    //        $user_id =Auth::id();
-    //        $msu_page_post_inner_like_comment = new msu_page_post_inner_like_comment
 
-
-    // }
-    // public function inner_post_cmt_dislike(Request $request){
-    //        $data = $request->all();
-    //        $user_id = Auth::id();
-    // }
 }
 
 

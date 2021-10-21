@@ -213,11 +213,16 @@
 
 		<div class="top-area bg-white bg-light">
 			<div class="top-search">
-				<form method="post" class="">
-					<input type="text" placeholder="Search Friend" id="employee_search">
-					<button data-ripple><i class="ti-search text-secondary"></i></button>
+				<form method="post" id="search_friend" name="search_friends">
+					<input type="text" placeholder="Search Friend" id="friend_search" name="friend_search" autocomplete="off">
+				 	<button data-ripple ><i class="ti-search text-secondary"></i></button>
+					 
 				</form>
+				<div class="search_result"><ul id="search_result" class="card"></ul></div>
 			</div>
+			
+
+
 			<ul class="setting-area bg-white bg-light">
 				<li><a href="newsfeed" title="Home" data-ripple=""><i class="ti-home text-secondary"></i></a></li>
 				<li>

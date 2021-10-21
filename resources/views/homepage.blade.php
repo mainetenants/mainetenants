@@ -41,9 +41,13 @@
                               @endif
                               <form method="post" id="upload_files" action="get-post-list" enctype="multipart/form-data">
                                  <input type="hidden" name="_token" value="{{ csrf_token() }}" />
-                                 <textarea rows="2" placeholder="write something" name="msg"></textarea>
+                                 <p class="lead emoji-picker-container">
+                                          
+                                 <textarea rows="2" placeholder="write something" name="msg" data-emojiable="true" data-emoji-input="unicode"></textarea>
+                                 </p>
                                  <div class="attachments">
                                     <ul>
+                                      
                                        <li class="text-secondary">
                                           <i class="fa fa-music text-secondary"></i>
                                           <label class="fileContainer">
@@ -89,6 +93,7 @@
 							   <div class="friend-info">
 								  <figure>
 									 <img src="{{ asset('assets/images/resources/friend-avatar10.jpg') }}" alt="">
+                            
 								  </figure>
 								  <span>
 									 <div class="friend-name">
@@ -122,7 +127,16 @@
 							   </div>
 							   </span>
 							   <div class="post-meta">
+
+                          @if($user->images)
 								  <img src="upload/images/{{ $user->images; }}" alt="">
+                          @elseif($user->videos)
+                          <video width="100%" height="400" controls>
+                              <source src="upload/videos/{{ $user->videos }}" type="video/mp4">
+                              <source src="upload/videos/{{ $user->videos }}" type="video/ogg">
+                              Your browser does not support the video tag.
+                           </video>
+                           @endif   
                           <div class="description">
                            <p>
                              {{ $user->content; }}
@@ -331,19 +345,15 @@
 										   <div class="container">
 											  <div class="row">
 												 <div class="col-sm-6">
-
-													<div class="card post-card-img">
-                                       
-													</div>
+                                       <div class="card post-card-img">
+                                       </div>
 												 </div>
 												 <div class="col-sm-6">
 													<div class="form-group">
 													   <label class="text-primary" for="">Edit</label>
-                                          
-													   <div id="post_contet">
+                                          <div id="post_contet">
 													   </div>
-                                        
-													</div> 
+                                        </div> 
 												 </div>
 											  </div>
 										   </div>
@@ -442,12 +452,20 @@
                                <span>published: {{$day}} </span>
                            </div>
                            </span>
-                           <div class="post-meta">
-                             <img src="upload/images/{{ $user->images; }}" alt="">
+                           <div class="post-meta huuhuh">
+                             <img src="images/{{ $user->images; }}" alt="">
+                             <video width="320" height="240" autoplay>
+                              <source src="images/{{ $user->videos }}" type="video/mp4">
+                              <source src="images/{{ $user->videos }}" type="video/ogg">
+                              Your browser does not support the video tag.
+                            </video>
+                            
                              <div class="description">
+                              
                               <p>
                                 {{ $user->content; }}
                               </p>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
                             </div>
                              <div class="we-video-info">
                                  <span class="reaction" value="{{$user->id}}">
@@ -570,7 +588,7 @@
                                              @csrf
                                           <div class="row">
                                              <div class="col-sm-11">
-                                                <textarea placeholder="Post your comment" id="commen_1234" class="comment_1243" name="comment"></textarea>
+                                                <textarea placeholder="Post your comment"   id="commen_1234" class="comment_1243" name="comment"></textarea>
                                              </div> 
                                              <div class="col-sm-1">
                                                 <input type="hidden" name="post_id" id="post_id" value="{{ $user->id }}"/>

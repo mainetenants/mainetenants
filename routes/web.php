@@ -41,8 +41,7 @@ use App\Http\Controllers\PageController;
     Route::post('cover_photo', 'App\Http\Controllers\AboutController@cover_photo');
     Route::get('about', 'App\Http\Controllers\AboutController@index');
 
-    Route::post('getFriends','App\Http\Controllers\FriendsController@getFriends');
-
+   
     Route::get('timeline-friends', 'App\Http\Controllers\timelineController@index');
     //Route::get('edit-profile-basic', 'App\Http\Controllers\ProfileUpdateController@editBasic');
 
@@ -98,6 +97,11 @@ use App\Http\Controllers\PageController;
     /* send invitation invite */
     Route::post('event-invite-friend','App\Http\Controllers\InviteFriendController@invite_friend');
     
+
+    /*   Search friend route controller */
+    Route::post('getFriends','App\Http\Controllers\FriendsController@getFriends');
+    Route::get('my_group','App\Http\Controllers\groupcontrollers@groupcontrollers');
+
 });
 
 

@@ -319,15 +319,10 @@ public function deletePost(Request $request){
 public function deletecomment(Request $request){
 
         $data = $request->all();
-          DB::table('page_post_comments')
+        DB::table('msu_post_inner_comment')
         ->where(['id'=>$data['cmt_id']])
         ->delete();
-
-
-
         return response()->json(array('status'=>"Sucessfully Deleted",'status_res'=>1));
-
-
 }
 
 Public function like_page_post_cmt(Request $request){
