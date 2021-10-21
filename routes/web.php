@@ -95,6 +95,8 @@ use App\Http\Controllers\PageController;
     Route::post('save-inner-comments','App\Http\Controllers\PostController@save_inner_comments');
     Route::post('inner_post_cmt_like','App\Http\Controllers\PostController@inner_post_cmt_like');
     Route::post('inner_post_cmt_dislike','App\Http\Controllers\PostController@inner_post_cmt_dislike');
+    /* send invitation invite */
+    Route::post('event-invite-friend','App\Http\Controllers\InviteFriendController@invite_friend');
     
 });
 

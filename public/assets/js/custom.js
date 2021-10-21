@@ -179,3 +179,43 @@ $('input[name="action"]').on('change', function() {
         }
     });
 });
+$('#send_event_invitation').click(function(){
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    var friend_id = $('#friend_id').val();
+    var event_id = $('#event_id').val();
+
+    $.ajax({
+        type: 'POST',
+        url: '/event-invite-friend',
+        data: {
+            friend_id: friend_id,
+            event_id: event_id
+        },
+        success: function (data) {
+
+            if (data['status'] == 1) {
+
+                $('#event_invitation_cancel').show();
+                $('#send_event_invitation').hide();
+
+            }
+        },      
+   });
+});
+$('#event_disc').click(function(){
+    $('.about-section').hide();
+    $('#event_about').removeClass('active');
+    $('#event_disc').addClass('active');
+    // $('.about-section').hide();
+});
+$('#event_about').click(function(){
+    $('.about-section').show();
+    $('#event_disc').removeClass('active');
+    $('#event_about').addClass('active');
+    // $('.about-section').hide();
+});

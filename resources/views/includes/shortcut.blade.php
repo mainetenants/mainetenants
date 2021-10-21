@@ -17,6 +17,10 @@
                         <a href="../your_page/" class="text-secondary" title="">My pages</a>
                     </li>
                     <li>
+                        <i class="ti-calendar text-secondary"></i>
+                        <a href="/events" class="text-secondary" title="">Events</a>
+                    </li>
+                    <li>
                         <i class="ti-user text-secondary"></i>
                         <a href="../timeline-friends" class="text-secondary" title="">friends</a>
                     </li>

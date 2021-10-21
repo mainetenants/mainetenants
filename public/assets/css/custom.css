@@ -350,10 +350,11 @@ small.date-event {
 small.hours {
     font-size: 80%;
     font-weight: bold;
-    color: #050505;
+    color: #6c757d;
 }
 
-.event-details {
+
+.event-head {
     position: relative;
     top: 100px;
     left: 17px;

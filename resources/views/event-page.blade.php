@@ -1,4 +1,10 @@
 @include('includes/header')
+
+@php
+$allusers = alluser1();
+
+@endphp
+
 <section>
    <div class="gap gray-bg">
       <div class="container">
@@ -71,20 +77,24 @@
                                 <div class="col-lg-12 mb-5">
                                     <div class="feature-photo">
                                         <figure>
-                                            <img src="{{ $events->cover_photo }}">
+                                            @if($events->cover_photo)
+                                                <img src="{{ asset('upload/images/events/'.$events->cover_photo) }}">
+                                            @else
+                                                <img src="{{ asset('assets/images/default/event_cover.png') }}" alt="">
+                                            @endif
                                         </figure>
                                         <div class="outer-div d-flex">
                                             <div class="calender-icon">
                                                 <span>
                                                     <i class="fa fa-calendar" aria-hidden="true"></i>
                                                 </span>
-                                                <div class="timing">
-                                                    <small class="date-event">15 Friday</small><br>
-                                                    <small class="hours">At 18:00</small><br>
-                                                    <small class="hours">At 18:00</small>
+                                                <div class="timing mb-2">
+                                                    <small class="date-event">{{ date("d-M", strtotime($events->start_date))  }}</small><br>
+                                                    <small class="hours">{{ date("d-M", strtotime($events->start_date))  }} to</small>
+                                                    <small class="hours">{{ date("d-M", strtotime($events->end_date))  }}</small>
                                                 </div>
                                             </div>
-                                            <div class="event-details">
+                                            <div class="event-head">
                                                 <h2>{{ $events->event_name }}</h2>
                                                 <span>Online Event</span>
                                             </div>
@@ -94,8 +104,8 @@
                                         <div class="timeline-info">
                                             <ul>
                                                 <li class="about-dis">
-                                                    <a class="active" href="" title="" data-ripple="">About</a>
-                                                    <a class="" href="" title="" data-ripple="">Discussion</a>
+                                                    <a class="active" href="javascript: void(0)" id="event_about" title="" data-ripple="">About</a>
+                                                    <a class="" href="javascript: void(0)" id="event_disc" title="" data-ripple="">Discussion</a>
                                                 </li>
                                                 <li class="float-right">
                                                     <button class="btn btn-sm btn-secondary"><i class="fa fa-envelope" aria-hidden="true"></i> Invite</button>
@@ -105,21 +115,18 @@
                                             </ul>
                                         </div>
                                 </div>
-                                <div class="col-lg-7">
+                                <div class="col-lg-7 about-section">
                                     <div class="about mb-5">
                                         <div class="card w-100">
                                             <div class="card-body">
                                                 <h3 class="card-title text-dark">Details</h3>
                                                 <div class="pl-3 events-about">
-                                                    <p class="card-text"><i class="fa fa-users" aria-hidden="true"></i>&nbsp 2 people responded</p>
-                                                    <p>Event by</p>
-                                                    <p><i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp Location</p>
-                                                    <p><i class="fa fa-ticket" aria-hidden="true"></i>&nbsp Tickets</p>
-                                                    <p><i class="fa fa-users" aria-hidden="true"></i>&nbsp Class by</p>
-                                                    <p><i class="fa fa-users" aria-hidden="true"></i>&nbsp Duration</p>
-                                                    <p><i class="fa fa-user" aria-hidden="true"></i>&nbsp Events by <span>Username</span></p>
-                                                    <p><i class="fa fa-globe" aria-hidden="true"></i>&nbsp Public .Anyone on or off Facebook</p>
-                                                    <p>Celebrate with us</p>
+                                                    <p class="card-text"><i class="fa fa-users" aria-hidden="true"></i>&nbsp {{ $respond }} people responded</p>
+                                                    <p><i class="fa fa-map-marker" aria-hidden="true"></i> &nbsp {{ $events->description }}</p>
+                                                    <p><i class="fa fa-users" aria-hidden="true"></i>&nbsp {{ date("d-M-Y", strtotime($events->start_date))  }} at {{ date("h:i:a", strtotime($events->start_time)) }} -- {{ date("d-M-Y", strtotime($events->end_date))  }} at {{ date("h:i:a", strtotime($events->end_time)) }}</p>
+                                                    <p><i class="fa fa-user" aria-hidden="true"></i>&nbsp Events by <span>{{ $username }}</span></p>
+                                                    <p><i class="fa fa-globe" aria-hidden="true"></i> Privacy :&nbsp {{ $events->privacy }}</p>
+                                                    <p>{{ $events->description }}</p>
                                                     <a class="btn btn-sm btn-secondary text-white">Categories</a>
                                                 </div>
                                             </div>
@@ -130,40 +137,57 @@
                                             <div class="card-body">
                                                 <h3 class="card-title text-dark">Meet your host</h3>
                                                 <div class="card w-100">
-                                                    <img class="card-img-top" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22286%22%20height%3D%22180%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20286%20180%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_17c7e290dc7%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A14pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_17c7e290dc7%22%3E%3Crect%20width%3D%22286%22%20height%3D%22180%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22107.1953125%22%20y%3D%2296.3%22%3E286x180%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="Card image cap">
+                                                    @if($profile_photo)
+                                                    <img class="card-img-top" src="{{ asset('upload/images/profile_photo/'.$profile_photo) }}" alt="Card image cap">
+                                                    @else
+                                                        <img class="card-img-top" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22286%22%20height%3D%22180%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20286%20180%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_17c7e290dc7%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A14pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_17c7e290dc7%22%3E%3Crect%20width%3D%22286%22%20height%3D%22180%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22107.1953125%22%20y%3D%2296.3%22%3E286x180%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="Card image cap">
+                                                    @endif
                                                     <div class="card-body text-center">
-                                                      <h5 class="card-title">User Name</h5>
-                                                      <a href="#" class="btn btn-primary w-100"><i class="ti-user"></i>&nbsp View</a>
+                                                      <h5 class="card-title">{{ $username }}</h5>
+                                                      <a href="{{ url('see_friend/').$user_id; }}" class="btn btn-primary w-100"><i class="ti-user"></i>&nbsp View</a>
                                                     </div>
                                                   </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-5">
+                                <div class="col-lg-5 about-section">
                                     <div class="about-side-bar">
                                         <div class="card w-100">
                                             <div class="card-body">
                                                 <h5 class="card-title">Guest</h5>
                                                 <div class="row">
                                                     <div class="col-md-6 text-center">
-                                                        <div><span>1</span><br><span>Going</span></div>
+                                                        <div><span>{{ $action['going'] }}</span><br><span>Going</span></div>
                                                     </div>
                                                     <div class="col-md-6 text-center">
-                                                        <div><span>1</span><br><span>Going</span></div>
+                                                        <div><span>{{ $action['interesed'] }}</span><br><span>Interested</span></div>
                                                     </div>
                                                     
                                                 </div>
                                                 <hr>
                                                 <h5 class="card-title">Go with friends</h5>
+                                              
                                                 <div class="friend-info">
+                                                
+                                                    @foreach($allusers as $alluser)
+       
+                                                    
                                                     <figure>
-                                                       <img src="http://127.0.0.1:8000/assets/images/resources/friend-avatar10.jpg" alt="">
+                                                        <img src="{{ asset('upload/images/profile_photo/'.$alluser->profile_photo.'') }}" alt="">
                                                     </figure>
-                                                    <span>Name</span>
-                                                    <a href="#" class="btn btn-sm btn-secondary float-right">Invite</a>
-                                                    <span>Name</span>
+                                                    <div class="friendz-meta">
+                                                        <a href="/see_friend/{{ $alluser->id }}">{{$alluser->name}}</a>
+                                                        <i>{{$alluser->email}}</i>
+                                                        <button class="btn btn-sm btn-secondary" id='send_event_invitation' >invite</button>
+                                                        <a href="#" id='event_invitation_cancel' style="display: none;" >inviatation sent</a>
+                                                        <input type="hidden" name="friend_id" id="friend_id" value="{{ $alluser->friends_id  }}"/>
+                                                        <input type="hidden" name="event_id"  id="event_id" value ="{{ $events->id }}"/>
+                                                    </div>
+
+                                                    @endforeach  
                                                 </div>
+
                                             </div>
                                         </div>
                                     </div>
