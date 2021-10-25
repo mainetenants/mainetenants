@@ -209,6 +209,7 @@ $('#send_event_invitation').click(function(){
 });
 $('#event_disc').click(function(){
     $('.about-section').hide();
+    $('.disc-section').show();
     $('#event_about').removeClass('active');
     $('#event_disc').addClass('active');
     // $('.about-section').hide();
@@ -217,5 +218,7 @@ $('#event_about').click(function(){
     $('.about-section').show();
     $('#event_disc').removeClass('active');
     $('#event_about').addClass('active');
+    $('.disc-section').hide();
+
     // $('.about-section').hide();
 });

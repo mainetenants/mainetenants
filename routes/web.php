@@ -66,6 +66,8 @@ use App\Http\Controllers\PageController;
     Route::post('/like_page/','App\Http\Controllers\InviteFriendController@like_page');
     Route::post('/unlike_page/','App\Http\Controllers\InviteFriendController@unlike_page');
     Route::post('create_event','App\Http\Controllers\PageController@create_event');
+    Route::get('/edit-event/{id}','App\Http\Controllers\EventController@edit_event');
+    Route::post('/update-event','App\Http\Controllers\EventController@update_event');
     Route::post('get_page_notifications','App\Http\Controllers\PageController@get_page_notifications');
     Route::post('/edit_profile_pic','App\Http\Controllers\PageController@edit_profile_pic');
     Route::post('/edit_cover_pic','App\Http\Controllers\PageController@edit_cover_pic');
@@ -101,6 +103,7 @@ use App\Http\Controllers\PageController;
     /*   Search friend route controller */
     Route::post('getFriends','App\Http\Controllers\FriendsController@getFriends');
     Route::get('my_group','App\Http\Controllers\groupcontrollers@groupcontrollers');
+    Route::post('event_post','App\Http\Controllers\EventController@event_post');
 
 });
 
