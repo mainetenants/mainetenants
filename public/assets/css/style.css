@@ -1366,7 +1366,7 @@ header.sticky {
     border: 1px solid #eee;
     display: block;
     padding: 10px;
-    position:relative;
+    position:inherit;
     top:-16px;
     text-align: right;
     border-top: 0;

@@ -825,9 +825,9 @@
         var post_id = $(this).attr('post-id');
         var comment_id = $(this).attr('data-id');
 
-        
+        $(this).parent().parent().parents('#new_cmt_box').remove();
         $(this).parent().parent().parent().append(
-            '<div id="new_cmt_box" ><form method="post" id="post_replay_comments" enctype="multipart/form-data"  action="{{ url("save-inner-comments") }}">@csrf<div class="row m-4"><div class="col-sm-11 p-0"><textarea placeholder="Post your comment" id="page_post_reply_comment" name="page_post_reply_comment"></textarea></div><div class="col-sm-1"><input type="hidden" name="post_id1" id="post_id1" value="' +
+            '<div id="new_cmt_box" ><form method="post" id="post_replay_comments" enctype="multipart/form-data"  action="{{ url("save-inner-comments") }}">@csrf<div class="row m-4"><div class="col-sm-11 p-0"><textarea placeholder="Reply to the comment" id="page_post_reply_comment" name="page_post_reply_comment"></textarea></div><div class="col-sm-1"><input type="hidden" name="post_id1" id="post_id1" value="' +
             post_id + '"><input type="hidden" name="comment_id" id="comment_id" value ="' + comment_id +
             '"/><input type="hidden" name="status" id="status" value ="1"/><button type="submit" id="replay_comments" class="btn btn-primary"><i class="far fa-paper-plane"></i></button></div></div>'
             );

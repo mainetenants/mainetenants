@@ -24,8 +24,7 @@ function friend_recent_notifications($id){
 
 }
 function notifications()
-{
-         
+{ 
     $id = Auth::id();
     $allnotification = DB::table('msu_user_notification')
     ->select('*')

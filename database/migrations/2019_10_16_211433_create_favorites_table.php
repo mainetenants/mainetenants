@@ -12,7 +12,7 @@ class CreateFavoritesTable extends Migration
      * @return void
      */
     public function up()
-    {
+    {   Schema::dropIfExists('ch_favorites');
         Schema::create('ch_favorites', function (Blueprint $table) {
             $table->bigInteger('id');
             $table->bigInteger('user_id');
@@ -30,6 +30,6 @@ class CreateFavoritesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('favorites');
+        Schema::dropIfExists('ch_favorites');
     }
 }

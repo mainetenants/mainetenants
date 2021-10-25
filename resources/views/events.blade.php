@@ -104,7 +104,9 @@
                                     }elseif($event->action==2) {
                                         $action = "Going";
                                     }elseif($event->action==3) {
-                                        $action = "Not Interested";
+                                        $action = "Not Interested";       
+                                    }else{
+                                        $action='';
                                     }
                                 @endphp
                                 <input class="btn btn-sm btn-info dropdown-toggle" type="button" id="dropdownMenuButton" btn-act="{{ $event->id }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" value="{{ $action }}">
@@ -135,12 +137,14 @@
                             @endif
 
                         </div>
+                        <a title="" class="btn btn-sm btn-info text-white" href="/edit-event/{{$event->id}}">Edit Event</a>
+
                     </div>
-                    </a>
+               
                 </div>
             @endforeach
             
-            
+     
         </div>
     </div>
 </div>

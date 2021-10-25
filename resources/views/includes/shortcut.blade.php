@@ -21,6 +21,10 @@
                         <a href="../create-group/" class="text-secondary" title="">My Groups</a>
                     </li>
                     <li>
+                       <i class="ti-calendar text-secondary"></i>
+                        <a href="../events" class="text-secondary" title="">Events</a>
+                    </li>
+                    <li>
                         <i class="ti-user text-secondary"></i>
                         <a href="../timeline-friends" class="text-secondary" title="">friends</a>
                     </li>

@@ -5,28 +5,29 @@
         <img src="{{ asset('upload/images/profile_photo/'.$profile_photo) }}">
         @else
         <img src="{{ asset('assets/images/resources/user-avatar.jpg') }}" alt="">
-        @endif</figure>
+        @endif
+    </figure>
     <div class="newpst-input">
-    @if ($errors->any())
-        <div class="alert alert-secondary" role="alert">
-            <div class="alert-icon">
-                <i class="flaticon-warning  text-secondary"></i>
+        @if ($errors->any())
+            <div class="alert alert-secondary" role="alert">
+                <div class="alert-icon">
+                    <i class="flaticon-warning  text-secondary"></i>
+                </div>
+                <div class="alert-text">
+                    <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div><br />
+        @endif
+        @if ($message = Session::get('success'))
+            <div class="alert alert-success alert-block">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                    <strong>{{ $message }}</strong>
             </div>
-            <div class="alert-text">
-                <ul>
-                   @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        </div><br />
-    @endif
-    @if ($message = Session::get('success'))
-    <div class="alert alert-success alert-block">
-        <button type="button" class="close" data-dismiss="alert">×</button>
-            <strong>{{ $message }}</strong>
-    </div>
-    @endif
+        @endif
         <form method="post" id="upload_files" action="{{url('get-post-list/')}}"  enctype="multipart/form-data">
            
             <input type="hidden" name="_token" value="{{ csrf_token() }}" />

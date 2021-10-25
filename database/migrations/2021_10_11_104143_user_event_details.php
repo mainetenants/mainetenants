@@ -12,11 +12,12 @@ class UserEventDetails extends Migration
      * @return void
      */
     public function up()
-    {
+    {   Schema::dropIfExists('msu_user_event_details');
         Schema::create('msu_user_event_details', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('event_id');
-            $table->integer('user_id');
+            $table->bigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
             $table->integer('action')->nullable();
             $table->integer('notification')->nullable();
             $table->timestamp('created_at')->useCurrent();

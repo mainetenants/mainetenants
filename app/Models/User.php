@@ -63,4 +63,8 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+    public function event()
+    {
+        return $this->hasMany('App\Event'); // assuming this is the path for Log model
+    }
 }

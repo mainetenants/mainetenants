@@ -66,6 +66,8 @@ use App\Http\Controllers\groupcontrollers;
     Route::post('/like_page/','App\Http\Controllers\InviteFriendController@like_page');
     Route::post('/unlike_page/','App\Http\Controllers\InviteFriendController@unlike_page');
     Route::post('create_event','App\Http\Controllers\PageController@create_event');
+    Route::get('/edit-event/{id}','App\Http\Controllers\EventController@edit_event');
+    Route::post('/update-event','App\Http\Controllers\EventController@update_event');
     Route::post('get_page_notifications','App\Http\Controllers\PageController@get_page_notifications');
     Route::post('/edit_profile_pic','App\Http\Controllers\PageController@edit_profile_pic');
     Route::post('/edit_cover_pic','App\Http\Controllers\PageController@edit_cover_pic');
@@ -95,6 +97,9 @@ use App\Http\Controllers\groupcontrollers;
     Route::post('save-inner-comments','App\Http\Controllers\PostController@save_inner_comments');
     Route::post('inner_post_cmt_like','App\Http\Controllers\PostController@inner_post_cmt_like');
     Route::post('inner_post_cmt_dislike','App\Http\Controllers\PostController@inner_post_cmt_dislike');
+    /* send invitation invite */
+    Route::post('event-invite-friend','App\Http\Controllers\InviteFriendController@invite_friend');
+    
 
     /*   Search friend route controller */
     Route::post('getFriends','App\Http\Controllers\FriendsController@getFriends');
@@ -102,8 +107,7 @@ use App\Http\Controllers\groupcontrollers;
     Route::get('my_group/{id}','App\Http\Controllers\groupcontrollers@view_user_group');
     Route::post('edit_group_cover_pic','App\Http\Controllers\groupcontrollers@edit_group_cover_pic');
     Route::post('edit_group_profile_pic','App\Http\Controllers\groupcontrollers@edit_group_profile_pic');
-    Route::post('edit_group_profile_pic','App\Http\Controllers\groupcontrollers@edit_group_profile_pic');
-
+  
     /* add group post */
 
     Route::post('add_group_post','App\Http\Controllers\groupcontrollers@add_group_post');
@@ -114,6 +118,8 @@ use App\Http\Controllers\groupcontrollers;
    /* like group */
     Route::post('like_group','App\Http\Controllers\groupcontrollers@like_group');
     
+    Route::get('my_group','App\Http\Controllers\groupcontrollers@groupcontrollers');
+    Route::post('event_post','App\Http\Controllers\EventController@event_post');
 
 });
 

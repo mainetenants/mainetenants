@@ -20,6 +20,7 @@ class MsuInviteFriends extends Migration
             $table->integer('friend_id');
             $table->integer('post_id');
             $table->integer('type');
+            $table->integer('event_id');
             $table->integer('status');
             $table->integer('invitation_status');
             $table->integer('is_active');

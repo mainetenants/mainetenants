@@ -12,7 +12,7 @@ class MsuPagePostInnerCmt extends Migration
      * @return void
      */
     public function up()
-    {
+    {   Schema::dropIfExists('msu_page_post_inner_like_comment');
         Schema::create('msu_page_post_inner_like_comment', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id');
@@ -31,7 +31,7 @@ class MsuPagePostInnerCmt extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('msu_page_post_like_inner_comment');
+        Schema::dropIfExists('msu_page_post_inner_like_comment');
    
     }
 }
