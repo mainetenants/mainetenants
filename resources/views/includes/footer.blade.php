@@ -870,6 +870,8 @@
 
     }
 
+
+
     $('#friend_search').keyup(function(){
 
         var search = $('#friend_search').val();    
@@ -893,6 +895,91 @@
               }
             });       
         });
+
+        $('#create_group_submit').click(function(){
+            
+             $('#create_save_group').submit();
+        });
+
+        $('#file_group_cover_chnage').change(function (){
+             $('#edit_group_cover_photo').submit();
+        });
+        $('#fileid_change').change(function(){
+             $('#submit_group_profile_photo').submit();
+        });
+
+
+        $('#send_group_invitation').click(function () {
+            var type = $('#type').val();
+            var friend_id = $('#friend_id').val();
+            var post_id = $('#post_id').val();
+
+              $.ajax({
+                type : 'post',
+                url  : '{{ url("invite_friend_group") }}',
+                data :{
+                    type : type,
+                    friend_id :friend_id,
+                    post_id : post_id
+                },
+                success:function(data){
+                    if(data['status']){
+                       
+                         $('#send_group_invitation').hide();
+                         $('#group_invitation_cancel').show();
+
+                    }
+                },
+
+              });
+
+          });
+
+          $('#group_invitation_cancel').click(function (){
+            var type = $('#type').val();
+            var friend_id = $('#friend_id').val();
+            var post_id = $('#post_id').val();
+
+              $.ajax({
+                type : 'post',
+                url  : '{{ url("invite_group_cancel") }}',
+                data :{
+                    type : type,
+                    friend_id :friend_id,
+                    post_id : post_id
+                },
+
+                success:function(data){
+                   if(data['status']== 1){   
+                        $('#send_group_invitation').show();
+                        $('#group_invitation_cancel').hide();
+                   }
+                },
+
+              });
+ 
+          });
+
+          $('#like_group').click(function () {
+                 var group_id = $('#like_group_id').val();
+                 var friend_id = $('#like_friend_id').val();
+                 $.ajax({
+                      type:'post',
+                      url:'{{ url("like_group") }}',
+                      data :{
+                           group_id : group_id,
+                           friend_id : friend_id
+                      },
+                      success:function(data){
+                          if(data[]){
+
+                              
+                          }
+                            
+                      },
+                 });
+
+            });
 
 </script>
 <script>

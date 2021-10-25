@@ -9,7 +9,7 @@ use App\Http\Controllers\FriendsController;
 use App\Http\Controllers\TimelineController;
 use App\Http\Controllers\ProfileUpdateController;
 use App\Http\Controllers\PageController;
-
+use App\Http\Controllers\groupcontrollers;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -87,6 +87,7 @@ use App\Http\Controllers\PageController;
     Route::get('/create-group','App\Http\Controllers\GroupController@index');
     Route::get('/group-list','App\Http\Controllers\GroupController@group_list');
     Route::get('/event-page/{id}', 'App\Http\Controllers\EventController@event_page');
+    Route::get('/edit-event/{id}','App\Http\Controllers\EventController@edit_event');
     
     Route::post('like_post_cmt','App\Http\Controllers\PostController@like_post_cmt');
     Route::post('dislike_post_cmt','App\Http\Controllers\PostController@dislike_post_cmt');
@@ -97,7 +98,22 @@ use App\Http\Controllers\PageController;
 
     /*   Search friend route controller */
     Route::post('getFriends','App\Http\Controllers\FriendsController@getFriends');
-    Route::get('my_group','App\Http\Controllers\groupcontrollers@groupcontrollers');
+    Route::post('create-group','App\Http\Controllers\PostController@save_group_controllers');
+    Route::get('my_group/{id}','App\Http\Controllers\groupcontrollers@view_user_group');
+    Route::post('edit_group_cover_pic','App\Http\Controllers\groupcontrollers@edit_group_cover_pic');
+    Route::post('edit_group_profile_pic','App\Http\Controllers\groupcontrollers@edit_group_profile_pic');
+    Route::post('edit_group_profile_pic','App\Http\Controllers\groupcontrollers@edit_group_profile_pic');
+
+    /* add group post */
+
+    Route::post('add_group_post','App\Http\Controllers\groupcontrollers@add_group_post');
+    /* invite group friend */
+
+    Route::post('invite_friend_group','App\Http\Controllers\groupcontrollers@invite_friend_group');
+    Route::post('invite_group_cancel','App\Http\Controllers\groupcontrollers@invite_group_cancel');
+   /* like group */
+    Route::post('like_group','App\Http\Controllers\groupcontrollers@like_group');
+    
 
 });
 

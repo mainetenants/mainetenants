@@ -11,6 +11,6 @@ class inviteFriends extends Model
     public $timestamps = false;
     protected $table = 'msu_invite_friends';
     protected $fillable = [
-		'user_id','friend_id','post_id','status','invitation_status','is_active'
+		'user_id','friend_id','post_id','type','status','invitation_status','is_active'
     ];
 }

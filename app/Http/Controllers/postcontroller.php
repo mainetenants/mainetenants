@@ -3,11 +3,13 @@
  namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
-use Auth;
+
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth as FacadesAuth;
 use App\Models\like_post_cmt;
 use App\Models\post_inner_comment;
+use App\Models\msu_group;
 use Intervention\Image\ImageManagerStatic as Image;
 
 class PostController extends Controller
@@ -271,8 +273,7 @@ class PostController extends Controller
             $notification =   DB::table('msu_user_notification')
             ->insert($data_notification);
         }
-
-        return response()->json(array('success'=> true), 200);
+          return response()->json(array('success'=> true), 200);
     }
   
 
@@ -282,9 +283,6 @@ class PostController extends Controller
         DB::table('msu_user_notification')
         ->where(['friend_id'=> $authid])
         ->update(['is_seen' => 0]);
-
-
-
         return response()->json(array('updated sucessfully'=> true), 200);
 
     }
@@ -295,7 +293,6 @@ class PostController extends Controller
         ->where('id', $request->post_id)
         ->first();
         return response()->json(array('success'=> true, 'content'=>$editpost->content, 'image'=>$editpost->images, 'post_id'=>$editpost->id), 200);
-
     }
     public function getReaction(Request $request){
         $allReaction = DB::table('msu_like_dislike_posts')
@@ -303,10 +300,8 @@ class PostController extends Controller
         ->leftJoin('msu_isfriend', 'msu_isfriend.user_id', '=', 'msu_like_dislike_posts.user_id')
         ->select('users.name','users.id','users.profile_photo','msu_like_dislike_posts.reaction','msu_isfriend.status as is_frnd_status')
         ->where('post_id', $request->post_id)
-        // ->where('msu_like_dislike_posts.user_id','=', Auth::id())
         ->get();   
-        // dd($allReaction);    
-        return response()->json(array('success'=> true, 'allReaction'=>$allReaction), 200);
+         return response()->json(array('success'=> true, 'allReaction'=>$allReaction), 200);
 
     }
     public function editpost(Request $request){
@@ -316,7 +311,6 @@ class PostController extends Controller
         return redirect('homepage');
 
     }
-
     Public function like_post_cmt(Request $request){
         $data = $request->all();
         $user_id = Auth::id();
@@ -366,7 +360,20 @@ class PostController extends Controller
           return back();
 
     }
+    public function save_group_controllers(Request $request){
+          $data = $request->all();
+          $user_id= Auth::id();
 
+          $insert = new msu_group();
+          $insert->user_id = $user_id;
+          $insert->group_name = $data['group_name'];
+          $insert->group_category = $data['group_category'];
+          $insert->group_descripition = $data['group_descripition'];
+          $insert->only_see = $data['only_see'];
+          $insert->is_active = 1;
+          $insert->save();
+          return back();
+    }
 }
 
 

@@ -4,24 +4,27 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class LikeUserPage extends Migration
+class MsuSaveGroup extends Migration
 {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up(){
-        Schema::create('like_user_page', function (Blueprint $table) {
+    public function up()
+    {
+        //
+        Schema::create('msu_group', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id');
-            $table->integer('page_id')->nullable();
-            $table->integer('groupo_id')->nullable();
-            $table->integer('friend_id');
-            $table->integer('is_like');
+            $table->string('group_name');
+            $table->string('group_category');
+            $table->string('group_descripition');
+            $table->string('only_see');
             $table->integer('is_active');
             $table->timestamp('created')->useCurrent();
         });
+
     }
 
     /**
@@ -31,8 +34,8 @@ class LikeUserPage extends Migration
      */
     public function down()
     {
-
-        Schema::dropIfExists('like_user_page');
         //
+        Schema::dropIfExists('msu_group');
+
     }
 }

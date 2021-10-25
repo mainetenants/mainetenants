@@ -77,11 +77,11 @@ function alluser1(){
     ->orWhere('msu_invite_friends.status','=',0)
     ->get();
    
-    if(empty($allusers)){
-        return "false";
-    }else{
+    // if(empty($allusers)){
+    //     return "";
+    // }else{
         return $allusers ;
-    }
+   // }
 
 }
 
@@ -418,4 +418,57 @@ function get_post_cmt1($cmt_id){
      return $get_post_cmt1;
 
 }
+
+
+function get_user_group(){
+     
+    $user_id = Auth::id();
+
+    $get_user_group = DB::table('msu_group')
+    ->select('*')
+    ->Where(['user_id'=>$user_id])
+    ->get();
+    return $get_user_group;
+}
     
+function get_user_group_details($id){
+
+
+    $get_user_group = DB::table('msu_group')
+    ->select('*')   
+    ->Where(['user_id'=>$id])
+    ->first();
+
+    return $get_user_group;
+
+
+}
+function get_group_post($id){
+
+    $get_group_post = DB::table('msu_group_post')
+    ->select('*')
+    ->where(['group_id'=>$id])
+    ->get();
+
+
+    return $get_group_post;
+
+
+
+}
+function get_like_group_status($id){
+
+    $user= Auth::id();
+
+     $get_page_status = DB::table('like_user_page')
+     ->select('is_like')
+     ->where(['group_id'=>$id,'user_id'=>$id,'type'=>'group'])
+     ->first();
+    if($get_page_status== ""){
+       return "";
+    }else{
+       return $get_page_status->is_like;
+    }
+}
+
+

@@ -127,8 +127,11 @@
                                     </div>
                                 </div>
                             </div>
-                                @else
-                                <button class="btn btn-sm btn-info mx-2 float-right inst-btn" data-id="{{ $event->id }}">Interested</button>
+                            @else
+                                    <li>
+                                    <a title="" class="btn btn-sm btn-info text-white" href="/edit-event/{{$event->id}}">Edit Event</a>
+                                    <button class="btn btn-sm btn-info mx-2 float-right inst-btn" data-id="{{ $event->id }}">Interested</button>
+                                    </li>
                             @endif
 
                         </div>

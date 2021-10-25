@@ -125,5 +125,58 @@ class EventController extends Controller
     return response()->json(array('success'=> true), 200);
 
    }
+   public function edit_event($id){
+      $data = $request->all();
+      $covername ="";
+      if(isset($data['cover_photo'])){
+        $request->validate([
+          'cover_photo' => 'image|mimes:jpeg,png,jpg,gif,svg',
+        ]);
+        $image = $request->file('cover_photo');
+        $covername = time().'.'.$image->extension();
+        
+        $filePath = public_path('upload/images/events');
+        
+        $img = Image::make($image->path());
+        $img_resize = $img->resize(800, 400)->save($filePath.'/'.$covername);
+        
+      } 
+      if(isset($data['privacy'])){
+        if($data['privacy']=="private"){
+          $guest_invite = isset($data['guest_invite'])?($data['guest_invite']):(0);
+        }else{
+          $guest_invite = 0;
+        }
+      }
+      if(isset($data['locations'])){
+        if($data['locations']=="external_link"){
+          $event_link = isset($data['event_link'])?($data['event_link']):('');
+        }else{
+          $event_link = '';
+        }
+      }
+      $values = array('cover_photo' => $covername,
+        'user_id' => Auth::id(),
+        'create_event' =>  isset($data['create_event'])?($data['create_event']):(''),
+        'event_type' =>  isset($data['event_type'])?($data['event_type']):(''),
+        'event_name' => isset($data['event_name'])?($data['event_name']):(''),
+        'start_date' => isset($data['start_date'])?($data['start_date']):(''),
+        'start_time' => isset($data['start_time'])?($data['start_time']):(''),
+        'end_date' => isset($data['end_date'])?($data['end_date']):(''),
+        'end_time' => isset($data['end_time'])?($data['end_time']):(''),
+        'privacy' => isset($data['privacy'])?($data['privacy']):(''),
+        'locations' => isset($data['locations'])?($data['locations']):(''),
+        'event_link' => $event_link,
+        'description' => isset($data['description'])?($data['description']):(''),
+        'co_host' => isset($data['co_host'])?($data['co_host']):(''),
+        'show_guest_list' => isset($data['show_guest_list'])?($data['show_guest_list']):(0),
+        'guest_invite' => $guest_invite,
+        'admin_add_post' => isset($data['admin_add_post'])?($data['admin_add_post']):(0),
+        'post_approve' => isset($data['post_approve'])?($data['post_approve']):(0),
+      );
+      $data = DB::table('msu_events')
+      ->insert($values);
+      return redirect('events')->with(['success'=>'Event created Successfully']);
+}
        
 }

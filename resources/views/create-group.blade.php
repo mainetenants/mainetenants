@@ -1,4 +1,12 @@
 @include('includes/header')
+@php 
+    
+
+$get_user_group = get_user_group();
+
+
+
+@endphp
 <section>
     <div class="gap gray-bg">
         <div class="container">
@@ -9,14 +17,17 @@
                             <div class="widget">
                                 <h4 class="widget-title">Manage Group</h4>
                                 <div class="container mb-3 ml-2">
+                                    @foreach ($get_user_group as  $user_group) 
+                                    <a href="../my_group/{{ $user_group->id }}">   
                                     <div class="new-postbox">
-                                        <span class="host">
-                                            <img src="http://127.0.0.1:8000/assets/images/resources/admin2.jpg" alt="">
-                                        </span>
-                                        {{-- <span class="owner">Username Host</span> --}}
-                                        <span class="owner"> <span class="host">Username </span> <span
-                                                class="host">Host</span></span>
-                                    </div>
+                                            <span class="host">
+                                                <img src="http://127.0.0.1:8000/assets/images/resources/admin2.jpg" alt="">
+                                            </span>
+                                            {{-- <span class="owner">Username Host</span> --}}
+                                            <span class="owner"> <span class="host mr-3">{{ $user_group->group_name }}</span></span>
+                                        </div>
+                                    </a>
+                                    @endforeach
                                 </div>
                                 <ul class="naves">
                                     <li>
@@ -53,23 +64,45 @@
                                             <li><span>
                                                     <h4><i class="fa fa-search"></i>&nbsp;&nbsp;Discover Group
                                                     </h4>
-                                                </span></li>
+                                                </span>
+                                            </li>
                                             <li class="float-right">
                                                 <a class="" href="time-line.html" title="" data-ripple="">Top</a>
                                                 <a class="" href="timeline-photos.html" title="" data-ripple="">This
                                                     weak</a>
-                
                                             </li>
                                         </ul>
-
                                     </div>
                                 </div>
                             </div>
-
-                            <!--  Create Group Modal -->
+                            <div class="card  mt-5 pt-5">
+                                <div class="user_card">
+                                    @foreach ($get_user_group as  $user_group)
+                                        
+                                    <div class="row">
+                                        <div class="col-sm-6 text-left">
+                                            <img src="../assets/images/user_image.png" class="rc_profile_pic" style="max-width: 60px" alt="">
+                                            <span class="rc_name">{{ $user_group->group_name }}</span>
+                                        </div>
+                                        <div class="col-sm-6 text-right">
+                                            <button type="button" name="page_notifications" id="page_notifications_nav" onclick="page_notifications(1,0)" class="btn btn-primary col-sm-5"><i class="fas fa-globe mr-2"></i>Notifications</button>
+                                            <button type="button" name="message" id="message" class="btn btn-primary col-sm-5"><i class="fas fa-envelope mr-2"></i>Message</button>
+                                        </div>
+                                    </div>
+                                        
+                                    @endforeach
+                                </div>
+                            </div> 
+                       </div>   
+                       <div>
+                           
+                    
+                       </div>         
+                        <!--  Create Group Modal -->
                             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
-                                    <form action="#" method="post" id="create_group" name="create_group" >
+                                    <form action="create-group" method="post" id="create_save_group"  name="create_save_group" >
+                                       @csrf
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h5 class="modal-title" id="exampleModalLabel">Create New Group </h5>
@@ -102,7 +135,7 @@
                                             </div>
                                             <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            <button type="Submit" name="submit" id="submit" class="btn btn-primary">Create Group</button>
+                                            <button type="button" name="create_group_submit" id="create_group_submit" class="btn btn-primary">Create Group</button>
                                             </div>
                                         </div>
                                     </form>

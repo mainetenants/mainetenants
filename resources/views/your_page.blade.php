@@ -1,5 +1,6 @@
 @include('includes/header')
 @php
+
 $get_all_page = get_all_page();
 $get_page_invitation_like = get_page_invitation_like();
 $get_page_notifications = get_page_notifications();

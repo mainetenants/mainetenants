@@ -171,12 +171,10 @@
                                           <span class="rec1">
                                              <img src="/assets/images/s_emoji/like.png"  class="emoji-reaction" />
                                           </span>
-
                                           <span class="rec2">
                                              <img src="/assets/images/s_emoji/love.png"  class="emoji-reaction" />
                                           </span>
-
-                                          <span class="rec3">
+                           <span class="rec3">
                                              <img src="/assets/images/s_emoji/sad.png"  class="emoji-reaction" />
                                           </span>
                                     </div>
