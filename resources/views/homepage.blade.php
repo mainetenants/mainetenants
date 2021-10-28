@@ -137,7 +137,7 @@ $user_id = Auth::id();
                                                 </p>
                                             </div>
                                             <div class="we-video-info">
-                                                <span class="reaction" value="{{$user->id}}">
+                                                <span class="reaction reaction_post" value="{{$user->id}}">
                                                     <i id="1"><img src="/assets/images/s_emoji/like.png"
                                                             class="emoji img-fluid custom-img-height" /></i>
                                                     <i id="2"><img src="/assets/images/s_emoji/love.png"

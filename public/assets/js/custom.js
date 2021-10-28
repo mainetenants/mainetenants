@@ -1,7 +1,6 @@
 var html_alert = '<div class="alert alert-danger mb-1" role="alert">Please enter the required fields!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></div></button>';
 // change css of active event card
 $('.card-radio input[type=radio]').change(function() {
-    alert('testing');
     $('.card').removeClass('card_select');
     $(this).parent().parent().parent().addClass("card_select");
 });
@@ -221,4 +220,43 @@ $('#event_about').click(function(){
     $('.disc-section').hide();
 
     // $('.about-section').hide();
+});
+
+
+
+// event discussioin module scripts 
+$('#event_likeId .ti-heart').click(function () {
+    var selector_rect = '#reaction'+$(this).parent().attr('value');
+    $(selector_rect).toggle();
+    $('.reaction').delay(10000).fadeOut();
+});
+
+// like dislike and reaction emoticons
+$(".event_reaction i .img-event, #event_dislikeId").click(function () {
+    var id = '';
+    var reaction = '';
+    var data = $(this).attr('class').split(' ')[0];
+    if (data == 'emoji') {
+        id = $(this).parent().parent().attr('value');
+        reaction = $(this).parent().attr('id');
+    } else {
+        id = $(this).attr('value');
+    }
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $.ajax({
+        type: 'POST',
+        url: '/event_post_like',
+        data: {
+            post_id: id,
+            reaction: reaction,
+            data: data
+        },
+        success: function (data) {
+            $('.reaction').hide();
+        }
+    });
 });

@@ -196,7 +196,7 @@
                                             <div class="mb-3">
                                                 <label for="email">Event Name</label>
                                                 <input type="text" class="form-control" id="event_name"
-                                                    name="event_name" value = "{{$edit_event->event_name }}" placeholder="Event Name">
+                                                    name="event_name" value = "{{ $edit_event->event_name }}" placeholder="Event Name">
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-6 mb-3">

@@ -22,52 +22,57 @@ use App\Http\Controllers\PageController;
 */
     Route::group(['middleware'=>'web'],function(){
     Route::get('/', function () { return view('landing'); });
-    Route::get('/homepage','App\Http\Controllers\PostController@homepage');
-    Route::post('create_page_user','App\Http\Controllers\PageController@create_new_page');
-   // Route::get('fav-page','App\Http\Controllers\PageController@create_new_page');
-    Route::post('add_page_post','App\Http\Controllers\PageController@create_new_post');
-    Route::post('get-post-list','App\Http\Controllers\PostController@postList');
-    Route::post('get-comment-list','App\Http\Controllers\PostController@commentList');
+    
+    /* profile */
     Route::get('profile', 'App\Http\Controllers\Profile@index');
-    Route::get('unfollow/{id}','App\Http\Controllers\FriendsController@unfollowlist');
-    Route::get('follow/{id}','App\Http\Controllers\FriendsController@followlist');
-    Route::get('see_friend/{id}', 'App\Http\Controllers\FriendsController@viewfriends');
-    Route::get('add_friend/{id}', 'App\Http\Controllers\FriendsController@addFriend');
-    Route::get('cancel_request/{id}', 'App\Http\Controllers\FriendsController@cancelRequest');
-    Route::get('unfrind/{id}', 'App\Http\Controllers\FriendsController@unfrind');
-    Route::get('confirm_request/{id}', 'App\Http\Controllers\FriendsController@confirmRequest');
     Route::get('profile', 'App\Http\Controllers\Profile@index');
+
+    /* about */
     Route::post('profile_photo', 'App\Http\Controllers\AboutController@profile_photo');
     Route::post('cover_photo', 'App\Http\Controllers\AboutController@cover_photo');
     Route::get('about', 'App\Http\Controllers\AboutController@index');
-
-   
+    
+    
     Route::get('timeline-friends', 'App\Http\Controllers\timelineController@index');
-    //Route::get('edit-profile-basic', 'App\Http\Controllers\ProfileUpdateController@editBasic');
+    
+    
+    /* profile update */
 
-    Route::post('homepage','App\Http\Controllers\postcontroller@commentList');
-   // Route::get('about', 'App\Http\Controllers\ProfileUpdateController@userInfo');
     Route::post('/edit-work-eductation','App\Http\Controllers\ProfileUpdateController@workEducationInfo');
     Route::post('profile_edit','App\Http\Controllers\ProfileUpdateController@profileEdit');
     Route::post('edit-interest','App\Http\Controllers\ProfileUpdateController@interestInfo');
     Route::post('accountInfo','App\Http\Controllers\ProfileUpdateController@accountInfo');
+    Route::get('/edit-account-setting','App\Http\Controllers\ProfileUpdateController@accountSetting');
+    
+    //Route::get('edit-profile-basic', 'App\Http\Controllers\ProfileUpdateController@editBasic');
+    // Route::get('about', 'App\Http\Controllers\ProfileUpdateController@userInfo');
+    
+
+    /* Post controller */
+    Route::post('homepage','App\Http\Controllers\postcontroller@commentList');
+    Route::get('/homepage','App\Http\Controllers\PostController@homepage');
+    Route::post('get-post-list','App\Http\Controllers\PostController@postList');
+    Route::post('get-comment-list','App\Http\Controllers\PostController@commentList');
     Route::get('/delete-post/{id}','App\Http\Controllers\PostController@deletePost');
     Route::post('seen','App\Http\Controllers\PostController@seennotification');
-    Route::get('/edit-account-setting','App\Http\Controllers\ProfileUpdateController@accountSetting');
     Route::post('/get-post','App\Http\Controllers\PostController@getPost');
     Route::post('/edit-post','App\Http\Controllers\PostController@editPost');
-    Route::post('add_page_pic','App\Http\Controllers\PageController@add_profile_pic');
-    Route::post('fav-page','App\Http\Controllers\PageController@save_page_post_cmt');
     Route::post('like','App\Http\Controllers\PostController@likeDislikePost');
     Route::post('get-reaction','App\Http\Controllers\PostController@getReaction');
+    
+    /* Invite */
     Route::post('invite-friend','App\Http\Controllers\InviteFriendController@invite_friend');
     Route::post('cancel_invitation','App\Http\Controllers\InviteFriendController@cancel_invitation');
     Route::get('/fav-page/{id}','App\Http\Controllers\InviteFriendController@view_user_page');
     Route::post('/like_page/','App\Http\Controllers\InviteFriendController@like_page');
     Route::post('/unlike_page/','App\Http\Controllers\InviteFriendController@unlike_page');
-    Route::post('create_event','App\Http\Controllers\PageController@create_event');
-    Route::get('/edit-event/{id}','App\Http\Controllers\EventController@edit_event');
-    Route::post('/update-event','App\Http\Controllers\EventController@update_event');
+    
+    
+    /* page */
+    Route::post('create_page_user','App\Http\Controllers\PageController@create_new_page');
+    Route::post('add_page_post','App\Http\Controllers\PageController@create_new_post');
+    Route::post('add_page_pic','App\Http\Controllers\PageController@add_profile_pic');
+    Route::post('fav-page','App\Http\Controllers\PageController@save_page_post_cmt');
     Route::post('get_page_notifications','App\Http\Controllers\PageController@get_page_notifications');
     Route::post('/edit_profile_pic','App\Http\Controllers\PageController@edit_profile_pic');
     Route::post('/edit_cover_pic','App\Http\Controllers\PageController@edit_cover_pic');
@@ -81,30 +86,53 @@ use App\Http\Controllers\PageController;
     Route::post('/save-reply-comment','App\Http\Controllers\PageController@add_replay_comments');
     Route::post('/like_page_post_inner_cmt','App\Http\Controllers\PageController@like_page_post_inner_cmt');
     Route::post('/dislike_page_post_inner_cmt','App\Http\Controllers\PageController@dislike_page_inner_post_cmt');
+    Route::post('create_event','App\Http\Controllers\PageController@create_event');
+
+
+    /* events */
+    Route::get('/events', 'App\Http\Controllers\EventController@events_view');
+    Route::get('/hosting-event', 'App\Http\Controllers\EventController@events_hosting_view');
+    Route::get('/invited-event', 'App\Http\Controllers\EventController@event_invited_view');
+    Route::get('/your-event-event', 'App\Http\Controllers\EventController@your_event_view');
+    Route::get('/interested', 'App\Http\Controllers\EventController@event_interested_view');
+    Route::get('/going', 'App\Http\Controllers\EventController@event_going_view');
+    Route::get('/not-interested', 'App\Http\Controllers\EventController@event_not_interested_view');
     Route::get('/create-event','App\Http\Controllers\EventController@index');
     Route::post('/create-event-form','App\Http\Controllers\EventController@create_event');
-    Route::get('/events', 'App\Http\Controllers\EventController@events_view');
+    Route::get('/edit-event/{id}','App\Http\Controllers\EventController@edit_event');
+    Route::post('/update-event','App\Http\Controllers\EventController@update_event');
     Route::get('/your-events', 'App\Http\Controllers\EventController@your_events_listing');
     Route::post('event-action','App\Http\Controllers\EventController@event_action');
-    Route::get('/create-group','App\Http\Controllers\GroupController@index');
-    Route::get('/group-list','App\Http\Controllers\GroupController@group_list');
     Route::get('/event-page/{id}', 'App\Http\Controllers\EventController@event_page');
+    Route::post('event-invite-friend','App\Http\Controllers\InviteFriendController@invite_friend');
+    Route::post('event_post','App\Http\Controllers\EventController@event_post');
+    Route::post('/event_post_like','App\Http\Controllers\EventController@eventLikeDislikePost');
     
+
+    
+
+    /* post */ 
     Route::post('like_post_cmt','App\Http\Controllers\PostController@like_post_cmt');
     Route::post('dislike_post_cmt','App\Http\Controllers\PostController@dislike_post_cmt');
     Route::post('delete_post_comment','App\Http\Controllers\PostController@delete_post_comment');
     Route::post('save-inner-comments','App\Http\Controllers\PostController@save_inner_comments');
     Route::post('inner_post_cmt_like','App\Http\Controllers\PostController@inner_post_cmt_like');
     Route::post('inner_post_cmt_dislike','App\Http\Controllers\PostController@inner_post_cmt_dislike');
-    /* send invitation invite */
-    Route::post('event-invite-friend','App\Http\Controllers\InviteFriendController@invite_friend');
     
-
-    /*   Search friend route controller */
+    /* friends */
+    Route::get('unfollow/{id}','App\Http\Controllers\FriendsController@unfollowlist');
+    Route::get('follow/{id}','App\Http\Controllers\FriendsController@followlist');
+    Route::get('see_friend/{id}', 'App\Http\Controllers\FriendsController@viewfriends');
+    Route::get('add_friend/{id}', 'App\Http\Controllers\FriendsController@addFriend');
+    Route::get('cancel_request/{id}', 'App\Http\Controllers\FriendsController@cancelRequest');
+    Route::get('unfrind/{id}', 'App\Http\Controllers\FriendsController@unfrind');
+    Route::get('confirm_request/{id}', 'App\Http\Controllers\FriendsController@confirmRequest');
     Route::post('getFriends','App\Http\Controllers\FriendsController@getFriends');
+    
     Route::get('my_group','App\Http\Controllers\groupcontrollers@groupcontrollers');
-    Route::post('event_post','App\Http\Controllers\EventController@event_post');
-
+    Route::get('/create-group','App\Http\Controllers\GroupController@index');
+    Route::get('/group-list','App\Http\Controllers\GroupController@group_list');
+    
 });
 
 
