@@ -1,3 +1,11 @@
+@php
+	
+	$skills = notifications();
+    $allnotification = $skills['allnotification']->all();
+    $count =$skills['count'];
+
+
+@endphp
 <div class="widget">
     <h4 class="widget-title">Your page</h4>	
     <div class="your-page">
@@ -7,7 +15,7 @@
         <div class="page-meta">
             <a class="underline" title="" href="#">My page</a>
             <span><i class="ti-comment"></i>Messages <em>9</em></span>
-            <span><i class="ti-bell"></i>Notifications <em>2</em></span>
+            <span><i class="ti-bell"></i>Notification <em>{{ $count }}</em></span>
         </div>
         <div class="page-likes">
             <ul class="nav nav-tabs likes-btn">

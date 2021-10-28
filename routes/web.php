@@ -9,7 +9,7 @@ use App\Http\Controllers\FriendsController;
 use App\Http\Controllers\TimelineController;
 use App\Http\Controllers\ProfileUpdateController;
 use App\Http\Controllers\PageController;
-
+use App\Http\Controllers\groupcontrollers;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -107,6 +107,7 @@ use App\Http\Controllers\PageController;
     Route::post('event-invite-friend','App\Http\Controllers\InviteFriendController@invite_friend');
     Route::post('event_post','App\Http\Controllers\EventController@event_post');
     Route::post('/event_post_like','App\Http\Controllers\EventController@eventLikeDislikePost');
+    Route::get('/edit-event/{id}','App\Http\Controllers\EventController@edit_event');
     
 
     
@@ -128,7 +129,17 @@ use App\Http\Controllers\PageController;
     Route::get('unfrind/{id}', 'App\Http\Controllers\FriendsController@unfrind');
     Route::get('confirm_request/{id}', 'App\Http\Controllers\FriendsController@confirmRequest');
     Route::post('getFriends','App\Http\Controllers\FriendsController@getFriends');
-    
+    Route::post('create-group','App\Http\Controllers\PostController@save_group_controllers');
+
+    /* Groups */
+
+    Route::get('my_group/{id}','App\Http\Controllers\groupcontrollers@view_user_group');
+    Route::post('edit_group_cover_pic','App\Http\Controllers\groupcontrollers@edit_group_cover_pic');
+    Route::post('edit_group_profile_pic','App\Http\Controllers\groupcontrollers@edit_group_profile_pic');
+    Route::post('add_group_post','App\Http\Controllers\groupcontrollers@add_group_post');
+    Route::post('invite_friend_group','App\Http\Controllers\groupcontrollers@invite_friend_group');
+    Route::post('invite_group_cancel','App\Http\Controllers\groupcontrollers@invite_group_cancel');
+    Route::post('like_group','App\Http\Controllers\groupcontrollers@like_group');
     Route::get('my_group','App\Http\Controllers\groupcontrollers@groupcontrollers');
     Route::get('/create-group','App\Http\Controllers\GroupController@index');
     Route::get('/group-list','App\Http\Controllers\GroupController@group_list');

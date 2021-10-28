@@ -208,7 +208,7 @@
 
 	<div class="topbar stick bg-white bg-light">
 		<div class="logo">
-			<a title="" href="/homepage"><img src="{{ asset('assets/images/logo.png') }}" alt=""></a>
+			<a title="" href="/homepage"><img src="{{ asset('assets/img /logo.png') }}" alt=""></a>
 		</div>
 
 		<div class="top-area bg-white bg-light">
@@ -252,7 +252,7 @@
 								<a href="notifications" title="">
 									<img src="{{ asset('assets/images/resources/thumb-1.jpg') }}" alt="">
 								<div class="mesg-meta">
-										 <h6>{{ $notification->message }}</h6>
+									<h6>@php echo $notification->message @endphp</h6>
 										</div>
 								</a>
 								@if( $notification->is_seen == '1')

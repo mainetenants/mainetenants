@@ -5,13 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class like_user_page extends Model
+class msu_group_post extends Model
 {
     public $timestamps = false; 
     use HasFactory;
 
-    protected $table = 'like_user_page';
+    protected $table = 'msu_group_post';
     protected $fillable = [
-		'user_id', 'page_id','friend_id','type','is_like','is_active','created'
-	];
+		'user_id','group_id','title','content','images','music','videos','likes','dislikes','status'
+    ];
+
 }
