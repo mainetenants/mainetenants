@@ -30,7 +30,7 @@ $allusers = alluser1();
                                         </li>
                                         <li>
                                             <i class="ti-home"></i>
-                                            <a title="" href="">Home</a>
+                                            <a title="" href="/events">Home</a>
                                         </li>
                                         <li>
                                             <i class="ti-user"></i>
@@ -289,7 +289,7 @@ $allusers = alluser1();
                                                 </div><!-- add post new box -->
                                             </div>
                                         </div>
-                                        <div class="col-lg-7 disc-section">
+                                        <div class="col-lg-7 disc-section" style="display: none">
                                            @foreach($users as $user)
                                                 @php $get_post_cmt = get_post_cmt($user->id) @endphp
                                                 <div class="">
@@ -379,7 +379,7 @@ $allusers = alluser1();
                                                                     <li class="emooo">
                                                                         <span class="comment text-secondary"
                                                                             data-toggle="tooltip" title="reaction">
-                                                                            <div class="rec" data_id="{{$user->id}}">
+                                                                            <div class="event_rec" data_id="{{$user->id}}">
                                                                                 <span class="rec1">
                                                                                     <img src="/assets/images/s_emoji/like.png"
                                                                                         class="emoji-reaction" />
@@ -572,6 +572,8 @@ $allusers = alluser1();
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                        <!-- Modal -->
+                                                        
                                                         <!-- Modal  for reactions emoticons-->
                                                         <div class="modal fade" id="reaction" tabindex="-1"
                                                             role="dialog" aria-labelledby="exampleModalLabel"
@@ -623,9 +625,9 @@ $allusers = alluser1();
                                                                             <li class="nav-link" role="presentation"><a
                                                                                     href="#care" class="tab-a"
                                                                                     role="tab" data-toggle="tab"><img
-                                                                                        src="/assets/images/s_emoji/wow.png"
+                                                                                        src="/assets/images/s_emoji/care.png"
                                                                                         class="img-reaction" /><ins
-                                                                                        class="ins_wow"></ins></a>
+                                                                                        class="ins_care"></ins></a>
                                                                             </li>
                                                                             <li class="nav-link" role="presentation"><a
                                                                                     href="#wow" class="tab-a" role="tab"
@@ -687,6 +689,28 @@ $allusers = alluser1();
         </div>
     </div>
     </div>
+    </div>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#invite_friends">
+        Launch demo modal
+      </button>
+    <div class="modal fade" id="invite_friends" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+            ...
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+        </div>
     </div>
 </section>
 <div class="bottombar bg-light">

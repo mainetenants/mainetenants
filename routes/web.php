@@ -108,9 +108,15 @@ use App\Http\Controllers\groupcontrollers;
     Route::post('event_post','App\Http\Controllers\EventController@event_post');
     Route::post('/event_post_like','App\Http\Controllers\EventController@eventLikeDislikePost');
     Route::get('/edit-event/{id}','App\Http\Controllers\EventController@edit_event');
-    
+    Route::get('/delete-event/{id}','App\Http\Controllers\EventController@delete_event');
+    Route::post('get-events-reaction','App\Http\Controllers\EventController@getEventsReaction');
+    Route::post('/get-events-post','App\Http\Controllers\PostController@getEventPost');
+
+
 
     
+    
+
 
     /* post */ 
     Route::post('like_post_cmt','App\Http\Controllers\PostController@like_post_cmt');

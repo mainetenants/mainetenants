@@ -971,10 +971,7 @@
                            friend_id : friend_id
                       },
                       success:function(data){
-                          if(data[]){
-
-                              
-                          }
+                         
                             
                       },
                  });

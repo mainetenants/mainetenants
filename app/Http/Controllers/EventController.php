@@ -79,7 +79,7 @@ class EventController extends Controller
 		$events = DB::table('msu_events')
 			->leftJoin('msu_user_event_details', 'msu_user_event_details.event_id', '=', 'msu_events.id')
 			->select('msu_events.*', 'msu_user_event_details.action')
-			->where('action', "1")
+			->where('msu_events.user_id', Auth::id())
 			->get();
 
 		return view('events', compact('events'));
@@ -311,11 +311,20 @@ class EventController extends Controller
 	
 		$edit_event = DB::table('msu_events')
 			->where('msu_events.id', $id)->first();
-			dd($edit_event);
 		return view('editEvents', compact('edit_event'));
 
 	}
+	public function getEventsReaction(Request $request)
+    {
+        $allReaction = DB::table('msu_like_dislike_events')
+        ->leftJoin('users', 'msu_like_dislike_events.user_id', '=', 'users.id')
+        ->leftJoin('msu_isfriend', 'msu_isfriend.user_id', '=', 'msu_like_dislike_events.user_id')
+        ->select('users.name','users.id','users.profile_photo','msu_like_dislike_events.reaction','msu_isfriend.status as is_frnd_status')
+        ->where('post_id', $request->post_id)
+        ->get();   
+         return response()->json(array('success'=> true, 'allReaction'=>$allReaction), 200);
 
+    }
 
 
 	public function update_event(Request $request){
@@ -472,12 +481,12 @@ class EventController extends Controller
 
 		return response()->json(array('success' => true), 200);
 	}
-
-
-
-
-
-
-
-
+	public function getEventPost(Request $request){
+		   
+		$editpost = DB::table('msu_community_activities')
+		->select('*')
+		->where('id', $request->post_id)
+		->first();
+		return response()->json(array('success'=> true, 'content'=>$editpost->content, 'image'=>$editpost->images, 'post_id'=>$editpost->id), 200);
+	}
 }
