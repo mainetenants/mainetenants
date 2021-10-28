@@ -55,8 +55,8 @@ img.emoji {
 .emoji-picker-icon {
     cursor: pointer;
     position: absolute;
-    right: 52%;
-    padding-top: 13px;
+    right: 45%;
+    padding-top: 30px;
     font-size: 20px;
     opacity: 0.7;
     z-index: 100;
@@ -114,7 +114,7 @@ img.emoji {
 .emoji-wysiwyg-editor.single-line-editor {
     min-height: 35px;
     height: inherit;
-}
+} 
 
 .emoji-wysiwyg-editor img {
     width: 20px;

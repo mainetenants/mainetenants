@@ -312,8 +312,5 @@ $data = $request->all();
 
 
 
-
-
-
-
 }
+
