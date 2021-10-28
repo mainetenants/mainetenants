@@ -114,6 +114,11 @@ class EventController extends Controller
 
 		$user = User::where('id', $events->user_id)->first();
 		$respond = msu_user_event_details::where('id', $id)->first();
+		if(isset($respond)){
+			$respondCount = $respond->count();
+		}else{
+			$respondCount = 0;
+		}
 		$interesed = msu_user_event_details::where(['id' => $id, 'action' => 1])->get();
 		$going = msu_user_event_details::where(['id' => $id, 'action' => 2])->get();
 		$not_interested  = msu_user_event_details::where(['id' => $id, 'action' => 3])->get();
@@ -168,7 +173,7 @@ class EventController extends Controller
 
 		// dd($action);
 		
-		return view('event-page', ['id' => $id, 'events' => $events, 'username' => $user->name, 'user_id' => $user->id, 'profile_photo' => $user->profile_photo, 'respond' => $respond->count(), 'action' => $action, 'users' => $users, 'users1' => $users1, 'comments' => $comments, 'allusers' => $allusers, 'total_comments' => $comments->count() ,'going'=>$going]);
+		return view('event-page', ['id' => $id, 'events' => $events, 'username' => $user->name, 'user_id' => $user->id, 'profile_photo' => $user->profile_photo, 'respond' => $respondCount, 'action' => $action, 'users' => $users, 'users1' => $users1, 'comments' => $comments, 'allusers' => $allusers, 'total_comments' => $comments->count() ,'going'=>$going]);
 	}
 
 	public function create_event(Request $request)
@@ -481,7 +486,6 @@ class EventController extends Controller
 
 		return response()->json(array('success' => true), 200);
 	}
-<<<<<<< HEAD
 	public function getEventPost(Request $request){
 		   
 		$editpost = DB::table('msu_community_activities')
@@ -490,11 +494,9 @@ class EventController extends Controller
 		->first();
 		return response()->json(array('success'=> true, 'content'=>$editpost->content, 'image'=>$editpost->images, 'post_id'=>$editpost->id), 200);
 	}
-=======
 
 
 
 
->>>>>>> bec3c2d23ede706ba2c090d3fe83d55d12ed0da5
 }
 
