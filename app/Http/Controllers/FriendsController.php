@@ -30,11 +30,9 @@ class FriendsController extends Controller
         }
         $response = array();
         foreach ($employees as $employee) {
-                $response[] = array("value"=>$employee->id,"label"=>$employee->name);
-            }
-    
-    
-         return response()->json(array($response));
+            $response[] = array("value"=>$employee->id,"label"=>$employee->name);
+        }
+        return response()->json(array($response));
       
     }
 

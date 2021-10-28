@@ -30,7 +30,7 @@ $allusers = alluser1();
                                         </li>
                                         <li>
                                             <i class="ti-home"></i>
-                                            <a title="" href="">Home</a>
+                                            <a title="" href="/events">Home</a>
                                         </li>
                                         <li>
                                             <i class="ti-user"></i>
@@ -83,7 +83,7 @@ $allusers = alluser1();
                                                         src="{{ asset('upload/images/events/'.$events->cover_photo) }}">
                                                     @else
                                                     <img src="{{ asset('assets/images/default/event_cover.png') }}"
-                                                        alt="">
+                                                    alt="">
                                                     @endif
                                                 </figure>
                                                 <div class="outer-div d-flex">
@@ -117,14 +117,9 @@ $allusers = alluser1();
                                                             data-ripple="">Discussion</a>
                                                     </li>
                                                     <li class="float-right">
-                                                        <button class="btn btn-sm btn-secondary"><i
-                                                                class="fa fa-envelope" aria-hidden="true"></i>
-                                                            Invite</button>
-                                                        <button class="btn btn-sm btn-secondary"><i
-                                                                class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                                            Edit</button>
-                                                        <button class="btn btn-sm btn-secondary"><i class="fa fa-share"
-                                                                aria-hidden="true"></i> Share</button>
+                                                        <a class=""><i class="fa fa-envelope" aria-hidden="true"></i>Invite</a>
+                                                        <a class="" href="/edit-event/{{ $id }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit</a>
+                                                        <a class=""><i class="fa fa-share" aria-hidden="true"></i> Share</a>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -150,8 +145,7 @@ $allusers = alluser1();
                                                             <p><i class="fa fa-globe" aria-hidden="true"></i> Privacy
                                                                 :&nbsp {{ $events->privacy }}</p>
                                                             <p>{{ $events->description }}</p>
-                                                            <a
-                                                                class="btn btn-sm btn-secondary text-white">Categories</a>
+                                                            {{-- <a class="btn btn-sm btn-secondary text-white">Categories</a> --}}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -295,7 +289,7 @@ $allusers = alluser1();
                                                 </div><!-- add post new box -->
                                             </div>
                                         </div>
-                                        <div class="col-lg-7 disc-section">
+                                        <div class="col-lg-7 disc-section" style="display: none">
                                            @foreach($users as $user)
                                                 @php $get_post_cmt = get_post_cmt($user->id) @endphp
                                                 <div class="">
@@ -357,43 +351,35 @@ $allusers = alluser1();
                                                                 <p> {{ $user->content; }} </p>
                                                             </div>
                                                             <div class="we-video-info">
-                                                                <span class="reaction" value="{{$user->id}}">
+                                                                <span class="reaction event_reaction" id="reaction{{$user->id}}" value="{{$user->id}}">
                                                                     <i id="1"><img src="/assets/images/s_emoji/like.png"
-                                                                            class="emoji img-fluid custom-img-height" /></i>
+                                                                            class="emoji img-fluid custom-img-height img-event" /></i>
                                                                     <i id="2"><img src="/assets/images/s_emoji/love.png"
-                                                                            class="emoji img-fluid custom-img-height" /></i>
+                                                                            class="emoji img-fluid custom-img-height img-event" /></i>
                                                                     <i id="3"><img src="/assets/images/s_emoji/haha.png"
-                                                                            class="emoji img-fluid custom-img-height" /></i>
+                                                                            class="emoji img-fluid custom-img-height img-event" /></i>
                                                                     <i id="4"><img
                                                                             src="/assets/images/s_emoji/angry.png"
-                                                                            class="emoji img-fluid custom-img-height" /></i>
+                                                                            class="emoji img-fluid custom-img-height img-event" /></i>
                                                                     <i id="5"><img src="/assets/images/s_emoji/care.png"
-                                                                            class="emoji img-fluid custom-img-height" /></i>
+                                                                            class="emoji img-fluid custom-img-height img-event" /></i>
                                                                     <i id="6"><img src="/assets/images/s_emoji/wow.png"
-                                                                            class="emoji img-fluid custom-img-height" /></i>
+                                                                            class="emoji img-fluid custom-img-height img-event" /></i>
                                                                     <i id="7"><img src="/assets/images/s_emoji/sad.png"
-                                                                            class="emoji img-fluid custom-img-height" /></i>
+                                                                            class="emoji img-fluid custom-img-height img-event" /></i>
                                                                 </span>
                                                                 <ul>
                                                                     <li>
-                                                                        <span class="views text-secondary"
-                                                                            data-toggle="tooltip" title="views">
-                                                                            <i class="fa fa-eye text-secondary"></i>
-                                                                            <ins>1.2k</ins>
-                                                                        </span>
-                                                                    </li>
-                                                                    <li>
                                                                         <span class="comment text-secondary"
                                                                             data-toggle="tooltip" title="Comments">
-                                                                            <i
-                                                                                class="fa fa-comments-o text-secondary"></i>
-                                                                            <ins>52</ins>
+                                                                            <i class="fa fa-comments-o text-secondary"></i>
+                                                                            <ins>{{$total_comments}}</ins>
                                                                         </span>
                                                                     </li>
                                                                     <li class="emooo">
                                                                         <span class="comment text-secondary"
                                                                             data-toggle="tooltip" title="reaction">
-                                                                            <div class="rec" data_id="{{$user->id}}">
+                                                                            <div class="event_rec" data_id="{{$user->id}}">
                                                                                 <span class="rec1">
                                                                                     <img src="/assets/images/s_emoji/like.png"
                                                                                         class="emoji-reaction" />
@@ -409,12 +395,12 @@ $allusers = alluser1();
                                                                                         class="emoji-reaction" />
                                                                                 </span>
                                                                             </div>
-                                                                            <ins class="mrgn">52</ins>
+                                                                            <ins class="mrgn">{{ $user->likes }}</ins>
                                                                         </span>
                                                                     </li>
                                                                     <li>
 
-                                                                        <span class="like" id="likeId"
+                                                                        <span class="like" id="event_likeId"
                                                                             value="{{$user->id}}">
                                                                             <i class="ti-heart"></i>
                                                                             <ins>{{ $user->likes }}</ins>
@@ -422,7 +408,7 @@ $allusers = alluser1();
                                                                     </li>
                                                                     <li>
                                                                         <span class="dislike" data-toggle="tooltip"
-                                                                            title="dislike" id="dislikeId"
+                                                                            title="dislike" id="event_dislikeId"
                                                                             value="{{$user->id}}">
                                                                             <i class="ti-heart-broken"></i>
                                                                             <ins>{{ $user->dislikes }}</ins>
@@ -492,8 +478,6 @@ $allusers = alluser1();
                                                     </div>
                                                     <div class="coment-area bg-white bg-light">
                                                         <ul class="we-comet">
-                                                            {{-- @foreach ($comments as $comment) --}}
-
                                                             @foreach ($get_post_comments as $comment)
 
                                                             @php $get_post_comment_like =
@@ -588,6 +572,8 @@ $allusers = alluser1();
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                        <!-- Modal -->
+                                                        
                                                         <!-- Modal  for reactions emoticons-->
                                                         <div class="modal fade" id="reaction" tabindex="-1"
                                                             role="dialog" aria-labelledby="exampleModalLabel"
@@ -639,9 +625,9 @@ $allusers = alluser1();
                                                                             <li class="nav-link" role="presentation"><a
                                                                                     href="#care" class="tab-a"
                                                                                     role="tab" data-toggle="tab"><img
-                                                                                        src="/assets/images/s_emoji/wow.png"
+                                                                                        src="/assets/images/s_emoji/care.png"
                                                                                         class="img-reaction" /><ins
-                                                                                        class="ins_wow"></ins></a>
+                                                                                        class="ins_care"></ins></a>
                                                                             </li>
                                                                             <li class="nav-link" role="presentation"><a
                                                                                     href="#wow" class="tab-a" role="tab"
@@ -703,6 +689,28 @@ $allusers = alluser1();
         </div>
     </div>
     </div>
+    </div>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#invite_friends">
+        Launch demo modal
+      </button>
+    <div class="modal fade" id="invite_friends" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+            ...
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+        </div>
     </div>
 </section>
 <div class="bottombar bg-light">

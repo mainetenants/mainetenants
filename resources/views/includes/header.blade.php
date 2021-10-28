@@ -208,7 +208,7 @@
 
 	<div class="topbar stick bg-white bg-light">
 		<div class="logo">
-			<a title="" href="/homepage"><img src="{{ asset('assets/img /logo.png') }}" alt=""></a>
+			<a title="" href="/homepage"><img src="{{ asset('assets/img/logo.png') }}" alt=""></a>
 		</div>
 
 		<div class="top-area bg-white bg-light">
@@ -220,9 +220,6 @@
 				</form>
 				<div class="search_result"><ul id="search_result" class="card"></ul></div>
 			</div>
-			
-
-
 			<ul class="setting-area bg-white bg-light">
 				<li><a href="newsfeed" title="Home" data-ripple=""><i class="ti-home text-secondary"></i></a></li>
 				<li>

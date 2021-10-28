@@ -29,7 +29,72 @@ class EventController extends Controller
 
 		return view('events', compact('events'));
 	}
+	public function events_hosting_view()
+	{
 
+		$events = DB::table('msu_events')
+			->leftJoin('msu_user_event_details', 'msu_user_event_details.event_id', '=', 'msu_events.id')
+			->select('msu_events.*', 'msu_user_event_details.action')
+			->where('msu_events.user_id', Auth::id())
+			->get();
+
+		return view('events', compact('events'));
+	}
+	public function event_not_interested_view()
+	{
+
+		$events = DB::table('msu_events')
+			->leftJoin('msu_user_event_details', 'msu_user_event_details.event_id', '=', 'msu_events.id')
+			->select('msu_events.*', 'msu_user_event_details.action')
+			->where('action', "3")
+			->get();
+
+		return view('events', compact('events'));
+	}
+	public function event_going_view()
+	{
+
+		$events = DB::table('msu_events')
+			->leftJoin('msu_user_event_details', 'msu_user_event_details.event_id', '=', 'msu_events.id')
+			->select('msu_events.*', 'msu_user_event_details.action')
+			->where('action', "2")
+			->get();
+
+		return view('events', compact('events'));
+	}
+	public function event_interested_view()
+	{
+
+		$events = DB::table('msu_events')
+			->leftJoin('msu_user_event_details', 'msu_user_event_details.event_id', '=', 'msu_events.id')
+			->select('msu_events.*', 'msu_user_event_details.action')
+			->where('action', "1")
+			->get();
+
+		return view('events', compact('events'));
+	}
+	public function your_event_view()
+	{
+
+		$events = DB::table('msu_events')
+			->leftJoin('msu_user_event_details', 'msu_user_event_details.event_id', '=', 'msu_events.id')
+			->select('msu_events.*', 'msu_user_event_details.action')
+			->where('msu_events.user_id', Auth::id())
+			->get();
+
+		return view('events', compact('events'));
+	}
+	public function event_invited_view()
+	{
+
+		$events = DB::table('msu_events')
+			->leftJoin('msu_user_event_details', 'msu_user_event_details.event_id', '=', 'msu_events.id')
+			->rightJoin('msu_invite_friends', 'msu_invite_friends.event_id', '=', 'msu_events.id')
+			->select('msu_events.*', 'msu_user_event_details.action')
+			->get();
+
+		return view('events', compact('events'));
+	}
 
 	public function your_events_listing()
 	{
@@ -52,6 +117,10 @@ class EventController extends Controller
 		$interesed = msu_user_event_details::where(['id' => $id, 'action' => 1])->get();
 		$going = msu_user_event_details::where(['id' => $id, 'action' => 2])->get();
 		$not_interested  = msu_user_event_details::where(['id' => $id, 'action' => 3])->get();
+
+		
+
+
 		$action = array(
 			'interesed' => $interesed->count(),
 			'going' => $going->count(),
@@ -65,8 +134,7 @@ class EventController extends Controller
             ->where(['msu_isfriend.friends_id' => $id, 'msu_isfriend.is_follow' =>  '1'])
             ->orderBy('created', 'DESC')
             ->get();
-
-			$comments = DB::table('msu_comments')
+		$comments = DB::table('msu_comments')
             ->leftJoin('msu_event_posts', 'msu_event_posts.id', '=', 'msu_comments.post_id')
             ->select('msu_comments.*', 'msu_event_posts.*')
             ->where(['msu_comments.user_id' => $id])
@@ -99,7 +167,8 @@ class EventController extends Controller
             ->get();
 
 		// dd($action);
-		return view('event-page', ['events' => $events, 'username' => $user->name, 'user_id' => $user->id, 'profile_photo' => $user->profile_photo, 'respond' => $respond->count(), 'action' => $action, 'users' => $users, 'users1' => $users1, 'comments' => $comments, 'allusers' => $allusers]);
+		
+		return view('event-page', ['id' => $id, 'events' => $events, 'username' => $user->name, 'user_id' => $user->id, 'profile_photo' => $user->profile_photo, 'respond' => $respond->count(), 'action' => $action, 'users' => $users, 'users1' => $users1, 'comments' => $comments, 'allusers' => $allusers, 'total_comments' => $comments->count() ,'going'=>$going]);
 	}
 
 	public function create_event(Request $request)
@@ -235,23 +304,32 @@ class EventController extends Controller
 		$values = array('user_id' => Auth::id(), 'content' => $data['msg'], 'images' => $imagename, 'videos' => $videoName, 'title' => $data['msg'], 'music' => $musicName, 'status' => 1);
 
 		DB::table('msu_event_posts')->insert($values);
-		return back();
+		return back();		
 	}
 
-public function edit_event($id) {
+	public function edit_event($id) {
 	
-	$edit_event = DB::table('msu_events')
-        ->where('msu_events.id', $id)->first();
-		//dd($edit_event);
-	return view('editEvents', compact('edit_event'));
+		$edit_event = DB::table('msu_events')
+			->where('msu_events.id', $id)->first();
+		return view('editEvents', compact('edit_event'));
 
 	}
+	public function getEventsReaction(Request $request)
+    {
+        $allReaction = DB::table('msu_like_dislike_events')
+        ->leftJoin('users', 'msu_like_dislike_events.user_id', '=', 'users.id')
+        ->leftJoin('msu_isfriend', 'msu_isfriend.user_id', '=', 'msu_like_dislike_events.user_id')
+        ->select('users.name','users.id','users.profile_photo','msu_like_dislike_events.reaction','msu_isfriend.status as is_frnd_status')
+        ->where('post_id', $request->post_id)
+        ->get();   
+         return response()->json(array('success'=> true, 'allReaction'=>$allReaction), 200);
+
+    }
 
 
-
-public function update_event(Request $request){
+	public function update_event(Request $request){
 	
-$data = $request->all();
+		$data = $request->all();
 
 		$covername = "";
 		if (isset($data['cover_photo'])) {
@@ -308,12 +386,115 @@ $data = $request->all();
 		return redirect('events')->with(['success' => 'Event created Successfully']);
 	
  
- }
+ 	}
+
+	public function eventLikeDislikePost(Request $request)
+	{	
+		$authid = Auth::id();
+		// get the like status from db
+		$like = DB::table('msu_like_dislike_events')
+			->where(['user_id' => $authid, 'post_id' => $request->post_id])
+			->first();
+		$values = array();
+		// update like dislike and reaction
+		if (isset($like) && !empty($like)) {
+			if (($like->like_dislike == 1) && ($request->data == 'emoji') && isset($request->reaction)) {
+				if ($like->reaction == $request->reaction) {
+					$values = array('like_dislike' => 0, 'reaction' => 0);
+				} else {
+					$values = array('like_dislike' => 1, 'reaction' => $request->reaction);
+				}
+			}
+
+			if (($like->like_dislike == 2) && ($request->data == 'emoji') && isset($request->reaction)) {
+				$values = array('like_dislike' => 1, 'reaction' => $request->reaction);
+			}
+
+			if (($like->like_dislike == 2) && ($request->data == 'dislike')) {
+				$values = array('like_dislike' => 0, 'reaction' => 0);
+			}
+			if (($like->like_dislike == 1) && ($request->data == 'dislike')) {
+				$values = array('like_dislike' => 2, 'reaction' => 0);
+			}
+			if (($like->like_dislike == 0) && ($request->data == 'dislike')) {
+				$values = array('like_dislike' => 2, 'reaction' => 0);
+			}
+			if (($like->like_dislike == 0) && ($request->data == 'emoji')) {
+				$values = array('like_dislike' => 1, 'reaction' => $request->reaction);
+			}
+
+			$aa = DB::table('msu_like_dislike_events')
+				->where(['user_id' => $authid, 'post_id' => $request->post_id])
+				->update($values);
+		} elseif (!isset($like) && empty($like)) {
+			//add like to the post
+			if ($request->data == 'emoji') {
+				if (isset($request->reaction) && !empty($request->reaction)) {
+					$values = array('user_id' => $authid, 'reaction' => $request->reaction, 'like_dislike' => ($request->data == 'emoji') ? ('1') : (''), 'post_id' => $request->post_id, 'reaction' => $request->reaction);
+				} elseif (!isset($request->reaction) && empty($request->reaction)) {
+					$values = array('user_id' => $authid, 'reaction' => $request->reaction, 'like_dislike' => ($request->data == 'emoji') ? ('1') : (''), 'post_id' => $request->post_id);
+				}
+			}
+			// add dislike to post
+			if ($request->data == 'dislike') {
+				$values = array('user_id' => $authid, 'like_dislike' => ($request->data == 'dislike') ? ('2') : (''), 'post_id' => $request->post_id);
+			}
+
+			$val = DB::table('msu_like_dislike_events')
+				->insert($values);
+			// dd($val);
+		}
+
+		$like = DB::table('msu_like_dislike_events')
+			->where(['post_id' => $request->post_id, 'like_dislike' => 1])
+			->count();
+
+		$dislikes = DB::table('msu_like_dislike_events')
+			->where(['post_id' => $request->post_id, 'like_dislike' => 2])
+			->count();
+
+		$values = array('likes' => $like, 'dislikes' => $dislikes);
+		$val = DB::table('msu_event_posts')
+			->where(['id' => $request->post_id])
+			->update($values);
+
+		$user_id = DB::table('msu_event_posts')
+			->select('user_id')
+			->where(["id" => $request->post_id])
+			->first();
+		$user_name = DB::table('users')
+			->select('name')
+			->where(['id' => $user_id->user_id])
+			->first();
+
+		$check_like = DB::table('msu_user_notification')
+			->select('id')
+			->where(['user_id' => $user_id->user_id, 'friend_id' => $authid])
+			->first();
+
+		if ($request->data != 'dislike' and $check_like == "") {
+			$data_notification = array('user_id' => $user_id->user_id, 'friend_id' => $authid, 'message' => $user_name->name . '  ' . $request->data . ' Your Post.', 'post_id' => (int)$request->post_id, 'is_seen' => '1', 'type' => "Like/Dislike",);
+
+			$notification =   DB::table('msu_user_notification')
+				->insert($data_notification);
+		}
+
+		return response()->json(array('success' => true), 200);
+	}
+<<<<<<< HEAD
+	public function getEventPost(Request $request){
+		   
+		$editpost = DB::table('msu_community_activities')
+		->select('*')
+		->where('id', $request->post_id)
+		->first();
+		return response()->json(array('success'=> true, 'content'=>$editpost->content, 'image'=>$editpost->images, 'post_id'=>$editpost->id), 200);
+	}
+=======
 
 
 
 
-
-
-
+>>>>>>> bec3c2d23ede706ba2c090d3fe83d55d12ed0da5
 }
+

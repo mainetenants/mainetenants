@@ -88,7 +88,7 @@
         }
     });
     // like dislike and reaction emoticons
-    $(".reaction i img, #dislikeId").click(function () {
+    $(".reaction_post i img, #dislikeId").click(function () {
         var id = '';
         var reaction = '';
         var data = $(this).attr('class').split(' ')[0];
@@ -264,7 +264,7 @@
 </script>
 <script>
     // reactions on post
-    $('#likeId').click(function () {
+    $('#likeId .ti-heart').click(function () {
         $('.reaction').toggle();
         $('.reaction').delay(10000).fadeOut();
     });
@@ -969,6 +969,7 @@
                             $('#unlike_group').show();
                             $('#like_group').hide();
                         }   
+                              
                       },
                  });
 

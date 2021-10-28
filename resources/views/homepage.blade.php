@@ -100,7 +100,7 @@
 										<span>
 										   <ins><a href="time-line" title="">{{$user->name}}</a></ins> 
 										   <div class="post-opt pull-right">
-											  <i class="ti-more-alt" data-toggle="popover" data-content="<a href=#null onclick='myFunction()' value='{{ $user->post_id}}' id='edit-post'>Edit</a><br><a class='border-top' href='/delete-post/{{ $user->post_id}}' >Delete</a>"
+											  <i class="ti-more-alt" data-toggle="popover" data-content="<a href=#null onclick='myFunction()' value='{{ $user->post_id}}' id='edit-post'><i class='fas fa-edit'></i>&nbsp;Edit</a><br><a class='border-top' href='/delete-post/{{ $user->post_id}}' ><i class='fas fa-trash-alt'></i>&nbsp;Delete</a>"
 												 data-placement="left"  data-html="true">
 											  </i>
 										   </div>
@@ -111,6 +111,7 @@
 											  </button>  --}}
 											  {{--  
 											  <div class="list-group" data-toggle="popover" data-placement="bottom" id="list-tab" role="tablist">
+                                   
 												 <a class="list-group-item">Edit</a>
 												 <a class="list-group-item" >Delete</a>
 											  </div>
@@ -250,13 +251,15 @@
                                  <div class="we-comment">
                                     <div class="coment-head">
                                        <h5><a href="time-line" title="">@php echo  get_user_nane1($comment->user_id) @endphp</a></h5>
+                                       <div class="comment_icons">
                             
                                     @if( $is_like == 1)<a class="like"  onclick="dislike_post_cmt({{ $comment->id }},{{ $comment->post_id }})" href="#" ><i class="fa fa-thumbs-up" style="color:#088dcd;" aria-hidden="true"></i> </a>@else<a class="like"  onclick="like_post_cmt({{ $comment->id }},{{ $comment->post_id }})" href="#" ><i class="fa fa-thumbs-up  icon-color" aria-hidden="true"></i></a> @endif                                    
                                         <a class="we-reply1" href="#" onclick="return false" data-id="{{ $comment->id }}" post-id ="{{ $comment->post_id }}" id="we-reply"  title="Reply"><i class="fa fa-reply"></i></a>
                                          @if($comment->user_id == $user_id)
                                              <a class="delete"  href="#" onclick="delete_post_comment({{ $comment->id }})"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a>     
                                         @elseif($user->user_id == $user_id)
-                                             <a class="delete"  href="#" onclick="delete_post_comment({{ $comment->id }})"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a>     
+                                             <a class="delete"  href="#" onclick="delete_post_comment({{ $comment->id }})"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a>  
+                                   </div>   
                                         @endif
                                     </div>
                                     <p> @php echo $comment->comment @endphp</p>
@@ -315,7 +318,7 @@
                                     <div class="col-sm-11">
                                        <textarea placeholder="Post your comment" id="commen_1234" class="comment_1243" name="comment"></textarea>
                                     </div>
-                                    <div class="col-sm-1">
+                                    <div class="col-sm-1 comment_submit">
                                        <input type="hidden" name="post_id" id="post_id" value="{{ $user->id }}"/>
                                        <input type="hidden" name="user_id" id="user_id" value="{{ $user->user_id }}"/>
                                        <input type="hidden" name="status" id="status" value ="1"/>
@@ -338,7 +341,7 @@
 										   </button>
 										</div>
 										<div class="modal-body">
-										   <form method="post" id="edit_form" action="{{ url("edit-post"); }}" enctype="multipart/form-data">
+										   <form method="post" id="edit_form" action="{{ url("edit-post")}}" enctype="multipart/form-data">
 										   @csrf
 										   <div class="container">
 											  <div class="row">

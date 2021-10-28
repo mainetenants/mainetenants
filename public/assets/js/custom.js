@@ -1,7 +1,6 @@
 var html_alert = '<div class="alert alert-danger mb-1" role="alert">Please enter the required fields!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></div></button>';
 // change css of active event card
 $('.card-radio input[type=radio]').change(function() {
-    alert('testing');
     $('.card').removeClass('card_select');
     $(this).parent().parent().parent().addClass("card_select");
 });
@@ -221,4 +220,151 @@ $('#event_about').click(function(){
     $('.disc-section').hide();
 
     // $('.about-section').hide();
+});
+
+
+
+// event discussioin module scripts 
+$('#event_likeId .ti-heart').click(function () {
+    var selector_rect = '#reaction'+$(this).parent().attr('value');
+    $(selector_rect).toggle();
+    $('.reaction').delay(10000).fadeOut();
+});
+
+// like dislike and reaction emoticons
+$(".event_reaction i .img-event, #event_dislikeId").click(function () {
+    var id = '';
+    var reaction = '';
+    var data = $(this).attr('class').split(' ')[0];
+    if (data == 'emoji') {
+        id = $(this).parent().parent().attr('value');
+        reaction = $(this).parent().attr('id');
+    } else {
+        id = $(this).attr('value');
+    }
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $.ajax({
+        type: 'POST',
+        url: '/event_post_like',
+        data: {
+            post_id: id,
+            reaction: reaction,
+            data: data
+        },
+        success: function (data) {
+            $('.reaction').hide();
+        }
+    });
+});
+$('.event_rec').click(function () {
+    
+    $.ajax({
+        type: 'POST',
+        url: '/get-events-reaction',
+        data: {
+            post_id: $(this).attr('data_id')
+        },
+        success: function (data) {
+            $('.user_card').remove();
+            console.log(data);
+            if (data.allReaction) {
+                var selector = '';
+                var count = [];
+                var count_like_rc = '';
+                var count_love_rc = '';
+                var count_haha_rc = '';
+                var count_angry_rc = '';
+                var count_care_rc = '';
+                var count_wow_rc = '';
+                var count_sad_rc = '';
+                console.log(data.allReaction);
+                $.each(data.allReaction, function (key, val) {
+                    var html_add = (val.is_frnd_status == 1) ? ('') : (
+                        '<a href="see_friend/' + val.id +
+                        '" class="btn btn-primary btn-sm add_rc_frnd">Add Friends</a>'
+                        );
+                    $('.allfrnd').append(
+                        '<div class="user_card"><div class="row"><div class="col-sm-6 text-left"><img src="upload/images/' + val.profile_photo + '" class="rc_profile_pic" style="max-width: 60px" alt=""><span class="rc_name">' + val.name + '</span></div><div class="col-sm-6 text-right">' + html_add + '</div></div></div>');
+
+
+                    if (val.reaction == 1) {
+                        var selector = 'like_rc';
+                        count_like_rc++;
+                    }
+                    if (val.reaction == 2) {
+                        var selector = 'love_rc';
+                        count_love_rc++;
+                    }
+                    if (val.reaction == 3) {
+                        var selector = 'haha_rc';
+                        count_haha_rc++;
+                    }
+                    if (val.reaction == 4) {
+                        var selector = 'angry_rc';
+                        count_angry_rc++;
+                    }
+                    if (val.reaction == 5) {
+                        var selector = 'care_rc';
+                        count_care_rc++;
+                    }
+                    if (val.reaction == 6) {
+                        var selector = 'wow_rc';
+                        count_wow_rc++;
+                    }
+                    if (val.reaction == 7) {
+                        var selector = 'sad_rc';
+                        count_sad_rc++;
+                    }
+                    $('.' + selector).append(
+                        '<div class="user_card"><div class="row"><div class="col-sm-6 text-left"><img src="upload/images/' +
+                        val.profile_photo +
+                        '.jpg" class="rc_profile_pic" style="max-width: 60px" alt=""><span class="rc_name">' +
+                        val.name +
+                        '</span></div><div class="col-sm-6 text-right">' +
+                        html_add + '</div></div></div>');
+                });
+                $('.ins_like').html('&nbsp;' + count_like_rc);
+                $('.ins_love').html('&nbsp;' + count_love_rc);
+                $('.ins_haha').html('&nbsp;' + count_haha_rc);
+                $('.ins_angry').html('&nbsp;' + count_angry_rc);
+                $('.ins_care').html('&nbsp;' + count_care_rc);
+                $('.ins_wow').html('&nbsp;' + count_wow_rc);
+                $('.ins_sad').html('&nbsp;' + count_sad_rc);
+                if (count_like_rc == '') {
+                    $('.ins_like').parent().parent().remove()
+                }
+                if (count_love_rc == '') {
+                    $('.ins_love').parent().parent().remove()
+                }
+                if (count_haha_rc == '') {
+                    $('.ins_haha').parent().parent().remove()
+                }
+                if (count_angry_rc == '') {
+                    $('.ins_angry').parent().parent().remove()
+                }
+                if (count_care_rc == '') {
+                    $('.ins_care').parent().parent().remove()
+                }
+                if (count_wow_rc == '') {
+                    $('.ins_wow').parent().parent().remove()
+                }
+                if (count_sad_rc == '') {
+                    $('.ins_sad').parent().parent().remove()
+                }
+                // var count = [count_like_rc, count_love_rc, count_haha_rc, count_angry_rc, count_care_rc, count_wow_rc, count_sad_rc];
+                // console.log(count.sort().reverse());
+
+
+            }
+
+            // trigger modal 
+            $('#reaction').modal('toggle');
+
+        }
+    });
+    // alert();
 });
