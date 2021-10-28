@@ -22,6 +22,15 @@ class LikesDislikes extends Migration
             $table->timestamp('created')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
         });
+        Schema::create('msu_like_dislike_events', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('user_id');
+            $table->integer('post_id');
+            $table->integer('like_dislike');
+            $table->string('reaction',11);
+            $table->timestamp('created')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
+        });
     }
 
     /**
@@ -32,5 +41,6 @@ class LikesDislikes extends Migration
     public function down()
     {
         Schema::dropIfExists('msu_like_dislike_posts');
+        Schema::dropIfExists('msu_like_dislike_events');
     }
 }

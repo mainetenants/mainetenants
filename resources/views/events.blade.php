@@ -28,23 +28,23 @@
         </li>
         <li>
             <i class="ti-user"></i>
-            <a title="" href="">Your Events</a>
+            <a title="" href="/your-event-event">Your Events</a>
             <ul class="naves">
                 <li>
                     <i class="fa fa-check-circle-o" aria-hidden="true"></i>
-                    <a title="" href="">Going</a>
+                    <a title="" href="/going">Going</a>
                 </li>
                 <li>
                     <i class="fa fa-envelope-o" aria-hidden="true"></i>
-                    <a title="" href="">Invitation</a>
+                    <a title="" href="/invited-event">Invitation</a>
                 </li>
                 <li>
                     <i class="fa fa-star" aria-hidden="true"></i>
-                    <a title="" href="">Interested</a>
+                    <a title="" href="/interested">Interested</a>
                 </li>
                 <li>
                     <i class="fa fa-h-square" aria-hidden="true"></i>
-                    <a title="" href="">Hosting</a>
+                    <a title="" href="/hosting-event">Hosting</a>
                 </li>
                 <li>
                     <i class="fa fa-home" aria-hidden="true"></i>
@@ -68,7 +68,7 @@
 <div class="col-lg-9">
 <div class="feature-photo">
     <div class="container-fluid">
-        <div class="row">
+        <div class="row" id="dashboard">
             <div class="col-lg-12">
                 <div class="timeline-info">
                     <ul>
@@ -137,15 +137,13 @@
                             @endif
 
                         </div>
-                        <a title="" class="btn btn-sm btn-info text-white" href="/edit-event/{{$event->id}}">Edit Event</a>
-
                     </div>
                
                 </div>
             @endforeach
             
      
-        </div>
+            </div>
     </div>
 </div>
 </div>
