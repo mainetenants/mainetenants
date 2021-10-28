@@ -371,3 +371,30 @@ small.hours {
     color: #dc3545;
 
 }
+.tox.tox-tinymce.tox-tinymce--toolbar-bottom {
+    height: 60px !important;
+    border-radius: 10px !important;
+}
+.tox .tox-toolbar__group {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 0;
+    padding: 0 4px 0 4px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+.comment_submit{
+    display: flex;
+    align-items: center;
+}
+.post-meta ul {
+     padding: 2px;
+    padding-left: 16px !important;
+    display: flex;
+    align-items: center;
+}
+.comment_icons {
+    float: right;
+}

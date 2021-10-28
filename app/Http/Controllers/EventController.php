@@ -481,6 +481,7 @@ class EventController extends Controller
 
 		return response()->json(array('success' => true), 200);
 	}
+<<<<<<< HEAD
 	public function getEventPost(Request $request){
 		   
 		$editpost = DB::table('msu_community_activities')
@@ -489,4 +490,11 @@ class EventController extends Controller
 		->first();
 		return response()->json(array('success'=> true, 'content'=>$editpost->content, 'image'=>$editpost->images, 'post_id'=>$editpost->id), 200);
 	}
+=======
+
+
+
+
+>>>>>>> bec3c2d23ede706ba2c090d3fe83d55d12ed0da5
 }
+
