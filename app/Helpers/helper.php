@@ -448,12 +448,7 @@ function get_group_post($id){
     ->select('*')
     ->where(['group_id'=>$id])
     ->get();
-
-
     return $get_group_post;
-
-
-
 }
 function get_like_group_status($id){
 
@@ -461,13 +456,50 @@ function get_like_group_status($id){
 
      $get_page_status = DB::table('like_user_page')
      ->select('is_like')
-     ->where(['group_id'=>$id,'user_id'=>$id,'type'=>'group'])
+     ->where(['group_id'=>$id,'user_id'=>$user,'type'=>'group'])
      ->first();
+
     if($get_page_status== ""){
        return "";
     }else{
        return $get_page_status->is_like;
     }
 }
+function get_total_group_like($id){
+    $get_total_group_like = DB::table('like_user_page')
+    ->select('id')
+    ->where(['group_id'=>$id,'type'=>'group'])
+    ->get();
+    return $get_total_group_like;      
+}
 
+function get_total_group_cmt($post_id){
+
+      $get_page_group_comment = DB::table('msu_page_group_comments')
+        ->Select('*')
+        ->where(['post_id'=>$post_id])
+        ->get();
+
+        return $get_page_group_comment;
+}
+function get_total_group_reply_cmt($comment)
+{
+    $get_page_group_reply_comment = DB::table('msu_group_reply_comment')
+    ->select('*')
+    ->where(['comment_id'=>$comment])
+    ->get();
+
+
+    return $get_page_group_reply_comment;
+}
+function get_group_like_comment($id){
+    $user_id = Auth::id();  
+    $get_group_like_comment = DB::table('msu_like_group_comment')
+    ->select('id')
+    ->where(['comment_id'=>$id,'user_id'=>$user_id,'is_like'=>1])
+    ->get();
+
+    dd($get_group_like_comment);
+    return "";
+}
 

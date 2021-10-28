@@ -26,6 +26,7 @@
 <script src="{{ asset('assets/js/script.js') }}"></script>
 <script src="{{ asset('assets/js/map-init.js') }}"></script>
 <script src="{{ asset('assets/js/custom.js') }}"></script>
+<script src="{{ asset('assets/js/reply_group_comment.js') }}"></script>
 
 <script src="{{ asset('js/progress-bar.js') }}"></script>
 <script src="https://cdn.tiny.cloud/1/ueqxpvc9gv7hzpnpf4jj0kq9h4n1c3ijg41bb4aqnlyvfa28/tinymce/5/tinymce.min.js"
@@ -33,7 +34,10 @@
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8c55_YHLvDHGACkQscgbGLtLRdxBDCfI">
 </script>
+
 <script>
+
+
     //comments on post ajax
     $('#comment').keypress(function (event) {
 
@@ -285,6 +289,7 @@
 
     $('#page_post_comments').submit(function () {
         var formdata = new FormData();
+        var type= $('#type').val();
         $.ajax({
             type: 'POST',
             url: '{{ url("fav-page") }}',
@@ -297,6 +302,7 @@
             },
         });
     });
+    
     // add remove active class form navtabs in reaction listing 
     $('.tab-a').click(function () {
         $('.nav-tabs .nav-link').removeClass('active');
@@ -401,14 +407,8 @@
                     if (count_sad_rc == '') {
                         $('.ins_sad').parent().parent().remove()
                     }
-                    // var count = [count_like_rc, count_love_rc, count_haha_rc, count_angry_rc, count_care_rc, count_wow_rc, count_sad_rc];
-                    // console.log(count.sort().reverse());
-
-
                 }
-
-                // trigger modal 
-                $('#reaction').modal('toggle');
+                  $('#reaction').modal('toggle');
 
             }
         });
@@ -852,9 +852,7 @@
             success: function (data) {
                 console.log(data)
                 if (data['status'] == 1) {
-                    
-
-
+                    location.reload();
                 }
             },
         });
@@ -894,11 +892,6 @@
                  $('#search_result').html(value);    
               }
             });       
-        });
-
-        $('#create_group_submit').click(function(){
-            
-             $('#create_save_group').submit();
         });
 
         $('#file_group_cover_chnage').change(function (){
@@ -961,7 +954,7 @@
           });
 
           $('#like_group').click(function () {
-                 var group_id = $('#like_group_id').val();
+                var group_id = $('#like_group_id').val();
                  var friend_id = $('#like_friend_id').val();
                  $.ajax({
                       type:'post',
@@ -971,15 +964,173 @@
                            friend_id : friend_id
                       },
                       success:function(data){
-                          if(data[]){
-
-                              
-                          }
-                            
+                         console.log(data); 
+                        if(data['status']== 1){
+                            $('#unlike_group').show();
+                            $('#like_group').hide();
+                        }   
                       },
                  });
 
             });
+            $('#unlike_group').click(function(){
+                var group_id = $('#like_group_id').val();
+                 var friend_id = $('#like_friend_id').val();
+                
+                $.ajax({
+                    type:'post',
+                    url :'url("unlike_group")',
+                    data :{
+                        group_id : group_id,
+                        friend_id : friend_id
+                    },
+                    success:function(data){
+                        if(data['status']== 1){
+                            $('#unlike_group').hide();
+                            $('#like_group').show();
+                        }   
+
+                    },
+
+                });
+            });
+            $('.page_group_comments').click(function(){
+                $('.p_comment').val(tinymce.get("comment"+$(this).attr('data-id')).getContent());
+                var data = $('#page_group_comments'+$(this).attr('data-id')).serialize();
+                console.log(data);
+                $.ajax({
+                    type: 'POST',
+                    url: '{{ url("page_group_comments") }}',
+                    data: data,
+                    success: function (data) {
+
+                        if(data['status']){
+                            var data_cmt = data['comments'];
+                            console.log(data_cmt);
+                            var comment = '<li><div class="comet-avatar">'+
+                                    '<img src="http://localhost:8000/assets/images/resources/comet-1.jpg" alt="">'+
+                                '</div>'+
+                                '<div class="we-comment">'+
+                                    '<div class="coment-head">'+
+                                    '<h5><a href="time-line" title="">'+data['name']+'</a></h5>'+
+                                        '<a class="like" onclick="like_post_cmt(5,2)" href="#"><i class="fa fa-thumbs-up  icon-color" aria-hidden="true"></i></a>'+                                    
+                                        '<a class="we-reply-group" href="#" onclick="return false" data-id="'+data_cmt['comment_id']+'" post-id="'+data['post_id']+'" id="we-reply" title="Reply"><i class="fa fa-reply"></i></a>'+
+                                        '<a class="delete" href="#" onclick="delete_post_comment(5)"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a>'+ 
+                                        data_cmt['comment']+
+                                        '</div>'+
+                                    '</div>'+
+                                    '<ul class="list_group_reply_comment'+data_cmt['comment_id']+'">'+
+                                    '</ul>'+
+                                    '</li>';
+                                    tinyMCE.activeEditor.setContent('');
+                                    // tinymce.get('#comment'+$('.page_group_comments').attr('data-id')).setContent("");
+                                    $(".list-comment-box"+data['post_id']).prepend(comment);
+                        } 
+                    }
+                }); 
+            }); 
+    
+            $('#create_save_group').submit(function(){
+                       
+                        var group_name = $('#group_name').val();
+                        var group_category = $('#group_category').val();
+                        var group_descripition = $('#group_descripition').val();
+                        var only_see = $('#only_see').val();
+                        $.ajax({
+                        type:'post',
+                        url :'{{ url("/save_create_group") }}',
+                         data :{
+                            group_name : group_name,
+                            group_category :group_category,
+                            group_descripition :group_descripition,
+                            only_see:only_see
+                        },
+                        success:function(data){
+                           if(data['status'] ==1 ){
+
+                               location.reload();
+                           }
+                        },
+                });
+
+             });
+
+             
+$(document).on("click", '.replay_group_inner_comments', function() { 
+    //alert(tinymce.get("page_group_reply_comment"+$('.page_group_reply_comment').attr('data-id')).getContent());
+
+    $('.r_comment').val($("#page_group_reply_comment"+$('.page_group_reply_comment').attr('data-id')).val());
+    var data = $('#post_replay_inner_group_comments'+$('.page_group_reply_comment').attr('data-id')).serialize();
+    console.log(data);
+    $.ajax({
+        type: 'POST',
+        url: '{{url("save_group_reply_comment")}}',
+        data: data,
+        success: function (data) {
+
+            if(data['status']){
+                var data_cmt = data['reply_comment'];
+                console.log(data_cmt);
+                var comment = '<li style="list-style:none;"><div class="comet-avatar">'+
+                        '<img src="http://localhost:8000/assets/images/resources/comet-1.jpg" alt="">'+
+                    '</div>'+
+                    '<div class="we-comment">'+
+                        '<div class="coment-head">'+
+                        '<h5><a href="time-line" title="">'+data_cmt['name']+'</a></h5>'+
+                            '<a class="like" onclick="like_post_cmt(5,2)" href="#"><i class="fa fa-thumbs-up  icon-color" aria-hidden="true"></i></a>'+                                    
+                            '<a class="we-reply1" href="#" onclick="return false" data-id="5" post-id="2" id="we-reply" title="Reply"><i class="fa fa-reply"></i></a>'+                                           
+                            '<a class="delete" href="#" onclick="delete_post_comment(5)"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a><br>'+ 
+                            data_cmt['comment']+
+                            '</div>'+
+                        '</div></li>';
+                        tinyMCE.activeEditor.setContent('');
+                        // tinymce.get('#comment'+$('.page_group_comments').attr('data-id')).setContent("");
+                        $(".list_group_reply_comment"+data_cmt['comment_id']+"").append(comment);
+            } 
+        }
+    }); 
+});
+
+function like_group_cmt(cmt_id){
+      $.ajax({
+         type:'post',
+         url:'{{url("like_group_comment")}}',
+         data:{
+             cmt_id:cmt_id,
+          },
+         success:function(data){
+            if(data['status']){
+                $('#like'+cmt_id+'').hide();
+                $('dislike'+cmt_id+'').show();
+
+            } 
+         }, 
+
+      })
+
+}
+
+function dislike_group_cmt(cmt_id){
+      $.ajax({
+         type:'post',
+         url:'{{url("dislike_group_comment")}}',
+         data:{
+             cmt_id:cmt_id,
+          },
+         success:function(data){
+            if(data['status']){
+                $('#like'+cmt_id+'').show();
+                $('dislike'+cmt_id+'').hide();
+
+            } 
+         }, 
+
+      })
+
+}
+
+dislike_group_cmt
+
 
 </script>
 <script>
@@ -993,6 +1144,7 @@
     });
 
 </script>
+
 <script>
     tinymce.init({
         selector: "#page_post_comment",
@@ -1015,6 +1167,29 @@
     });
 
 </script>
+<script>
+    tinymce.init({
+        selector: ".page_post_reply_comment",
+        plugins: "emoticons",
+        height: 100,
+        toolbar: "emoticons",
+        toolbar_location: "bottom",
+        menubar: false
+    });
+
+</script>
+<script>
+    tinymce.init({
+        selector: "#comment_4321",
+        plugins: "emoticons",
+        height: 100,
+        toolbar: "emoticons",
+        toolbar_location: "bottom",
+        menubar: false
+    });
+
+</script>   
+
 
 
 <script src="{{ asset('assets/js/config.js')  }}"></script>

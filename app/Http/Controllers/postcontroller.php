@@ -284,7 +284,6 @@ class PostController extends Controller
         return response()->json(array('updated sucessfully' => true), 200);
     }
     public function getPost(Request $request){
-       
         $editpost = DB::table('msu_community_activities')
         ->select('*')
         ->where('id', $request->post_id)
@@ -360,7 +359,6 @@ class PostController extends Controller
     public function save_group_controllers(Request $request){
           $data = $request->all();
           $user_id= Auth::id();
-
           $insert = new msu_group();
           $insert->user_id = $user_id;
           $insert->group_name = $data['group_name'];
@@ -369,6 +367,6 @@ class PostController extends Controller
           $insert->only_see = $data['only_see'];
           $insert->is_active = 1;
           $insert->save();
-          return back();
+          return response()->json(array('status'=> 1,'status_res'=>'Successfull !!' ));
     }
 }

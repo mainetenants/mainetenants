@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class MsuSaveGroup extends Migration
+class MsuPageGroupComments extends Migration
 {
     /**
      * Run the migrations.
@@ -14,19 +14,18 @@ class MsuSaveGroup extends Migration
     public function up()
     {
         //
-        Schema::create('msu_group', function (Blueprint $table) {
+        Schema::create('msu_page_group_comments', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id');
-            $table->string('group_name');
-            $table->string('group_category');
-            $table->string('group_descripition');
-            $table->string('only_see');
-            $table->string('cover_image');
-            $table->string('profile_picture');
-            $table->integer('is_active');
+            $table->integer('post_id');
+            $table->integer('group_id');
+            $table->string('title');
+            $table->string('comment');
+            $table->string('likes');
+            $table->string('dislikes');
+            $table->integer('status');
             $table->timestamp('created')->useCurrent();
         });
-
     }
 
     /**
@@ -37,7 +36,6 @@ class MsuSaveGroup extends Migration
     public function down()
     {
         //
-        Schema::dropIfExists('msu_group');
-
+        Schema::dropIfExists('msu_page_group_comments');
     }
 }

@@ -101,7 +101,7 @@ $get_user_group = get_user_group();
                         <!--  Create Group Modal -->
                             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
-                                    <form action="create-group" method="post" id="create_save_group"  name="create_save_group" >
+                                    <form onsubmit="return false" method="post" id="create_save_group"  name="create_save_group" >
                                        @csrf
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -135,7 +135,7 @@ $get_user_group = get_user_group();
                                             </div>
                                             <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            <button type="button" name="create_group_submit" id="create_group_submit" class="btn btn-primary">Create Group</button>
+                                            <button type="submit" name="create_group_submit" id="create_group_submit" class="btn btn-primary">Create Group</button>
                                             </div>
                                         </div>
                                     </form>

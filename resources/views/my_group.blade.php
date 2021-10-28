@@ -3,8 +3,10 @@
     $get_user_group = get_user_group_details($id);
     $allusers = alluser1();
     $get_page  = get_page($id);   
+
     $get_like_group_status = get_like_group_status($id);
     $get_group_post = get_group_post($id);
+    $get_total_group_like = count(get_total_group_like($id));
     $user_id = Auth::id();
 @endphp
 
@@ -21,15 +23,15 @@
         @endif
 
         <div class="add-btn">
-            <span>1.3k followers</span>
+           <a class="btn btn-primary" href="#"> <span >{{ $get_total_group_like }}Followers</span></a>
 
-            @if($get_user_group->user_id != $user_id)
-            <a href="#"  id="like_group"  title="" data-ripple="">like Page</a>
-            <a href="#"  id="unlike_group" title=""   data-ripple="">liked <i class="fa fa-check" style="display:none;" aria-hidden="true"></i></a>
+
+        @if($get_user_group->user_id != $user_id)
+           <a href="#"  id="like_group" @if($get_like_group_status == 1) style="display:none;" @endif title="" data-ripple="">like Page</a>
+            <a href="#"  id="unlike_group" title=""   @if($get_like_group_status == null) style="display:none;" @endif   data-ripple="">liked <i class="fa fa-check" style="display:none;" aria-hidden="true"></i></a>
+        @else @endif 
             <input type="hidden" id="like_group_id" name="like_group_id" value="{{ $get_user_group->id }}"/>
             <input type="hidden" id="like_friend_id" name="like_friend_id" value="{{ $get_user_group->user_id }}" />
-        @else
-            @endif
         </div>
         <form method='post' class="edit-phto" id="edit_group_cover_photo"
             action="{{ url('edit_group_cover_pic') }}" enctype="multipart/form-data">
@@ -126,7 +128,6 @@
                                             <i class="ti-share text-secondary"></i>
                                             <a href="../people-nearby" class="text-secondary" title="">People Nearby</a>
                                         </li>
-
                                         <li class="test">
                                             <i class="ti-power-off text-secondary"></i>
                                             <form method="post" id="logout_id"
@@ -376,125 +377,79 @@
                                                 </div>
                                             </div>
                                             <div class="coment-area bg-white bg-light">
-                                                <ul class="we-comet">
+                                                <ul class="we-comet list-comment-box">
+                                                     @php $get_total_group_cmt = get_total_group_cmt($post->id);  @endphp
+                                                    
+                                                    @foreach($get_total_group_cmt  as $comment)
+
+                                                    
+
+                                                    @php $get_total_group_reply_cmt = get_total_group_reply_cmt($comment->id); 
+                                                         $get_comment_like_comment = get_group_like_comment($comment->id);
+                                                    @endphp
+
+                                                    <li>
+                                                      <div class="comet-avatar">
+                                                          <img src="http://localhost:8000/assets/images/resources/comet-1.jpg" alt="">
+                                                      </div>
+                                                      <div class="we-comment">
+                                                        <div class="coment-head">
+                                                          <h5><a href="time-line" title="">{{ get_user_nane1($comment->user_id) }}</a></h5>
+                                                          <a class="like" id="like{{ $comment->id }}" onclick="like_group_cmt({{ $comment->id }})" onsubmit="return false" href="#"><i class="fa fa-thumbs-up  icon-color" aria-hidden="true"></i></a>                                     
+                                                          <a class="dislike" id="dislike{{ $comment->id }}" onclick="dislike_group_cmt({{ $comment->id }})" onsubmit="return false"  href="#"><i class="fa fa-thumbs-up  icon-color text-primary" aria-hidden="true"></i></a>                                     
+                                                          <a class="we-reply-group" href="#" onclick="return false" data-id="{{ $comment->id }}" post-id="{{ $post->id }}" id="we-reply" title="Reply"><i class="fa fa-reply"></i></a>
+                                                          <a class="delete" href="#" onclick="delete_post_comment(5)"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a>     
+                                                        </div>
+                                                        @php echo $comment->comment  @endphp
+                                                      </div>
+                                                      <ul>
+                                                        @foreach($get_total_group_reply_cmt as $inner_comment)
+                                                        <li>
+                                                            <div class="comet-avatar">
+                                                                <img src="http://localhost:8000/assets/images/resources/comet-1.jpg" alt="">
+                                                            </div>
+                                                            <div class="we-comment">
+                                                              <div class="coment-head">
+                                                                <h5><a href="time-line" title="">{{ get_user_nane1($inner_comment->user_id) }}</a></h5>
+                                                                <a class="like" onclick="like_post_cmt(5,2)" href="#"><i class="fa fa-thumbs-up  icon-color" aria-hidden="true"></i></a>                                     
+                                                                <a class="we-reply-group" href="#" onclick="return false" data-id="{{ $comment->id }}" post-id="{{ $post->id }}" id="we-reply" title="Reply"><i class="fa fa-reply"></i></a>
+                                                                <a class="delete" href="#" onclick="delete_post_comment(5)"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a>     
+                                                              </div>
+                                                              @php echo $inner_comment->comment  @endphp
+                                                            </div>
+                                                        </li>
+                                                        @endforeach
+                                                      </ul>
+                                                     
+                                                    </li>
+                                                    @endforeach
+                                                    <div class="list-comment-box{{  $post->id   }}" id="list-comment-box"></div>
+
                                                     <div class="post-comt-box">
-                                                        <form method="post" id="page_post_comments"
-                                                            enctype="multipart/form-data"
-                                                            action="http://localhost:8000/homepage">
-                                                            <input type="hidden" name="_token"
-                                                                value="92WrQjqjgA0AGo6hIGxUHMgYefdvea3LpVy30jaw">
-                                                        
+                                                        <form method="post" id="page_group_comments{{ $post->id }}" enctype="multipart/form-data" onsubmit="return false">
+                                                            @csrf
                                                                 <div class="row">
                                                                 <div class="col-sm-11">
                                                                     <textarea placeholder="Post your comment"
-                                                                        id="commen_1234" class="comment_1243"
-                                                                        name="comment" style="display: none;"
+                                                                        id="comment{{ $post->id }}" class="comment_1243"
+                                                                         name="comment"      
                                                                         aria-hidden="true"></textarea>
-                                                                    <div role="application"
-                                                                        class="tox tox-tinymce tox-tinymce--toolbar-bottom"
-                                                                        aria-disabled="false"
-                                                                        style="visibility: hidden; height: 100px;">
-                                                                        <div class="tox-editor-container">
-                                                                            <div class="tox-sidebar-wrap">
-                                                                                <div class="tox-edit-area"><iframe
-                                                                                        id="commen_1234_ifr"
-                                                                                        frameborder="0"
-                                                                                        allowtransparency="true"
-                                                                                        title="Rich Text Area. Press ALT-0 for help."
-                                                                                        class="tox-edit-area__iframe"></iframe>
-                                                                                </div>
-                                                                                <div role="complementary"
-                                                                                    class="tox-sidebar">
-                                                                                    <div data-alloy-tabstop="true"
-                                                                                        tabindex="-1"
-                                                                                        class="tox-sidebar__slider tox-sidebar--sliding-closed"
-                                                                                        style="width: 0px;">
-                                                                                        <div
-                                                                                            class="tox-sidebar__pane-container">
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div data-alloy-vertical-dir="bottomtotop" 
-                                                                                class="tox-editor-header">
-                                                                                <div role="group"
-                                                                                    class="tox-toolbar-overlord"
-                                                                                    aria-disabled="false">
-                                                                                    <div role="group"
-                                                                                        class="tox-toolbar__primary">
-                                                                                        <div title="" role="toolbar"
-                                                                                            data-alloy-tabstop="true"
-                                                                                            tabindex="-1"
-                                                                                            class="tox-toolbar__group">
-                                                                                            <button
-                                                                                                aria-label="Emoticons"
-                                                                                                title="Emoticons"
-                                                                                                type="button"
-                                                                                                tabindex="-1"
-                                                                                                class="tox-tbtn"
-                                                                                                aria-disabled="false"><span
-                                                                                                    class="tox-icon tox-tbtn__icon-wrap"><svg
-                                                                                                        width="24"
-                                                                                                        height="24"
-                                                                                                        focusable="false">
-                                                                                                        <path
-                                                                                                            d="M9 11c.6 0 1-.4 1-1s-.4-1-1-1a1 1 0 00-1 1c0 .6.4 1 1 1zm6 0c.6 0 1-.4 1-1s-.4-1-1-1a1 1 0 00-1 1c0 .6.4 1 1 1zm-3 5.5c2.1 0 4-1.5 4.4-3.5H7.6c.5 2 2.3 3.5 4.4 3.5zM12 4a8 8 0 100 16 8 8 0 000-16zm0 14.5a6.5 6.5 0 110-13 6.5 6.5 0 010 13z"
-                                                                                                            fill-rule="nonzero">
-                                                                                                        </path>
-                                                                                                    </svg></span></button>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="tox-anchorbar"></div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="tox-statusbar">
-                                                                            <div class="tox-statusbar__text-container">
-                                                                                <div role="navigation"
-                                                                                    data-alloy-tabstop="true"
-                                                                                    class="tox-statusbar__path"
-                                                                                    aria-disabled="false">
-                                                                                    <div role="button" data-index="0"
-                                                                                        tab-index="-1" aria-level="1"
-                                                                                        tabindex="-1"
-                                                                                        class="tox-statusbar__path-item"
-                                                                                        aria-disabled="false">p</div>
-                                                                                </div><span
-                                                                                    class="tox-statusbar__branding"><a
-                                                                                        href="https://www.tiny.cloud/?utm_campaign=editor_referral&amp;utm_medium=poweredby&amp;utm_source=tinymce&amp;utm_content=v5"
-                                                                                        rel="noopener" target="_blank"
-                                                                                        tabindex="-1"
-                                                                                        aria-label="Powered by Tiny">Powered
-                                                                                        by Tiny</a></span>
-                                                                            </div>
-                                                                            <div title="Resize"
-                                                                                data-alloy-tabstop="true" tabindex="-1"
-                                                                                class="tox-statusbar__resize-handle">
-                                                                                <svg width="10" height="10"
-                                                                                    focusable="false">
-                                                                                    <g fill-rule="nonzero">
-                                                                                        <path
-                                                                                            d="M8.1 1.1A.5.5 0 119 2l-7 7A.5.5 0 111 8l7-7zM8.1 5.1A.5.5 0 119 6l-3 3A.5.5 0 115 8l3-3z">
-                                                                                        </path>
-                                                                                    </g>
-                                                                                </svg></div>
-                                                                        </div>
-                                                                        <div aria-hidden="true" class="tox-throbber"
-                                                                            style="display: none;"></div>
-                                                                    </div>
+                                                                
                                                                 </div>
                                                                 <div class="col-sm-1">
-                                                                    <input type="hidden" name="post_id" id="post_id"
-                                                                        value="4">
-                                                                    <input type="hidden" name="user_id" id="user_id"
-                                                                        value="1">
-                                                                    <input type="hidden" name="status" id="status"
-                                                                        value="1">
-                                                                    <button type="submit" class="btn btn-primary"><i
+                                                                    <input type="hidden" name="group_id" id="group_id"
+                                                                        value="{{ $id }}">
+
+                                                                    <input type="hidden" name="post_id" class="post_id" id="post_id" value="{{ $post->id }}"/>    
+                                                                    <input type="hidden" name="type" id="type" value="group"/>
+                                                                    <input type="hidden" name="p_comment" class="p_comment" value =""/>
+
+                                                                    <button type="button" id="" data-id="{{ $post->id }}" name="page_group_comments" class="btn btn-primary page_group_comments"><i
                                                                             class="far fa-paper-plane"></i></button>
                                                                 </div>
                                                             </div>
-                                                        </form>
+                                                        </form>   
+                                                      
                                                     </div>
                                                 </ul>
 
@@ -524,7 +479,7 @@
                                                                                 <div class="form-group">
                                                                                     <label class="text-primary"
                                                                                         for="">Edit</label>
-                                                                                    <div id="post_contet">
+                                                                                    <div id="post_content">
                                                                                     </div>
                                                                                 </div>
                                                                             </div>

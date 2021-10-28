@@ -103,7 +103,7 @@ use App\Http\Controllers\groupcontrollers;
 
     /*   Search friend route controller */
     Route::post('getFriends','App\Http\Controllers\FriendsController@getFriends');
-    Route::post('create-group','App\Http\Controllers\PostController@save_group_controllers');
+    Route::post('save_create_group','App\Http\Controllers\PostController@save_group_controllers');
     Route::get('my_group/{id}','App\Http\Controllers\groupcontrollers@view_user_group');
     Route::post('edit_group_cover_pic','App\Http\Controllers\groupcontrollers@edit_group_cover_pic');
     Route::post('edit_group_profile_pic','App\Http\Controllers\groupcontrollers@edit_group_profile_pic');
@@ -120,7 +120,11 @@ use App\Http\Controllers\groupcontrollers;
     
     Route::get('my_group','App\Http\Controllers\groupcontrollers@groupcontrollers');
     Route::post('event_post','App\Http\Controllers\EventController@event_post');
-
+    Route::post('unlike_group','App\Http\Controllers\EventController@unlike_group');
+    Route::post('page_group_comments','App\Http\Controllers\groupcontrollers@page_group_comments');
+    Route::post('save_group_reply_comment','App\Http\Controllers\groupcontrollers@save_group_reply_comment');
+    Route::post('like_group_comment','App\Http\Controllers\groupcontrollers@like_group_comment');
+    Route::post('dislike_group_comment','App\Http\Controllers\groupcontrollers@dislike_group_comment');
 });
 
 
@@ -136,23 +140,15 @@ Route::get('/like_user_page',function(){
 
      return view('like_user_page');
 });
-
-
 Route::get('/404', function () {
     return view('404');
 });
 Route::get('/404-2', function () {
     return view('404-2');
 });
-
 Route::get('/create-page', function () {
     return view('create-page');
 });
-
-
-
-
-
 Route::get('/about-company', function () {
     return view('about-company');
 });

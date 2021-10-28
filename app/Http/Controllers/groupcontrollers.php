@@ -10,6 +10,10 @@ use App\Models\msu_group_post;
 use App\Models\inviteFriends;
 use App\Models\send_notification;
 use App\Models\like_user_page;
+use App\Models\msu_group_comments;
+use App\Models\msu_group_reply_comment;
+use App\Models\msu_like_group_comment;
+
 
 
 class groupcontrollers extends Controller
@@ -194,11 +198,14 @@ class groupcontrollers extends Controller
         return response()->json(array('status'=>1,'status_res'=>"Successfully Delete"));
             }
     public function like_group(Request $request){
-            $data  = $request->all();
-            
-            dd($data);
-            $user_id = Auth::id();
 
+           
+            $data  = $request->all();
+            $user_id = Auth::id();
+            $get_user_name = DB::table('users')
+            ->Select('name')
+            ->where(['id'=>$user_id])
+            ->first();
             $like_group = new like_user_page();
             $like_group->user_id = $user_id;
             $like_group->page_id = 0;
@@ -209,6 +216,91 @@ class groupcontrollers extends Controller
             $like_group->is_active = 1;
             $like_group->save();
             
+
+            $send_notificaiton = new send_notification();
+            $send_notificaiton->user_id = $user_id;
+            $send_notificaiton->friend_id = $data['friend_id'];
+            $send_notificaiton->post_id = 0;
+            $send_notificaiton->page_id = 0;
+            $send_notificaiton->group_id = $data['group_id'];
+            $send_notificaiton->message = $get_user_name->name." Accept your Group Invitation";
+            $send_notificaiton->type ='group_Request';
+            $send_notificaiton->is_seen = 1;
+            $send_notificaiton->save();
             return response()->json(array('status'=>1,'status_res'=>"Successfull!!"));
     }
+    public function unlike_group(Request $request){
+
+        $data  = $request->all();
+        $user_id = Auth::id();
+        $invite  = like_user_page::select('id')
+        ->where(['user_id'=>$user_id,'friend_id'=>  $data['friend_id'] ,'group_id'=> $data['group_id'],'type'=>'group'])
+        ->first();
+        like_user_page::find($invite->id)->delete(); //returns true/false
+
+        return response()->json(array('status'=>1,'status_res'=>"Successfull!!"));
+
+    }
+    public function page_group_comments(Request $request){
+
+          
+        $data = $request->all();
+        // dd($data);  
+        $user_id = Auth::id();        
+        $add_comment = new msu_group_comments();
+        $add_comment->user_id = $user_id;
+        $add_comment->post_id = $data['post_id'];
+        $add_comment->group_id = $data['group_id']; 
+        $add_comment->title = $data['p_comment'];
+        $add_comment->comment = $data['p_comment'];
+        $add_comment->likes = 1;
+        $add_comment->dislikes = 1;
+        $add_comment->status = 1;
+        $add_comment->save();
+
+        $get_user_name = DB::table('users')->select('name')->where(['id'=>$user_id])->first();
+        $comment  = array('user_id'=>$user_id,'comment'=>$data['p_comment'],'comment_id'=>$add_comment->id);
+        return response()->json(array('status'=>1,'status_res'=>'Successfully Saved','comments'=>$comment,'post_id'=>$data['post_id'],'name'=>$get_user_name->name));
+    }
+    public function save_group_reply_comment(Request $request){
+         $data = $request->all();
+         $user_id  = Auth::id();
+ 
+        $save_group_reply = new msu_group_reply_comment();
+        $save_group_reply->user_id  = $user_id;
+        $save_group_reply->comment_id  = $data['comment_id'];
+        $save_group_reply->post_id = $data['post_id1'];
+        $save_group_reply->comment = $data['r_comment'];
+        $save_group_reply->is_active = 1;
+        $save_group_reply->status = $data['status'];
+        $save_group_reply->save();
+
+        $get_user_name= DB::table('users')
+        ->select('name')
+        ->where(['id'=>$user_id])
+        ->first();
+
+        $array = array('name'=>$get_user_name->name,'comment_id'=>$data['comment_id'],'comment'=>$data['r_comment']);       
+        return response()->json(array('status'=>1 ,'status_res'=>"Successfull",'reply_comment'=>$array));
+   }
+   public function like_group_comment(Request $request){
+           $data= $request->all();
+
+           $user_id= Auth::id();
+           $like_comment = new msu_like_group_comment();
+           $like_comment->user_id = $user_id;
+           $like_comment->comment_id = $data['cmt_id'];
+           $like_comment->is_like = 1;
+           $like_comment->status = 1;
+           $like_comment->save();
+
+           return response()->json(array('status'=>1,'status_res'=>'successfull'));
+   }
+   public function dislike_group_comment(Request $request){
+         $data = $request->all();
+         $user_id =
+         msu_like_group_comment::where([''])->delete();
+ 
+
+   }
 }
