@@ -149,7 +149,7 @@
                                                             <label for="general">
                                                                 <div class="card-body text-center">
                                                                     <input type="radio" name="event_type"
-                                                                        class="card-radio radio" id="general" value="general" />
+                                                                        class="card-radio radio" id="general" value="general" style="float:left" />
                                                                     <h4><i class="ti-world" aria-hidden="true"></i>
                                                                     </h4>
                                                                     <h5 class="card-title">General</h5>
@@ -165,7 +165,7 @@
                                                             <label for="class">
                                                                 <div class="card-body text-center">
                                                                     <input type="radio" name="event_type" id="class"
-                                                                        class="card-radio radio" value="class"/>
+                                                                        class="card-radio radio" value="class" style="float:left"/>
                                                                     <h4><i class="fa fa-users" aria-hidden="true"></i>
                                                                     </h4>
                                                                     <h5 class="card-title">Class</h5>
