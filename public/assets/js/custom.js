@@ -368,3 +368,37 @@ $('.event_rec').click(function () {
     });
     // alert();
 });
+function editEventDescription() {
+    var post_id = $('#edit-post').attr('value');
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    //edit posts description
+    $.ajax({
+        type: 'POST',
+        url: '/get-events-post',
+        data: {
+            post_id: post_id
+        },
+        success: function (data) {
+            // console.log(data);
+            $('#editpost').modal('toggle');
+            $("[data-toggle='popover']").popover('hide');
+            $(".postoverlay").css({
+                "display": "block",
+                "opacity": "0.837666"
+            });
+            $(".central-meta.new-pst").css({
+                "z-index": "0"
+            });
+
+            $('#post_contet').html(
+                '<textarea class="form-control" name="content" id="content" rows="3" placeholder="Enter text here to edit">' + data.content + '</textarea><input type="hidden" name="post_id" value="' + data.post_id + '">')
+            $('.post-card-img').html('<img class="card-img-top" src="' + $('#url').val() + '/upload/images/events/' + data. image +'" alt="Card image cap">')
+        }
+    });
+    //emoticons listing
+
+}

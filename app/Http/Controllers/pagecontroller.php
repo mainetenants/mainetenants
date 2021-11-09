@@ -119,7 +119,6 @@ class pagecontroller extends Controller
         $page_post->user_id = $user ;
         $page_post->page_id = $data['post_id'];
         $page_post->status = 1;
-
         $page_post->save();
         
 

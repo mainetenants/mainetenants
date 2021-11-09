@@ -136,38 +136,38 @@ class EventController extends Controller
             ->leftJoin('users', 'msu_event_posts.user_id', '=', 'users.id')
             ->leftJoin('msu_isfriend', 'msu_isfriend.user_id', '=', 'msu_event_posts.user_id')
             ->select('users.name', 'users.created_at', 'msu_event_posts.*', 'msu_isfriend.user_id', 'msu_isfriend.is_follow', 'users.id as user_id', 'msu_event_posts.id as post_id')
-            ->where(['msu_isfriend.friends_id' => $id, 'msu_isfriend.is_follow' =>  '1'])
+            ->where(['msu_isfriend.friends_id' => Auth::id(), 'msu_isfriend.is_follow' =>  '1'])
             ->orderBy('created', 'DESC')
             ->get();
 		$comments = DB::table('msu_comments')
             ->leftJoin('msu_event_posts', 'msu_event_posts.id', '=', 'msu_comments.post_id')
             ->select('msu_comments.*', 'msu_event_posts.*')
-            ->where(['msu_comments.user_id' => $id])
+            ->where(['msu_comments.user_id' => Auth::id()])
             ->orderBy('msu_comments.created', 'DESC')
             ->get();
         $allusers = DB::table('users')
             ->select('*')
-            ->where('id', "!=", $id)
+            ->where('id', "!=", Auth::id())
             ->orderBy('name', 'ASC')
             ->get();
 
 
-        $id = Auth::id();
+        // $id = Auth::id();
         $allnotification = DB::table('msu_user_notification')
             ->select('*')
-            ->where(['friend_id' => $id])
+            ->where(['friend_id' => Auth::id()])
             ->orderBy('created', 'DESC')
             ->get();
         $count = DB::table('msu_user_notification')
             ->select('id')
-            ->where(['friend_id' => $id, 'is_seen' => 1])
+            ->where(['friend_id' => Auth::id(), 'is_seen' => 1])
             ->get();
 
 
 		$users1 = DB::table('msu_event_posts')
             ->leftJoin('users', 'msu_event_posts.user_id', '=', 'users.id')
             ->select('users.name', 'users.created_at', 'msu_event_posts.*', 'users.id as user_id', 'msu_event_posts.id as post_id')
-            ->where(['users.id' => $id])
+            ->where(['users.id' => Auth::id()])
             ->orderBy('created', 'DESC')
             ->get();
 
@@ -488,15 +488,20 @@ class EventController extends Controller
 	}
 	public function getEventPost(Request $request){
 		   
-		$editpost = DB::table('msu_community_activities')
+		$editpost = DB::table('msu_event_posts')
 		->select('*')
 		->where('id', $request->post_id)
 		->first();
 		return response()->json(array('success'=> true, 'content'=>$editpost->content, 'image'=>$editpost->images, 'post_id'=>$editpost->id), 200);
 	}
-
-
-
+	public function editEventPost(Request $request)
+    {	
+		// dd($request->all());
+		$abc = DB::table('msu_event_posts')
+		->where('id', $request->post_id)
+		->update(['content' => $request->content]);
+        return redirect('event-page/'.$request->page_id);
+    }
 
 }
 

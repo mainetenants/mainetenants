@@ -211,16 +211,13 @@ $get_page_notifications = get_page_notifications();
                               
                                  <div class="col-lg-12 mt-1" > 
                                     <div class=" card-header p-3 mb-0 ">
-                                        
                                         <h5 class="card-title mb-0"><i class="fa fa-thumbs-up mr-3"></i><span class="text-dark">Notifications</span></h5>
                                     </div>
                                     <div class="card mt-3" style="width: 100%;">
-                                        
-                                        <div class="card-body">
+                                         <div class="card-body">
                                              <div class="user_card">
                                               <div class="row" id="page_notfiction_response">
-
-                                               </div>
+                                              </div>
                                             </div>
                                         </div>
                                     </div>
