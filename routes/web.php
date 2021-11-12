@@ -10,6 +10,7 @@ use App\Http\Controllers\TimelineController;
 use App\Http\Controllers\ProfileUpdateController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\groupcontrollers;
+use App\Http\Controllers\create_poll;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -156,7 +157,17 @@ use App\Http\Controllers\groupcontrollers;
     Route::post('dislike_group_comment','App\Http\Controllers\groupcontrollers@dislike_group_comment');
     Route::get('/create-group','App\Http\Controllers\GroupController@index');
     Route::get('/group-list','App\Http\Controllers\GroupController@group_list');
-    
+    Route::post('delete_group_commment','App\Http\Controllers\groupcontrollers@delete_group_commment');
+    Route::post('like_group_reply_comment','App\Http\Controllers\groupcontrollers@like_group_reply_comment');
+    Route::post('dislike_group_reply_comment','App\Http\Controllers\groupcontrollers@dislike_group_reply_comment');
+    Route::post('delete_group_reply_comment','App\Http\Controllers\groupcontrollers@delete_group_reply_comment');
+    Route::post('edit_reply_group_comment','App\Http\Controllers\groupcontrollers@edit_reply_group_comment');
+    Route::post('edit_group_comment','App\Http\Controllers\groupcontrollers@edit_group_comment');
+    Route::post('create_poll','App\Http\Controllers\create_poll@create_poll');
+    Route::post('poll_result','App\Http\Controllers\create_poll@poll_result');
+    Route::get('manage-poll','App\Http\Controllers\create_poll@manage_poll');
+    Route::post('delete_created_poll','App\Http\Controllers\Create_poll@delete_created_poll');
+
 });
 
 

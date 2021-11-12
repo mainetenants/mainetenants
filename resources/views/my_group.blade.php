@@ -385,37 +385,50 @@
                                                     
 
                                                     @php $get_total_group_reply_cmt = get_total_group_reply_cmt($comment->id); 
-                                                         $get_comment_like_comment = get_group_like_comment($comment->id);
-                                                    @endphp
+                                                         $get_comment_like_comment1 = get_group_like_comment($comment->id);
+                                                         $get_comment_like_comment =!empty($get_comment_like_comment1)? $get_comment_like_comment1->is_like:0;
+                                                        
+                                                 @endphp
 
                                                     <li>
                                                       <div class="comet-avatar">
                                                           <img src="http://localhost:8000/assets/images/resources/comet-1.jpg" alt="">
                                                       </div>
-                                                      <div class="we-comment">
+                                                      <div class="we-comment" id="outer_comment{{ $comment->id }}">
                                                         <div class="coment-head">
                                                           <h5><a href="time-line" title="">{{ get_user_nane1($comment->user_id) }}</a></h5>
-                                                          <a class="like" id="like{{ $comment->id }}" onclick="like_group_cmt({{ $comment->id }})" onsubmit="return false" href="#"><i class="fa fa-thumbs-up  icon-color" aria-hidden="true"></i></a>                                     
-                                                          <a class="dislike" id="dislike{{ $comment->id }}" onclick="dislike_group_cmt({{ $comment->id }})" onsubmit="return false"  href="#"><i class="fa fa-thumbs-up  icon-color text-primary" aria-hidden="true"></i></a>                                     
-                                                          <a class="we-reply-group" href="#" onclick="return false" data-id="{{ $comment->id }}" post-id="{{ $post->id }}" id="we-reply" title="Reply"><i class="fa fa-reply"></i></a>
-                                                          <a class="delete" href="#" onclick="delete_post_comment(5)"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a>     
+                                                          <a  id="like{{ $comment->id }}"  href="#outer_comment{{ $comment->id }}"onsubmit="return false" @if($get_comment_like_comment == 1) class="is_seen" @endif  onclick="like_group_cmt({{ $comment->id }})" onsubmit="return false" ><i class="fa fa-thumbs-up  icon-color" aria-hidden="true"></i></a>                                     
+                                                          <a  id="dislike{{ $comment->id }}" onsubmit="return false" @if($get_comment_like_comment == 0) class="is_seen" @endif onclick="dislike_group_cmt({{ $comment->id }})" onsubmit="return false"  href="#outer_comment{{ $comment->id }}"><i class="fa fa-thumbs-up  icon-color text-primary" aria-hidden="true"></i></a>                                     
+                                                          <a class="we-reply-group" href="#outer_comment{{ $comment->id }}" onclick="return false" data-id="{{ $comment->id }}" post-id="{{ $post->id }}" id="we-reply" title="Reply"><i class="fa fa-reply"></i></a>
+                                                          <a class="delete" href="#outer_comment{{ $comment->id }}" onclick="delete_group_comment({{ $comment->id }})"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a>     
+                                                          <a class="edit" href="#outer_comment{{ $comment->id }}" onclick="edit_group_comment({{ $comment->id }})"><i class="fas fa-edit"></i></a>
                                                         </div>
                                                         @php echo $comment->comment  @endphp
+                                                        <input type="hidden" id="outer_comment_text{{ $comment->id }}" name="outer_comment_text" value="<?php echo  $comment->comment ?>"/>
                                                       </div>
-                                                      <ul>
+                                                      <ul class="list_group_reply_comment{{ $comment->id }}">
                                                         @foreach($get_total_group_reply_cmt as $inner_comment)
+                                                              @php
+                                                                 $get_group_like_reply_comment1 = get_group_like_reply_comment($inner_comment->id);
+                                                                 $get_group_like_reply_comment = isset($get_group_like_reply_comment1)? $get_group_like_reply_comment1->is_like : 0;
+                                                             @endphp
                                                         <li>
                                                             <div class="comet-avatar">
                                                                 <img src="http://localhost:8000/assets/images/resources/comet-1.jpg" alt="">
                                                             </div>
-                                                            <div class="we-comment">
-                                                              <div class="coment-head">
-                                                                <h5><a href="time-line" title="">{{ get_user_nane1($inner_comment->user_id) }}</a></h5>
-                                                                <a class="like" onclick="like_post_cmt(5,2)" href="#"><i class="fa fa-thumbs-up  icon-color" aria-hidden="true"></i></a>                                     
-                                                                <a class="we-reply-group" href="#" onclick="return false" data-id="{{ $comment->id }}" post-id="{{ $post->id }}" id="we-reply" title="Reply"><i class="fa fa-reply"></i></a>
-                                                                <a class="delete" href="#" onclick="delete_post_comment(5)"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a>     
-                                                              </div>
-                                                              @php echo $inner_comment->comment  @endphp
+                                                            <div class="we-comment" id="we-comment{{ $inner_comment->id }}">
+                                                                <div class="coment-head">
+                                                                    <h5><a href="time-line" title="">{{ get_user_nane1($inner_comment->user_id) }}</a></h5>
+                                                                    <a id="like_reply{{ $inner_comment->id  }}" @if($get_group_like_reply_comment == 1) class="is_seen" @endif onclick="like_group_reply_cmt({{ $inner_comment->id }})" href="#we-comment{{ $inner_comment->id }}"><i class="fa fa-thumbs-up  icon-color" aria-hidden="true"></i></a>                                     
+                                                                    <a id="dislike_reply{{ $inner_comment->id  }}" @if($get_group_like_reply_comment == 0) class="is_seen" @endif onclick="dislike_group_reply_cmt({{ $inner_comment->id }})" href="#we-comment{{ $inner_comment->id }}"><i class="fa fa-thumbs-up  icon-color text-primary" aria-hidden="true"></i></a>                                     
+                                                                
+                                                                    <a class="we-reply-group" href="#we-comment{{ $inner_comment->id }}" onclick="return false" data-id="{{ $comment->id }}" post-id="{{ $post->id }}" id="we-reply" title="Reply"><i class="fa fa-reply"></i></a>
+                                                                    <a class="delete" href="#we-comment{{ $inner_comment->id }}" onclick="delete_group_reply_comment({{ $inner_comment->id }})"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a>     
+                                                                    <a class="edit" href="#we-comment{{ $inner_comment->id }}" onclick="edit_group_reply_comment({{ $inner_comment->id }})"><i class="fas fa-edit"></i></a>     
+                                                                </div>
+                                                                @php echo $inner_comment->comment  @endphp
+                                                                <input type="hidden" name="inner_comment_text" id="inner_comment_text{{ $inner_comment->id }}" value="{{  $inner_comment->comment  }}"/>
+                                                                <input type="hidden" name="inner_comment_id" id="inner_comment_id{{ $inner_comment->id }}" value ="{{ $inner_comment->id }}" />
                                                             </div>
                                                         </li>
                                                         @endforeach
@@ -437,13 +450,10 @@
                                                                 
                                                                 </div>
                                                                 <div class="col-sm-1">
-                                                                    <input type="hidden" name="group_id" id="group_id"
-                                                                        value="{{ $id }}">
-
+                                                                    <input type="hidden" name="group_id" id="group_id" value="{{ $id }}">
                                                                     <input type="hidden" name="post_id" class="post_id" id="post_id" value="{{ $post->id }}"/>    
                                                                     <input type="hidden" name="type" id="type" value="group"/>
                                                                     <input type="hidden" name="p_comment" class="p_comment" value =""/>
-
                                                                     <button type="button" id="" data-id="{{ $post->id }}" name="page_group_comments" class="btn btn-primary page_group_comments"><i
                                                                             class="far fa-paper-plane"></i></button>
                                                                 </div>

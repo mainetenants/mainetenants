@@ -21,6 +21,11 @@
                         <a href="../create-group/" class="text-secondary" title="">My Groups</a>
                     </li>
                     <li>
+                        <i class="fas fa-poll" aria-hidden="true"></i>
+                        <a href="../manage-poll/" class="text-secondary" title="">Manage Polls</a>
+                    </li>
+                    
+                    <li>
                        <i class="ti-calendar text-secondary"></i>
                         <a href="../events" class="text-secondary" title="">Events</a>
                     </li>

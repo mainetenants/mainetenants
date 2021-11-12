@@ -13,6 +13,7 @@ use App\Models\like_user_page;
 use App\Models\msu_group_comments;
 use App\Models\msu_group_reply_comment;
 use App\Models\msu_like_group_comment;
+use App\Models\msu_group_like_reply_comment;
 
 
 
@@ -152,8 +153,7 @@ class groupcontrollers extends Controller
     }
 
     public function invite_friend_group(Request $request){
-        
-         $user = Auth::id();
+          $user = Auth::id();
           $get_user_name = DB::table('users')
           ->Select('name')
           ->where(['id'=>$user])
@@ -285,7 +285,6 @@ class groupcontrollers extends Controller
    }
    public function like_group_comment(Request $request){
            $data= $request->all();
-
            $user_id= Auth::id();
            $like_comment = new msu_like_group_comment();
            $like_comment->user_id = $user_id;
@@ -293,14 +292,64 @@ class groupcontrollers extends Controller
            $like_comment->is_like = 1;
            $like_comment->status = 1;
            $like_comment->save();
-
-           return response()->json(array('status'=>1,'status_res'=>'successfull'));
+         return response()->json(array('status'=>1,'status_res'=>'successfull'));
    }
    public function dislike_group_comment(Request $request){
          $data = $request->all();
-         $user_id =
-         msu_like_group_comment::where([''])->delete();
- 
+         msu_like_group_comment::where(['id'=>$data['cmt_id']])->delete();
+         return response()->json(array('status'=>1,'status_res'=>'successfull!!'));
+   }
+   public function delete_group_commment(Request $request){
+         $data = $request->all();
+         msu_group_comments::where(['id'=>$data['cmt_id']])->delete();
+         return response()->json(array('status'=>1,'status_res'=>'Successfully Deleted!!'));
+   }
+   public function like_group_reply_comment(Request $request){
+       $data = $request->all();
+       $user_id = Auth::id();
+       $insert= new msu_group_like_reply_comment();
+       $insert->user_id = $user_id;
+       $insert->comment_id = $data['cmt_id'];
+       $insert->is_like  = 1;
+       $insert->status = 1;
+       $insert->save();
+
+       return response()->json(array('status'=>1,'status_res'=>'Successgfull'));
+
+
+   }
+   function dislike_group_reply_comment(Request $request){
+        $data = $request->all();
+        msu_group_like_reply_comment::where(['id'=>$data['cmt_id']])->delete();
+        return response()->json(array('status'=>1,'status_res'=>'Successfull'));
+   }
+   function delete_group_reply_comment(Request $request){
+             $data = $request->all();
+             msu_group_reply_comment::where(['id'=>$data['cmt_id']])->delete();
+             return response()->json(array(['status'=>1,'status_res'=>'Successfull!!']));
+   }
+   function edit_reply_group_comment(Request $request){
+          $data = $request->all();
+          msu_group_reply_comment::where(['id'=>$data['edit_inner_comment_id']])
+          ->update(['comment'=>$data['edited_comment_text']]);  
+        
+         // msu_group_reply_comment::where(['id'])
+         $select = msu_group_reply_comment::select('*')->where(['id'=>$data['edit_inner_comment_id']])->first();
+         $user = DB::table('users')
+         ->select('name')
+         ->where(['id'=>$select->user_id])
+         ->first();
+         return response()->json(array('status'=>1,'status_res'=>'successfully updated','comment_details'=>$select,'user_name'=>$user->name));  
+   }
+   public function edit_group_comment(Request $request){
+             $data = $request->all();
+             msu_group_comments::where(['id'=>$data['edit_inner_comment_id']])->update(['comment'=>$data['edited_comment_text']]);
+             $select = msu_group_comments::select('*')->where(['id'=>$data['edit_inner_comment_id']])->first();
+             $user = DB::table('users')
+            ->select('name')
+            ->where(['id'=>$select->user_id])
+            ->first();
+      return response()->json(array('status'=>1,'status_res'=>'successfully updated','comment_details'=>$select,'user_name'=>$user->name));  
 
    }
 }

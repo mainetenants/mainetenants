@@ -13,11 +13,13 @@ class InviteFriendController extends Controller
 {
     public function invite_friend(Request $request){
         $data  = $request->all();
+
         $user_id = Auth::id();
         $insert = new inviteFriends();
         $insert->user_id = $user_id;
         $insert->friend_id = $data['friend_id'];
         $insert->post_id = (isset($data['post_id']))?($data['post_id']):(0);
+        $insert->group_id= (isset($data['group_id']))?($data['group_id']):(0);
         $insert->event_id = (isset($data['event_id']))?($data['event_id']):(0);
         $insert->status = 1;
         $insert->invitation_status = 0;

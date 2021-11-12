@@ -1,5 +1,7 @@
 <?php
 
+use PhpParser\Builder\Function_;
+
 function friend_recent_notifications($id){
 
 
@@ -340,7 +342,7 @@ function get_page_invitation_like(){
         $get_page_invitation =DB::table('msu_invite_friends')
         ->leftJoin('users','msu_invite_friends.friend_id','=','users.id')
         ->select('users.*','msu_invite_friends.*')
-        ->where(['user_id'=>$user_id])
+        ->where(['user_id'=>$user_id ,'type'=>'page'])
         ->get();
 
 
@@ -495,11 +497,76 @@ function get_total_group_reply_cmt($comment)
 function get_group_like_comment($id){
     $user_id = Auth::id();  
     $get_group_like_comment = DB::table('msu_like_group_comment')
-    ->select('id')
+    ->select('is_like')
     ->where(['comment_id'=>$id,'user_id'=>$user_id,'is_like'=>1])
+    ->first();
+
+     return $get_group_like_comment;
+}
+function get_group_like_reply_comment($id){
+    $user_id = Auth::id();  
+    $get_group_like_comment = DB::table('msu_like_group_reply_comment')
+    ->select('is_like')
+    ->where(['comment_id'=>$id,'user_id'=>$user_id,'is_like'=>1])
+    ->first();
+
+     return $get_group_like_comment;
+}
+function get_group_invitation_list(){
+    $user_id = Auth::id();
+    $get_page_invitation =DB::table('msu_invite_friends')
+    ->leftJoin('users','msu_invite_friends.friend_id','=','users.id')
+    ->select('users.*','msu_invite_friends.*')
+    ->where(['user_id'=>$user_id ,'type'=>'group'])
     ->get();
 
-    dd($get_group_like_comment);
-    return "";
+     return $get_page_invitation;
+}
+function get_group_invitation_like(){
+    $user_id = Auth::id();
+    $get_page_invitation =DB::table('msu_invite_friends')
+    ->leftJoin('users','msu_invite_friends.friend_id','=','users.id')
+    ->select('users.*','msu_invite_friends.*')
+    ->where(['user_id'=>$user_id ,'type'=>'group','invitation_status'=>2])
+    ->get();
+
+    return $get_page_invitation;
 }
 
+function get_poll_created($id){
+      $get_poll_created = DB::table('msu_create_poll')
+      ->leftJoin('users','msu_create_poll.user_id','=','users.id')
+      ->where(['msu_create_poll.id'=>$id])
+      ->select('*')
+      ->first();
+         return $get_poll_created;
+}
+
+function get_poll_result($id){
+    $user_id  = Auth::id();
+   
+    $get_poll_result = DB::table('msu_poll_result')
+       ->where(['poll_id'=>$id,'user_id'=>$user_id])
+       ->select('*')
+       ->first();
+  
+    return $get_poll_result;
+} 
+
+function get_total_poll_count($poll,$poll_id){
+
+    $get_poll_count = DB::table('msu_poll_result')
+    ->where(['value'=>$poll,'poll_id'=>$poll_id])
+    ->select('id')
+    ->get();
+     
+    return count($get_poll_count);
+}
+
+function get_total_poll($poll_id){
+    $get_poll_count = DB::table('msu_poll_result')
+    ->where('poll_id',$poll_id)
+    ->select('id')
+    ->get();
+     return count($get_poll_count);
+}

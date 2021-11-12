@@ -15,6 +15,7 @@ class Activities extends Migration
     {    Schema::dropIfExists('msu_community_activities');
         Schema::create('msu_community_activities', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('poll_id')->nullable();
             $table->string('title')->nullable();
             $table->text('content')->nullable();
             $table->text('images')->nullable();

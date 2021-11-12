@@ -1,4 +1,56 @@
 <!-- Modal -->
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add Poll</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form action="" method="post" id="create_poll" name="create_poll"  onsubmit="return false" >
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Title</label>
+                    <input type="text" class="form-control  border bordered-secondary" id="exampleInputEmail0" name="poll_title" aria-describedby="emailHelp" placeholder="title" required="required">
+                </div>
+                <div class="form-group poll_option_replace">
+                    <label for="exampleInputPassword1">Poll Option</label>
+                    <div class="row p-3"><div class="col-sm-10 p-0"><input type="text" class="form-control border bordered-secondary p-3" id="exampleInputEmail1" name="add_poll[]" aria-describedby="emailHelp" required="required" placeholder="Add poll" value=""></div><div class="col-sm-2 p-0"><i class="fa fa-times p-2  btn btn-primary remove_btn" aria-hidden="true"></i></div></div>
+                    <div class="row p-3"><div class="col-sm-10 p-0"><input type="text" class="form-control border bordered-secondary p-3" id="exampleInputEmail1" name="add_poll[]" aria-describedby="emailHelp" required="required"  placeholder="Add poll" value=""></div><div class="col-sm-2 p-0"><i class="fa fa-times p-2  btn btn-primary remove_btn" aria-hidden="true"></i></div></div>
+                    <div id="add_polls"></div>
+                    <div class="col-sm-12 text-right"><button class="btn btn-primary col-sm-1" id="add_poll_option"><i class="fa fa-plus" aria-hidden="true"></i></button></div> 
+                </div>
+                <div class="form-group ">
+                    <label>Poll Category</label>
+                    <input type="text" class="form-control  border bordered-secondary" id="exampleInputEmail0" name="poll_category" aria-describedby="emailHelp" placeholder="title" required="required">
+            
+                </div>
+                <div class="row">
+                <div class="form-group col-sm-12 poll_option_expiry">
+                    <label for="exampleInputEmail1">Expiry Date & Time</label>
+                    <input type="datetime-local" class="form-control col-sm-12 border bordered-secondary" id="exampleInputEmail0" name="expiry_time" aria-describedby="emailHelp" placeholder="title" required="required" value="">
+                </div>
+
+                </div>
+               <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                    <input type="hidden" name="expiry_time_id" id="expiry_time_id" value=""/>
+                    
+                </div>
+            </div>
+        </form>
+        </div>
+    </div>
+
+<!-- End modal -->
+
+
+
+
+<!-- Modal -->
 <div class="modal fade" id="deletepost" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -37,20 +89,126 @@
 
 <script>
 
-
-    //comments on post ajax
-    $('#comment').keypress(function (event) {
-
-        if (event.keyCode == 13 && event.shiftKey) {
-
-            var content = this.value;
-            var caret = getCaret(this);
-            this.value = content.substring(0, caret) + "\n" + content.substring(carent, content.length - 1);
-            event.stopPropagation();
-        } else if (event.keyCode == 13) {
-            $('#comment-form').submit();
-        }
+    $(document).on('click','#add_poll_option',function(){
+        $('#add_polls').append('<div class="row p-3"><div class="col-sm-10 p-0"><input type="text" class="form-control border bordered-secondary p-3" id="exampleInputEmail1" name="add_poll[]" aria-describedby="emailHelp" placeholder="Add poll"></div><div class="col-sm-2 p-0"><i class="fa fa-times p-2  btn btn-primary remove_btn" aria-hidden="true"></i></div></div>');
     });
+
+    $(document).on('click','.remove_btn',function(){
+        $(this).parent().parent('div').remove();
+    });
+
+    $('#create_poll').submit(function(){
+         
+         var data=$('#create_poll').serialize();
+
+         $.ajax({
+            type:'post',
+            url :'{{ url("create_poll") }}',
+            data :data,
+            success: function(data){
+                if(data['status'] == 1){
+
+                    $('#exampleModal').hide();
+                }      
+            },
+         });
+    });
+    $('input[type=radio][id=exampleInputEmail1]').on('change', function() {
+           var value = $(this).val();
+           var poll_id = $('#poll_id').val();
+           var post_id = $('#poll_post_id').val();
+           var checked_poll_id = $('#checked_poll_id').val();
+                 
+           $.ajax({
+              type:'post',
+              url :'{{ url("poll_result") }}',
+              data:{
+                  value:value,
+                  poll_id:poll_id,
+                  post_id:post_id,
+                  checked_poll_id:checked_poll_id
+              },
+              success:function(data){
+                  if(result['data'] == 1){
+
+                      console.log(result['data']);
+                  }
+              } 
+           });
+        });
+
+    $('input[type=radio][id=exampleInputEmail2]').on('change', function() {
+        
+           var value = $(this).val();
+           var poll_id = $('#poll_id1').val();
+           var post_id = $('#poll_post_id1').val();
+           var checked_poll_id = $('#checked_poll_id1').val();
+           alert(checked_poll_id);
+
+           $.ajax({
+              type:'post',
+              url :'{{ url("poll_result") }}',
+              data:{
+                  value:value,
+                  poll_id:poll_id,
+                  post_id:post_id,
+                  checked_poll_id:checked_poll_id
+              },
+              success:function(data){
+                  if(data['status_res'] == 1){
+
+                      console.log(result['data']);
+                  }
+              } 
+           });
+        });
+        
+        function edit_poll(id,poll_title,user_id,poll_category,poll0,expiry_time){
+            
+            var poll_result = poll0.split(',');
+            var i;
+            
+            $('input[type=text][name=poll_title]').val(poll_title);
+            $('input[type=text][name=poll_category').val(poll_category);
+            var value ='<label for="exampleInputPassword1">Poll Option</label><div class="row p-3">';
+            for(i=0;i< poll_result.length;i++){
+                value += '<div class="col-sm-10 p-3"><input type="text" class="form-control border bordered-secondary p-3" id="exampleInputEmail1" name="add_poll[]" aria-describedby="emailHelp" required="required"  placeholder="Add poll" value="'+poll_result[i]+'"></div><div class="col-sm-2 p-3"><i class="fa fa-times p-2  btn btn-primary remove_btn" aria-hidden="true"></i></div>';
+             }
+             value +='</div><div id="add_polls"></div><div class="col-sm-12 text-right"><button class="btn btn-primary col-sm-1" id="add_poll_option"><i class="fa fa-plus" aria-hidden="true"></i></button></div>';
+ 
+             var value1 ='<label for="exampleInputEmail1">Expiry Date & Time</label><input type="datetime-local" class="form-control col-sm-12 border bordered-secondary" id="exampleInputEmail1" name="expiry_time" aria-describedby="emailHelp" placeholder="title" required="required" value="'+expiry_time+'">';
+             $('.poll_option_replace').html(value);
+            $('.poll_option_expiry').html(value1);
+            $('#expiry_time_id').val(id);
+            $('#exampleModal').modal('toggle');    
+        }
+        
+        function delete_poll(id){
+            $.ajax({
+               type:'post',
+               url:'{{ url("delete_created_poll") }}',
+               data:{
+                   id:id,
+               },
+               success:function(data){
+                    console.log(data);
+ 
+               },
+            });
+
+        }
+    //comments on post ajax
+    // $('#comment').keypress(function (event) {
+
+    //     if (event.keyCode == 13 && event.shiftKey) {
+    //         var content = this.value;
+    //         var caret = getCaret(this);
+    //         this.value = content.substring(0, caret) + "\n" + content.substring(carent, content.length - 1);
+    //         event.stopPropagation();
+    //     } else if (event.keyCode == 13) {
+    //         $('#comment-form').submit();
+    //     }
+    // });
 
     function getCaret(el) {
 
@@ -1058,9 +1216,8 @@
 
              
 $(document).on("click", '.replay_group_inner_comments', function() { 
-    //alert(tinymce.get("page_group_reply_comment"+$('.page_group_reply_comment').attr('data-id')).getContent());
-
-    $('.r_comment').val($("#page_group_reply_comment"+$('.page_group_reply_comment').attr('data-id')).val());
+ 
+    $('.r_comment').val(tinymce.get("page_group_reply_comment"+$('.page_group_reply_comment').attr('data-id')).getContent());
     var data = $('#post_replay_inner_group_comments'+$('.page_group_reply_comment').attr('data-id')).serialize();
     console.log(data);
     $.ajax({
@@ -1084,9 +1241,10 @@ $(document).on("click", '.replay_group_inner_comments', function() {
                             data_cmt['comment']+
                             '</div>'+
                         '</div></li>';
+                        
                         tinyMCE.activeEditor.setContent('');
                         // tinymce.get('#comment'+$('.page_group_comments').attr('data-id')).setContent("");
-                        $(".list_group_reply_comment"+data_cmt['comment_id']+"").append(comment);
+                        $(".list_group_reply_comment"+data_cmt['comment_id']+"").prepend(comment);
             } 
         }
     }); 
@@ -1100,9 +1258,10 @@ function like_group_cmt(cmt_id){
              cmt_id:cmt_id,
           },
          success:function(data){
-            if(data['status']){
-                $('#like'+cmt_id+'').hide();
-                $('dislike'+cmt_id+'').show();
+            console.log(data);
+            if(data['status'] == 1){
+                $('#like'+cmt_id+'').css({'display':'none'});
+                $('#dislike'+cmt_id+'').css({'display':'inline-block'});
 
             } 
          }, 
@@ -1119,9 +1278,9 @@ function dislike_group_cmt(cmt_id){
              cmt_id:cmt_id,
           },
          success:function(data){
-            if(data['status']){
-                $('#like'+cmt_id+'').show();
-                $('dislike'+cmt_id+'').hide();
+            if(data['status'] == 1){
+                $('#like'+cmt_id+'').css({'display':'inline-block'});
+                $('#dislike'+cmt_id+'').css({'display':'none'});
 
             } 
          }, 
@@ -1129,8 +1288,134 @@ function dislike_group_cmt(cmt_id){
       })
 
 }
+function  delete_group_comment(id){
+      $.ajax({
+         type:'post',
+         url :'{{ url("delete_group_commment") }}',
+         data:{
+             cmt_id:id
+         },
+         success:function(data){
+             if(data['status']){
+                 console.log(data['status_res']);
+                 $(".we-comet").reload(location.href + ".we-comet");
+             }
+         },
+      });
+}
 
-dislike_group_cmt
+function like_group_reply_cmt(cmt_id){
+
+    $.ajax({
+       type:'POST',
+       url:'{{url("like_group_reply_comment")}}',
+       data:{
+           cmt_id:cmt_id,
+        },
+       success:function(data){
+          console.log(data);
+          if(data['status'] == 1){
+              $('#like_reply'+cmt_id+'').css({'display':'none'});
+              $('#dislike_reply'+cmt_id+'').css({'display':'inline-block'});
+
+          } 
+       }, 
+
+    })
+
+}
+function dislike_group_reply_cmt(cmt_id){
+    $.ajax({
+       type:'POST',
+       url:'{{url("dislike_group_reply_comment")}}',
+       data:{
+           cmt_id:cmt_id,
+        },
+       success:function(data){
+          console.log(data);
+          if(data['status'] == 1){
+              $('#like_reply'+cmt_id+'').css({'display':'inline-block'});
+              $('#dislike_reply'+cmt_id+'').css({'display':'none'});
+          }
+          },
+    });
+}
+function delete_group_reply_comment(cmt_id){
+     $.ajax({
+        type:'POST',
+        url:'{{ url("delete_group_reply_comment")}}',
+        data:{
+            cmt_id:cmt_id
+        },
+        success:function(data){
+          if(data['status'] == 1){
+               location.reload();
+           }
+        },
+      });
+}
+function edit_group_reply_comment(cmt_id){
+           var inner_comment_text = $('#inner_comment_text'+cmt_id+'').val();
+           var inner_comment_id = $('#inner_comment_id'+cmt_id+'').val(); 
+           var content ='<form method="post" class="edit_reply_group_comment" id="edit_reply_group_comment'+cmt_id+'" enctype="multipart/form-data" onsubmit="return false">@csrf<div class="row"><div class="col-sm-10"><textarea placeholder="Post your comment" id="comment'+cmt_id+'" class="comment_1243" name="comment" aria-hidden="true">'+inner_comment_text+'</textarea></div><div class="col-sm-2"><button type="button"  id="edit_reply_comment" data-id="'+cmt_id+'" name="page_group_comments" class="btn btn-primary edit_reply_comment"><i class="far fa-paper-plane"></i></button><input type="hidden" name="edit_inner_comment_id" id="edit_inner_comment_id" value="'+inner_comment_id+'"><input type="hidden" name="edited_comment_text" class="edited_comment_text" value =""/></div></div></form>';
+           var value ='<script>tinymce.init({selector:".comment_1243",plugins: "emoticons",height: 100,toolbar: "emoticons",toolbar_location: "bottom",menubar: false});'; 
+           $('#we-comment'+cmt_id+'').html(content + value);
+}
+function  edit_group_comment(cmt_id){
+    var inner_comment_text = $('#inner_comment_text'+cmt_id+'').val();
+           var inner_comment_id = $('#inner_comment_id'+cmt_id+'').val(); 
+           var content ='<form method="post" class="edit_reply_group_comment" id="edit_reply_group_comment'+cmt_id+'" enctype="multipart/form-data" onsubmit="return false">@csrf<div class="row"><div class="col-sm-10"><textarea placeholder="Post your comment" id="comment'+cmt_id+'" class="comment_1243" name="comment" aria-hidden="true">'+inner_comment_text+'</textarea></div><div class="col-sm-2"><button type="button"  id="edit_reply_comment" data-id="'+cmt_id+'" name="page_group_comments" class="btn btn-primary edit_reply_comment"><i class="far fa-paper-plane"></i></button><input type="hidden" name="edit_inner_comment_id" id="edit_inner_comment_id" value="'+inner_comment_id+'"><input type="hidden" name="edited_comment_text" class="edited_comment_text" value =""/></div></div></form>';
+           var value ='<script>tinymce.init({selector:".comment_1243",plugins: "emoticons",height: 100,toolbar: "emoticons",toolbar_location: "bottom",menubar: false});'; 
+           $('#we-comment'+cmt_id+'').html(content + value);
+
+}
+// function edit_group_comment(cmt_id){
+//       var outer_comment_text = $('#outer_comment_text'+cmt_id+'').val();
+//       var content ='<form method="post" class="edit_group_comment" id="edit_group_comment'+cmt_id+'" enctype="multipart/form-data" onsubmit="return false">@csrf<div class="row"><div class="col-sm-10"><textarea placeholder="Post your comment" id="group_comment'+cmt_id+'" class="comment_1243" name="comment" aria-hidden="true">'+outer_comment_text+'</textarea></div><div class="col-sm-2"><button type="button"  id="edit_reply_comment" data-id="'+cmt_id+'" name="page_group_comments" class="btn btn-primary edit_comment"><i class="far fa-paper-plane"></i></button><input type="hidden" name="edit_inner_comment_id" id="edit_inner_comment_id" value="'+cmt_id+'"><input type="hidden" name="edited_comment_text" class="edited_comment_text" value =""/></div></div></form>';
+//       var value = '<script>tinymce.init({selector:".comment_1243",plugins: "emoticons",height: 100,toolbar: "emoticons",toolbar_location: "bottom",menubar: false});'; 
+//       $('#outer_comment'+cmt_id+'').html(content + value );  
+
+// }
+$(document).on('click','.edit_comment',function (event) {
+    event.preventDefault();
+ 
+    $('.edited_comment_text').val(tinymce.get("group_comment"+$('.edit_comment').attr('data-id')).getContent());
+    var data= $('#edit_group_comment'+$('.edit_comment').attr('data-id')).serialize();
+    $.ajax({
+        type:'post',
+        url:'{{ url("edit_group_comment")}}',
+        dataType:'json',
+        data:data,
+        success:function(data){
+            console.log(data);
+            var data_cmt = data['comment_details'];
+          var comment_id = data_cmt['id'];
+          var content ='<div class="coment-head"><h5><a href="time-line" title="">'+data['user_name']+'</a></h5><a id="like_reply'+comment_id+'"  onclick="like_group_reply_cmt('+comment_id+')" href="#"><i class="fa fa-thumbs-up  icon-color" aria-hidden="true"></i></a><a id="dislike_reply'+comment_id+'"  onclick="dislike_group_reply_cmt('+comment_id+')" href="#"><i class="fa fa-thumbs-up  icon-color text-primary" aria-hidden="true"></i></a><a class="delete" href="#" onclick="delete_group_reply_comment('+comment_id+')"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a><a class="edit" href="#" onclick="edit_group_reply_comment('+comment_id+')"><i class="fas fa-edit"></i></a></div> <input type="hidden" name="inner_comment_text" id="inner_comment_text'+comment_id+'" value="'+comment_id+'"/><input type="hidden" name="inner_comment_id" id="inner_comment_id'+comment_id+'" value ="'+comment_id+'" /><br><p>'+data_cmt['comment']+'</p>';
+          $('#outer_comment'+comment_id+'').html(content);
+        }
+
+    })
+
+  });
+
+$(document).on('click','.edit_reply_comment',function(){
+
+    $('.edited_comment_text').val(tinymce.get("comment"+$('.edit_reply_comment').attr('data-id')).getContent());
+    var data = $('#edit_reply_group_comment'+$('.edit_reply_comment').attr('data-id')).serialize();
+    $.ajax({
+       type:'POST',
+       url :'{{ url("edit_reply_group_comment")}}',
+       dataType:'json',
+       data:data,
+       success:function(data){
+          console.log(data);
+          var data_cmt = data['comment_details'];
+          var comment_id = data_cmt['id'];
+          var content ='<div class="coment-head"><h5><a href="time-line" title="">'+data['user_name']+'</a></h5><a id="like_reply'+comment_id+'"  onclick="like_group_reply_cmt('+comment_id+')" href="#"><i class="fa fa-thumbs-up  icon-color" aria-hidden="true"></i></a><a id="dislike_reply'+comment_id+'"  onclick="dislike_group_reply_cmt('+comment_id+')" href="#"><i class="fa fa-thumbs-up  icon-color text-primary" aria-hidden="true"></i></a><a class="delete" href="#" onclick="delete_group_reply_comment('+comment_id+')"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a><a class="edit" href="#" onclick="edit_group_reply_comment('+comment_id+')"><i class="fas fa-edit"></i></a></div> <input type="hidden" name="inner_comment_text" id="inner_comment_text'+comment_id+'" value="'+comment_id+'"/><input type="hidden" name="inner_comment_id" id="inner_comment_id'+comment_id+'" value ="'+comment_id+'" /><br><p>'+data_cmt['comment']+'</p>';
+          $('#we-comment'+comment_id+'').html(content);
+       },
+    });
+});
 
 
 </script>
@@ -1190,6 +1475,36 @@ dislike_group_cmt
     });
 
 </script>   
+<script>
+    tinymce.init({
+        selector: "#comment_4321",
+        plugins: "emoticons",
+        height: 100,
+        toolbar: "emoticons",
+        toolbar_location: "bottom",
+        menubar: false
+    });
+
+    $('#group_invitation').click(function(){
+        $('#group_dashboard_main').hide();
+        $('#invitation_status').show();
+        $('#like_group').hide();
+    });
+    $('#group_dashboard').click(function(){
+        $('#group_dashboard_main').show();
+        $('#invitation_status').hide();
+        $('#like_group').hide();
+    });
+    $('#like_group_btn').click(function(){
+        $('#group_dashboard_main').hide();
+        $('#invitation_status').hide();
+        $('#like_group').show();
+    });
+
+</script>   
+ 
+ 
+
 
 
 

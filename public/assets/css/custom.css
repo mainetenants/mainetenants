@@ -18,7 +18,7 @@ span.reaction {
 
 .reaction>i {
     cursor: pointer;
-    display: inline-block;
+    display: inline-block; 
     max-width: 7%;
     margin-bottom: 8px;
 }
@@ -405,4 +405,16 @@ small.hours {
 }
 .comment_icons {
     float: right;
+}
+progress#file {
+    width: 60%;
+    height: 22px;
+}
+input#exampleInputEmail1 {
+    height: 18px;
+}
+input#exampleInputEmail1:focus {
+    /* border: none !important; */
+    /* outline: none !important; */
+    box-shadow: 0 0 0 0rem rgb(0 123 255 / 25%);
 }

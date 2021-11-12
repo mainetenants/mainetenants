@@ -3,8 +3,8 @@
     
 
 $get_user_group = get_user_group();
-
-
+$get_group_invitation_list = get_group_invitation_list();
+$get_group_invitation_like = get_group_invitation_like();
 
 @endphp
 <section>
@@ -35,7 +35,7 @@ $get_user_group = get_user_group();
                                     </li>
                                     <li>
                                         <i class="ti-home"></i>
-                                        <a title="" href="">Home</a>
+                                        <a title="" id="group_dashboard" href="">Home</a>
                                     </li>
                                     <li>
                                         <i class="ti-user"></i>
@@ -43,11 +43,11 @@ $get_user_group = get_user_group();
                                         <ul class="naves">
                                             <li>
                                                 <i class="fa fa-check-circle-o" aria-hidden="true"></i>
-                                                <a title="" href="">Like Group</a>
+                                                <a title="" id="like_group_btn"  href="#">Like Group</a>
                                             </li>
                                             <li>
                                                 <i class="fa fa-envelope-o" aria-hidden="true"></i>
-                                                <a title="" href="">Invitation</a>
+                                                <a title="" id="group_invitation" href="#">Invitation</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -56,7 +56,6 @@ $get_user_group = get_user_group();
                         </aside>
                     </div>
                     <div class="col-lg-9 col-md-12 col-sm-12">
-                        <div class="feature-photo">
                             <div class="container-fluid">
                                 <div class="col-md-12">
                                     <div class="timeline-info">
@@ -75,72 +74,134 @@ $get_user_group = get_user_group();
                                     </div>
                                 </div>
                             </div>
-                            <div class="card  mt-5 pt-5">
-                                <div class="user_card">
-                                    @foreach ($get_user_group as  $user_group)
-                                        
-                                    <div class="row">
-                                        <div class="col-sm-6 text-left">
-                                            <img src="../assets/images/user_image.png" class="rc_profile_pic" style="max-width: 60px" alt="">
-                                            <span class="rc_name">{{ $user_group->group_name }}</span>
-                                        </div>
-                                        <div class="col-sm-6 text-right">
-                                            <button type="button" name="page_notifications" id="page_notifications_nav" onclick="page_notifications(1,0)" class="btn btn-primary col-sm-5"><i class="fas fa-globe mr-2"></i>Notifications</button>
-                                            <button type="button" name="message" id="message" class="btn btn-primary col-sm-5"><i class="fas fa-envelope mr-2"></i>Message</button>
-                                        </div>
-                                    </div>
-                                        
-                                    @endforeach
-                                </div>
-                            </div> 
-                       </div>   
-                       <div>
-                           
-                    
-                       </div>         
-                        <!--  Create Group Modal -->
-                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <form onsubmit="return false" method="post" id="create_save_group"  name="create_save_group" >
-                                       @csrf
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Create New Group </h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
+                            <div class="feature-photo"  id="group_dashboard_main" >
+                                <div class="card  mt-5 pt-5">
+                                    <div class="user_card">
+                                        @foreach ($get_user_group as  $user_group)
+                                        <div class="row">
+                                            <div class="col-sm-6 text-left">
+                                                <img src="../assets/images/user_image.png" class="rc_profile_pic" style="max-width: 60px" alt="">
+                                                <span class="rc_name">{{ $user_group->group_name }}</span>
                                             </div>
-                                            <div class="modal-body">
+                                            <div class="col-sm-6 text-right">
+                                                <button type="button" name="page_notifications" id="page_notifications_nav" onclick="page_notifications(1,0)" class="btn btn-primary col-sm-5"><i class="fas fa-globe mr-2"></i>Notifications</button>
+                                                <button type="button" name="message" id="message" class="btn btn-primary col-sm-5"><i class="fas fa-envelope mr-2"></i>Message</button>
+                                            </div>
+                                        </div>
+                                        @endforeach
+                                    </div>
+                                </div> 
+                            </div>   
+                            <div  id="invitation_status" class="mt-5 pl-4 ml-4 pt-5"  style="display:none;">
+                                <div class="row">
+                                    <div class="col-sm-12 card ">
+                                        @foreach($get_group_invitation_list as $get_group_invitation_list1 )
+                                       <div class="row p-4">
+                                            <div class="col-sm-6">
+                                                <a href="../see_friend/{{ $get_group_invitation_list1->friend_id }}">   
+                                                    <div class="new-postbox">
+                                                            <span class="host">
+                                                                <img src="http://127.0.0.1:8000/assets/images/resources/admin2.jpg" alt="">
+                                                            </span>
+                                                            {{-- <span class="owner">Username Host</span> --}}
+                                                            <span class="owner"> <span class="host mr-3">{{ $get_group_invitation_list1->name }}</span></span>
+                                                        </div>
+                                                    </a>    
+                                            </div>
+                                            <div class="col-sm-6 text-center p-2">
+                                               @if($get_group_invitation_list1->invitation_status == 2)
+                                                   <button type="button" class="btn btn-success">Approved</button>
+                                               @elseif($get_group_invitation_list1->invitation_status == 1  )
+                                                    <button type="button" class="btn btn-primary">Pending</button>
+                                               @endif
+                                              </div>
+                                        </div>
+                                        <hr>
+                                        @endforeach
+                                    </div>
+                                </div>   
+                             </div>  
+                             <div  id="liked_group" class="mt-5 pl-4 ml-4 pt-5" style="display:none;">
+                                <div class="row">
+                                    <div class="col-sm-12 card ">
+                                        @if(empty($get_group_invitation_like))
+                                        @foreach($get_group_invitation_like as $get_group_invitation_list1 )
+                                       <div class="row p-4">
+                                            <div class="col-sm-6">
+                                                <a href="../see_friend/{{ $get_group_invitation_list1->friend_id }}">   
+                                                    <div class="new-postbox">
+                                                            <span class="host">
+                                                                <img src="http://127.0.0.1:8000/assets/images/resources/admin2.jpg" alt="">
+                                                            </span>
+                                                            {{-- <span class="owner">Username Host</span> --}}
+                                                            <span class="owner"> <span class="host mr-3">{{ $get_group_invitation_list1->name }}</span></span>
+                                                     </div>
+                                                </a>    
+                                            </div>
+                                            <div class="col-sm-6 text-center p-2">
+                                               @if($get_group_invitation_list1->invitation_status == 2)
+                                                   <button type="button" class="btn btn-success">Approved</button>
+                                               @elseif($get_group_invitation_list1->invitation_status == 1  )
+                                                    <button type="button" class="btn btn-primary">Pending</button>
+                                               @endif
+                                              </div>
+                                        </div>
+                                        <hr>
+                                        @endforeach
+                                        @else 
+                                        <div class="row p-4">
+                                            <div class="col-sm-12 text-center">
+                                                  Nothing to show   
+                                            </div>
+                                          </div>
+                                        @endif
+                                    </div>
+                                </div>   
+                             </div>  
+                        </div>     
+                        <!--  Create Group Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <form onsubmit="return false" method="post" id="create_save_group"  name="create_save_group" >
+                                    @csrf
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Create New Group </h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
                                             <div class="form-group">
                                                 <label for="recipient-name" class="col-form-label">Group Name</label>
                                                 <input type="text" class="form-control border bordered-primary" id="group_name" name="group_name">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="message-text" class="col-form-label">Group Category</label>
-                                                    <input type="text" class="form-control border bordered-primary" id="group_category" name="group_category">
-                                                </div>
-                                                <div class="form-group">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="message-text" class="col-form-label">Group Category</label>
+                                                <input type="text" class="form-control border bordered-primary" id="group_category" name="group_category">
+                                            </div>
+                                            <div class="form-group">
                                                 <label for="message-text" class="col-form-label">Group Descripition</label>
                                                 <textarea class="form-control border bordered-primary" id="group_descripition" name="group_descripition"></textarea>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="message-text" class="col-form-label">Only See</label>
-                                                    <select class="form-control border bordered-primary" name="only_see" id="only_see" >
-                                                        <option value="">Select One</option>
-                                                        <option value="Public">Public</option>
-                                                        <option value="Private">Private</option>
-                                                        <option value="only_friends">Only Friends</option>
-                                                    </select>
-                                                </div>
                                             </div>
-                                            <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            <button type="submit" name="create_group_submit" id="create_group_submit" class="btn btn-primary">Create Group</button>
+                                            <div class="form-group">
+                                                <label for="message-text" class="col-form-label">Only See</label>
+                                                <select class="form-control border bordered-primary" name="only_see" id="only_see" >
+                                                    <option value="">Select One</option>
+                                                    <option value="Public">Public</option>
+                                                    <option value="Private">Private</option>
+                                                    <option value="only_friends">Only Friends</option>
+                                                </select>
                                             </div>
                                         </div>
-                                    </form>
-                                </div>
-                              </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="submit" name="create_group_submit" id="create_group_submit" class="btn btn-primary">Create Group</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
                             <!-- End Create Group Modal -->
                             <!-- side panel -->
                             @include('includes/footer')

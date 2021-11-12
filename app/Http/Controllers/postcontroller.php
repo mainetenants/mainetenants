@@ -131,10 +131,49 @@ class PostController extends Controller
             ->where(['users.id' => $id])
             ->orderBy('created', 'DESC')
             ->get();
+            $value1 = [];
+        //  foreach($users1 as $user){
+        //     if ($user->poll_id != "") {
+
+        //         $get_poll_result21 = DB::table('msu_poll_result')
+        //         ->where(['poll_id'=>$user->poll_id])
+        //         ->select('*')
+        //         ->first();
+        //         $get_poll_created = DB::table('msu_create_poll')
+        //         ->leftJoin('users','msu_create_poll.user_id','=','users.id')
+        //         ->where(['msu_create_poll.id'=>$user->poll_id])
+        //         ->select('*')
+        //         ->first();            
+        //          array_push($value1,$get_poll_result21);
+        //     }
+            
+        // }
 
 
+        //    $value =[];
+        // foreach($users as $user){
+        //     if ($user->poll_id != "") {
 
+        //         $get_poll_result = DB::table('msu_poll_result')
+        //         ->where(['poll_id'=>$user->poll_id])
+        //         ->select('*')
+        //         ->first();
 
+              
+
+        //         $get_poll_created = DB::table('msu_create_poll')
+        //         ->leftJoin('users','msu_create_poll.user_id','=','users.id')
+        //         ->where(['msu_create_poll.id'=>$user->poll_id])
+        //         ->select('*')
+        //         ->first();
+              
+               
+                  
+        //      array_push($value,$get_poll_result);
+        //     }
+            
+        // }
+        
         $comments = DB::table('msu_comments')
             ->leftJoin('msu_community_activities', 'msu_community_activities.id', '=', 'msu_comments.post_id')
             ->select('msu_comments.*', 'msu_community_activities.*')
@@ -158,6 +197,10 @@ class PostController extends Controller
             ->select('id')
             ->where(['friend_id' => $id, 'is_seen' => 1])
             ->get();
+         
+          
+
+            
 
         return view('homepage', ['users' => $users, 'users1' => $users1, 'comments' => $comments, 'allusers' => $allusers]);
     }

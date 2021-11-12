@@ -10313,3 +10313,11 @@ li.label {
     padding-bottom:20px;
 
 }
+
+.is_seen{
+
+    display: none;
+}
+button.tox-tbtn {
+    background: #17a2b8 !important;
+}
