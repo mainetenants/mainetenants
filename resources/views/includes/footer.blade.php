@@ -322,7 +322,7 @@
                 });
 
                 $('#post_contet').append(
-                    '<textarea class="form-control" name="content" id="content" rows="3">' + data
+                    '<textarea class="form-control" name="content" id="content" rows="3" placeholder="Enter text here to edit">' + data
                     .content + '</textarea><input type="hidden" name="post_id" value="' + data.post_id +
                     '">')
                 $('.post-card-img').append('<img class="card-img-top" src="upload/images/' + data.image +

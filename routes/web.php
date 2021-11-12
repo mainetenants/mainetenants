@@ -111,7 +111,10 @@ use App\Http\Controllers\create_poll;
     Route::get('/edit-event/{id}','App\Http\Controllers\EventController@edit_event');
     Route::get('/delete-event/{id}','App\Http\Controllers\EventController@delete_event');
     Route::post('get-events-reaction','App\Http\Controllers\EventController@getEventsReaction');
-    Route::post('/get-events-post','App\Http\Controllers\PostController@getEventPost');
+    Route::post('/get-events-post','App\Http\Controllers\EventController@getEventPost');
+    Route::post('/edit-evnent-post','App\Http\Controllers\EventController@editEventPost');
+    
+
 
 
 

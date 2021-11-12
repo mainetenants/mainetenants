@@ -549,37 +549,37 @@
 											<div class="setting-row">
 												<span>Sub users</span>
 												<p>Enable this if you want people to follow you</p>
-												<input type="checkbox" id="switch00" name="sub_users" value=""/> 
+												<input type="checkbox" id="switch00" name="sub_users"/> 
 												<label for="switch00" data-on-label="ON" data-off-label="OFF"></label>
 											</div>
 											<div class="setting-row">
 												<span>Enable follow me</span>
 												<p>Enable this if you want people to follow you</p>
-												<input type="checkbox" id="switch01" name="enable_follow_me" value="1"/> 
+												<input type="checkbox" id="switch01" name="enable_follow_me" /> 
 												<label for="switch01" data-on-label="ON" data-off-label="OFF"></label>
 											</div>
 											<div class="setting-row">
 												<span>Send me notifications</span>
 												<p>Send me notification emails my friends like, share or message me</p>
-												<input type="checkbox" id="switch02" name="send_me_notifications" value="1"/> 
+												<input type="checkbox" id="switch02" name="send_me_notifications" /> 
 												<label for="switch02" data-on-label="ON" data-off-label="OFF"></label>
 											</div>
 											<div class="setting-row">
 												<span>Text messages</span>
 												<p>Send me messages to my cell phone</p>
-												<input type="checkbox" id="switch03" name="text_messages" value="1"/> 
+												<input type="checkbox" id="switch03" name="text_messages" /> 
 												<label for="switch03" data-on-label="ON" data-off-label="OFF"></label>
 											</div>
 											<div class="setting-row">
 												<span>Enable tagging</span>
 												<p>Enable my friends to tag me on their posts</p>
-												<input type="checkbox" id="switch04" name="enable_tagging" value="1"/> 
+												<input type="checkbox" id="switch04" name="enable_tagging" /> 
 												<label for="switch04" data-on-label="ON" data-off-label="OFF"></label>
 											</div>
 											<div class="setting-row">
 												<span>Enable sound Notification</span>
 												<p>You'll hear notification sound when someone sends you a private message</p>
-												<input type="checkbox" id="switch05" checked="" name="enable_sound_notification" value="1"/> 
+												<input type="checkbox" id="switch05" checked="" name="enable_sound_notification" /> 
 												<label for="switch05" data-on-label="ON" data-off-label="OFF"></label>
 											</div>
 											<div class="submit-btns">

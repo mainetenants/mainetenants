@@ -114,6 +114,11 @@ class EventController extends Controller
 
 		$user = User::where('id', $events->user_id)->first();
 		$respond = msu_user_event_details::where('id', $id)->first();
+		if(isset($respond)){
+			$respondCount = $respond->count();
+		}else{
+			$respondCount = 0;
+		}
 		$interesed = msu_user_event_details::where(['id' => $id, 'action' => 1])->get();
 		$going = msu_user_event_details::where(['id' => $id, 'action' => 2])->get();
 		$not_interested  = msu_user_event_details::where(['id' => $id, 'action' => 3])->get();
@@ -131,44 +136,44 @@ class EventController extends Controller
             ->leftJoin('users', 'msu_event_posts.user_id', '=', 'users.id')
             ->leftJoin('msu_isfriend', 'msu_isfriend.user_id', '=', 'msu_event_posts.user_id')
             ->select('users.name', 'users.created_at', 'msu_event_posts.*', 'msu_isfriend.user_id', 'msu_isfriend.is_follow', 'users.id as user_id', 'msu_event_posts.id as post_id')
-            ->where(['msu_isfriend.friends_id' => $id, 'msu_isfriend.is_follow' =>  '1'])
+            ->where(['msu_isfriend.friends_id' => Auth::id(), 'msu_isfriend.is_follow' =>  '1'])
             ->orderBy('created', 'DESC')
             ->get();
 		$comments = DB::table('msu_comments')
             ->leftJoin('msu_event_posts', 'msu_event_posts.id', '=', 'msu_comments.post_id')
             ->select('msu_comments.*', 'msu_event_posts.*')
-            ->where(['msu_comments.user_id' => $id])
+            ->where(['msu_comments.user_id' => Auth::id()])
             ->orderBy('msu_comments.created', 'DESC')
             ->get();
         $allusers = DB::table('users')
             ->select('*')
-            ->where('id', "!=", $id)
+            ->where('id', "!=", Auth::id())
             ->orderBy('name', 'ASC')
             ->get();
 
 
-        $id = Auth::id();
+        // $id = Auth::id();
         $allnotification = DB::table('msu_user_notification')
             ->select('*')
-            ->where(['friend_id' => $id])
+            ->where(['friend_id' => Auth::id()])
             ->orderBy('created', 'DESC')
             ->get();
         $count = DB::table('msu_user_notification')
             ->select('id')
-            ->where(['friend_id' => $id, 'is_seen' => 1])
+            ->where(['friend_id' => Auth::id(), 'is_seen' => 1])
             ->get();
 
 
 		$users1 = DB::table('msu_event_posts')
             ->leftJoin('users', 'msu_event_posts.user_id', '=', 'users.id')
             ->select('users.name', 'users.created_at', 'msu_event_posts.*', 'users.id as user_id', 'msu_event_posts.id as post_id')
-            ->where(['users.id' => $id])
+            ->where(['users.id' => Auth::id()])
             ->orderBy('created', 'DESC')
             ->get();
 
 		// dd($action);
 		
-		return view('event-page', ['id' => $id, 'events' => $events, 'username' => $user->name, 'user_id' => $user->id, 'profile_photo' => $user->profile_photo, 'respond' => $respond->count(), 'action' => $action, 'users' => $users, 'users1' => $users1, 'comments' => $comments, 'allusers' => $allusers, 'total_comments' => $comments->count() ,'going'=>$going]);
+		return view('event-page', ['id' => $id, 'events' => $events, 'username' => $user->name, 'user_id' => $user->id, 'profile_photo' => $user->profile_photo, 'respond' => $respondCount, 'action' => $action, 'users' => $users, 'users1' => $users1, 'comments' => $comments, 'allusers' => $allusers, 'total_comments' => $comments->count() ,'going'=>$going]);
 	}
 
 	public function create_event(Request $request)
@@ -481,20 +486,22 @@ class EventController extends Controller
 
 		return response()->json(array('success' => true), 200);
 	}
-<<<<<<< HEAD
 	public function getEventPost(Request $request){
 		   
-		$editpost = DB::table('msu_community_activities')
+		$editpost = DB::table('msu_event_posts')
 		->select('*')
 		->where('id', $request->post_id)
 		->first();
 		return response()->json(array('success'=> true, 'content'=>$editpost->content, 'image'=>$editpost->images, 'post_id'=>$editpost->id), 200);
 	}
-=======
+	public function editEventPost(Request $request)
+    {	
+		// dd($request->all());
+		$abc = DB::table('msu_event_posts')
+		->where('id', $request->post_id)
+		->update(['content' => $request->content]);
+        return redirect('event-page/'.$request->page_id);
+    }
 
-
-
-
->>>>>>> bec3c2d23ede706ba2c090d3fe83d55d12ed0da5
 }
 

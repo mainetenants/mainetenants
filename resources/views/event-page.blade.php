@@ -41,19 +41,19 @@ $allusers = alluser1();
                                                     <a title="" href="">Going</a>
                                                 </li>
                                                 <li>
-                                                    <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                                                    <i class="fa fa-envelope-o" aria-hidden="true"></i>&nbsp
                                                     <a title="" href="">Invitation</a>
                                                 </li>
                                                 <li>
-                                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                                    <i class="fa fa-star" aria-hidden="true"></i>&nbsp
                                                     <a title="" href="">Interested</a>
                                                 </li>
                                                 <li>
-                                                    <i class="fa fa-h-square" aria-hidden="true"></i>
+                                                    <i class="fa fa-h-square" aria-hidden="true"></i>&nbsp
                                                     <a title="" href="">Hosting</a>
                                                 </li>
                                                 <li>
-                                                    <i class="fa fa-home" aria-hidden="true"></i>
+                                                    <i class="fa fa-home" aria-hidden="true"></i>&nbsp
                                                     <a title="" href="">Past Events</a>
                                                 </li>
                                             </ul>
@@ -117,8 +117,8 @@ $allusers = alluser1();
                                                             data-ripple="">Discussion</a>
                                                     </li>
                                                     <li class="float-right">
-                                                        <a class=""><i class="fa fa-envelope" aria-hidden="true"></i>Invite</a>
-                                                        <a class="" href="/edit-event/{{ $id }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit</a>
+                                                        <a class="" data-toggle="modal" data-target="#invite_friends"><i class="fa fa-envelope" aria-hidden="true"></i>&nbsp Invite</a>
+                                                        <a class="" href="/edit-event/{{ $id }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp Edit</a>
                                                         <a class=""><i class="fa fa-share" aria-hidden="true"></i> Share</a>
                                                     </li>
                                                 </ul>
@@ -290,7 +290,7 @@ $allusers = alluser1();
                                             </div>
                                         </div>
                                         <div class="col-lg-7 disc-section" style="display: none">
-                                           @foreach($users as $user)
+                                           @foreach($users1 as $user)
                                                 @php $get_post_cmt = get_post_cmt($user->id) @endphp
                                                 <div class="">
                                                 
@@ -307,24 +307,11 @@ $allusers = alluser1();
                                                                         <ins><a href="time-line"
                                                                                 title="">{{$user->name}}</a></ins>
                                                                         <div class="post-opt pull-right">
-                                                                            <i class="ti-more-alt" data-toggle="popover"
-                                                                                data-content="<a href=#null onclick='myFunction()' value='{{ $user->post_id}}' id='edit-post'>Edit</a><br><a class='border-top' href='/delete-post/{{ $user->post_id}}' >Delete</a>"
-                                                                                data-placement="left" data-html="true">
+                                                                            <i class="ti-more-alt" data-toggle="popover" data-content="<a href=#null onclick='editEventDescription()' value='{{ $user->post_id}}' id='edit-post'><i class='fas fa-edit'></i>&nbsp;Edit</a><br><a class='border-top' href='/delete-post/{{ $user->post_id}}' ><i class='fas fa-trash-alt'></i>&nbsp;Delete</a>" data-placement="left" data-html="true">
                                                                             </i>
                                                                         </div>
                                                                         <div class="col-4 pull-right opt-list"
                                                                             style="display: none">
-                                                                            {{--  <button type="button" class="btn btn-secondary" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Vivamus
-                                                                sagittis lacus vel augue laoreet rutrum faucibus.">
-                                                             Popover on bottom
-                                                             </button>  --}}
-                                                                            {{--  
-                                                             <div class="list-group" data-toggle="popover" data-placement="bottom" id="list-tab" role="tablist">
-                                                                <a class="list-group-item">Edit</a>
-                                                                <a class="list-group-item" >Delete</a>
-                                                             </div>
-                                                             </div>
-                                                             --}}
                                                                     </span>
                                                                 </div>
                                                                 <?php
@@ -544,7 +531,7 @@ $allusers = alluser1();
                                                                     </div>
                                                                     <div class="modal-body">
                                                                         <form method="post" id="edit_form"
-                                                                            action="{{ url("edit-post"); }}"
+                                                                            action="{{ url("edit-evnent-post"); }}"
                                                                             enctype="multipart/form-data">
                                                                             @csrf
                                                                             <div class="container">
@@ -557,6 +544,8 @@ $allusers = alluser1();
                                                                                         <div class="form-group">
                                                                                             <label class="text-primary"
                                                                                                 for="">Edit</label>
+                                                                                                <input type="hidden" value="{{url('/')}}" id="url" name="url">
+                                                                                                <input type="hidden" value="{{ $id }}" id="page_id" name="page_id">
                                                                                             <div id="post_contet">
                                                                                             </div>
                                                                                         </div>
@@ -690,24 +679,41 @@ $allusers = alluser1();
     </div>
     </div>
     </div>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#invite_friends">
-        Launch demo modal
-      </button>
     <div class="modal fade" id="invite_friends" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-dialog modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+            <h5 class="modal-title text-info" id="exampleModalLongTitle"><i class="fa fa-envelope-o" aria-hidden="true"></i>&nbsp Invite Friends</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
             </div>
             <div class="modal-body">
-            ...
-            </div>
-            <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+                <div class="friend-info">
+
+                    @foreach($allusers as $alluser)
+
+
+                    <figure>
+                        <img src="{{ asset('upload/images/profile_photo/'.$alluser->profile_photo.'') }}"
+                            alt="">
+                    </figure>
+                    <div class="friendz-meta">
+                        <a
+                            href="/see_friend/{{ $alluser->id }}">{{$alluser->name}}</a>
+                        <i>{{$alluser->email}}</i>
+                        <button class="btn btn-sm btn-secondary"
+                            id='send_event_invitation'>invite</button>
+                        <a href="#" id='event_invitation_cancel'
+                            style="display: none;">inviatation sent</a>
+                        <input type="hidden" name="friend_id" id="friend_id"
+                            value="{{ $alluser->friends_id  }}" />
+                        <input type="hidden" name="event_id" id="event_id"
+                            value="{{ $events->id }}" />
+                    </div>
+
+                    @endforeach
+                </div>
             </div>
         </div>
         </div>
