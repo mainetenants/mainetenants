@@ -176,6 +176,13 @@ $get_like_page_status = get_like_page_status($get_page->msu_user_page_id);
                                           <input type="file" >
                                           </label>
                                        </li>
+                                        <li class="text-secondary">
+                                          <a href="#" class="poll_page_type"  data-name="page" data-id="{{ $id }}" onclick="poll_page()">
+                                          <i class="fas fa-poll"></i>
+                                          <label class="fileContainer">
+                                          </label>
+                                          </a>
+                                       </li>
                                        <li>
                                           <button type="submit" >Publish</button>
                                           <input type="hidden" name="post_id" id="post_id" value="{{$get_page->msu_user_page_id}}"/>
@@ -229,14 +236,56 @@ $get_like_page_status = get_like_page_status($get_page->msu_user_page_id);
                                  
                                  <div class="post-meta">
 
-                                    @if($post->images)
+                                    @if($post->images !="")
                                        <img src="{{ url('upload/images/thumbnails/'.$post->images) }}" class="img-fluid mx-auto"alt="">
-                                    @elseif($post->videos)
+                                    @elseif($post->videos !="")
                                        <video width="100%" height="400" controls>
                                           <source src="upload/videos/{{ $post->videos }}" type="video/mp4">
                                           <source src="upload/videos/{{ $post->videos }}" type="video/ogg">
                                           Your browser does not support the video tag.
                                           </video>
+
+                                     @elseif($post->poll_id !="")    
+                                     @php 
+                                     $get_poll_created = get_page_poll_created($post->poll_id);
+                                     $get_poll_result = get_page_poll_result($post->poll_id);
+                                     $get_poll_12 = isset($get_poll_result->value)?$get_poll_result->value:0;
+                                   $get_user_12 = isset($get_poll_result->user_id)?$get_poll_result->user_id:0;
+                                     $get_poll  = isset($get_poll_created->poll0)?explode(',',$get_poll_created->poll0):'';
+                                     $user_id = Auth::id();
+                                     
+                                     
+                              @endphp
+                             
+
+                          <div class="row">
+                             <div class="description">
+                                <p> {{ $get_poll_created->poll_title}} </p>
+                              </div>
+                              <div class="card bg-light col-sm-12">
+                                 @if(isset($get_poll))     
+                                 @foreach($get_poll  as $poll)
+                            
+                                 <div class="form-group text-center ">
+                                          <label for="exampleInputEmail1"  style="display: flex;width: 50%;"> <input type="radio" class="form-control poll_radio text-right" id="exampleInputEmail1" aria-describedby="emailHelp" @if( $get_poll_12 == $poll &&$get_user_12 == $user_id) checked="true" @endif name="poll_choosen" placeholder="Enter email" value="{{ $poll }}"><span>{{ $poll }}</span></label>
+                                          @php
+                                               $get_total_poll_count = get_total_poll_count($poll,$post->poll_id);
+                                               $get_total_poll = get_total_poll($post->poll_id);
+                                               $percentage = isset($get_poll_result->value)? floor($get_total_poll_count/$get_total_poll *100) :0;
+                                          @endphp
+                                          <div id="progress">
+                                             <progress id="file" value="{{ $percentage }}" max="100"> 32% </progress>
+                                         </div>
+                                       </div>
+                                   
+                                    @endforeach
+                                    @endif
+                                    <input type="hidden" id="checked_poll_id"  name="checked_poll_id"    value="{{ $get_poll_result->id }}"/>
+                                    <input type="hidden" id="poll_id" name="poll_id" value ="{{ $post->poll_id }}"/>
+                                    <input type="hidden" id="poll_post_id" name="poll_post_id" value ="{{ $post->id }}"/>
+                               
+                               </div> 
+                          </div>
                                      @endif
                                      <div class="description">
                                        <p>
@@ -453,7 +502,6 @@ $get_like_page_status = get_like_page_status($get_page->msu_user_page_id);
                                        </div>
                                        <div class="we-comment">
                                         <div class="coment-head">
-                                      
                                              <h5><a href="time-line.html" title="">@php echo  get_user_nane1($post_cmt->user_id) @endphp</a></h5>
                                              <span>{{ $inner_cmt->created }}</span>
                                              @if($is_like_inner == 1)<a class="like"  onclick="dislike_page_post_inner_cmt({{ $inner_cmt->id }},{{ $inner_cmt->post_id }})" href="#" ><i class="fa fa-thumbs-up" style="color:#088dcd;" aria-hidden="true"></i> </a>@else<a class="like"  onclick="like_page_post_inner_cmt({{ $inner_cmt->id }},{{ $inner_cmt->post_id }})" href="#" ><i class="fa fa-thumbs-up  icon-color" aria-hidden="true"></i></a> @endif
@@ -478,6 +526,7 @@ $get_like_page_status = get_like_page_status($get_page->msu_user_page_id);
                                        </ul>
                                        </li>
                                      <input type="hidden" name="post_id1" id="post_id1" value="{{ $post->id }}"/>
+                                     
                                        
                                    
                                     @endforeach

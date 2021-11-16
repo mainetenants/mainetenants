@@ -12,6 +12,6 @@ class msu_page_post extends Model
 
     protected $table = 'msu_page_post';
     protected $fillable = [
-		'title', 'content','images', 'videos','music','likes','dislikes','user_id','status'
+		'title', 'content','images', 'videos','music','likes','dislikes','user_id','page_id','poll_id','status'
 	];
 }

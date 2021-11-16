@@ -1,5 +1,4 @@
 <!-- Modal -->
-
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -25,25 +24,28 @@
                 <div class="form-group ">
                     <label>Poll Category</label>
                     <input type="text" class="form-control  border bordered-secondary" id="exampleInputEmail0" name="poll_category" aria-describedby="emailHelp" placeholder="title" required="required">
-            
                 </div>
                 <div class="row">
-                <div class="form-group col-sm-12 poll_option_expiry">
-                    <label for="exampleInputEmail1">Expiry Date & Time</label>
-                    <input type="datetime-local" class="form-control col-sm-12 border bordered-secondary" id="exampleInputEmail0" name="expiry_time" aria-describedby="emailHelp" placeholder="title" required="required" value="">
-                </div>
-
-                </div>
+                    <div class="form-group col-sm-12 poll_option_expiry">
+                        <label for="exampleInputEmail1">Expiry Date & Time</label>
+                        <input type="datetime-local" class="form-control col-sm-12 border bordered-secondary" id="exampleInputEmail0" name="expiry_time" aria-describedby="emailHelp" placeholder="title" required="required" value="">
+                    </div>
+               </div>
                <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary">Save changes</button>
+                    <input  type="hidden" name="poll_type_res" id="poll_type_res" value=""/>
+                    <input  type="hidden" name="poll_group_id" id="poll_group_id" value="" />
+                    <input  type="hidden" name="poll_page_id" id="poll_page_id" value="" />
+                    <input type="hidden" name="poll_event_id" id="poll_event_id" value=""/>
                     <input type="hidden" name="expiry_time_id" id="expiry_time_id" value=""/>
                     
                 </div>
             </div>
         </form>
-        </div>
     </div>
+</div>
+</div>
 
 <!-- End modal -->
 
@@ -87,7 +89,55 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8c55_YHLvDHGACkQscgbGLtLRdxBDCfI">
 </script>
 
-<script>
+<script>  
+    function poll_event(){
+        var poll_type = $('.event_type').attr('data-name');
+        var event_id = $('.event_type').attr('data-id');
+        $('#poll_event_id').val(event_id);
+        $('#poll_type_res').val(poll_type);
+        $('#exampleModal').modal('toggle');
+    }
+    function poll_group(){
+        var poll_type = $('.poll_type').attr('data-name');
+        var page_id = $('.poll_type').attr('data-id');
+        $('#poll_group_id').val(group_id);
+        $('#poll_type_res').val(poll_type);
+        $('#exampleModal').modal('toggle');
+    } 
+    function poll_page(){
+        var poll_type = $('.poll_page_type').attr('data-name');
+        var page_id = $('.poll_page_type').attr('data-id');
+        $('#poll_page_id').val(page_id);
+        $('#poll_type_res').val(poll_type);
+        $('#exampleModal').modal('toggle');
+    
+
+    } 
+
+    $('#homepage_nav').click(function(){
+        $('#manage_group_poll').hide();
+        $('#manage_page_poll').hide();
+        $('#manage_post_poll').hide();
+        $('#Dashboard').show();
+    });
+    $('#page_poll_nav').click(function(){
+        $('#manage_group_poll').hide();
+        $('#manage_page_poll').show();
+        $('#manage_post_poll').hide();
+        $('#Dashboard').hide();
+    });
+    $('#post_poll_nav').click(function(){
+        $('#manage_group_poll').hide();
+        $('#manage_page_poll').hide();
+        $('#manage_post_poll').show();
+        $('#Dashboard').hide();
+    });
+    $('#group_poll_nav').click(function(){
+        $('#manage_group_poll').show();
+        $('#manage_page_poll').hide();
+        $('#manage_post_poll').hide();
+        $('#Dashboard').hide();
+     });
 
     $(document).on('click','#add_poll_option',function(){
         $('#add_polls').append('<div class="row p-3"><div class="col-sm-10 p-0"><input type="text" class="form-control border bordered-secondary p-3" id="exampleInputEmail1" name="add_poll[]" aria-describedby="emailHelp" placeholder="Add poll"></div><div class="col-sm-2 p-0"><i class="fa fa-times p-2  btn btn-primary remove_btn" aria-hidden="true"></i></div></div>');

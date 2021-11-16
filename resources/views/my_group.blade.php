@@ -184,10 +184,16 @@
                                                             <input type="file">
                                                         </label>
                                                     </li>
+                                                    <li class="text-secondary">
+                                                        <a href="#" class="poll_type"  data-name="group" data-id="{{ $id }}" onclick="poll_group()"  >
+                                                        <i class="fas fa-poll"></i>
+                                                        <label class="fileContainer">
+                                                        </label>
+                                                        </a>
+                                                    </li>
                                                     <li>
                                                         <button type="submit">Publish</button>
-                                                        <input type="hidden" name="group_id" id="group_id"
-                                                            value="{{ $id }}" />
+                                                        <input type="hidden" name="group_id" id="group_id" value="{{ $id }}" />
                                                     </li>
                                                 </ul>
                                             </div>
@@ -195,8 +201,9 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="loadMore">
+                                
                             @foreach($get_group_post as $post)
-                                <div class="loadMore">
                                     <div class="  central-meta item bg-white bg-light" style="display: inline-block;">
                                         <div class="user-post">
                                             <div class="friend-info">
@@ -239,6 +246,49 @@
                                                             <source src="upload/music/{{ $post->music }}"" type="audio/mpeg">
                                                           Your browser does not support the audio element.
                                                           </audio>
+                                                        @elseif($post->poll_id !="")
+                                                        @php 
+                                                        $get_poll_created = get_group_poll_created($post->poll_id);
+                                                        $get_poll_result = get_group_poll_result($post->poll_id);
+                                                        $get_poll_12 = isset($get_poll_result->value)?$get_poll_result->value:0;
+                                                        $get_user_12 = isset($get_poll_result->user_id)?$get_poll_result->user_id:0;
+                                                        $get_poll  = isset($get_poll_created->poll0)?explode(',',$get_poll_created->poll0):'';
+                                                        $user_id = Auth::id();
+                                                        
+                                                 @endphp
+                                                         <div class="row">
+                                                            <div class="description">
+                                                            <p> {{ $get_poll_created->poll_title}} </p>
+                                                            </div>
+                                                            <div class="card bg-light col-sm-12">
+                                                                @if(isset($get_poll))     
+                                                                @foreach($get_poll  as $poll)
+                                                            @php print_r($poll); @endphp
+                                                                <div class="form-group text-center ">
+                                                                        <label for="exampleInputEmail1"  style="display: flex;width: 50%;"> <input type="radio" class="form-control poll_radio text-right" id="exampleInputEmail1" aria-describedby="emailHelp" @if( $get_poll_12 == $poll ) checked="true" @endif name="poll_choosen" placeholder="Enter email" value="{{ $poll }}"><span>{{ $poll }}</span></label>
+                                                                        @php
+                                                                            $get_total_poll_count = get_total_poll_count($poll,$post->poll_id);
+                                                                            $get_total_poll = get_total_poll($post->poll_id);
+                                                                            $percentage = isset($get_poll_result->value)? floor($get_total_poll_count/$get_total_poll *100) :0;
+                                                                        @endphp
+                                                                        <div id="progress">
+                                                                            <progress id="file" value="{{ $percentage }}" max="100"> 32% </progress>
+                                                                        </div>
+                                                                    </div>
+                                                                @endforeach
+                                                                @if(isset($get_poll_result))
+                                                                <input type="hidden" id="checked_poll_id" name="checked_poll_id" value="{{ $get_poll_result->id }}" />
+                                                                @endif
+                                                               
+                                                                @endif
+                                                                
+                                                                
+                                                                <input type="hidden" id="poll_id" name="poll_id" value ="{{ $post->poll_id }}"/>
+                                                                <input type="hidden" id="poll_post_id" name="poll_post_id" value ="{{ $post->id }}"/>
+                                                            
+                                                            </div> 
+                                                        </div>
+
                                                         @endif
                                                         <p>
                                                             {{ $post->content }}
@@ -384,11 +434,12 @@
 
                                                     
 
-                                                    @php $get_total_group_reply_cmt = get_total_group_reply_cmt($comment->id); 
+                                                    @php
+                                                         $get_total_group_reply_cmt = get_total_group_reply_cmt($comment->id); 
                                                          $get_comment_like_comment1 = get_group_like_comment($comment->id);
                                                          $get_comment_like_comment =!empty($get_comment_like_comment1)? $get_comment_like_comment1->is_like:0;
                                                         
-                                                 @endphp
+                                                   @endphp
 
                                                     <li>
                                                       <div class="comet-avatar">
@@ -441,13 +492,11 @@
                                                     <div class="post-comt-box">
                                                         <form method="post" id="page_group_comments{{ $post->id }}" enctype="multipart/form-data" onsubmit="return false">
                                                             @csrf
-                                                                <div class="row">
+                                                            <div class="row">
                                                                 <div class="col-sm-11">
                                                                     <textarea placeholder="Post your comment"
                                                                         id="comment{{ $post->id }}" class="comment_1243"
-                                                                         name="comment"      
-                                                                        aria-hidden="true"></textarea>
-                                                                
+                                                                         name="comment" aria-hidden="true"></textarea>
                                                                 </div>
                                                                 <div class="col-sm-1">
                                                                     <input type="hidden" name="group_id" id="group_id" value="{{ $id }}">
@@ -459,10 +508,8 @@
                                                                 </div>
                                                             </div>
                                                         </form>   
-                                                      
                                                     </div>
                                                 </ul>
-
                                                 <div class="modal fade" id="editpost" tabindex="-1" aria-hidden="false">
                                                     <div class="modal-dialog">
                                                         <div class="modal-content">
@@ -596,8 +643,9 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                              
                             @endforeach
+                        </div>
 
                         </div>
 

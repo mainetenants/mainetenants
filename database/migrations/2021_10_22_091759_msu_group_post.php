@@ -16,9 +16,10 @@ class MsuGroupPost extends Migration
         Schema::create('msu_group_post', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id');
-            $table->integer('group_id');
-            $table->string('title');
-            $table->string('content');
+            $table->integer('group_id');     
+            $table->integer('poll_id')->nullable();
+            $table->string('title')->nullable();
+            $table->string('content')->nullable();
             $table->string('images')->nullable();
             $table->string('music')->nullable();  
             $table->string('videos')->nullable();

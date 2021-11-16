@@ -24,6 +24,7 @@ class MsuPagePost extends Migration
             $table->integer('dislikes')->nullable();
             $table->integer('user_id');
             $table->integer('page_id');
+            $table->integer('poll_id');
             $table->timestamp('created')->useCurrent();
             $table->integer('status');
             

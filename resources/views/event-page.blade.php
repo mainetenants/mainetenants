@@ -276,6 +276,13 @@ $allusers = alluser1();
                                                                             </label>
                                                                         </li>
                                                                         <li class="text-secondary">
+                                                                            <a href="#" class="event_type" data-name="event" data-id="{{ $id }}" onclick="poll_event()"  >
+                                                                            <i class="fas fa-poll"></i>
+                                                                            <label class="fileContainer">
+                                                                            </label>
+                                                                            </a>
+                                                                        </li>
+                                                                        <li class="text-secondary">
                                                                             <input type="submit"
                                                                                 class="btn btn-info btn-sm" id="posts"
                                                                                 value="Post">

@@ -87,7 +87,7 @@
                               </form>
                            </div>
                         </div>
-                     </div>
+                
 
                      
                  
@@ -138,12 +138,12 @@
                                             </audio>
                                         @elseif($user->poll_id != "")
                                         @php 
-                                               $get_poll_created = get_poll_created($user->poll_id);
-                                               $get_poll_result = get_poll_result($user->poll_id);
+                                                $get_poll_created = get_poll_created($user->poll_id);
+                                                $get_poll_result = get_poll_result($user->poll_id);
                                                 $get_poll_12 = isset($get_poll_result->value)?$get_poll_result->value:0;
                                                 $get_user_12 = isset($get_poll_result->user_id)?$get_poll_result->user_id:0;
+                                                $get_poll  = isset($get_poll_created->poll0)?explode(',',$get_poll_created->poll0):'';
                                                 
-                                               $get_poll  = explode(',',$get_poll_created->poll0);
                                                 
                                          @endphp
                                         
@@ -153,8 +153,9 @@
                                            <p> {{ $get_poll_created->poll_title}} </p>
                                          </div>
                                          <div class="card bg-light col-sm-12">
+                                            @if(isset($get_poll))     
                                             @foreach($get_poll  as $poll)
-                                         @php print_r($poll); @endphp
+                                           @php print_r($poll); @endphp
                                             <div class="form-group text-center ">
                                                      <label for="exampleInputEmail1"  style="display: flex;width: 50%;"> <input type="radio" class="form-control poll_radio text-right" id="exampleInputEmail1" aria-describedby="emailHelp" @if( $get_poll_12 == $poll ) checked="true" @endif name="poll_choosen" placeholder="Enter email" value="{{ $poll }}"><span>{{ $poll }}</span></label>
                                                      @php
@@ -166,8 +167,13 @@
                                                         <progress id="file" value="{{ $percentage }}" max="100"> 32% </progress>
                                                     </div>
                                                   </div>
-                                                  <input type="hidden" id="checked_poll_id" name="checked_poll_id"  @if($get_poll_12 == $poll && $get_user_12 == $user_id)  value="{{ $get_poll_result->id }}" @else value="" @endif/>
                                                @endforeach
+                                               @if(isset($get_poll_result))
+                                                   
+                                                        <input type="hidden" id="checked_poll_id" name="checked_poll_id"   value="{{ $get_poll_result->id }}" />
+                                              
+                                               @endif
+                                               @endif
                                                
                                                <input type="hidden" id="poll_id" name="poll_id" value ="{{ $user->poll_id }}"/>
                                                <input type="hidden" id="poll_post_id" name="poll_post_id" value ="{{ $user->id }}"/>

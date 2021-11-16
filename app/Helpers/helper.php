@@ -570,3 +570,42 @@ function get_total_poll($poll_id){
     ->get();
      return count($get_poll_count);
 }
+
+
+function get_group_poll_created($id){
+    $get_poll_created = DB::table('msu_create_poll')
+    ->leftJoin('users','msu_create_poll.user_id','=','users.id')
+    ->where(['msu_create_poll.id'=>$id,'poll_type'=>'group'])
+    ->select('*')
+    ->first();  
+       return $get_poll_created;
+}
+
+function get_group_poll_result($id){
+    $user_id  = Auth::id();
+   
+    $get_poll_result = DB::table('msu_poll_result')
+       ->where(['poll_id'=>$id,'user_id'=>$user_id])
+       ->select('*')
+       ->first();
+  
+    return $get_poll_result;
+} 
+function get_page_poll_created($id){
+    $get_poll_created = DB::table('msu_create_poll')
+    ->leftJoin('users','msu_create_poll.user_id','=','users.id')
+    ->where(['msu_create_poll.id'=>$id,'poll_type'=>'page'])
+    ->select('*')
+    ->first();  
+       return $get_poll_created;
+}
+
+function get_page_poll_result($id){
+    $user_id  = Auth::id();
+   
+    $get_poll_result = DB::table('msu_poll_result')
+       ->where(['poll_id'=>$id,'user_id'=>$user_id])
+       ->select('*')
+       ->first();
+    return $get_poll_result;
+} 

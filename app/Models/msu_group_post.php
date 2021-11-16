@@ -12,7 +12,7 @@ class msu_group_post extends Model
 
     protected $table = 'msu_group_post';
     protected $fillable = [
-		'user_id','group_id','title','content','images','music','videos','likes','dislikes','status'
+		'user_id','group_id','poll_id','title','content','images','music','videos','likes','dislikes','status'
     ];
 
 }
