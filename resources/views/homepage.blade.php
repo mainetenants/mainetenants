@@ -87,6 +87,8 @@
                               </form>
                            </div>
                         </div>
+                     </div>     
+        
                 
 
                      
@@ -95,6 +97,7 @@
                <div class="loadMore">
                       
                @foreach($users1 as $user)
+                @php    $get_post_comments = get_post_comments($user->id); @endphp
                    <div class="  central-meta item bg-white bg-light" style="display: inline-block;">
                         <div class="user-post">
                                 <div class="friend-info">
@@ -156,17 +159,17 @@
                                             @if(isset($get_poll))     
                                             @foreach($get_poll  as $poll)
                                            @php print_r($poll); @endphp
-                                            <div class="form-group text-center ">
-                                                     <label for="exampleInputEmail1"  style="display: flex;width: 50%;"> <input type="radio" class="form-control poll_radio text-right" id="exampleInputEmail1" aria-describedby="emailHelp" @if( $get_poll_12 == $poll ) checked="true" @endif name="poll_choosen" placeholder="Enter email" value="{{ $poll }}"><span>{{ $poll }}</span></label>
-                                                     @php
-                                                          $get_total_poll_count = get_total_poll_count($poll,$user->poll_id);
-                                                          $get_total_poll = get_total_poll($user->poll_id);
-                                                          $percentage = isset($get_poll_result->value)? floor($get_total_poll_count/$get_total_poll *100) :0;
-                                                     @endphp
-                                                     <div id="progress">
+                                              <div class="form-group text-center ">
+                                                <label for="exampleInputEmail1"  style="display: flex;width: 50%;"> <input type="radio" class="form-control poll_radio text-right" id="exampleInputEmail1" aria-describedby="emailHelp" @if( $get_poll_12 == $poll ) checked="true" @endif name="poll_choosen" placeholder="Enter email" value="{{ $poll }}"><span>{{ $poll }}</span></label>
+                                                @php
+                                                        $get_total_poll_count = get_total_poll_count($poll,$user->poll_id);
+                                                        $get_total_poll = get_total_poll($user->poll_id);
+                                                        $percentage = isset($get_poll_result->value)? floor($get_total_poll_count/$get_total_poll *100) :0;
+                                                @endphp
+                                                <div id="progress">
                                                         <progress id="file" value="{{ $percentage }}" max="100"> 32% </progress>
-                                                    </div>
-                                                  </div>
+                                                </div>
+                                              </div>
                                                @endforeach
                                                @if(isset($get_poll_result))
                                                    
@@ -319,6 +322,182 @@
                                 </div>
                                 </div>
                                 <div class="coment-area bg-white bg-light">
+                                        <ul class="we-comet">
+                                               
+       
+          @foreach ($get_post_comments as $comment)
+
+          @php 
+               $get_post_cmt1 = get_post_cmt1($comment->id);
+               $get_post_comment_like = get_post_comment_like($comment->id);
+               $is_like  = isset($get_post_comment_like->is_like)?$get_post_comment_like->is_like:'0';
+          @endphp 
+          <li>
+              <div class="comet-avatar">
+                 <img src="{{ asset('assets/images/resources/comet-1.jpg') }}" alt="">
+              </div>
+              <div class="we-comment">
+                 <div class="coment-head">
+                    <h5><a href="time-line" title="">@php echo  get_user_nane1($comment->user_id) @endphp</a></h5>
+                    <div class="comment_icons">
+         
+                 @if( $is_like == 1)<a class="like"  onclick="dislike_post_cmt({{ $comment->id }},{{ $comment->post_id }})" href="#" ><i class="fa fa-thumbs-up" style="color:#088dcd;" aria-hidden="true"></i> </a>@else<a class="like"  onclick="like_post_cmt({{ $comment->id }},{{ $comment->post_id }})" href="#" ><i class="fa fa-thumbs-up  icon-color" aria-hidden="true"></i></a> @endif                                    
+                     <a class="we-reply1" href="#" onclick="return false" data-id="{{ $comment->id }}" post-id ="{{ $comment->post_id }}" id="we-reply"  title="Reply"><i class="fa fa-reply"></i></a>
+                      @if($comment->user_id == $user_id)
+                          <a class="delete"  href="#" onclick="delete_post_comment({{ $comment->id }})"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a>     
+                     @elseif($user->user_id == $user_id)
+                          <a class="delete"  href="#" onclick="delete_post_comment({{ $comment->id }})"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a>  
+                </div>   
+                     @endif
+                 </div>
+                 <p> @php echo $comment->comment @endphp</p>
+              </div>
+              <ul>
+
+                 @foreach($get_post_cmt1 as $inner_cmt)
+                 {{-- @php 
+                  $get_inner_cmt_like= get_inner_cmt_like($inner_cmt->post_id,$inner_cmt->id);
+                  
+                 $is_like_inner = !empty($get_inner_cmt_like->is_like)? $get_inner_cmt_like->is_like:'0'; @endphp --}}
+
+                 <li>
+                 <div class="comet-avatar">
+                    <img src="{{ asset('assets/images/resources/comet-1.jpg') }}" alt="">
+                 </div>
+                 <div class="we-comment">
+                  <div class="coment-head">
+                
+                       <h5><a href="time-line" title="">@php echo  get_user_nane1($inner_cmt->user_id) @endphp</a></h5>
+                       <span>{{ $inner_cmt->created }}</span>
+                       {{-- @if($is_like_inner == 1)<a class="like"  onclick="dislike_post_inner_cmt({{ $inner_cmt->id }},{{ $inner_cmt->post_id }})" href="#" ><i class="fa fa-thumbs-up" style="color:#088dcd;" aria-hidden="true"></i> </a>@else<a class="like"  onclick="like_post_inner_cmt({{ $inner_cmt->id }},{{ $inner_cmt->post_id }})" href="#" ><i class="fa fa-thumbs-up  icon-color" aria-hidden="true"></i></a> @endif --}}
+                       <a class="we-reply" href="#" onclick="return false" data-id="{{ $inner_cmt->id }}" id="we-reply"  title="Reply"><i class="fa fa-reply"></i></a>
+                       
+                       @if($inner_cmt->user_id == $user_id)
+                       <a class="delete"  href="#" onclick="delete_comment({{ $inner_cmt->id }})"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a>     
+                       @elseif($inner_cmt->user_id == $user_id)
+                       <a class="delete"  href="#" onclick="delete_comment({{ $inner_cmt ->id }})"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a>     
+                      @endif
+                    </div>
+                     <p>
+                          @php echo $inner_cmt->comment @endphp
+                    </p>
+                   </div>
+                 </li>
+                   {{-- <p>  
+                      @php echo $inner_cmt->comment @endphp
+                   </p> --}}
+
+                   @endforeach
+              </ul>
+          </li>
+                                                      @endforeach 
+      
+    
+       {{-- @php  
+
+
+              get_post_cmt($user->post_id);
+
+       @endphp --}}
+       <div class="post-comt-box">
+           <form method="post" id="page_post_comments" enctype="multipart/form-data"   action="{{url("homepage")}}">
+              @csrf
+              <div class="row">
+                 <div class="col-sm-11">
+                    <textarea placeholder="Post your comment" id="commen_1234" class="comment_1243" name="comment"></textarea>
+                 </div>
+                 <div class="col-sm-1 comment_submit">
+                    <input type="hidden" name="post_id" id="post_id" value="{{ $user->id }}"/>
+                    <input type="hidden" name="user_id" id="user_id" value="{{ $user->user_id }}"/>
+                    <input type="hidden" name="status" id="status" value ="1"/>
+                    <button type="submit" class="btn btn-primary"><i class="far fa-paper-plane"></i></button>
+                 </div>
+              </div>
+           </form> 
+       </div>
+      
+                                              
+                                        </ul>
+                                        {{-- modal for edit post							 --}}
+                                        <div class="modal fade" id="editpost" tabindex="-1" aria-hidden="false">
+                                               <div class="modal-dialog">
+                                                      <div class="modal-content">
+                                                             <div class="modal-header py-2">
+                                                                <h5 class="modal-title" id="">Edit Post</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                             </div>
+                                                             <div class="modal-body">
+                                                                <form method="post" id="edit_form" action="{{ url("edit-post")}}" enctype="multipart/form-data">
+                                                                @csrf
+                                                                <div class="container">
+                                                                       <div class="row">
+                                                                              <div class="col-sm-6">
+                    <div class="card post-card-img">
+                    </div>
+                                                                              </div>
+                                                                              <div class="col-sm-6">
+                                                                                     <div class="form-group">
+                                                                                        <label class="text-primary" for="">Edit</label>
+                       <div id="post_contet">
+                                                                                        </div>
+                     </div> 
+                                                                              </div>
+                                                                       </div>
+                                                                </div>
+                                                                </form>
+                                                             </div>
+                                                             <div class="modal-footer py-2">
+                                                                <button type="submit" id="edit-post-submit" class="btn btn-sm btn-primary">Update</button>
+                                                             </div>
+                                                      </div>
+                                               </div>
+                                        </div>
+                                         <!-- Modal  for reactions emoticons-->
+                                        <div class="modal fade" id="reaction" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-md" role="document">
+                                                <div class="modal-content">
+                                                <div class="modal-header pb-0">
+                                                <ul class="nav nav-tabs" role="tablist">
+                                                        <li class="nav-link active" role="presentation" class="active"><a href="#all" class="tab-a" role="tab" data-toggle="tab">All</a>
+                                                        </li>
+                                                        <li class="nav-link" role="presentation"><a href="#like" class="tab-a" role="tab" data-toggle="tab"><img src="/assets/images/s_emoji/like.png"  class="img-reaction" /><ins class="ins_like"></ins></a>
+                                                        </li>
+                                                        <li class="nav-link" role="presentation"><a href="#love" class="tab-a" role="tab" data-toggle="tab"><img src="/assets/images/s_emoji/love.png"  class="img-reaction" /><ins class="ins_love"></ins></a>
+                                                        </li>
+                                                        <li class="nav-link" role="presentation"><a href="#haha" class="tab-a" role="tab" data-toggle="tab"><img src="/assets/images/s_emoji/haha.png"  class="img-reaction" /><ins class="ins_haha"></ins></a>
+                                                        </li>
+                                                        <li class="nav-link" role="presentation"><a href="#sad" class="tab-a" role="tab" data-toggle="tab"><img src="/assets/images/s_emoji/sad.png"  class="img-reaction" /><ins class="ins_sad"></ins></a>
+                                                        </li>
+                                                        <li class="nav-link" role="presentation"><a href="#angry" class="tab-a" role="tab" data-toggle="tab"><img src="/assets/images/s_emoji/angry.png"  class="img-reaction" /><ins class="ins_angry"></ins></a>
+                                                        </li>
+                                                        <li class="nav-link" role="presentation"><a href="#care" class="tab-a" role="tab" data-toggle="tab"><img src="/assets/images/s_emoji/care.png"  class="img-reaction" /><ins class="ins_care"></ins></a>
+                                                        </li>
+                                                        <li class="nav-link" role="presentation"><a href="#wow" class="tab-a" role="tab" data-toggle="tab"><img src="/assets/images/s_emoji/wow.png"  class="img-reaction" /><ins class="ins_wow"></ins></a>
+                                                        </li>
+                                                </ul>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                <div class="tab-content">
+                                                        <div role="tabpanel" class="tab-pane active allfrnd" id="all"></div>
+                                                        <div role="tabpanel" class="tab-pane like_rc" id="like"></div>
+                                                        <div role="tabpanel" class="tab-pane sad_rc" id="sad"></div>
+                                                        <div role="tabpanel" class="tab-pane love_rc" id="love"></div>
+                                                        <div role="tabpanel" class="tab-pane haha_rc" id="haha"></div>
+                                                        <div role="tabpanel" class="tab-pane angry_rc" id="angry"></div>
+                                                        <div role="tabpanel" class="tab-pane care_rc" id="care"></div>
+                                                        <div role="tabpanel" class="tab-pane wow_rc" id="wow"></div>
+                                                </div>
+                                                </div>
+                                                </div>
+                                                </div>
+                                </div>
+                                     </div>
+                                {{-- <div class="coment-area bg-white bg-light">
                                 <ul class="we-comet list-comment-box">
                                         @php $get_total_group_cmt = get_total_group_cmt($user->id);  @endphp
                                         
@@ -537,7 +716,7 @@
                                         </div>
                                         </div>
                                 </div>
-                                </div>
+                                </div> --}}
                         </div>
                         </div>
                        
@@ -571,7 +750,8 @@
                                                   style="display: none">
                                               </div>
                                               <span>published:{{ $user->created }}</span>
-                                          </span></div>
+                                          </span>
+                                     </div>
                                   </span>
                                   <div class="post-meta">
                                       <div class="description">
@@ -767,6 +947,146 @@
                                   </div>
                               </div>
                               <div class="coment-area bg-white bg-light">
+                                <ul class="we-comet">
+                                  {{-- @foreach ($comments as $comment) --}}
+                                  
+                                  @foreach ($get_post_comments as $comment)
+     
+                                  
+                                  @php $get_post_comment_like = get_post_comment_like($comment->id);
+                                       $is_like  = isset($get_post_comment_like->is_like)?$get_post_comment_like->is_like:'0';
+                                  @endphp 
+                                  <li>
+                                      <div class="comet-avatar">
+                                         <img src="{{ asset('assets/images/resources/comet-1.jpg') }}" alt="">
+                                      </div>
+                                      <div class="we-comment">
+                                         <div class="coment-head">
+                                            <h5><a href="time-line" title="">{{$user->name}}</a></h5>  
+                                            <a class="we-reply" href="#" title="Reply"><i class="fa fa-reply text-secondary"></i></a>
+                                         </div>
+                                         <p> @php echo $comment->comment @endphp</p>
+                                      </div>
+                                   </li>
+                                   
+                              @endforeach 
+                             
+                                      <div class="post-comt-box">
+                                         <form method="post" id="page_post_comments" enctype="multipart/form-data"   action="{{url("homepage")}}">
+                                                  @csrf
+                                               <div class="row">
+                                                  <div class="col-sm-11">
+                                                     <textarea placeholder="Post your comment"   id="commen_1234" class="comment_1243" name="comment"></textarea>
+                                                  </div> 
+                                                  <div class="col-sm-1">
+                                                     <input type="hidden" name="post_id" id="post_id" value="{{ $user->id }}"/>
+                                                     <input type="hidden" name="user_id" id="user_id" value="{{ $user->user_id }}"/>
+                                                     <input type="hidden" name="status" id="status" value ="1"/>
+                                                     <button type="submit" class="btn btn-primary"><i class="far fa-paper-plane"></i></button>
+                                                  </div>
+                                               </div>
+                                         </form> 
+                                   </div>
+                                 
+                                   {{-- <li>
+                                   <div class="comet-avatar">
+                                      <img src="{{ asset('assets/images/resources/comet-1.jpg') }}" alt="">
+                                    </div>
+                                    <div class="we-comment">
+                                      <div class="coment-head">
+                                         <h5><a href="time-line" title="">{{$user->name}}</a></h5>
+                                         <?php
+                                           //$timestamp = strtotime($user->created_at);
+                                          //  $day = date('M,d Y H:i A', $timestamp);
+                                           ?>
+                                         <a class="we-reply" href="#" title="Reply"><i class="fa fa-reply text-secondary"></i></a>
+                                      </div>
+                                      <p> @php echo $comment->comment @endphp</p>
+                                    </div>
+                                    @endforeach 
+                                     
+                                </li>--}}
+                                </ul>
+                                {{-- modal for edit post							 --}}
+                                <div class="modal fade" id="editpost" tabindex="-1" aria-hidden="false">
+                                  <div class="modal-dialog">
+                                    <div class="modal-content">
+                                      <div class="modal-header py-2">
+                                         <h5 class="modal-title" id="">Edit Post</h5>
+                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                         <span aria-hidden="true">&times;</span>
+                                         </button>
+                                      </div>
+                                      <div class="modal-body">
+                                         <form method="post" id="edit_form" action="{{ url("edit-post"); }}" enctype="multipart/form-data">
+                                         @csrf
+                                         <div class="container">
+                                           <div class="row">
+                                             <div class="col-sm-6">
+                                               <div class="card post-card-img">
+                                               </div>
+                                             </div>
+                                             <div class="col-sm-6">
+                                               <div class="form-group">
+                                                  <label class="text-primary" for="">Edit</label>
+                                                  <div id="post_contet">
+                                                  </div>
+                                               </div>
+                                             </div>
+                                           </div>
+                                         </div>
+                                         </form>
+                                      </div>
+                                      <div class="modal-footer py-2">
+                                         <button type="submit" id="edit-post-submit" class="btn btn-sm btn-primary">Update</button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <!-- Modal  for reactions emoticons-->
+                                <div class="modal fade" id="reaction" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                   <div class="modal-dialog modal-md" role="document">
+                                   <div class="modal-content">
+                                      <div class="modal-header pb-0">
+                                         <ul class="nav nav-tabs" role="tablist">
+                                            <li class="nav-link active" role="presentation" class="active"><a href="#all" class="tab-a" role="tab" data-toggle="tab">All</a>
+                                            </li>
+                                            <li class="nav-link" role="presentation"><a href="#like" class="tab-a" role="tab" data-toggle="tab"><img src="/assets/images/s_emoji/like.png"  class="img-reaction" /><ins class="ins_like"></ins></a>
+                                            </li>
+                                            <li class="nav-link" role="presentation"><a href="#love" class="tab-a" role="tab" data-toggle="tab"><img src="/assets/images/s_emoji/love.png"  class="img-reaction" /><ins class="ins_love"></ins></a>
+                                            </li>
+                                            <li class="nav-link" role="presentation"><a href="#haha" class="tab-a" role="tab" data-toggle="tab"><img src="/assets/images/s_emoji/haha.png"  class="img-reaction" /><ins class="ins_haha"></ins></a>
+                                            </li>
+                                            <li class="nav-link" role="presentation"><a href="#sad" class="tab-a" role="tab" data-toggle="tab"><img src="/assets/images/s_emoji/sad.png"  class="img-reaction" /><ins class="ins_sad"></ins></a>
+                                            </li>
+                                            <li class="nav-link" role="presentation"><a href="#angry" class="tab-a" role="tab" data-toggle="tab"><img src="/assets/images/s_emoji/angry.png"  class="img-reaction" /><ins class="ins_angry"></ins></a>
+                                            </li>
+                                            <li class="nav-link" role="presentation"><a href="#care" class="tab-a" role="tab" data-toggle="tab"><img src="/assets/images/s_emoji/wow.png"  class="img-reaction" /><ins class="ins_wow"></ins></a>
+                                            </li>
+                                            <li class="nav-link" role="presentation"><a href="#wow" class="tab-a" role="tab" data-toggle="tab"><img src="/assets/images/s_emoji/wow.png"  class="img-reaction" /><ins class="ins_wow"></ins></a>
+                                            </li>
+                                         </ul>
+                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                         </button>
+                                      </div>
+                                      <div class="modal-body">
+                                      <div class="tab-content">
+                                            <div role="tabpanel" class="tab-pane active allfrnd" id="all"></div>
+                                            <div role="tabpanel" class="tab-pane like_rc" id="like"></div>
+                                            <div role="tabpanel" class="tab-pane sad_rc" id="sad"></div>
+                                            <div role="tabpanel" class="tab-pane love_rc" id="love"></div>
+                                            <div role="tabpanel" class="tab-pane haha_rc" id="haha"></div>
+                                            <div role="tabpanel" class="tab-pane angry_rc" id="angry"></div>
+                                            <div role="tabpanel" class="tab-pane care_rc" id="care"></div>
+                                            <div role="tabpanel" class="tab-pane wow_rc" id="wow"></div>
+                                      </div>
+                                      </div>
+                                   </div>
+                                   </div>
+                                </div>
+                             </div>
+                              {{-- <div class="coment-area bg-white bg-light">
                                   <ul class="we-comet list-comment-box">
                                        @php $get_total_group_cmt = get_total_group_cmt($user->id);  @endphp
                                       
@@ -983,7 +1303,7 @@
                                           </div>
                                       </div>
                                   </div>
-                              </div>
+                              </div> --}}
                           </div>
                       </div>
                   
@@ -991,7 +1311,7 @@
                         </div>
                     </div>
      
-                  </div>
+
                <!-- centerl meta -->
                @include('includes/right-sidebar')
             </div>

@@ -21,8 +21,8 @@ class MsuSaveGroup extends Migration
             $table->string('group_category');
             $table->string('group_descripition');
             $table->string('only_see');
-            $table->string('cover_image');
-            $table->string('profile_picture');
+            $table->string('cover_image')->nullable();
+            $table->string('profile_picture')->nullable();
             $table->integer('is_active');
             $table->timestamp('created')->useCurrent();
         });
