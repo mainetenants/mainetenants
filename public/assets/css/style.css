@@ -10308,12 +10308,10 @@ li.label {
     padding: 5px 5px 5px 10px;
     border-bottom: 1px solid #efe3e3;
 }
-
 #list-comment-box li{ 
     padding-bottom:20px;
 
 }
-
 .is_seen{
 
     display: none;

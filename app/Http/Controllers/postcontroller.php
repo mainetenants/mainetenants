@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth as FacadesAuth;
 use App\Models\like_post_cmt;
 use App\Models\post_inner_comment;
 use App\Models\msu_group;
+use App\Models\User;
 use Intervention\Image\ImageManagerStatic as Image;
 
 class PostController extends Controller
@@ -96,17 +97,53 @@ class PostController extends Controller
 
         $user_name = DB::table('users')
             ->select('name')
-            ->where(['id' => $user_id->user_id])
+            ->where(['id' => $user->id])
             ->first();
 
 
 
         $data_notification = array('user_id' => $user_id->user_id, 'friend_id' =>  $user->id, 'message' => $user_name->name . ' Commented on Your 
         Post' . $request->comment, 'post_id' => (int)$request->post_id, 'is_seen' => '1', 'type' => "Comment",);
-
-        $notification =   DB::table('msu_user_notification')
-            ->insert($data_notification);
-
+          $notification =   DB::table('msu_user_notification')->insert($data_notification);
+          $firebaseToken = User::where(['id'=>$user_id->user_id,'notification'=>1])->pluck('device_token')->all();
+          $notification_sound = User::where(['id'=>$user->id,'notificaiton_sound'=>1])->pluck('notificaiton_sound')->all();
+          if ($firebaseToken != "") {
+              $SERVER_API_KEY ='AAAA1OCy3lM:APA91bGSy5Gckj-IQg8Hcg0gid3ecqSGD-3dYq5oEjMw4V4_-9cIcc44OOqwPOBR4IWWeeEBXLKzMPEgSEELJuBuUv-7_B3on9_kgzEr-sWYbDvc31gBlm73YwzOYibDKG1iuT2nF5LN';
+              if ($notification_sound  !="") {
+                  $data = [
+            "registration_ids" => $firebaseToken,
+            "notification" => [
+                "title" => "Post Comment",
+                "body" => $user_name->name . ' Commented on Your Post',
+                "sound"=> "default",
+            ]
+        ];
+              }else{
+                $data = [
+                    "registration_ids" => $firebaseToken,
+                    "notification" => [
+                        "title" => "Post Comment",
+                        "body" => $user_name->name . ' Commented on Your Post',
+                    ]
+                ];
+              }
+              $dataString = json_encode($data);
+    
+              $headers = [
+            'Authorization: key=' . $SERVER_API_KEY,
+            'Content-Type: application/json',
+        ];
+    
+              $ch = curl_init();
+      
+              curl_setopt($ch, CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send');
+              curl_setopt($ch, CURLOPT_POST, true);
+              curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+              curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+              curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+              curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
+              $response = curl_exec($ch);
+          }
         return back();
     }
 
@@ -121,8 +158,6 @@ class PostController extends Controller
             ->where(['msu_isfriend.friends_id' => $id, 'msu_isfriend.is_follow' =>  '1'])
             ->orderBy('created', 'DESC')
             ->get();
-
-
 
 
         $users1 = DB::table('msu_community_activities')

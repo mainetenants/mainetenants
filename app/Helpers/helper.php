@@ -54,7 +54,7 @@ function alluser(){
     $allusers  = DB::table('msu_isfriend')
     ->leftJoin('users', 'msu_isfriend.friends_id', '=', 'users.id')
     ->select('*')
-    ->Where(['msu_isfriend.user_id' =>  $id ,'msu_isfriend.is_follow'=>1])
+    ->Where(['msu_isfriend.user_id' =>  $id ,'msu_isfriend.is_follow'=>1,'users.show_profile'=>0])
     ->get();
    
     if(empty($allusers)){
@@ -74,9 +74,11 @@ function alluser1(){
     ->leftJoin('users', 'msu_isfriend.friends_id', '=', 'users.id')
     ->leftJoin('msu_invite_friends','msu_invite_friends.friend_id','=','msu_isfriend.friends_id')
     ->select('*')
-    ->Where(['msu_isfriend.user_id' =>  $id ,'msu_isfriend.is_follow'=>1,'msu_invite_friends.status'=>null])
+    ->Where(['msu_isfriend.user_id' =>  $id ,'msu_isfriend.is_follow'=>1,'msu_invite_friends.status'=>null,'users.my_profile'=>0])
     ->orWhere('msu_invite_friends.status','=',0)
     ->get();
+
+
    
     // if(empty($allusers)){
     //     return "";
@@ -255,38 +257,7 @@ function get_post_cmt($id){
       ->orderBy('created','DESC')
       ->get();
       
-      $string ="";
-      foreach($users  as $user){
-       $string .='<li><div class="comet-avatar">'.
-       '<img src="{{ asset(\'assets\images\resources\comet-1.jpg\') }}" alt="">'.
-     '</div>'.
-    '<div class="we-comment">'.
-       '<div class="coment-head">'.
-          '<h5><a href="time-line" title="">'. get_user_nane1($user->user_id) .'</a></h5>'.
-          '<a class="we-reply" href="#" title="Reply"><i class="fa fa-reply text-secondary"></i></a>'.
-       '</div>'.
-       '<p>'. $user->comment .'</p>'.
-    '</div>'.
-    '<div class="post-comt-box" style="display:none;">'.
-    '<form method="post" id="page_post_reply_comments" enctype="multipart/form-data"   action="{{url("homepage")}}">'.
-        '@csrf'.
-        '<div class="row m-4">'.
-        '<div class="col-sm-10">'.
-        '<textarea placeholder="Post your comment" id="comment2" name="comment1"></textarea>'.
-    '</div> <div class="col-sm-1">'.
-    '<input type="hidden" name="post_id" id="post_id" value="{{ $user->id }}"/>'.
-    '.<input type="hidden" name="user_id" id="user_id" value="{{ $user->user_id }}"/>'.
-    '<input type="hidden" name="status" id="status" value ="1"/>'.
-    '<button type="submit" class="btn btn-primary"><i class="far fa-paper-plane"></i></button>'.
-    '</div>'.
-'</form>'.
-'</div>'.
-    '</li> ';
-
-      }
-      echo $string;
-
-        return $string;
+        return $users;
 }  
 
 
@@ -609,3 +580,17 @@ function get_page_poll_result($id){
        ->first();
     return $get_poll_result;
 } 
+
+function get_user_permission(){
+   
+    $user= Auth::id();
+
+    $get_user_permission =DB::table('users')
+    ->Where('id',$user)
+    ->select('*')
+    ->first();
+
+
+    return $get_user_permission;
+
+}

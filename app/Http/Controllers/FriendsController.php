@@ -24,9 +24,9 @@ class FriendsController extends Controller
         $user_id = Auth::id();
   
         if($search == ''){
-           $employees = User::orderby('name','asc')->select('id','name')->where('id','!=',$user_id)->limit(5)->get();
+           $employees = User::orderby('name','asc')->select('id','name')->where('id','!=',$user_id)->where(['show_profile'=>1])->limit(5)->get();
         }else{
-           $employees = User::orderby('name','asc')->select('id','name')->where('name', 'like', '%' .$search . '%')->where('id','!=',$user_id)->limit(5)->get();
+           $employees = User::orderby('name','asc')->select('id','name')->where('name', 'like', '%' .$search . '%')->where('id','!=',$user_id)->where(['show_profile'=>1])->limit(5)->get();
         }
         $response = array();
         foreach ($employees as $employee) {
@@ -53,10 +53,38 @@ class FriendsController extends Controller
             DB::table('msu_isfriend')->insert($values);
             DB::table('msu_isfriend')->insert($values2); 
             $data_notification = array('user_id' => Auth::id(),'friend_id'=> $id,'message'=> $user_name->name.' sent you friend request.','post_id' =>0,'is_seen'=>'1','type' => "Friend Request",);
-            
             $notification =   DB::table('msu_user_notification')
             ->insert($data_notification);
-            return back();
+            $firebaseToken = User::where(['id'=>$id,'notification'=>1])->pluck('device_token')->all();
+          if ($firebaseToken != "") {
+              $SERVER_API_KEY ='AAAA1OCy3lM:APA91bGSy5Gckj-IQg8Hcg0gid3ecqSGD-3dYq5oEjMw4V4_-9cIcc44OOqwPOBR4IWWeeEBXLKzMPEgSEELJuBuUv-7_B3on9_kgzEr-sWYbDvc31gBlm73YwzOYibDKG1iuT2nF5LN';
+  
+              $data = [
+            "registration_ids" => $firebaseToken,
+            "notification" => [
+                "title" => "Friend Request",
+                "body" => $user_name->name." sent you friend request.",
+                "sound"=> "default",
+            ]
+        ];
+              $dataString = json_encode($data);
+    
+              $headers = [
+            'Authorization: key=' . $SERVER_API_KEY,
+            'Content-Type: application/json',
+        ];
+    
+              $ch = curl_init();
+      
+              curl_setopt($ch, CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send');
+              curl_setopt($ch, CURLOPT_POST, true);
+              curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+              curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+              curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+              curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
+              $response = curl_exec($ch);
+          }
+        return back();
         }
     }
     public function cancelRequest($id)
@@ -106,8 +134,38 @@ class FriendsController extends Controller
             $data_notification = array('user_id' => Auth::id(),'friend_id'=> $id,'message'=> $user_name->name.' Accept your  friend request.','post_id' =>0,'is_seen'=>'1','type' => "Friend Request",);
             
             $notification =   DB::table('msu_user_notification')
-
             ->insert($data_notification);
+            $firebaseToken = User::where(['id'=>$id,'notification'=>1])->pluck('device_token')->all();
+          if ($firebaseToken != "") {
+              $SERVER_API_KEY ='AAAA1OCy3lM:APA91bGSy5Gckj-IQg8Hcg0gid3ecqSGD-3dYq5oEjMw4V4_-9cIcc44OOqwPOBR4IWWeeEBXLKzMPEgSEELJuBuUv-7_B3on9_kgzEr-sWYbDvc31gBlm73YwzOYibDKG1iuT2nF5LN';
+  
+              $data = [
+            "registration_ids" => $firebaseToken,
+            "notification" => [
+                "title" => "Request Response",
+                "body" => $user_name->name." Accept your friend request.",
+                "sound"=> "default",
+            ]
+        ];
+              $dataString = json_encode($data);
+    
+              $headers = [
+            'Authorization: key=' . $SERVER_API_KEY,
+            'Content-Type: application/json',
+        ];
+    
+              $ch = curl_init();
+      
+              curl_setopt($ch, CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send');
+              curl_setopt($ch, CURLOPT_POST, true);
+              curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+              curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+              curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+              curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
+              $response = curl_exec($ch);
+          }
+
+            
             return back();
 
         }

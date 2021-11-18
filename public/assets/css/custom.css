@@ -243,7 +243,7 @@ li.nav-link .img-reaction {
 }
 
 .emoji-reaction {
-    max-width: 18px;
+    max-width: 18px !important;
 }
 
 li.emooo {
@@ -418,3 +418,4 @@ input#exampleInputEmail1:focus {
     /* outline: none !important; */
     box-shadow: 0 0 0 0rem rgb(0 123 255 / 25%);
 }
+ 

@@ -11,6 +11,7 @@ use App\Http\Controllers\ProfileUpdateController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\groupcontrollers;
 use App\Http\Controllers\create_poll;
+use App\Http\Controllers\msu_push_notifications;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -170,6 +171,13 @@ use App\Http\Controllers\create_poll;
     Route::post('poll_result','App\Http\Controllers\create_poll@poll_result');
     Route::get('manage-poll','App\Http\Controllers\create_poll@manage_poll');
     Route::post('delete_created_poll','App\Http\Controllers\Create_poll@delete_created_poll');
+    
+    /* ---------- Push Notificatons  ---------*/
+   Route::post('save-token','App\Http\Controllers\msu_push_notifications@saveToken');
+   
+   /* ------- update user settings  ----*/
+
+   Route::post('update-user-settings','App\Http\Controllers\msu_push_notifications@update_user_settings');
 
 });
 
@@ -378,3 +386,7 @@ Route::get('/profile', [Profile::class, 'index']);
 Route::post('/upload-image', [Profile::class, 'store']);
 
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -21,9 +21,22 @@ class CreateUsersTable extends Migration
             $table->string('password',128);
             $table->integer('gender');
             $table->rememberToken();
+            $table->string('device_token')->nullable();
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo', 2048)->nullable();
             $table->string('cover_photo', 2048)->nullable();
+            $table->integer('night_mode')->nullable();
+            $table->integer('notification')->nullable();
+            $table->integer('notificaiton_sound')->nullable();
+            $table->integer('my_profile')->nullable();
+            $table->integer('show_profile')->nullable();
+            $table->integer('show_me_online')->nullable();
+            $table->integer('sub_users')->nullable();
+            $table->integer('personal_account')->nullable();
+            $table->integer('bussiness_account')->nullable();
+            $table->integer('delete_history')->nullable();
+            $table->integer('expose_author_name')->nullable();
+
             $table->timestamps();
         });
     }

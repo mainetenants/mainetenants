@@ -75,6 +75,72 @@
     </div>
 </div>
 
+<script src="https://www.gstatic.com/firebasejs/7.23.0/firebase.js"></script>
+<script>
+  
+  const firebaseConfig = {
+      apiKey: "AIzaSyBBNIKlVX51fMHowmoqVqk4TIY3jsxKEuI",
+      authDomain: "laravel-bootstrao.firebaseapp.com",
+      projectId: "laravel-bootstrao",
+      storageBucket: "laravel-bootstrao.appspot.com",
+      messagingSenderId: "914302885459",
+      appId: "1:914302885459:web:18f0d0dd030c4f65dcf0a6",
+      measurementId: "G-9G3P9G1KZB"
+    };
+      
+    $(document).ready(function(){
+        initFirebaseMessagingRegistration();  
+    });
+    firebase.initializeApp(firebaseConfig);
+    const messaging = firebase.messaging();
+  
+    function initFirebaseMessagingRegistration() {
+       
+            messaging
+            .requestPermission()
+            .then(function () {
+                return messaging.getToken()
+            })
+            .then(function(token) {
+                console.log(token);
+   
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+  
+                $.ajax({
+                    url: '{{ url("save-token") }}',
+                    type: 'POST',
+                    data: {
+                        token: token
+                    },
+                    dataType: 'JSON',
+                    success: function (response) {
+                        console.log('Token saved successfully.');
+                    },
+                    error: function (err) {
+                        console.log('User Chat Token Error'+ err);
+                    },
+                });
+  
+            }).catch(function (err) {
+                console.log('User Chat Token Error'+ err);
+            });
+     }  
+      
+    messaging.onMessage(function(payload) {
+        const noteTitle = payload.notification.title;
+        const noteOptions = {
+            body: payload.notification.body,
+            icon: payload.notification.icon,
+        };
+        new Notification(noteTitle, noteOptions);
+    });
+   
+</script>
+
 <script src="{{ asset('assets/js/main.min.js') }}"></script>
 <script src="{{ asset('assets/js/main.min.js') }}"></script>
 <script src="{{ asset('assets/js/script.js') }}"></script>
@@ -622,6 +688,24 @@
         });
         // alert();
     });
+    function acitve_settings(value,response,id){
+             
+             $.ajax({
+                 type:'post',
+                 url:'update-user-settings',
+                 data:{
+                     value:value,
+                     response:response,
+                 },
+                 success:function(data){
+                   if(data['status']== 1){
+
+                       
+
+                   }
+                 },
+             });
+    }
 
     function send_invitation() {
 
